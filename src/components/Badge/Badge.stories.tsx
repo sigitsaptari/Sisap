@@ -10,7 +10,24 @@ const meta: Meta<typeof Badge> = {
   argTypes: {
     variant: {
       control: "radio",
-      options: ["neutral", "brand", "success", "warning", "destructive"],
+      options: [
+        "neutral",
+        "brand",
+        "success",
+        "warning",
+        "destructive",
+        "danger",
+        "counter",
+        "notification",
+      ],
+    },
+    size: {
+      control: "radio",
+      options: ["sm", "md", "lg"],
+    },
+    shape: {
+      control: "radio",
+      options: ["circle", "pill"],
     },
   },
 };
@@ -34,6 +51,77 @@ export const CounterMd: Story = {
   args: { variant: "counter", size: "md", label: "1" },
 };
 
+export const SymmetricalCircle: Story = {
+  name: "Symmetrical Circle (1:1 Dimensions)",
+  render: () => (
+    <div className="border-border-subtle bg-surface-base space-y-6 rounded-xl border p-6">
+      <div>
+        <h3 className="text-content-primary mb-1 text-sm font-semibold">
+          Dimensi Simetris 1:1 (True Circle — Tidak Lonjong)
+        </h3>
+        <p className="text-content-muted text-xs">
+          Single-digit dan counter badge otomatis memiliki aspek rasio 1:1 (lebar sama dengan
+          tinggi: 14x14px untuk sm, 16x16px untuk md).
+        </p>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-8">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">sm (14x14px)</span>
+          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
+            <Badge variant="counter" size="sm">
+              1
+            </Badge>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">sm dot (14x14px)</span>
+          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
+            <Badge variant="counter" size="sm" />
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">md (16x16px)</span>
+          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
+            <Badge variant="counter" size="md">
+              1
+            </Badge>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">md (3)</span>
+          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
+            <Badge variant="counter" size="md">
+              3
+            </Badge>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">multi-digit pill</span>
+          <div className="border-border-subtle flex h-8 items-center justify-center rounded border bg-neutral-100 px-2 dark:bg-neutral-800">
+            <Badge variant="counter" size="sm">
+              99+
+            </Badge>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-content-muted font-mono text-xs">brand circle (24x24px)</span>
+          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
+            <Badge variant="brand" shape="circle">
+              8
+            </Badge>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const FigmaPaDiBadge: Story = {
   name: "Figma Node 91797:378 (PaDi Counter Badge)",
   render: () => (
@@ -44,35 +132,35 @@ export const FigmaPaDiBadge: Story = {
         </h3>
         <p className="text-content-muted text-xs">
           Warna PaDi Red (#ee3124), teks putih (#ffffff). Ukuran sm (14px, border putih, font 10px
-          bold) dan md (16px, font 12px).
+          bold) dan md (16px, font 12px). Dimensi simetris 1:1 circle.
         </p>
       </div>
 
       <div className="space-y-4">
         <div className="flex items-center gap-6">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-content-muted text-xs">Small (14px)</span>
+            <span className="text-content-muted text-xs">Small (14x14px circle)</span>
             <Badge variant="counter" size="sm">
               1
             </Badge>
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <span className="text-content-muted text-xs">Small Multi-digit</span>
+            <span className="text-content-muted text-xs">Small Multi-digit (pill)</span>
             <Badge variant="counter" size="sm">
               99+
             </Badge>
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <span className="text-content-muted text-xs">Medium (16px)</span>
+            <span className="text-content-muted text-xs">Medium (16x16px circle)</span>
             <Badge variant="counter" size="md">
               1
             </Badge>
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <span className="text-content-muted text-xs">Medium Multi-digit</span>
+            <span className="text-content-muted text-xs">Medium Multi-digit (pill)</span>
             <Badge variant="counter" size="md">
               99+
             </Badge>
