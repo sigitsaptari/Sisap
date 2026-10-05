@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
 export type ButtonVariant =
-  "primary" | "secondary" | "outline" | "ghost" | "destructive" | "danger";
+  "primary" | "solid" | "secondary" | "outline" | "ghost" | "destructive" | "danger";
 
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 

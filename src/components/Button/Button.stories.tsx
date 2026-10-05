@@ -81,3 +81,84 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+export const FigmaPaDiMatrix: Story = {
+  name: "Figma PaDi DS v3.0 Matrix",
+  render: () => (
+    <div className="border-border-subtle bg-surface-base space-y-8 rounded-xl border p-6">
+      <div>
+        <h3 className="text-content-primary mb-1 text-sm font-semibold">
+          Figma Node 88746:15695 — PaDi DS v3.0 Button Set
+        </h3>
+        <p className="text-content-muted text-xs">
+          Types: Solid (Teal #009ea9), Outline (White/Slate #444b55), Destructive (Red #ee3124)
+        </p>
+      </div>
+
+      <div className="space-y-6">
+        {/* Solid / Primary */}
+        <div className="space-y-2">
+          <span className="text-content-muted text-xs font-medium tracking-wider uppercase">
+            1. Solid (Primary)
+          </span>
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variant="solid" size="sm">
+              Button sm (36px)
+            </Button>
+            <Button variant="solid" size="md">
+              Button md (44px)
+            </Button>
+            <Button variant="solid" size="lg">
+              Button lg (52px)
+            </Button>
+            <Button variant="solid" size="md" disabled>
+              Disabled
+            </Button>
+          </div>
+        </div>
+
+        {/* Outline / Secondary */}
+        <div className="space-y-2">
+          <span className="text-content-muted text-xs font-medium tracking-wider uppercase">
+            2. Outline (Secondary)
+          </span>
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variant="outline" size="sm">
+              Button sm (36px)
+            </Button>
+            <Button variant="outline" size="md">
+              Button md (44px)
+            </Button>
+            <Button variant="outline" size="lg">
+              Button lg (52px)
+            </Button>
+            <Button variant="outline" size="md" disabled>
+              Disabled
+            </Button>
+          </div>
+        </div>
+
+        {/* Destructive */}
+        <div className="space-y-2">
+          <span className="text-content-muted text-xs font-medium tracking-wider uppercase">
+            3. Destructive (Danger)
+          </span>
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variant="destructive" size="sm">
+              Button sm (36px)
+            </Button>
+            <Button variant="destructive" size="md">
+              Button md (44px)
+            </Button>
+            <Button variant="destructive" size="lg">
+              Button lg (52px)
+            </Button>
+            <Button variant="destructive" size="md" disabled>
+              Disabled
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+};
