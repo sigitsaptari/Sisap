@@ -27,10 +27,10 @@
       "bg-hover": { "$type": "color", "$value": "{color.action.danger-hover}" },
       "fg": { "$type": "color", "$value": "{color.fg.on-danger}" }
     },
-    "danger": {
-      "bg": { "$type": "color", "$value": "{color.action.danger}" },
-      "bg-hover": { "$type": "color", "$value": "{color.action.danger-hover}" },
-      "fg": { "$type": "color", "$value": "{color.fg.on-danger}" }
+    "disabled": {
+      "bg": { "$type": "color", "$value": "{color.neutral.100}" },
+      "fg": { "$type": "color", "$value": "{color.neutral.400}" },
+      "border": { "$type": "color", "$value": "{color.neutral.100}" }
     }
   }
 }

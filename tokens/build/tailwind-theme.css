@@ -22,12 +22,12 @@
   --radius-none: var(--ds-border-radius-none);
   --radius-sm: var(--ds-border-radius-sm);
   --radius-xl: var(--ds-border-radius-xl);
-  --color-button-danger-bg: var(--ds-button-danger-bg);
-  --color-button-danger-bg-hover: var(--ds-button-danger-bg-hover);
-  --color-button-danger-fg: var(--ds-button-danger-fg);
   --color-button-destructive-bg: var(--ds-button-destructive-bg);
   --color-button-destructive-bg-hover: var(--ds-button-destructive-bg-hover);
   --color-button-destructive-fg: var(--ds-button-destructive-fg);
+  --color-button-disabled-bg: var(--ds-button-disabled-bg);
+  --color-button-disabled-border: var(--ds-button-disabled-border);
+  --color-button-disabled-fg: var(--ds-button-disabled-fg);
   --color-button-ghost-bg-hover: var(--ds-button-ghost-bg-hover);
   --color-button-ghost-fg: var(--ds-button-ghost-fg);
   --color-button-outline-bg-hover: var(--ds-button-outline-bg-hover);

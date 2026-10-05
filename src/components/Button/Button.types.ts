@@ -5,11 +5,15 @@ export type ButtonVariant =
 
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
+export type ButtonState = "default" | "hover" | "pressed" | "focus" | "disabled";
+
 export interface ButtonProps extends ComponentPropsWithRef<"button"> {
   /** Visual style intent. Defaults to "primary". */
   variant?: ButtonVariant;
   /** Control height & typography scale. Defaults to "md". */
   size?: ButtonSize;
+  /** Explicit visual state (for preview matrix or forced state). Defaults to dynamic/default. */
+  state?: ButtonState;
   /** Shows a spinner, disables interaction and announces busy state via aria-busy. */
   isLoading?: boolean;
   /** Optional label swap while loading (e.g. "Saving…"). */
