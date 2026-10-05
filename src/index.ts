@@ -1,4 +1,7 @@
 // SisapDS core barrel export
+export { cn } from "./utils/cn";
+export type { ClassValue } from "./utils/cn";
+
 export { Button, buttonVariants, useButton } from "./components/Button";
 export type { ButtonProps, ButtonSize, ButtonVariant } from "./components/Button";
 
