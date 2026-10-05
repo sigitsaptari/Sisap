@@ -1,0 +1,31 @@
+{
+  "color": {
+    "bg": {
+      "canvas": { "$type": "color", "$value": "{color.neutral.950}" },
+      "surface": { "$type": "color", "$value": "{color.neutral.900}" },
+      "raised": { "$type": "color", "$value": "{color.neutral.800}" },
+      "inverse": { "$type": "color", "$value": "{color.neutral.100}" }
+    },
+    "fg": {
+      "default": { "$type": "color", "$value": "{color.neutral.50}" },
+      "muted": { "$type": "color", "$value": "{color.neutral.400}" },
+      "subtle": { "$type": "color", "$value": "{color.neutral.500}" },
+      "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
+    },
+    "border": {
+      "default": { "$type": "color", "$value": "{color.neutral.800}" },
+      "strong": { "$type": "color", "$value": "{color.neutral.700}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{color.brand.500}" },
+      "primary-hover": { "$type": "color", "$value": "{color.brand.400}" },
+      "primary-active": { "$type": "color", "$value": "{color.brand.300}" },
+      "secondary": { "$type": "color", "$value": "{color.neutral.800}" },
+      "secondary-hover": { "$type": "color", "$value": "{color.neutral.700}" },
+      "ghost-hover": { "$type": "color", "$value": "{color.neutral.800}" }
+    },
+    "overlay": {
+      "default": { "$type": "color", "$value": "#00000099" }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../../../tokens/build/tokens.css";
+@import "../../../tokens/build/tailwind-theme.css";
+
+/* Scan the design system source so component utility classes are generated. */
+@source "../../../src";
+
+body {
+  font-family: var(--ds-typography-font-family-sans);
+}

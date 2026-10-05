@@ -1,0 +1,46 @@
+{
+  "color": {
+    "bg": {
+      "canvas": { "$type": "color", "$value": "{color.neutral.50}" },
+      "surface": { "$type": "color", "$value": "{color.neutral.0}" },
+      "raised": { "$type": "color", "$value": "{color.neutral.0}" },
+      "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
+    },
+    "fg": {
+      "default": { "$type": "color", "$value": "{color.neutral.900}" },
+      "muted": { "$type": "color", "$value": "{color.neutral.600}" },
+      "subtle": { "$type": "color", "$value": "{color.neutral.400}" },
+      "inverse": { "$type": "color", "$value": "{color.neutral.50}" },
+      "on-brand": { "$type": "color", "$value": "{color.neutral.0}" },
+      "on-danger": { "$type": "color", "$value": "{color.neutral.0}" }
+    },
+    "border": {
+      "default": { "$type": "color", "$value": "{color.neutral.200}" },
+      "strong": { "$type": "color", "$value": "{color.neutral.300}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{color.brand.600}" },
+      "primary-hover": { "$type": "color", "$value": "{color.brand.700}" },
+      "primary-active": { "$type": "color", "$value": "{color.brand.800}" },
+      "secondary": { "$type": "color", "$value": "{color.neutral.100}" },
+      "secondary-hover": { "$type": "color", "$value": "{color.neutral.200}" },
+      "ghost-hover": { "$type": "color", "$value": "{color.neutral.100}" },
+      "danger": { "$type": "color", "$value": "{color.red.600}" },
+      "danger-hover": { "$type": "color", "$value": "{color.red.700}" }
+    },
+    "focus": {
+      "ring": { "$type": "color", "$value": "{color.brand.500}" }
+    },
+    "feedback": {
+      "success": { "$type": "color", "$value": "{color.green.600}" },
+      "success-bg": { "$type": "color", "$value": "{color.green.50}" },
+      "warning": { "$type": "color", "$value": "{color.amber.600}" },
+      "warning-bg": { "$type": "color", "$value": "{color.amber.50}" },
+      "danger": { "$type": "color", "$value": "{color.red.600}" },
+      "danger-bg": { "$type": "color", "$value": "{color.red.50}" }
+    },
+    "overlay": {
+      "default": { "$type": "color", "$value": "#00000066" }
+    }
+  }
+}
