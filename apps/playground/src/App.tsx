@@ -26,6 +26,7 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
+  Chip,
   Dialog,
   DialogClose,
   DialogContent,
@@ -231,7 +232,7 @@ export default function App() {
                         <Send className="text-action-primary size-5" />
                         <CardTitle>Transfer Saldo</CardTitle>
                       </div>
-                      <Badge variant="brand">Bebas Biaya Admin</Badge>
+                      <Chip color="tosca" type="soft" label="Bebas Biaya Admin" />
                     </div>
                     <CardDescription>
                       Kirim saldo ke sesama pengguna SisapPay atau rekening bank tanpa potongan.
@@ -429,7 +430,7 @@ export default function App() {
                           SisapPay Utama
                         </Typography>
                       </div>
-                      <Badge variant="success">Aktif</Badge>
+                      <Chip color="green" type="soft" label="Aktif" />
                     </div>
                     <CardTitle className="mt-2 text-3xl font-extrabold tracking-tight">
                       Rp 4.850.000
@@ -618,19 +619,24 @@ export default function App() {
             {/* Badges & Typography */}
             <Card>
               <CardHeader>
-                <CardTitle>3. Badge & Typography</CardTitle>
+                <CardTitle>3. Chip & Badge Indikator</CardTitle>
                 <CardDescription>
-                  Elemen status dan hierarki teks tipografi W3C DTCG.
+                  Chip status (Figma 91105:6246) dan PaDi Counter Badge (Figma 91797:378).
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Stack gap={4}>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="neutral">Neutral</Badge>
-                    <Badge variant="brand">Brand</Badge>
-                    <Badge variant="success">Success</Badge>
-                    <Badge variant="warning">Warning</Badge>
-                    <Badge variant="destructive">Destructive</Badge>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Chip color="tosca" type="soft" label="Tosca Soft" showIconR />
+                    <Chip color="green" type="outline" label="Green Outline" showIconR />
+                    <Chip color="red" type="solid" label="Red Solid" showIconR />
+                    <Chip color="orange" type="soft" label="Orange Soft" />
+                    <Chip color="blue" type="soft" label="Blue Soft" />
+                    <Chip color="grey" type="outline" label="Grey Outline" />
+                    <div className="border-border-subtle flex items-center gap-2 border-l pl-2">
+                      <Badge variant="counter" size="sm" label="1" />
+                      <Badge variant="counter" size="md" label="99+" />
+                    </div>
                   </div>
                   <div className="border-border-default space-y-1 border-t pt-3">
                     <Typography variant="h3">Heading 3 Tipografi</Typography>

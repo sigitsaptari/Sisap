@@ -1,0 +1,34 @@
+{
+  "chip": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.sm}" },
+    "reverse-text": { "$type": "color", "$value": "{color.neutral.0}" },
+    "tosca": {
+      "solid": { "$type": "color", "$value": "#009ea9" },
+      "soft": { "$type": "color", "$value": "#e6f4f7" }
+    },
+    "grey": {
+      "solid": { "$type": "color", "$value": "#444b55" },
+      "soft": { "$type": "color", "$value": "#e7e8e9" }
+    },
+    "green": {
+      "solid": { "$type": "color", "$value": "#25974c" },
+      "soft": { "$type": "color", "$value": "#ecfff3" }
+    },
+    "red": {
+      "solid": { "$type": "color", "$value": "#ee3124" },
+      "soft": { "$type": "color", "$value": "#ffedf1" }
+    },
+    "orange": {
+      "solid": { "$type": "color", "$value": "#f7931e" },
+      "soft": { "$type": "color", "$value": "#fff5ea" }
+    },
+    "blue": {
+      "solid": { "$type": "color", "$value": "#0066ff" },
+      "soft": { "$type": "color", "$value": "#eff3ff" }
+    },
+    "dark-blue": {
+      "solid": { "$type": "color", "$value": "#182958" },
+      "soft": { "$type": "color", "$value": "#e8f2ff" }
+    }
+  }
+}

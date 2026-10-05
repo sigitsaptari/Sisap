@@ -1,14 +1,6 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
-export type BadgeVariant =
-  | "neutral"
-  | "brand"
-  | "success"
-  | "warning"
-  | "destructive"
-  | "danger"
-  | "counter"
-  | "notification";
+export type BadgeVariant = "counter" | "notification" | "default";
 
 export type BadgeSize = "sm" | "md" | "lg";
 

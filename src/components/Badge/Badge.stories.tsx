@@ -1,25 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "./Badge";
-import type { BadgeVariant } from "./Badge.types";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
-  args: { children: "Badge" },
+  args: { label: "1" },
   argTypes: {
     variant: {
       control: "radio",
-      options: [
-        "neutral",
-        "brand",
-        "success",
-        "warning",
-        "destructive",
-        "danger",
-        "counter",
-        "notification",
-      ],
+      options: ["counter", "notification", "default"],
     },
     size: {
       control: "radio",
@@ -35,20 +25,28 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Neutral: Story = { args: { variant: "neutral" } };
-export const Brand: Story = { args: { variant: "brand", children: "New" } };
-export const Success: Story = { args: { variant: "success", children: "Paid" } };
-export const Warning: Story = { args: { variant: "warning", children: "Pending" } };
-export const Danger: Story = { args: { variant: "destructive", children: "Failed" } };
+export const Default: Story = {
+  args: { variant: "counter", size: "sm", label: "1" },
+};
 
 export const CounterSm: Story = {
-  name: "Counter / Notification (sm - 14px)",
+  name: "Counter Small (sm - 14px)",
   args: { variant: "counter", size: "sm", label: "1" },
 };
 
 export const CounterMd: Story = {
-  name: "Counter / Notification (md - 16px)",
+  name: "Counter Medium (md - 16px)",
   args: { variant: "counter", size: "md", label: "1" },
+};
+
+export const NotificationDot: Story = {
+  name: "Notification Dot (Empty)",
+  args: { variant: "notification", size: "sm" },
+};
+
+export const MultiDigit: Story = {
+  name: "Multi-digit Counter (99+)",
+  args: { variant: "counter", size: "sm", label: "99+" },
 };
 
 export const SymmetricalCircle: Story = {
@@ -105,15 +103,6 @@ export const SymmetricalCircle: Story = {
           <div className="border-border-subtle flex h-8 items-center justify-center rounded border bg-neutral-100 px-2 dark:bg-neutral-800">
             <Badge variant="counter" size="sm">
               99+
-            </Badge>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-content-muted font-mono text-xs">brand circle (24x24px)</span>
-          <div className="border-border-subtle flex size-8 items-center justify-center rounded border bg-neutral-100 dark:bg-neutral-800">
-            <Badge variant="brand" shape="circle">
-              8
             </Badge>
           </div>
         </div>

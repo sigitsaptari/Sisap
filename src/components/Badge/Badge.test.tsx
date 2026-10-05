@@ -4,22 +4,26 @@ import { axeViolations } from "../../test/a11y";
 import { Badge } from "./Badge";
 
 describe("Badge a11y", () => {
-  it("has no axe violations for every variant", async () => {
+  it("has no axe violations for all badge variants", async () => {
     const { container } = render(
       <div>
-        {(["neutral", "brand", "success", "warning", "danger"] as const).map((v) => (
-          <Badge key={v} variant={v}>
-            {v}
-          </Badge>
+        {(["counter", "notification", "default"] as const).map((v) => (
+          <Badge key={v} variant={v} label="1" />
         ))}
       </div>,
     );
     expect(await axeViolations(container)).toEqual([]);
   });
 
-  it("renders its label text", () => {
-    render(<Badge variant="success">Paid</Badge>);
-    expect(screen.getByText("Paid")).toBeTruthy();
+  it("renders its label text or children", () => {
+    render(
+      <div>
+        <Badge label="5" />
+        <Badge>9</Badge>
+      </div>,
+    );
+    expect(screen.getByText("5")).toBeTruthy();
+    expect(screen.getByText("9")).toBeTruthy();
   });
 
   it("renders counter badge with label prop and sizes", () => {
@@ -55,19 +59,11 @@ describe("Badge a11y", () => {
   });
 
   it("honors explicit shape prop", () => {
-    const { container: circleContainer } = render(
-      <Badge variant="brand" shape="circle">
-        5
-      </Badge>,
-    );
+    const { container: circleContainer } = render(<Badge shape="circle" label="5" />);
     const circleBadge = circleContainer.querySelector("span");
     expect(circleBadge?.className).toContain("aspect-square");
 
-    const { container: pillContainer } = render(
-      <Badge variant="counter" size="sm" shape="pill">
-        1
-      </Badge>,
-    );
+    const { container: pillContainer } = render(<Badge size="sm" shape="pill" label="1" />);
     const pillBadge = pillContainer.querySelector("span");
     expect(pillBadge?.className).toContain("px-1");
   });
