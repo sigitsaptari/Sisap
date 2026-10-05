@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
@@ -17,6 +18,8 @@ export const buttonVariants = cva(
         outline:
           "border border-button-outline-border bg-transparent text-button-outline-fg hover:bg-button-outline-bg-hover",
         ghost: "bg-transparent text-button-ghost-fg hover:bg-button-ghost-bg-hover",
+        destructive:
+          "bg-button-destructive-bg text-button-destructive-fg hover:bg-button-destructive-bg-hover",
         danger: "bg-button-danger-bg text-button-danger-fg hover:bg-button-danger-bg-hover",
       },
       size: {
@@ -30,10 +33,10 @@ export const buttonVariants = cva(
   },
 );
 
-export const Button = (props: ButtonProps) => {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
-    variant,
-    size,
+    variant = "primary",
+    size = "md",
     isLoading = false,
     loadingText,
     leftIcon,
@@ -43,7 +46,6 @@ export const Button = (props: ButtonProps) => {
     children,
     disabled,
     type = "button",
-    ref,
     ...rest
   } = props;
 
@@ -71,6 +73,6 @@ export const Button = (props: ButtonProps) => {
       ) : null}
     </button>
   );
-};
+});
 
 Button.displayName = "Button";

@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import { forwardRef, type ElementType } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
@@ -31,15 +31,13 @@ const defaultElement: Record<TypographyVariant, ElementType> = {
   code: "code",
 };
 
-export const Typography = ({
-  variant = "body",
-  as,
-  asChild = false,
-  className,
-  ...rest
-}: TypographyProps) => {
-  const Component: ElementType = asChild ? Slot : (as ?? defaultElement[variant]);
-  return <Component className={cn(typographyVariants({ variant }), className)} {...rest} />;
-};
+export const Typography = forwardRef<HTMLElement, TypographyProps>(
+  ({ variant = "body", as, asChild = false, className, ...rest }, ref) => {
+    const Component: ElementType = asChild ? Slot : (as ?? defaultElement[variant]);
+    return (
+      <Component ref={ref} className={cn(typographyVariants({ variant }), className)} {...rest} />
+    );
+  },
+);
 
 Typography.displayName = "Typography";

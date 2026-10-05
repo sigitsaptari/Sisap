@@ -33,7 +33,7 @@ export const Default: Story = {
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="danger">Delete account</DropdownMenuItem>
+        <DropdownMenuItem variant="destructive">Delete account</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   ),

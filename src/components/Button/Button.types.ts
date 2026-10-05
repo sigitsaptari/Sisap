@@ -1,13 +1,14 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
-export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
+export type ButtonVariant =
+  "primary" | "secondary" | "outline" | "ghost" | "destructive" | "danger";
 
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 export interface ButtonProps extends ComponentPropsWithRef<"button"> {
-  /** Visual style. Defaults to "primary". */
+  /** Visual style intent. Defaults to "primary". */
   variant?: ButtonVariant;
-  /** Control height & typography. Defaults to "md". */
+  /** Control height & typography scale. Defaults to "md". */
   size?: ButtonSize;
   /** Shows a spinner, disables interaction and announces busy state via aria-busy. */
   isLoading?: boolean;

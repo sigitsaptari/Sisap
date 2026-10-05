@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { BadgeProps } from "./Badge.types";
@@ -11,6 +12,7 @@ export const badgeVariants = cva(
         brand: "bg-badge-brand-bg text-badge-brand-fg",
         success: "bg-badge-success-bg text-badge-success-fg",
         warning: "bg-badge-warning-bg text-badge-warning-fg",
+        destructive: "bg-badge-destructive-bg text-badge-destructive-fg",
         danger: "bg-badge-danger-bg text-badge-danger-fg",
       },
     },
@@ -18,8 +20,10 @@ export const badgeVariants = cva(
   },
 );
 
-export const Badge = ({ variant, className, ref, ...rest }: BadgeProps) => (
-  <span ref={ref} className={cn(badgeVariants({ variant }), className)} {...rest} />
+export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ variant = "neutral", className, ...rest }, ref) => (
+    <span ref={ref} className={cn(badgeVariants({ variant }), className)} {...rest} />
+  ),
 );
 
 Badge.displayName = "Badge";

@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
@@ -20,9 +21,13 @@ export const gridVariants = cva("grid", {
   defaultVariants: { columns: 1, gap: 4 },
 });
 
-export const Grid = ({ columns, gap, asChild = false, className, ...rest }: GridProps) => {
-  const Component = asChild ? Slot : "div";
-  return <Component className={cn(gridVariants({ columns, gap }), className)} {...rest} />;
-};
+export const Grid = forwardRef<HTMLDivElement, GridProps>(
+  ({ columns = 1, gap = 4, asChild = false, className, ...rest }, ref) => {
+    const Component = asChild ? Slot : "div";
+    return (
+      <Component ref={ref} className={cn(gridVariants({ columns, gap }), className)} {...rest} />
+    );
+  },
+);
 
 Grid.displayName = "Grid";

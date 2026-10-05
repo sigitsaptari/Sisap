@@ -8,7 +8,10 @@ const meta: Meta<typeof Badge> = {
   tags: ["autodocs"],
   args: { children: "Badge" },
   argTypes: {
-    variant: { control: "radio", options: ["neutral", "brand", "success", "warning", "danger"] },
+    variant: {
+      control: "radio",
+      options: ["neutral", "brand", "success", "warning", "destructive"],
+    },
   },
 };
 
@@ -19,9 +22,9 @@ export const Neutral: Story = { args: { variant: "neutral" } };
 export const Brand: Story = { args: { variant: "brand", children: "New" } };
 export const Success: Story = { args: { variant: "success", children: "Paid" } };
 export const Warning: Story = { args: { variant: "warning", children: "Pending" } };
-export const Danger: Story = { args: { variant: "danger", children: "Failed" } };
+export const Danger: Story = { args: { variant: "destructive", children: "Failed" } };
 
-const variants: BadgeVariant[] = ["neutral", "brand", "success", "warning", "danger"];
+const variants: BadgeVariant[] = ["neutral", "brand", "success", "warning", "destructive"];
 
 export const AllVariants: Story = {
   render: () => (

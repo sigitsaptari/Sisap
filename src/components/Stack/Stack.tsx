@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
@@ -27,23 +28,20 @@ export const stackVariants = cva("flex", {
   defaultVariants: { direction: "column", gap: 4 },
 });
 
-export const Stack = ({
-  direction,
-  gap,
-  align,
-  justify,
-  wrap,
-  asChild = false,
-  className,
-  ...rest
-}: StackProps) => {
-  const Component = asChild ? Slot : "div";
-  return (
-    <Component
-      className={cn(stackVariants({ direction, gap, align, justify, wrap }), className)}
-      {...rest}
-    />
-  );
-};
+export const Stack = forwardRef<HTMLDivElement, StackProps>(
+  (
+    { direction = "column", gap = 4, align, justify, wrap, asChild = false, className, ...rest },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "div";
+    return (
+      <Component
+        ref={ref}
+        className={cn(stackVariants({ direction, gap, align, justify, wrap }), className)}
+        {...rest}
+      />
+    );
+  },
+);
 
 Stack.displayName = "Stack";

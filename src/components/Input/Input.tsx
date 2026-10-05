@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { InputProps } from "./Input.types";
@@ -16,14 +17,16 @@ export const inputVariants = cva(
   },
 );
 
-export const Input = ({ size, invalid, className, type = "text", ref, ...rest }: InputProps) => (
-  <input
-    ref={ref}
-    type={type}
-    aria-invalid={invalid || undefined}
-    className={cn(inputVariants({ size }), className)}
-    {...rest}
-  />
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ size = "md", invalid, className, type = "text", ...rest }, ref) => (
+    <input
+      ref={ref}
+      type={type}
+      aria-invalid={invalid || undefined}
+      className={cn(inputVariants({ size }), className)}
+      {...rest}
+    />
+  ),
 );
 
 Input.displayName = "Input";

@@ -7,6 +7,8 @@
   --color-badge-brand-fg: var(--ds-badge-brand-fg);
   --color-badge-danger-bg: var(--ds-badge-danger-bg);
   --color-badge-danger-fg: var(--ds-badge-danger-fg);
+  --color-badge-destructive-bg: var(--ds-badge-destructive-bg);
+  --color-badge-destructive-fg: var(--ds-badge-destructive-fg);
   --color-badge-neutral-bg: var(--ds-badge-neutral-bg);
   --color-badge-neutral-fg: var(--ds-badge-neutral-fg);
   --color-badge-success-bg: var(--ds-badge-success-bg);
@@ -23,6 +25,9 @@
   --color-button-danger-bg: var(--ds-button-danger-bg);
   --color-button-danger-bg-hover: var(--ds-button-danger-bg-hover);
   --color-button-danger-fg: var(--ds-button-danger-fg);
+  --color-button-destructive-bg: var(--ds-button-destructive-bg);
+  --color-button-destructive-bg-hover: var(--ds-button-destructive-bg-hover);
+  --color-button-destructive-fg: var(--ds-button-destructive-fg);
   --color-button-ghost-bg-hover: var(--ds-button-ghost-bg-hover);
   --color-button-ghost-fg: var(--ds-button-ghost-fg);
   --color-button-outline-bg-hover: var(--ds-button-outline-bg-hover);

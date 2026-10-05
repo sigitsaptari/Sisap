@@ -460,7 +460,7 @@ export default function App() {
                         <DropdownMenuItem>Mutasi Rekening</DropdownMenuItem>
                         <DropdownMenuItem>Tarik Tunai QR</DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem variant="danger">Blokir Sementara</DropdownMenuItem>
+                        <DropdownMenuItem variant="destructive">Blokir Sementara</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </CardFooter>
@@ -567,7 +567,7 @@ export default function App() {
                   <Button variant="secondary">Secondary</Button>
                   <Button variant="outline">Outline</Button>
                   <Button variant="ghost">Ghost</Button>
-                  <Button variant="danger">Danger</Button>
+                  <Button variant="destructive">Destructive</Button>
                   <Button isLoading loadingText="Saving…">
                     Loading
                   </Button>
@@ -630,7 +630,7 @@ export default function App() {
                     <Badge variant="brand">Brand</Badge>
                     <Badge variant="success">Success</Badge>
                     <Badge variant="warning">Warning</Badge>
-                    <Badge variant="danger">Danger</Badge>
+                    <Badge variant="destructive">Destructive</Badge>
                   </div>
                   <div className="border-border-default space-y-1 border-t pt-3">
                     <Typography variant="h3">Heading 3 Tipografi</Typography>

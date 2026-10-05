@@ -21,6 +21,11 @@
       "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },
       "fg": { "$type": "color", "$value": "{color.fg.default}" }
     },
+    "destructive": {
+      "bg": { "$type": "color", "$value": "{color.action.danger}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.danger-hover}" },
+      "fg": { "$type": "color", "$value": "{color.fg.on-danger}" }
+    },
     "danger": {
       "bg": { "$type": "color", "$value": "{color.action.danger}" },
       "bg-hover": { "$type": "color", "$value": "{color.action.danger-hover}" },

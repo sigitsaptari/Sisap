@@ -7,8 +7,8 @@ export type DropdownMenuGroupProps = ComponentPropsWithRef<typeof MenuPrimitive.
 export type DropdownMenuContentProps = ComponentPropsWithRef<typeof MenuPrimitive.Content>;
 
 export interface DropdownMenuItemProps extends ComponentPropsWithRef<typeof MenuPrimitive.Item> {
-  /** "danger" colors destructive actions. Defaults to "default". */
-  variant?: "default" | "danger";
+  /** "destructive" (or "danger") colors destructive actions. Defaults to "default". */
+  variant?: "default" | "destructive" | "danger";
 }
 
 export type DropdownMenuCheckboxItemProps = ComponentPropsWithRef<

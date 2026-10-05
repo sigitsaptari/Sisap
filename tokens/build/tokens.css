@@ -8,6 +8,8 @@
   --ds-badge-brand-fg: #ffffff;
   --ds-badge-danger-bg: #fef2f2;
   --ds-badge-danger-fg: #dc2626;
+  --ds-badge-destructive-bg: #fef2f2;
+  --ds-badge-destructive-fg: #dc2626;
   --ds-badge-neutral-bg: #f3f4f6;
   --ds-badge-neutral-fg: #111827;
   --ds-badge-success-bg: #f0fdf4;
@@ -24,6 +26,9 @@
   --ds-button-danger-bg: #dc2626;
   --ds-button-danger-bg-hover: #b91c1c;
   --ds-button-danger-fg: #ffffff;
+  --ds-button-destructive-bg: #dc2626;
+  --ds-button-destructive-bg-hover: #b91c1c;
+  --ds-button-destructive-fg: #ffffff;
   --ds-button-ghost-bg-hover: #f3f4f6;
   --ds-button-ghost-fg: #111827;
   --ds-button-outline-bg-hover: #f3f4f6;
@@ -219,6 +224,8 @@
   --ds-badge-brand-fg: #ffffff;
   --ds-badge-danger-bg: #b91c1c;
   --ds-badge-danger-fg: #fecaca;
+  --ds-badge-destructive-bg: #b91c1c;
+  --ds-badge-destructive-fg: #fecaca;
   --ds-badge-neutral-bg: #1f2937;
   --ds-badge-neutral-fg: #f9fafb;
   --ds-badge-success-bg: #15803d;
@@ -235,6 +242,9 @@
   --ds-button-danger-bg: #dc2626;
   --ds-button-danger-bg-hover: #b91c1c;
   --ds-button-danger-fg: #ffffff;
+  --ds-button-destructive-bg: #dc2626;
+  --ds-button-destructive-bg-hover: #b91c1c;
+  --ds-button-destructive-fg: #ffffff;
   --ds-button-ghost-bg-hover: #1f2937;
   --ds-button-ghost-fg: #f9fafb;
   --ds-button-outline-bg-hover: #1f2937;

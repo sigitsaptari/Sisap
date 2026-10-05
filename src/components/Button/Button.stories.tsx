@@ -8,7 +8,10 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   argTypes: {
-    variant: { control: "radio", options: ["primary", "secondary", "outline", "ghost", "danger"] },
+    variant: {
+      control: "radio",
+      options: ["primary", "secondary", "outline", "ghost", "destructive"],
+    },
     size: { control: "radio", options: ["sm", "md", "lg", "icon"] },
   },
 };
@@ -33,7 +36,7 @@ export const Ghost: Story = {
 };
 
 export const Danger: Story = {
-  args: { variant: "danger", children: "Delete" },
+  args: { variant: "destructive", children: "Delete" },
 };
 
 export const Loading: Story = {
@@ -53,7 +56,7 @@ export const WithIcons: Story = {
   },
 };
 
-const variants: ButtonVariant[] = ["primary", "secondary", "outline", "ghost", "danger"];
+const variants: ButtonVariant[] = ["primary", "secondary", "outline", "ghost", "destructive"];
 
 export const AllVariants: Story = {
   render: () => (
