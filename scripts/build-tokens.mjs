@@ -72,7 +72,9 @@ const darkJson = readJson(join(repoRoot, "tokens/semantic/dark.json"));
 let combinedSemantic = {};
 try {
   combinedSemantic = readJson(join(repoRoot, "tokens/semantic.json"));
-} catch {}
+} catch (_err) {
+  /* optional combined tokens */
+}
 
 const light = mergeFlattened(
   flatten(lightJson),
