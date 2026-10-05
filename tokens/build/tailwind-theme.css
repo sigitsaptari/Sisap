@@ -2,6 +2,30 @@
    Source of truth: tokens/base + tokens/semantic (W3C DTCG). */
 
 @theme inline {
+  --color-*: initial;
+  --radius-2xl: var(--ds-border-radius-2xl);
+  --radius-full: var(--ds-border-radius-full);
+  --radius-lg: var(--ds-border-radius-lg);
+  --radius-md: var(--ds-border-radius-md);
+  --radius-none: var(--ds-border-radius-none);
+  --radius-sm: var(--ds-border-radius-sm);
+  --radius-xl: var(--ds-border-radius-xl);
+  --color-button-danger-bg: var(--ds-button-danger-bg);
+  --color-button-danger-bg-hover: var(--ds-button-danger-bg-hover);
+  --color-button-danger-fg: var(--ds-button-danger-fg);
+  --color-button-ghost-bg-hover: var(--ds-button-ghost-bg-hover);
+  --color-button-ghost-fg: var(--ds-button-ghost-fg);
+  --color-button-outline-bg-hover: var(--ds-button-outline-bg-hover);
+  --color-button-outline-border: var(--ds-button-outline-border);
+  --color-button-outline-fg: var(--ds-button-outline-fg);
+  --color-button-primary-bg: var(--ds-button-primary-bg);
+  --color-button-primary-bg-active: var(--ds-button-primary-bg-active);
+  --color-button-primary-bg-hover: var(--ds-button-primary-bg-hover);
+  --color-button-primary-fg: var(--ds-button-primary-fg);
+  --radius-button: var(--ds-button-radius);
+  --color-button-secondary-bg: var(--ds-button-secondary-bg);
+  --color-button-secondary-bg-hover: var(--ds-button-secondary-bg-hover);
+  --color-button-secondary-fg: var(--ds-button-secondary-fg);
   --color-action-danger: var(--ds-color-action-danger);
   --color-action-danger-hover: var(--ds-color-action-danger-hover);
   --color-action-ghost-hover: var(--ds-color-action-ghost-hover);
@@ -10,28 +34,12 @@
   --color-action-primary-hover: var(--ds-color-action-primary-hover);
   --color-action-secondary: var(--ds-color-action-secondary);
   --color-action-secondary-hover: var(--ds-color-action-secondary-hover);
-  --color-amber-100: var(--ds-color-amber-100);
-  --color-amber-200: var(--ds-color-amber-200);
-  --color-amber-50: var(--ds-color-amber-50);
-  --color-amber-500: var(--ds-color-amber-500);
-  --color-amber-600: var(--ds-color-amber-600);
-  --color-amber-700: var(--ds-color-amber-700);
   --color-bg-canvas: var(--ds-color-bg-canvas);
   --color-bg-inverse: var(--ds-color-bg-inverse);
   --color-bg-raised: var(--ds-color-bg-raised);
   --color-bg-surface: var(--ds-color-bg-surface);
   --color-border-default: var(--ds-color-border-default);
   --color-border-strong: var(--ds-color-border-strong);
-  --color-brand-100: var(--ds-color-brand-100);
-  --color-brand-200: var(--ds-color-brand-200);
-  --color-brand-300: var(--ds-color-brand-300);
-  --color-brand-400: var(--ds-color-brand-400);
-  --color-brand-50: var(--ds-color-brand-50);
-  --color-brand-500: var(--ds-color-brand-500);
-  --color-brand-600: var(--ds-color-brand-600);
-  --color-brand-700: var(--ds-color-brand-700);
-  --color-brand-800: var(--ds-color-brand-800);
-  --color-brand-900: var(--ds-color-brand-900);
   --color-feedback-danger: var(--ds-color-feedback-danger);
   --color-feedback-danger-bg: var(--ds-color-feedback-danger-bg);
   --color-feedback-success: var(--ds-color-feedback-success);
@@ -45,38 +53,25 @@
   --color-fg-on-danger: var(--ds-color-fg-on-danger);
   --color-fg-subtle: var(--ds-color-fg-subtle);
   --color-focus-ring: var(--ds-color-focus-ring);
-  --color-green-100: var(--ds-color-green-100);
-  --color-green-200: var(--ds-color-green-200);
-  --color-green-50: var(--ds-color-green-50);
-  --color-green-500: var(--ds-color-green-500);
-  --color-green-600: var(--ds-color-green-600);
-  --color-green-700: var(--ds-color-green-700);
-  --color-neutral-0: var(--ds-color-neutral-0);
-  --color-neutral-100: var(--ds-color-neutral-100);
-  --color-neutral-200: var(--ds-color-neutral-200);
-  --color-neutral-300: var(--ds-color-neutral-300);
-  --color-neutral-400: var(--ds-color-neutral-400);
-  --color-neutral-50: var(--ds-color-neutral-50);
-  --color-neutral-500: var(--ds-color-neutral-500);
-  --color-neutral-600: var(--ds-color-neutral-600);
-  --color-neutral-700: var(--ds-color-neutral-700);
-  --color-neutral-800: var(--ds-color-neutral-800);
-  --color-neutral-900: var(--ds-color-neutral-900);
-  --color-neutral-950: var(--ds-color-neutral-950);
   --color-overlay-default: var(--ds-color-overlay-default);
-  --color-red-100: var(--ds-color-red-100);
-  --color-red-200: var(--ds-color-red-200);
-  --color-red-50: var(--ds-color-red-50);
-  --color-red-500: var(--ds-color-red-500);
-  --color-red-600: var(--ds-color-red-600);
-  --color-red-700: var(--ds-color-red-700);
-  --radius-2xl: var(--ds-radii-2xl);
-  --radius-full: var(--ds-radii-full);
-  --radius-lg: var(--ds-radii-lg);
-  --radius-md: var(--ds-radii-md);
-  --radius-none: var(--ds-radii-none);
-  --radius-sm: var(--ds-radii-sm);
-  --radius-xl: var(--ds-radii-xl);
+  --color-dialog-close-bg-hover: var(--ds-dialog-close-bg-hover);
+  --color-dialog-close-fg: var(--ds-dialog-close-fg);
+  --color-dialog-close-fg-hover: var(--ds-dialog-close-fg-hover);
+  --radius-dialog-close: var(--ds-dialog-close-radius);
+  --color-dialog-description-fg: var(--ds-dialog-description-fg);
+  --color-dialog-overlay-bg: var(--ds-dialog-overlay-bg);
+  --radius-dialog: var(--ds-dialog-radius);
+  --shadow-dialog: var(--ds-dialog-shadow);
+  --color-dialog-surface-bg: var(--ds-dialog-surface-bg);
+  --color-dialog-surface-border: var(--ds-dialog-surface-border);
+  --color-dialog-title-fg: var(--ds-dialog-title-fg);
+  --ease-accelerate: var(--ds-motion-easing-accelerate);
+  --ease-decelerate: var(--ds-motion-easing-decelerate);
+  --ease-standard: var(--ds-motion-easing-standard);
+  --shadow-lg: var(--ds-shadow-lg);
+  --shadow-md: var(--ds-shadow-md);
+  --shadow-sm: var(--ds-shadow-sm);
+  --shadow-xl: var(--ds-shadow-xl);
   --font-mono: var(--ds-typography-font-family-mono);
   --font-sans: var(--ds-typography-font-family-sans);
   --text-2xl: var(--ds-typography-font-size-2xl);
@@ -87,4 +82,20 @@
   --text-sm: var(--ds-typography-font-size-sm);
   --text-xl: var(--ds-typography-font-size-xl);
   --text-xs: var(--ds-typography-font-size-xs);
+
+  --animate-fade-in: fade-in var(--ds-motion-duration-normal) var(--ds-motion-easing-decelerate);
+  --animate-fade-out: fade-out var(--ds-motion-duration-fast) var(--ds-motion-easing-accelerate);
+  --animate-zoom-in: zoom-in var(--ds-motion-duration-normal) var(--ds-motion-easing-decelerate);
+  --animate-zoom-out: zoom-out var(--ds-motion-duration-fast) var(--ds-motion-easing-accelerate);
+
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes zoom-in {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+  @keyframes zoom-out {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+  }
 }

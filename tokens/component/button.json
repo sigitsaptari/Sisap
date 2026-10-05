@@ -1,0 +1,30 @@
+{
+  "button": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.md}" },
+    "primary": {
+      "bg": { "$type": "color", "$value": "{color.action.primary}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.primary-hover}" },
+      "bg-active": { "$type": "color", "$value": "{color.action.primary-active}" },
+      "fg": { "$type": "color", "$value": "{color.fg.on-brand}" }
+    },
+    "secondary": {
+      "bg": { "$type": "color", "$value": "{color.action.secondary}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.secondary-hover}" },
+      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+    },
+    "outline": {
+      "border": { "$type": "color", "$value": "{color.border.strong}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },
+      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+    },
+    "ghost": {
+      "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },
+      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+    },
+    "danger": {
+      "bg": { "$type": "color", "$value": "{color.action.danger}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.danger-hover}" },
+      "fg": { "$type": "color", "$value": "{color.fg.on-danger}" }
+    }
+  }
+}

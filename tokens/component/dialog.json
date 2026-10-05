@@ -1,0 +1,25 @@
+{
+  "dialog": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.lg}" },
+    "shadow": { "$type": "shadow", "$value": "{shadow.xl}" },
+    "overlay": {
+      "bg": { "$type": "color", "$value": "{color.overlay.default}" }
+    },
+    "surface": {
+      "bg": { "$type": "color", "$value": "{color.bg.surface}" },
+      "border": { "$type": "color", "$value": "{color.border.default}" }
+    },
+    "title": {
+      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+    },
+    "description": {
+      "fg": { "$type": "color", "$value": "{color.fg.muted}" }
+    },
+    "close": {
+      "fg": { "$type": "color", "$value": "{color.fg.muted}" },
+      "fg-hover": { "$type": "color", "$value": "{color.fg.default}" },
+      "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },
+      "radius": { "$type": "dimension", "$value": "{border-radius.md}" }
+    }
+  }
+}
