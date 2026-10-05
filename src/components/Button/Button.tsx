@@ -43,7 +43,11 @@ export const buttonVariants = cva(
     compoundVariants: [
       { variant: ["primary", "solid"], state: "hover", className: "bg-brand-700" },
       { variant: ["primary", "solid"], state: "pressed", className: "bg-brand-800" },
-      { variant: ["primary", "solid"], state: "focus", className: "bg-brand-600 ring-brand-800" },
+      {
+        variant: ["primary", "solid"],
+        state: "focus",
+        className: "bg-brand-600 border-2 border-brand-800 ring-2 ring-brand-800/30",
+      },
       {
         variant: ["primary", "solid"],
         state: "disabled",
@@ -77,7 +81,7 @@ export const buttonVariants = cva(
       {
         variant: ["destructive", "danger"],
         state: "focus",
-        className: "bg-danger-600 ring-danger-800",
+        className: "bg-danger-600 border-2 border-danger-800 ring-2 ring-danger-800/30",
       },
       {
         variant: ["destructive", "danger"],
@@ -97,7 +101,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     isLoading = false,
     loadingText,
     leftIcon,
+    iconL,
     rightIcon,
+    iconR,
+    showIconL,
+    showIconR,
+    showLabel = true,
+    labelText,
     asChild = false,
     className,
     children,
@@ -110,10 +120,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   const classes = cn(buttonVariants({ variant, size, state }), className);
   const buttonHookState = useButton({ isLoading, disabled: isActuallyDisabled });
 
+  const effectiveLeftIcon = leftIcon ?? iconL;
+  const effectiveRightIcon = rightIcon ?? iconR;
+  const shouldShowLeft = showIconL ?? Boolean(effectiveLeftIcon);
+  const shouldShowRight = showIconR ?? Boolean(effectiveRightIcon);
+  const labelContent = children ?? labelText;
+  const iconSizeClass =
+    size === "sm" ? "[&_svg]:size-4" : size === "lg" ? "[&_svg]:size-6" : "[&_svg]:size-5";
+
   if (asChild) {
     return (
       <Slot ref={ref} className={classes} {...rest}>
-        {children}
+        {labelContent}
       </Slot>
     );
   }
@@ -121,13 +139,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   return (
     <button ref={ref} type={type} className={classes} {...buttonHookState} {...rest}>
       {isLoading ? (
-        <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-      ) : leftIcon ? (
-        <span className="inline-flex shrink-0 [&_svg]:size-4">{leftIcon}</span>
+        <Loader2 className={cn("shrink-0 animate-spin", iconSizeClass)} aria-hidden="true" />
+      ) : shouldShowLeft && effectiveLeftIcon ? (
+        <span className={cn("inline-flex shrink-0", iconSizeClass)}>{effectiveLeftIcon}</span>
       ) : null}
-      {isLoading && loadingText ? loadingText : children}
-      {!isLoading && rightIcon ? (
-        <span className="inline-flex shrink-0 [&_svg]:size-4">{rightIcon}</span>
+      {isLoading && loadingText ? (
+        loadingText
+      ) : showLabel && labelContent ? (
+        <span>{labelContent}</span>
+      ) : null}
+      {!isLoading && shouldShowRight && effectiveRightIcon ? (
+        <span className={cn("inline-flex shrink-0", iconSizeClass)}>{effectiveRightIcon}</span>
       ) : null}
     </button>
   );

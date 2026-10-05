@@ -163,3 +163,46 @@ export const FigmaPaDiMatrix: Story = {
     </div>
   ),
 };
+
+export const FigmaWithIconsMatrix: Story = {
+  name: "Figma PaDi DS v3.0 (With Icons)",
+  render: () => (
+    <div className="border-border-subtle bg-surface-base space-y-8 rounded-xl border p-6">
+      <div>
+        <h3 className="text-content-primary mb-1 text-base font-bold">
+          Figma Node 88746:15695 — Button with Icons (Left & Right)
+        </h3>
+        <p className="text-content-muted text-xs">
+          Ukuran icon menyesuaikan ukuran button: sm (16px), md (20px), lg (24px)
+        </p>
+      </div>
+
+      <div className="space-y-6">
+        {types.map(({ label, variant }) => (
+          <div key={variant} className="border-border-subtle space-y-3 rounded-lg border p-4">
+            <span className="text-content-primary text-xs font-semibold tracking-wider uppercase">
+              {label}
+            </span>
+            <div className="flex flex-wrap items-center gap-4">
+              <Button variant={variant} size="sm" leftIcon={<Plus />}>
+                Icon Left (sm)
+              </Button>
+              <Button variant={variant} size="md" leftIcon={<Plus />}>
+                Icon Left (md)
+              </Button>
+              <Button variant={variant} size="lg" leftIcon={<Plus />}>
+                Icon Left (lg)
+              </Button>
+              <Button variant={variant} size="md" rightIcon={<ArrowRight />}>
+                Icon Right (md)
+              </Button>
+              <Button variant={variant} size="md" leftIcon={<Plus />} rightIcon={<ArrowRight />}>
+                Both Icons (md)
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ),
+};

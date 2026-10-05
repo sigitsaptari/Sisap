@@ -20,8 +20,20 @@ export interface ButtonProps extends ComponentPropsWithRef<"button"> {
   loadingText?: ReactNode;
   /** Element rendered before the label (typically a Lucide icon). */
   leftIcon?: ReactNode;
+  /** Figma alias for leftIcon */
+  iconL?: ReactNode;
   /** Element rendered after the label (typically a Lucide icon). */
   rightIcon?: ReactNode;
+  /** Figma alias for rightIcon */
+  iconR?: ReactNode;
+  /** Control visibility of left icon. Defaults to true if icon is provided. */
+  showIconL?: boolean;
+  /** Control visibility of right icon. Defaults to true if icon is provided. */
+  showIconR?: boolean;
+  /** Control visibility of label. Defaults to true. */
+  showLabel?: boolean;
+  /** Text label (Figma alias for children). */
+  labelText?: string;
   /**
    * Merge props onto the child element (Radix Slot) instead of rendering a
    * `<button>` — useful to make links or trigger buttons look like buttons.
