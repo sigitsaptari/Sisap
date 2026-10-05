@@ -94,12 +94,23 @@ const themes = {
 
 function renderVars(tokens) {
   const sorted = Object.keys(tokens).sort();
-  return sorted
-    .map((path) => {
-      const value = substitute(String(tokens[path].$value), tokens, new Set([path]));
-      return `  --ds-${kebab(path)}: ${value};`;
-    })
-    .join("\n");
+  const lines = [];
+  for (const path of sorted) {
+    const value = substitute(String(tokens[path].$value), tokens, new Set([path]));
+    const name = kebab(path);
+    lines.push(`  --ds-${name}: ${value};`);
+
+    // Also export standard un-prefixed variables for semantic colors and components (for tailwind.config.ts support)
+    if (path.startsWith("color.")) {
+      const aliasName = kebab(path.slice("color.".length));
+      lines.push(`  --${aliasName}: ${value};`);
+      if (aliasName !== name) {
+        lines.push(`  --ds-${aliasName}: ${value};`);
+      }
+    }
+  }
+  // Deduplicate lines
+  return Array.from(new Set(lines)).join("\n");
 }
 
 /** Only semantic colors become Tailwind utilities — primitives stay CSS-variable-only. */
