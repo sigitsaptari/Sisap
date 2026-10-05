@@ -21,33 +21,45 @@ Every component in `src/components/{ComponentName}/` must follow this structure:
 
 ```text
 ComponentName/
-├── ComponentName.tsx        # Pure presentation + Radix/Aria logic
-├── ComponentName.types.ts   # Exported TypeScript interfaces (extends ComponentPropsWithRef)
-├── ComponentName.stories.tsx # Storybook CSF3 stories (default, states, and overview)
-├── ComponentName.test.tsx   # Vitest unit & axe accessibility tests
+├── ComponentName.tsx        # Pure presentation + Radix/Aria logic (React.forwardRef + displayName)
+├── ComponentName.types.ts   # Exported TypeScript interfaces (extends React.ComponentPropsWithRef<'tag'>)
+├── ComponentName.stories.tsx # Storybook CSF3 stories (all variants, sizes, and states: loading, disabled, error)
+├── ComponentName.test.tsx   # Vitest unit & axe accessibility tests (WCAG 2.1 AA)
 └── index.ts                 # Barrel export
 ```
 
 ---
 
-## 3. Tech Stack & Standards
+## 3. Tailwind & CSS Token Mapping
 
-- **React 19 + TypeScript (strict)**: No `any`, no `@ts-ignore` without written justification. React 19 `ref` is a standard prop (no `forwardRef`).
-- **Tailwind CSS v4**: Token-backed utility classes and custom properties (`var(--ds-…)`).
-- **Radix UI**: Headless accessibility foundations (focus trapping, keyboard navigation, ARIA attributes).
-- **Lucide Icons**: Consistent iconography (`size-4`, `aria-hidden="true"` on decorative icons).
-- **Testing & Storybook**: Vitest + `vitest-axe` for WCAG automated verification, Storybook 10 for catalog & visual documentation.
+- Use semantic token names defined in the token system / Tailwind `@theme`:
+  - **Backgrounds**: `bg-surface-base`, `bg-surface-raised`, `bg-surface-sunken` (also `bg-bg-canvas`, `bg-bg-surface`)
+  - **Text**: `text-content-primary`, `text-content-muted`, `text-content-inverse` (also `text-fg-default`, `text-fg-muted`)
+  - **Borders**: `border-border-subtle`, `border-border-strong`
+  - **Actions**: `bg-action-primary`, `hover:bg-action-primary-hover`
+- **Dark mode** is controlled via the class strategy or attribute strategy:
+  - `<html class="dark">` or `<html data-theme="dark">` (both supported in `tokens.css`).
 
 ---
 
-## 4. Token Hierarchy (3-Tier DTCG System)
+## 4. Response Standard for Antigravity
 
-| Path                | Role                                                                                           |
-| ------------------- | ---------------------------------------------------------------------------------------------- |
-| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion) |
-| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases (`color.action.primary`)               |
-| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`, `card.bg`)                 |
-| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit directly                       |
+When asked to create a new component:
+
+1. Provide the complete code for `ComponentName.types.ts` and `ComponentName.tsx`.
+2. Provide the accompanying `ComponentName.stories.tsx` showing all variants, sizes, and states (`loading`, `disabled`, `error`).
+3. Do not omit code with placeholders like `// ...rest of code`. Generate production-ready implementations.
+
+---
+
+## 5. Token Hierarchy (3-Tier DTCG System)
+
+| Path                | Role                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion)         |
+| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases (`color.action.primary`, `color.surface.base`) |
+| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`, `card.bg`)                         |
+| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit directly                               |
 
 1. Source of truth is `tokens/` JSON files in **W3C DTCG format** (`$type`, `$value`, `{alias}`).
 2. After changing any token JSON, run `npm run tokens:build` (verified via `npm run tokens:check` in CI).
@@ -55,7 +67,7 @@ ComponentName/
 
 ---
 
-## 5. Commands Reference
+## 6. Commands Reference
 
 ```bash
 npm install            # Install workspace dependencies
@@ -73,6 +85,6 @@ npm run ci             # Run full validation pipeline locally
 
 ---
 
-## 6. Git Commits
+## 7. Git Commits
 
 Conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`. One logical change per commit.

@@ -1,5 +1,15 @@
 {
   "color": {
+    "surface": {
+      "base": { "$type": "color", "$value": "{color.neutral.950}" },
+      "raised": { "$type": "color", "$value": "{color.neutral.800}" },
+      "sunken": { "$type": "color", "$value": "{color.neutral.900}" }
+    },
+    "content": {
+      "primary": { "$type": "color", "$value": "{color.neutral.50}" },
+      "muted": { "$type": "color", "$value": "{color.neutral.400}" },
+      "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
+    },
     "bg": {
       "canvas": { "$type": "color", "$value": "{color.neutral.950}" },
       "surface": { "$type": "color", "$value": "{color.neutral.900}" },
@@ -13,6 +23,7 @@
       "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
     },
     "border": {
+      "subtle": { "$type": "color", "$value": "{color.neutral.800}" },
       "default": { "$type": "color", "$value": "{color.neutral.800}" },
       "strong": { "$type": "color", "$value": "{color.neutral.700}" }
     },

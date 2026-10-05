@@ -169,7 +169,7 @@ const generatedBanner =
 
 const tokensCss =
   generatedBanner +
-  `:root {\n  color-scheme: light;\n\n${renderVars(themes.light)}\n}\n\n[data-theme="dark"] {\n  color-scheme: dark;\n\n${renderVars(themes.dark)}\n}\n`;
+  `:root, [data-theme="light"], .light {\n  color-scheme: light;\n\n${renderVars(themes.light)}\n}\n\n[data-theme="dark"], .dark, html.dark {\n  color-scheme: dark;\n\n${renderVars(themes.dark)}\n}\n`;
 
 const tailwindThemeCss =
   generatedBanner + `@theme inline {\n${renderTailwindTheme(themes.light)}\n${animationTheme}\n}\n`;
