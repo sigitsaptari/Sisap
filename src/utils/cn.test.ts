@@ -7,9 +7,10 @@ describe("cn utility", () => {
   });
 
   it("handles conditional class objects and falsy values", () => {
-    expect(cn("base", false && "hidden", null, undefined, { active: true, disabled: false })).toBe(
-      "base active",
-    );
+    const isHidden = false;
+    expect(
+      cn("base", isHidden && "hidden", null, undefined, { active: true, disabled: false }),
+    ).toBe("base active");
   });
 
   it("resolves conflicting Tailwind utility classes properly (last wins)", () => {
