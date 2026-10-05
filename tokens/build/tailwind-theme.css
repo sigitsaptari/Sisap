@@ -3,16 +3,23 @@
 
 @theme inline {
   --color-*: initial;
+  --color-badge-border-color: var(--ds-badge-border-color);
   --color-badge-brand-bg: var(--ds-badge-brand-bg);
   --color-badge-brand-fg: var(--ds-badge-brand-fg);
+  --color-badge-color: var(--ds-badge-color);
+  --color-badge-counter-bg: var(--ds-badge-counter-bg);
+  --color-badge-counter-border: var(--ds-badge-counter-border);
+  --color-badge-counter-fg: var(--ds-badge-counter-fg);
   --color-badge-danger-bg: var(--ds-badge-danger-bg);
   --color-badge-danger-fg: var(--ds-badge-danger-fg);
   --color-badge-destructive-bg: var(--ds-badge-destructive-bg);
   --color-badge-destructive-fg: var(--ds-badge-destructive-fg);
   --color-badge-neutral-bg: var(--ds-badge-neutral-bg);
   --color-badge-neutral-fg: var(--ds-badge-neutral-fg);
+  --radius-badge: var(--ds-badge-radius);
   --color-badge-success-bg: var(--ds-badge-success-bg);
   --color-badge-success-fg: var(--ds-badge-success-fg);
+  --color-badge-text-color: var(--ds-badge-text-color);
   --color-badge-warning-bg: var(--ds-badge-warning-bg);
   --color-badge-warning-fg: var(--ds-badge-warning-fg);
   --radius-2xl: var(--ds-border-radius-2xl);

@@ -4,16 +4,23 @@
 :root, [data-theme="light"], .light {
   color-scheme: light;
 
+  --ds-badge-border-color: #ffffff;
   --ds-badge-brand-bg: #009ea9;
   --ds-badge-brand-fg: #ffffff;
+  --ds-badge-color: #ee3124;
+  --ds-badge-counter-bg: #ee3124;
+  --ds-badge-counter-border: #ffffff;
+  --ds-badge-counter-fg: #ffffff;
   --ds-badge-danger-bg: #fef2f2;
   --ds-badge-danger-fg: #ee3124;
   --ds-badge-destructive-bg: #fef2f2;
   --ds-badge-destructive-fg: #ee3124;
   --ds-badge-neutral-bg: #eff0f1;
   --ds-badge-neutral-fg: #111827;
+  --ds-badge-radius: 9999px;
   --ds-badge-success-bg: #f0fdf4;
   --ds-badge-success-fg: #16a34a;
+  --ds-badge-text-color: #ffffff;
   --ds-badge-warning-bg: #fffbeb;
   --ds-badge-warning-fg: #d97706;
   --ds-border-radius-2xl: 1rem;
@@ -407,16 +414,23 @@
 [data-theme="dark"], .dark, html.dark {
   color-scheme: dark;
 
+  --ds-badge-border-color: #ffffff;
   --ds-badge-brand-bg: #009ea9;
   --ds-badge-brand-fg: #ffffff;
+  --ds-badge-color: #ee3124;
+  --ds-badge-counter-bg: #ee3124;
+  --ds-badge-counter-border: #ffffff;
+  --ds-badge-counter-fg: #ffffff;
   --ds-badge-danger-bg: #c7281d;
   --ds-badge-danger-fg: #fecaca;
   --ds-badge-destructive-bg: #c7281d;
   --ds-badge-destructive-fg: #fecaca;
   --ds-badge-neutral-bg: #1f2937;
   --ds-badge-neutral-fg: #f9fafa;
+  --ds-badge-radius: 9999px;
   --ds-badge-success-bg: #15803d;
   --ds-badge-success-fg: #bbf7d0;
+  --ds-badge-text-color: #ffffff;
   --ds-badge-warning-bg: #b45309;
   --ds-badge-warning-fg: #fde68a;
   --ds-border-radius-2xl: 1rem;

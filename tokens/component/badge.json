@@ -1,5 +1,9 @@
 {
   "badge": {
+    "color": { "$type": "color", "$value": "{color.danger.600}" },
+    "text-color": { "$type": "color", "$value": "{color.neutral.0}" },
+    "border-color": { "$type": "color", "$value": "{color.neutral.0}" },
+    "radius": { "$type": "dimension", "$value": "{border-radius.full}" },
     "neutral": {
       "bg": { "$type": "color", "$value": "{color.action.secondary}" },
       "fg": { "$type": "color", "$value": "{color.fg.default}" }
@@ -23,6 +27,11 @@
     "danger": {
       "bg": { "$type": "color", "$value": "{color.feedback.danger-bg}" },
       "fg": { "$type": "color", "$value": "{color.feedback.danger}" }
+    },
+    "counter": {
+      "bg": { "$type": "color", "$value": "{color.danger.600}" },
+      "fg": { "$type": "color", "$value": "{color.neutral.0}" },
+      "border": { "$type": "color", "$value": "{color.neutral.0}" }
     }
   }
 }

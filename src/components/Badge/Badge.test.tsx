@@ -21,4 +21,15 @@ describe("Badge a11y", () => {
     render(<Badge variant="success">Paid</Badge>);
     expect(screen.getByText("Paid")).toBeTruthy();
   });
+
+  it("renders counter badge with label prop and sizes", () => {
+    render(
+      <div>
+        <Badge variant="counter" size="sm" label="1" />
+        <Badge variant="counter" size="md" label="99+" />
+      </div>,
+    );
+    expect(screen.getByText("1")).toBeTruthy();
+    expect(screen.getByText("99+")).toBeTruthy();
+  });
 });
