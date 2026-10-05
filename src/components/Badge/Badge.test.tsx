@@ -8,7 +8,9 @@ describe("Badge a11y", () => {
     const { container } = render(
       <div>
         {(["neutral", "brand", "success", "warning", "danger"] as const).map((v) => (
-          <Badge key={v} variant={v}>{v}</Badge>
+          <Badge key={v} variant={v}>
+            {v}
+          </Badge>
         ))}
       </div>,
     );

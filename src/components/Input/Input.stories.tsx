@@ -18,7 +18,9 @@ export const Disabled: Story = { args: { disabled: true, defaultValue: "Read onl
 export const WithLabel: Story = {
   render: (args) => (
     <div className="grid max-w-sm gap-1.5">
-      <label htmlFor="email" className="text-sm font-medium text-fg-default">Email</label>
+      <label htmlFor="email" className="text-fg-default text-sm font-medium">
+        Email
+      </label>
       <Input {...args} id="email" type="email" placeholder="you@sisap.id" aria-label={undefined} />
     </div>
   ),

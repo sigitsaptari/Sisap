@@ -21,7 +21,7 @@ export const DrawerOverlay = ({ className, ref, ...props }: DrawerOverlayProps) 
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-(--ds-z-index-overlay) bg-drawer-overlay-bg motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out",
+      "bg-drawer-overlay-bg motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out fixed inset-0 z-(--ds-z-index-overlay)",
       className,
     )}
     {...props}
@@ -63,7 +63,7 @@ export const DrawerContent = ({
     >
       {children}
       {showCloseButton && (
-        <DialogPrimitive.Close className="absolute right-4 top-4 inline-flex size-8 items-center justify-center rounded-drawer-close text-drawer-close-fg transition-colors hover:bg-drawer-close-bg-hover hover:text-drawer-close-fg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring">
+        <DialogPrimitive.Close className="rounded-drawer-close text-drawer-close-fg hover:bg-drawer-close-bg-hover hover:text-drawer-close-fg-hover focus-visible:ring-focus-ring absolute top-4 right-4 inline-flex size-8 items-center justify-center transition-colors focus-visible:ring-2 focus-visible:outline-none">
           <X className="size-4" aria-hidden="true" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
@@ -86,7 +86,10 @@ DrawerFooter.displayName = "DrawerFooter";
 export const DrawerTitle = ({ className, ref, ...props }: DrawerTitleProps) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold leading-tight tracking-tight text-drawer-title-fg", className)}
+    className={cn(
+      "text-drawer-title-fg text-lg leading-tight font-semibold tracking-tight",
+      className,
+    )}
     {...props}
   />
 );
@@ -95,7 +98,7 @@ DrawerTitle.displayName = "DrawerTitle";
 export const DrawerDescription = ({ className, ref, ...props }: DrawerDescriptionProps) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm leading-relaxed text-drawer-description-fg", className)}
+    className={cn("text-drawer-description-fg text-sm leading-relaxed", className)}
     {...props}
   />
 );

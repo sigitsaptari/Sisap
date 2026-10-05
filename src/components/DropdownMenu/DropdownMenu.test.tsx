@@ -34,7 +34,9 @@ describe("DropdownMenu a11y", () => {
     const menu = await screen.findByRole("menu");
     expect(await axeViolations(menu)).toEqual([]);
     expect(screen.getAllByRole("menuitem").length).toBe(2);
-    expect(screen.getByRole("menuitemcheckbox", { name: "Notifications" }).getAttribute("aria-checked")).toBe("true");
+    expect(
+      screen.getByRole("menuitemcheckbox", { name: "Notifications" }).getAttribute("aria-checked"),
+    ).toBe("true");
   });
 
   it("focuses the first item on keyboard open, selects with Enter and closes", async () => {

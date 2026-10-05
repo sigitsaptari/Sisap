@@ -19,7 +19,7 @@ export const Default: Story = {
         <CardDescription>Everything your team needs to ship faster.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-fg-default">Unlimited projects and shared workspaces.</p>
+        <p className="text-fg-default text-sm">Unlimited projects and shared workspaces.</p>
       </CardContent>
       <CardFooter>
         <Button variant="secondary">Cancel</Button>

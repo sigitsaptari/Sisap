@@ -26,7 +26,7 @@ export const DropdownMenuContent = ({
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        "z-(--ds-z-index-dropdown) min-w-40 overflow-hidden rounded-dropdown-menu border border-dropdown-menu-border bg-dropdown-menu-bg p-1 shadow-dropdown-menu outline-none motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out",
+        "rounded-dropdown-menu border-dropdown-menu-border bg-dropdown-menu-bg shadow-dropdown-menu motion-safe:data-[state=open]:animate-fade-in motion-safe:data-[state=closed]:animate-fade-out z-(--ds-z-index-dropdown) min-w-40 overflow-hidden border p-1 outline-none",
         className,
       )}
       {...props}
@@ -81,7 +81,7 @@ DropdownMenuCheckboxItem.displayName = "DropdownMenuCheckboxItem";
 export const DropdownMenuLabel = ({ className, ref, ...props }: DropdownMenuLabelProps) => (
   <MenuPrimitive.Label
     ref={ref}
-    className={cn("px-2 py-1.5 text-xs font-medium text-dropdown-menu-label-fg", className)}
+    className={cn("text-dropdown-menu-label-fg px-2 py-1.5 text-xs font-medium", className)}
     {...props}
   />
 );
@@ -90,7 +90,7 @@ DropdownMenuLabel.displayName = "DropdownMenuLabel";
 export const DropdownMenuSeparator = ({ className, ref, ...props }: DropdownMenuSeparatorProps) => (
   <MenuPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-dropdown-menu-separator-bg", className)}
+    className={cn("bg-dropdown-menu-separator-bg -mx-1 my-1 h-px", className)}
     {...props}
   />
 );

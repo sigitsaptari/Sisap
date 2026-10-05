@@ -30,7 +30,9 @@ const Example = ({ side, label }: { side?: DrawerSide; label: string }) => (
     <DrawerContent side={side}>
       <DrawerHeader>
         <DrawerTitle>Filters</DrawerTitle>
-        <DrawerDescription>Refine the list. Focus is trapped and ESC closes the drawer.</DrawerDescription>
+        <DrawerDescription>
+          Refine the list. Focus is trapped and ESC closes the drawer.
+        </DrawerDescription>
       </DrawerHeader>
       <DrawerFooter>
         <DrawerClose asChild>

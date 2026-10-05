@@ -18,13 +18,22 @@ describe("Typography a11y", () => {
   });
 
   it("renders semantic elements by variant", () => {
-    render(<><Typography variant="h3">H</Typography><Typography>P</Typography></>);
+    render(
+      <>
+        <Typography variant="h3">H</Typography>
+        <Typography>P</Typography>
+      </>,
+    );
     expect(screen.getByRole("heading", { level: 3 })).toBeTruthy();
     expect(screen.getByText("P").tagName).toBe("P");
   });
 
   it("can decouple visual style from element via `as`", () => {
-    render(<Typography variant="h1" as="h2">Sub</Typography>);
+    render(
+      <Typography variant="h1" as="h2">
+        Sub
+      </Typography>,
+    );
     expect(screen.getByRole("heading", { level: 2 })).toBeTruthy();
   });
 });

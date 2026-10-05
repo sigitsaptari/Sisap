@@ -105,9 +105,12 @@ function renderTailwindTheme(tokens) {
     .flatMap((path) => {
       const varName = `--ds-${kebab(path)}`;
       if (path in component) {
-        if (component[path].$type === "color") return [`  --color-${kebab(path)}: var(${varName});`];
-        if (path.endsWith(".radius")) return [`  --radius-${kebab(path.slice(0, -".radius".length))}: var(${varName});`];
-        if (path.endsWith(".shadow")) return [`  --shadow-${kebab(path.slice(0, -".shadow".length))}: var(${varName});`];
+        if (component[path].$type === "color")
+          return [`  --color-${kebab(path)}: var(${varName});`];
+        if (path.endsWith(".radius"))
+          return [`  --radius-${kebab(path.slice(0, -".radius".length))}: var(${varName});`];
+        if (path.endsWith(".shadow"))
+          return [`  --shadow-${kebab(path.slice(0, -".shadow".length))}: var(${varName});`];
         return [];
       }
       if (path.startsWith("color.")) {

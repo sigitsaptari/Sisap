@@ -10,10 +10,7 @@ import type {
 
 export const Card = ({ className, ...props }: CardProps) => (
   <div
-    className={cn(
-      "rounded-card border border-card-border bg-card-bg shadow-card",
-      className,
-    )}
+    className={cn("rounded-card border-card-border bg-card-bg shadow-card border", className)}
     {...props}
   />
 );
@@ -27,14 +24,17 @@ CardHeader.displayName = "CardHeader";
 /** Renders an `<h3>` by default; pass `asChild`-style needs via a different heading level in your markup. */
 export const CardTitle = ({ className, ...props }: CardTitleProps) => (
   <h3
-    className={cn("text-lg font-semibold leading-tight tracking-tight text-card-title-fg", className)}
+    className={cn(
+      "text-card-title-fg text-lg leading-tight font-semibold tracking-tight",
+      className,
+    )}
     {...props}
   />
 );
 CardTitle.displayName = "CardTitle";
 
 export const CardDescription = ({ className, ...props }: CardDescriptionProps) => (
-  <p className={cn("text-sm leading-relaxed text-card-description-fg", className)} {...props} />
+  <p className={cn("text-card-description-fg text-sm leading-relaxed", className)} {...props} />
 );
 CardDescription.displayName = "CardDescription";
 

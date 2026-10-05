@@ -24,7 +24,9 @@ export const Default: Story = {
   render: (args) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" rightIcon={<ChevronDown />}>Actions</Button>
+        <Button variant="outline" rightIcon={<ChevronDown />}>
+          Actions
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent {...args}>
         <DropdownMenuLabel>Account</DropdownMenuLabel>

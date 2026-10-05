@@ -11,7 +11,9 @@ describe("Button a11y", () => {
         <Button>Primary</Button>
         <Button variant="danger">Delete</Button>
         <Button size="icon" aria-label="Add" />
-        <Button isLoading loadingText="Saving…">Save</Button>
+        <Button isLoading loadingText="Saving…">
+          Save
+        </Button>
         <Button disabled>Disabled</Button>
       </div>,
     );
@@ -32,7 +34,13 @@ describe("Button a11y", () => {
 
   it("supports asChild and click handling", async () => {
     const onClick = vi.fn();
-    render(<Button asChild><a href="/x" onClick={onClick}>Link</a></Button>);
+    render(
+      <Button asChild>
+        <a href="/x" onClick={onClick}>
+          Link
+        </a>
+      </Button>,
+    );
     await userEvent.click(screen.getByRole("link", { name: "Link" }));
     expect(onClick).toHaveBeenCalledOnce();
   });

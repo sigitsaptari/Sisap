@@ -23,7 +23,13 @@ describe("Stack a11y", () => {
   });
 
   it("supports asChild for semantic elements", () => {
-    render(<Stack asChild><ul><li>Item</li></ul></Stack>);
+    render(
+      <Stack asChild>
+        <ul>
+          <li>Item</li>
+        </ul>
+      </Stack>,
+    );
     expect(screen.getByRole("list").className).toContain("flex");
   });
 });

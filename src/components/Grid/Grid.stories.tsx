@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Grid } from "./Grid";
 
 const cells = Array.from({ length: 6 }, (_, i) => (
-  <div key={i} className="rounded-md bg-action-secondary px-4 py-6 text-center text-sm text-fg-default">
+  <div
+    key={i}
+    className="bg-action-secondary text-fg-default rounded-md px-4 py-6 text-center text-sm"
+  >
     {i + 1}
   </div>
 ));

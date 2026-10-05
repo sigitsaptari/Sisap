@@ -39,7 +39,14 @@ export type { TypographyProps, TypographyVariant } from "./components/Typography
 export { Badge, badgeVariants } from "./components/Badge";
 export type { BadgeProps, BadgeVariant } from "./components/Badge";
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "./components/Card";
 export type {
   CardProps,
   CardHeaderProps,

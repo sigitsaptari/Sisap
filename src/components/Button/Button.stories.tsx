@@ -60,7 +60,7 @@ export const AllVariants: Story = {
     <div className="space-y-3">
       {variants.map((variant) => (
         <div key={variant} className="flex items-center gap-3">
-          <span className="w-20 text-xs uppercase tracking-wide opacity-60">{variant}</span>
+          <span className="w-20 text-xs tracking-wide uppercase opacity-60">{variant}</span>
           <Button variant={variant} size="sm">
             Small
           </Button>

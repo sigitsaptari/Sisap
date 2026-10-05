@@ -65,11 +65,11 @@ proyek — set token OAuth/PAT via environment `FIGMA_MCP_TOKEN` atau file
 
 ## Stack
 
-| Bagian            | Teknologi                                  |
-| ----------------- | ------------------------------------------ |
-| Framework         | React 19 + TypeScript (strict)             |
-| Styling           | Tailwind CSS v4 + CSS variables (DTCG)     |
+| Bagian            | Teknologi                                    |
+| ----------------- | -------------------------------------------- |
+| Framework         | React 19 + TypeScript (strict)               |
+| Styling           | Tailwind CSS v4 + CSS variables (DTCG)       |
 | Headless          | Radix UI (`@radix-ui/react-dialog`, `-slot`) |
-| Icons             | Lucide React                               |
-| Catalog & testing | Storybook 10                               |
-| Playground        | Vite                                       |
+| Icons             | Lucide React                                 |
+| Catalog & testing | Storybook 10                                 |
+| Playground        | Vite                                         |

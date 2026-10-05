@@ -19,7 +19,12 @@ describe("Input a11y", () => {
   });
 
   it("sets aria-invalid only when invalid", () => {
-    render(<><Input aria-label="a" /><Input aria-label="b" invalid /></>);
+    render(
+      <>
+        <Input aria-label="a" />
+        <Input aria-label="b" invalid />
+      </>,
+    );
     expect(screen.getByLabelText("a").getAttribute("aria-invalid")).toBeNull();
     expect(screen.getByLabelText("b").getAttribute("aria-invalid")).toBe("true");
   });

@@ -20,18 +20,18 @@ design tokens — never hardcode visual values.
 
 ## Folder map
 
-| Path                | Role                                                          |
-| ------------------- | ------------------------------------------------------------- |
-| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion)  |
-| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases        |
-| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`) |
-| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit |
-| `scripts/`          | Token build tooling                                           |
-| `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `X.test.tsx`, `index.ts`) |
-| `src/hooks/`        | Shared interaction/a11y hooks                                  |
-| `src/index.ts`      | Core barrel export — everything public goes through here       |
-| `apps/playground/`  | Vite prototyping app                                           |
-| `apps/storybook/`   | Storybook docs & visual testing                                |
+| Path                | Role                                                                                           |
+| ------------------- | ---------------------------------------------------------------------------------------------- |
+| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion) |
+| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases                                        |
+| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`)                            |
+| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit                                |
+| `scripts/`          | Token build tooling                                                                            |
+| `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `X.test.tsx`, `index.ts`)    |
+| `src/hooks/`        | Shared interaction/a11y hooks                                                                  |
+| `src/index.ts`      | Core barrel export — everything public goes through here                                       |
+| `apps/playground/`  | Vite prototyping app                                                                           |
+| `apps/storybook/`   | Storybook docs & visual testing                                                                |
 
 ## Token rules
 

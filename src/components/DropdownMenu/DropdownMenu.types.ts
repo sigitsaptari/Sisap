@@ -11,6 +11,8 @@ export interface DropdownMenuItemProps extends ComponentPropsWithRef<typeof Menu
   variant?: "default" | "danger";
 }
 
-export type DropdownMenuCheckboxItemProps = ComponentPropsWithRef<typeof MenuPrimitive.CheckboxItem>;
+export type DropdownMenuCheckboxItemProps = ComponentPropsWithRef<
+  typeof MenuPrimitive.CheckboxItem
+>;
 export type DropdownMenuLabelProps = ComponentPropsWithRef<typeof MenuPrimitive.Label>;
 export type DropdownMenuSeparatorProps = ComponentPropsWithRef<typeof MenuPrimitive.Separator>;
