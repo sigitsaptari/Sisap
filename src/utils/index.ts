@@ -1,3 +1,4 @@
 export { cn } from "./cn";
 export type { ClassValue } from "./cn";
-export { space } from "./spacing";
+export { gapClasses } from "./spacing";
+export type { SpacingScale } from "./spacing";
