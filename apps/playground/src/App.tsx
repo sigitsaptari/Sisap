@@ -33,14 +33,14 @@ export default function App() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--ds-color-bg-canvas)] px-6 py-10 text-[var(--ds-color-fg-default)] transition-colors md:px-12">
+    <main className="min-h-screen bg-bg-canvas px-6 py-10 text-fg-default transition-colors md:px-12">
       <div className="mx-auto max-w-5xl space-y-12">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h1 className="text-[var(--ds-typography-font-size-3xl)] font-bold tracking-tight">
+            <h1 className="text-3xl font-bold tracking-tight">
               SisapDS Playground
             </h1>
-            <p className="mt-1 text-[var(--ds-typography-font-size-md)] text-[var(--ds-color-fg-muted)]">
+            <p className="mt-1 text-md text-fg-muted">
               Instant prototyping app — components are driven by W3C DTCG tokens.
             </p>
           </div>
@@ -50,13 +50,13 @@ export default function App() {
         </header>
 
         <section aria-labelledby="buttons-heading" className="space-y-5">
-          <h2 id="buttons-heading" className="text-[var(--ds-typography-font-size-xl)] font-semibold">
+          <h2 id="buttons-heading" className="text-xl font-semibold">
             Button
           </h2>
-          <div className="space-y-3 rounded-[var(--ds-radii-xl)] border border-[var(--ds-color-border-default)] bg-[var(--ds-color-bg-surface)] p-6">
+          <div className="space-y-3 rounded-xl border border-border-default bg-bg-surface p-6">
             {variants.map((variant) => (
               <div key={variant} className="flex flex-wrap items-center gap-3">
-                <span className="w-20 text-[var(--ds-typography-font-size-xs)] uppercase tracking-wide text-[var(--ds-color-fg-muted)]">
+                <span className="w-20 text-xs uppercase tracking-wide text-fg-muted">
                   {variant}
                 </span>
                 {sizes.map((size) => (
@@ -82,10 +82,10 @@ export default function App() {
         </section>
 
         <section aria-labelledby="dialog-heading" className="space-y-5">
-          <h2 id="dialog-heading" className="text-[var(--ds-typography-font-size-xl)] font-semibold">
+          <h2 id="dialog-heading" className="text-xl font-semibold">
             Dialog
           </h2>
-          <div className="rounded-[var(--ds-radii-xl)] border border-[var(--ds-color-border-default)] bg-[var(--ds-color-bg-surface)] p-6">
+          <div className="rounded-xl border border-border-default bg-bg-surface p-6">
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="primary" leftIcon={<Plus />}>
@@ -114,17 +114,17 @@ export default function App() {
         </section>
 
         <section aria-labelledby="tokens-heading" className="space-y-5">
-          <h2 id="tokens-heading" className="text-[var(--ds-typography-font-size-xl)] font-semibold">
+          <h2 id="tokens-heading" className="text-xl font-semibold">
             Semantic tokens
           </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
             {swatches.map((name) => (
               <div key={name} className="space-y-2">
                 <div
-                  className="h-14 rounded-[var(--ds-radii-md)] border border-[var(--ds-color-border-default)]"
+                  className="h-14 rounded-md border border-border-default"
                   style={{ backgroundColor: `var(--ds-${name})` }}
                 />
-                <p className="truncate text-[var(--ds-typography-font-size-xs)] text-[var(--ds-color-fg-muted)]" title={`--ds-${name}`}>
+                <p className="truncate text-xs text-fg-muted" title={`--ds-${name}`}>
                   {name}
                 </p>
               </div>
@@ -132,7 +132,7 @@ export default function App() {
           </div>
         </section>
 
-        <footer className="border-t border-[var(--ds-color-border-default)] pt-6 text-[var(--ds-typography-font-size-sm)] text-[var(--ds-color-fg-subtle)]">
+        <footer className="border-t border-border-default pt-6 text-sm text-fg-subtle">
           Edit <code className="font-mono">tokens/</code> and run <code className="font-mono">npm run tokens:build</code> — components update everywhere.
         </footer>
       </div>

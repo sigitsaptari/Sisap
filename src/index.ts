@@ -1,5 +1,5 @@
 // SisapDS core barrel export
-export { Button } from "./components/Button";
+export { Button, buttonVariants, useButton } from "./components/Button";
 export type { ButtonProps, ButtonSize, ButtonVariant } from "./components/Button";
 
 export {
@@ -24,3 +24,5 @@ export type {
 
 export { useDisclosure } from "./hooks";
 export type { UseDisclosureReturn } from "./hooks";
+
+export type { ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType } from "./types";

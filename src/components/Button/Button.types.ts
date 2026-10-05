@@ -1,10 +1,10 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
 export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
 
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentPropsWithRef<"button"> {
   /** Visual style. Defaults to "primary". */
   variant?: ButtonVariant;
   /** Control height & typography. Defaults to "md". */

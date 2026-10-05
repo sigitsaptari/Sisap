@@ -1,17 +1,17 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 import type * as DialogPrimitive from "@radix-ui/react-dialog";
 
-export type DialogProps = ComponentPropsWithoutRef<typeof DialogPrimitive.Root>;
-export type DialogTriggerProps = ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>;
-export type DialogCloseProps = ComponentPropsWithoutRef<typeof DialogPrimitive.Close>;
+export type DialogProps = ComponentPropsWithRef<typeof DialogPrimitive.Root>;
+export type DialogTriggerProps = ComponentPropsWithRef<typeof DialogPrimitive.Trigger>;
+export type DialogCloseProps = ComponentPropsWithRef<typeof DialogPrimitive.Close>;
 
-export interface DialogOverlayProps extends ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> {}
+export interface DialogOverlayProps extends ComponentPropsWithRef<typeof DialogPrimitive.Overlay> {}
 
 export interface DialogContentProps
-  extends ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+  extends ComponentPropsWithRef<typeof DialogPrimitive.Content> {
   /** Render the built-in close (X) button. Defaults to true. */
   showCloseButton?: boolean;
 }
 
-export type DialogTitleProps = ComponentPropsWithoutRef<typeof DialogPrimitive.Title>;
-export type DialogDescriptionProps = ComponentPropsWithoutRef<typeof DialogPrimitive.Description>;
+export type DialogTitleProps = ComponentPropsWithRef<typeof DialogPrimitive.Title>;
+export type DialogDescriptionProps = ComponentPropsWithRef<typeof DialogPrimitive.Description>;
