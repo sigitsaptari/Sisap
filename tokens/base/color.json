@@ -42,6 +42,14 @@
       "600": { "$type": "color", "$value": "#dc2626" },
       "700": { "$type": "color", "$value": "#b91c1c" }
     },
+    "danger": {
+      "50": { "$type": "color", "$value": "#fef2f2" },
+      "100": { "$type": "color", "$value": "#fee2e2" },
+      "200": { "$type": "color", "$value": "#fecaca" },
+      "500": { "$type": "color", "$value": "#ef4444" },
+      "600": { "$type": "color", "$value": "#dc2626" },
+      "700": { "$type": "color", "$value": "#b91c1c" }
+    },
     "amber": {
       "50": { "$type": "color", "$value": "#fffbeb" },
       "100": { "$type": "color", "$value": "#fef3c7" },

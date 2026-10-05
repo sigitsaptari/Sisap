@@ -54,6 +54,7 @@
   --radius-checkbox: var(--ds-checkbox-radius);
   --color-action-danger: var(--ds-color-action-danger);
   --color-action-danger-hover: var(--ds-color-action-danger-hover);
+  --color-action-destructive: var(--ds-color-action-destructive);
   --color-action-ghost-hover: var(--ds-color-action-ghost-hover);
   --color-action-primary: var(--ds-color-action-primary);
   --color-action-primary-active: var(--ds-color-action-primary-active);

@@ -66,8 +66,22 @@ const base = mergeFlattened(
 const component = mergeFlattened(
   ...readDirJson(join(repoRoot, "tokens/component")).map((json) => flatten(json)),
 );
-const light = flatten(readJson(join(repoRoot, "tokens/semantic/light.json")));
-const dark = flatten(readJson(join(repoRoot, "tokens/semantic/dark.json")));
+const lightJson = readJson(join(repoRoot, "tokens/semantic/light.json"));
+const darkJson = readJson(join(repoRoot, "tokens/semantic/dark.json"));
+
+let combinedSemantic = {};
+try {
+  combinedSemantic = readJson(join(repoRoot, "tokens/semantic.json"));
+} catch {}
+
+const light = mergeFlattened(
+  flatten(lightJson),
+  combinedSemantic.light ? flatten({ color: combinedSemantic.light }) : {},
+);
+const dark = mergeFlattened(
+  flatten(darkJson),
+  combinedSemantic.dark ? flatten({ color: combinedSemantic.dark }) : {},
+);
 
 // Dark inherits everything from base + light, then overrides what it redefines.
 // Component tokens alias semantic tokens, so they resolve per theme.

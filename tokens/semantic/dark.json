@@ -2,13 +2,29 @@
   "color": {
     "surface": {
       "base": { "$type": "color", "$value": "{color.neutral.950}" },
-      "raised": { "$type": "color", "$value": "{color.neutral.800}" },
+      "raised": { "$type": "color", "$value": "{color.neutral.900}" },
       "sunken": { "$type": "color", "$value": "{color.neutral.900}" }
     },
     "content": {
       "primary": { "$type": "color", "$value": "{color.neutral.50}" },
       "muted": { "$type": "color", "$value": "{color.neutral.400}" },
-      "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
+      "inverse": { "$type": "color", "$value": "{color.neutral.950}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{color.brand.500}" },
+      "primary-hover": { "$type": "color", "$value": "{color.brand.600}" },
+      "primary-active": { "$type": "color", "$value": "{color.brand.400}" },
+      "destructive": { "$type": "color", "$value": "{color.danger.500}" },
+      "secondary": { "$type": "color", "$value": "{color.neutral.800}" },
+      "secondary-hover": { "$type": "color", "$value": "{color.neutral.700}" },
+      "ghost-hover": { "$type": "color", "$value": "{color.neutral.800}" },
+      "danger": { "$type": "color", "$value": "{color.danger.500}" },
+      "danger-hover": { "$type": "color", "$value": "{color.danger.600}" }
+    },
+    "border": {
+      "subtle": { "$type": "color", "$value": "{color.neutral.800}" },
+      "default": { "$type": "color", "$value": "{color.neutral.800}" },
+      "strong": { "$type": "color", "$value": "{color.neutral.700}" }
     },
     "bg": {
       "canvas": { "$type": "color", "$value": "{color.neutral.950}" },
@@ -22,26 +38,13 @@
       "subtle": { "$type": "color", "$value": "{color.neutral.500}" },
       "inverse": { "$type": "color", "$value": "{color.neutral.900}" }
     },
-    "border": {
-      "subtle": { "$type": "color", "$value": "{color.neutral.800}" },
-      "default": { "$type": "color", "$value": "{color.neutral.800}" },
-      "strong": { "$type": "color", "$value": "{color.neutral.700}" }
-    },
-    "action": {
-      "primary": { "$type": "color", "$value": "{color.brand.500}" },
-      "primary-hover": { "$type": "color", "$value": "{color.brand.400}" },
-      "primary-active": { "$type": "color", "$value": "{color.brand.300}" },
-      "secondary": { "$type": "color", "$value": "{color.neutral.800}" },
-      "secondary-hover": { "$type": "color", "$value": "{color.neutral.700}" },
-      "ghost-hover": { "$type": "color", "$value": "{color.neutral.800}" }
-    },
     "feedback": {
       "success": { "$type": "color", "$value": "{color.green.200}" },
       "success-bg": { "$type": "color", "$value": "{color.green.700}" },
       "warning": { "$type": "color", "$value": "{color.amber.200}" },
       "warning-bg": { "$type": "color", "$value": "{color.amber.700}" },
-      "danger": { "$type": "color", "$value": "{color.red.200}" },
-      "danger-bg": { "$type": "color", "$value": "{color.red.700}" }
+      "danger": { "$type": "color", "$value": "{color.danger.200}" },
+      "danger-bg": { "$type": "color", "$value": "{color.danger.700}" }
     },
     "overlay": {
       "default": { "$type": "color", "$value": "#00000099" }
