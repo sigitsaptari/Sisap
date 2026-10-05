@@ -33,6 +33,9 @@ export type { ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType } fro
 export { Input, inputVariants } from "./components/Input";
 export type { InputProps, InputSize } from "./components/Input";
 
+export { TextField, textFieldVariants } from "./components/TextField";
+export type { TextFieldProps, TextFieldSize, TextFieldState } from "./components/TextField";
+
 export { Checkbox } from "./components/Checkbox";
 export type { CheckboxProps } from "./components/Checkbox";
 

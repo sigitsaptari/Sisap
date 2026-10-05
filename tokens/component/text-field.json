@@ -1,0 +1,17 @@
+{
+  "text-field": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.sm}" },
+    "border": {
+      "default": { "$type": "color", "$value": "#d5d7d9" },
+      "hover": { "$type": "color", "$value": "#009ea9" },
+      "focus": { "$type": "color", "$value": "#009ea9" },
+      "error": { "$type": "color", "$value": "#ee3124" },
+      "success": { "$type": "color", "$value": "#25974c" },
+      "disabled": { "$type": "color", "$value": "#e7e8e9" }
+    },
+    "bg": {
+      "default": { "$type": "color", "$value": "#ffffff" },
+      "disabled": { "$type": "color", "$value": "#f2f4f7" }
+    }
+  }
+}

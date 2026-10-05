@@ -145,6 +145,15 @@
   --shadow-md: var(--ds-shadow-md);
   --shadow-sm: var(--ds-shadow-sm);
   --shadow-xl: var(--ds-shadow-xl);
+  --color-text-field-bg-default: var(--ds-text-field-bg-default);
+  --color-text-field-bg-disabled: var(--ds-text-field-bg-disabled);
+  --color-text-field-border-default: var(--ds-text-field-border-default);
+  --color-text-field-border-disabled: var(--ds-text-field-border-disabled);
+  --color-text-field-border-error: var(--ds-text-field-border-error);
+  --color-text-field-border-focus: var(--ds-text-field-border-focus);
+  --color-text-field-border-hover: var(--ds-text-field-border-hover);
+  --color-text-field-border-success: var(--ds-text-field-border-success);
+  --radius-text-field: var(--ds-text-field-radius);
   --color-typography-code-bg: var(--ds-typography-code-bg);
   --radius-typography-code: var(--ds-typography-code-radius);
   --color-typography-fg: var(--ds-typography-fg);
