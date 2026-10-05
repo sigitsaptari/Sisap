@@ -16,9 +16,9 @@ export const buttonVariants = cva(
         solid:
           "bg-button-primary-bg text-button-primary-fg hover:bg-button-primary-bg-hover active:bg-button-primary-bg-active disabled:bg-button-disabled-bg disabled:text-button-disabled-fg disabled:border-transparent",
         secondary:
-          "border border-button-secondary-border bg-button-secondary-bg text-button-secondary-fg hover:bg-button-secondary-bg-hover hover:border-neutral-600 active:bg-neutral-200 active:border-neutral-700 disabled:bg-neutral-50 disabled:border-button-disabled-border disabled:text-button-disabled-fg",
+          "border border-button-secondary-border bg-button-secondary-bg text-button-secondary-fg hover:bg-button-secondary-bg-hover hover:border-neutral-600 active:bg-neutral-200 active:border-neutral-700 focus-visible:border-2 focus-visible:border-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-700/20 disabled:bg-neutral-50 disabled:border-button-disabled-border disabled:text-button-disabled-fg",
         outline:
-          "border border-button-outline-border bg-white text-button-outline-fg hover:bg-button-secondary-bg-hover hover:border-neutral-600 active:bg-neutral-200 active:border-neutral-700 disabled:bg-neutral-50 disabled:border-button-disabled-border disabled:text-button-disabled-fg",
+          "border border-button-outline-border bg-white text-button-outline-fg hover:bg-button-secondary-bg-hover hover:border-neutral-600 active:bg-neutral-200 active:border-neutral-700 focus-visible:border-2 focus-visible:border-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-700/20 disabled:bg-neutral-50 disabled:border-button-disabled-border disabled:text-button-disabled-fg",
         ghost:
           "bg-transparent text-button-ghost-fg hover:bg-button-ghost-bg-hover disabled:text-button-disabled-fg",
         destructive:
@@ -63,7 +63,8 @@ export const buttonVariants = cva(
       {
         variant: ["secondary", "outline"],
         state: "focus",
-        className: "bg-white border-neutral-700 ring-neutral-700 text-neutral-500",
+        className:
+          "bg-white border-2 border-neutral-700 ring-2 ring-neutral-700/20 text-neutral-500",
       },
       {
         variant: ["secondary", "outline"],

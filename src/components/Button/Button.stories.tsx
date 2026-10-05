@@ -24,7 +24,11 @@ export const Primary: Story = {
 };
 
 export const Secondary: Story = {
-  args: { variant: "secondary", children: "Learn more" },
+  args: {
+    variant: "secondary",
+    children: "Learn more",
+    state: "pressed",
+  },
 };
 
 export const Outline: Story = {

@@ -32,6 +32,7 @@
   --color-button-ghost-fg: var(--ds-button-ghost-fg);
   --color-button-outline-bg-hover: var(--ds-button-outline-bg-hover);
   --color-button-outline-border: var(--ds-button-outline-border);
+  --color-button-outline-border-focus: var(--ds-button-outline-border-focus);
   --color-button-outline-fg: var(--ds-button-outline-fg);
   --color-button-primary-bg: var(--ds-button-primary-bg);
   --color-button-primary-bg-active: var(--ds-button-primary-bg-active);
@@ -41,6 +42,7 @@
   --color-button-secondary-bg: var(--ds-button-secondary-bg);
   --color-button-secondary-bg-hover: var(--ds-button-secondary-bg-hover);
   --color-button-secondary-border: var(--ds-button-secondary-border);
+  --color-button-secondary-border-focus: var(--ds-button-secondary-border-focus);
   --color-button-secondary-fg: var(--ds-button-secondary-fg);
   --color-card-bg: var(--ds-card-bg);
   --color-card-border: var(--ds-card-border);

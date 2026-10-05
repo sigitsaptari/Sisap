@@ -33,6 +33,7 @@
   --ds-button-ghost-fg: #111827;
   --ds-button-outline-bg-hover: #f9fafa;
   --ds-button-outline-border: #444b55;
+  --ds-button-outline-border-focus: #292d33;
   --ds-button-outline-fg: #444b55;
   --ds-button-primary-bg: #009ea9;
   --ds-button-primary-bg-active: #005f65;
@@ -42,6 +43,7 @@
   --ds-button-secondary-bg: #ffffff;
   --ds-button-secondary-bg-hover: #f9fafa;
   --ds-button-secondary-border: #444b55;
+  --ds-button-secondary-border-focus: #292d33;
   --ds-button-secondary-fg: #444b55;
   --ds-card-bg: #ffffff;
   --ds-card-border: #e7e8e9;
@@ -434,6 +436,7 @@
   --ds-button-ghost-fg: #f9fafa;
   --ds-button-outline-bg-hover: #f9fafa;
   --ds-button-outline-border: #444b55;
+  --ds-button-outline-border-focus: #292d33;
   --ds-button-outline-fg: #444b55;
   --ds-button-primary-bg: #009ea9;
   --ds-button-primary-bg-active: #33b9c4;
@@ -443,6 +446,7 @@
   --ds-button-secondary-bg: #ffffff;
   --ds-button-secondary-bg-hover: #f9fafa;
   --ds-button-secondary-border: #444b55;
+  --ds-button-secondary-border-focus: #292d33;
   --ds-button-secondary-fg: #444b55;
   --ds-card-bg: #111827;
   --ds-card-border: #1f2937;

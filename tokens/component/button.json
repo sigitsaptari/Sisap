@@ -11,10 +11,12 @@
       "bg": { "$type": "color", "$value": "{color.neutral.0}" },
       "bg-hover": { "$type": "color", "$value": "{color.neutral.50}" },
       "border": { "$type": "color", "$value": "{color.neutral.500}" },
+      "border-focus": { "$type": "color", "$value": "{color.neutral.700}" },
       "fg": { "$type": "color", "$value": "{color.neutral.500}" }
     },
     "outline": {
       "border": { "$type": "color", "$value": "{color.neutral.500}" },
+      "border-focus": { "$type": "color", "$value": "{color.neutral.700}" },
       "bg-hover": { "$type": "color", "$value": "{color.neutral.50}" },
       "fg": { "$type": "color", "$value": "{color.neutral.500}" }
     },
