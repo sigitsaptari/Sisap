@@ -1,6 +1,6 @@
 {
   "button": {
-    "radius": { "$type": "dimension", "$value": "{border-radius.md}" },
+    "radius": { "$type": "dimension", "$value": "{border-radius.sm}" },
     "primary": {
       "bg": { "$type": "color", "$value": "{color.action.primary}" },
       "bg-hover": { "$type": "color", "$value": "{color.action.primary-hover}" },
@@ -8,14 +8,15 @@
       "fg": { "$type": "color", "$value": "{color.fg.on-brand}" }
     },
     "secondary": {
-      "bg": { "$type": "color", "$value": "{color.action.secondary}" },
-      "bg-hover": { "$type": "color", "$value": "{color.action.secondary-hover}" },
-      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+      "bg": { "$type": "color", "$value": "{color.neutral.0}" },
+      "bg-hover": { "$type": "color", "$value": "{color.neutral.50}" },
+      "border": { "$type": "color", "$value": "{color.neutral.500}" },
+      "fg": { "$type": "color", "$value": "{color.neutral.500}" }
     },
     "outline": {
-      "border": { "$type": "color", "$value": "{color.border.strong}" },
-      "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },
-      "fg": { "$type": "color", "$value": "{color.fg.default}" }
+      "border": { "$type": "color", "$value": "{color.neutral.500}" },
+      "bg-hover": { "$type": "color", "$value": "{color.neutral.50}" },
+      "fg": { "$type": "color", "$value": "{color.neutral.500}" }
     },
     "ghost": {
       "bg-hover": { "$type": "color", "$value": "{color.action.ghost-hover}" },

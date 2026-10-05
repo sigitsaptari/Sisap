@@ -40,6 +40,7 @@
   --radius-button: var(--ds-button-radius);
   --color-button-secondary-bg: var(--ds-button-secondary-bg);
   --color-button-secondary-bg-hover: var(--ds-button-secondary-bg-hover);
+  --color-button-secondary-border: var(--ds-button-secondary-border);
   --color-button-secondary-fg: var(--ds-button-secondary-fg);
   --color-card-bg: var(--ds-card-bg);
   --color-card-border: var(--ds-card-border);
