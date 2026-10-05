@@ -27,7 +27,7 @@ design tokens — never hardcode visual values.
 | `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`) |
 | `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit |
 | `scripts/`          | Token build tooling                                           |
-| `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `index.ts`) |
+| `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `X.test.tsx`, `index.ts`) |
 | `src/hooks/`        | Shared interaction/a11y hooks                                  |
 | `src/index.ts`      | Core barrel export — everything public goes through here       |
 | `apps/playground/`  | Vite prototyping app                                           |
@@ -50,6 +50,7 @@ design tokens — never hardcode visual values.
 - Always support `className` merging via `cn()` from `src/utils/cn.ts`.
 - Accessibility is non-negotiable: semantic HTML, visible `focus-visible` rings, `aria-*` on icon-only controls, `sr-only` labels where needed.
 - Loading/empty/disabled states are part of "done" — a component story must cover them.
+- Add a basic accessibility test (`X.test.tsx`, Vitest + Testing Library + axe via `src/test/a11y.ts`): no axe violations plus keyboard/ARIA behavior.
 - Add a CSF3 story (`X.stories.tsx`) with at least: default, each variant/state, and an "All" overview.
 
 ## TypeScript rules
@@ -64,6 +65,7 @@ design tokens — never hardcode visual values.
 npm install            # install all workspaces
 npm run tokens:build   # regenerate tokens/build/*.css after token edits
 npm run typecheck      # tsc --noEmit (library)
+npm run test           # vitest: unit + axe accessibility tests
 npm run dev            # playground (Vite)
 npm run storybook      # Storybook docs
 ```

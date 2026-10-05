@@ -15,7 +15,7 @@ Sisap/
 │   └── build/           # Generated CSS variables / Tailwind @theme
 ├── scripts/             # Token build tooling
 ├── src/                 # Library (@sisapds/react)
-│   ├── components/      # Button, Dialog, …
+│   ├── components/      # Button, Input, Checkbox, Typography, Badge, Card, Stack, Grid, Dialog, Drawer, DropdownMenu
 │   ├── hooks/           # useDisclosure, …
 │   ├── utils/           # cn(), …
 │   └── index.ts         # Core barrel export
@@ -35,6 +35,7 @@ npm run tokens:build   # generate tokens/build/*.css dari tokens/*.json
 npm run dev            # playground di http://localhost:5173
 npm run storybook      # Storybook di http://localhost:6006
 npm run typecheck      # tsc --noEmit untuk library
+npm run test           # Vitest + axe (tes aksesibilitas dasar)
 ```
 
 ## Design tokens
