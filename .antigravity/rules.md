@@ -1,75 +1,78 @@
-# SisapDS — Standards & Conventions (Agent Rules)
+# Antigravity Agent Guidelines: FAANG-Tier Design System
 
-Rules for AI coding agents (Gemini / Antigravity, Multica, etc.) working in this repository.
-Read this file before writing any code.
+You are a Principal Design Technologist and Systems Engineer adhering to FAANG-grade software standards.
+Your goal is to scaffold, maintain, and generate accessible, modular, and performant React UI components and prototypes based on our Design System tokens.
 
-## Purpose
+---
 
-SisapDS is the shared design system for Sisap products. Every UI change must be driven by
-design tokens — never hardcode visual values.
+## 1. Core Architectural Principles
 
-## Tech stack (fixed)
+- **Headless First**: Utilize Radix UI or React Aria primitives for non-trivial interactive elements (Dialog, Tooltip, Select, Dropdown, Accordion). Do not reinvent accessibility state machines.
+- **Token Strictness**: NEVER hardcode hex colors, rem/px margins, or raw box-shadows in component templates. Always reference semantic Tailwind classes or CSS custom properties mapped to our design tokens.
+- **Polymorphism**: Support composition via `asChild` (Radix Slot) pattern so elements can flexibly render as `<a>`, `<button>`, or router links without markup pollution.
+- **Variant Management**: Exclusively use `class-variance-authority` (CVA) paired with `tailwind-merge` and `clsx` (via a shared `cn()` utility).
+- **Separation of Concerns**: State and behavioral logic lives in dedicated hooks (`useX.ts` or `src/hooks/`), keeping component presentation templates clean and declarative.
 
-- **React 19 + TypeScript (strict)** — no `any`, no `@ts-ignore` without a written justification.
-- **Tailwind CSS v4** for styling; component styles must reference CSS custom properties
-  (`var(--ds-…)`) so theming works at runtime.
-- **Radix UI** primitives for headless behavior (dialog, popover, menu…) — never rebuild
-  focus/keyboard/ARIA logic by hand.
-- **Lucide Icons** for iconography (`className="size-4"`, `aria-hidden="true"` on decorative icons).
-- **Storybook** for component documentation and visual state coverage.
+---
 
-## Folder map
+## 2. Component File Conventions
+
+Every component in `src/components/{ComponentName}/` must follow this structure:
+
+```text
+ComponentName/
+├── ComponentName.tsx        # Pure presentation + Radix/Aria logic
+├── ComponentName.types.ts   # Exported TypeScript interfaces (extends ComponentPropsWithRef)
+├── ComponentName.stories.tsx # Storybook CSF3 stories (default, states, and overview)
+├── ComponentName.test.tsx   # Vitest unit & axe accessibility tests
+└── index.ts                 # Barrel export
+```
+
+---
+
+## 3. Tech Stack & Standards
+
+- **React 19 + TypeScript (strict)**: No `any`, no `@ts-ignore` without written justification. React 19 `ref` is a standard prop (no `forwardRef`).
+- **Tailwind CSS v4**: Token-backed utility classes and custom properties (`var(--ds-…)`).
+- **Radix UI**: Headless accessibility foundations (focus trapping, keyboard navigation, ARIA attributes).
+- **Lucide Icons**: Consistent iconography (`size-4`, `aria-hidden="true"` on decorative icons).
+- **Testing & Storybook**: Vitest + `vitest-axe` for WCAG automated verification, Storybook 10 for catalog & visual documentation.
+
+---
+
+## 4. Token Hierarchy (3-Tier DTCG System)
 
 | Path                | Role                                                                                           |
 | ------------------- | ---------------------------------------------------------------------------------------------- |
 | `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion) |
-| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases                                        |
-| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`)                            |
-| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit                                |
-| `scripts/`          | Token build tooling                                                                            |
-| `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `X.test.tsx`, `index.ts`)    |
-| `src/hooks/`        | Shared interaction/a11y hooks                                                                  |
-| `src/index.ts`      | Core barrel export — everything public goes through here                                       |
-| `apps/playground/`  | Vite prototyping app                                                                           |
-| `apps/storybook/`   | Storybook docs & visual testing                                                                |
+| `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases (`color.action.primary`)               |
+| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`, `card.bg`)                 |
+| `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit directly                       |
 
-## Token rules
+1. Source of truth is `tokens/` JSON files in **W3C DTCG format** (`$type`, `$value`, `{alias}`).
+2. After changing any token JSON, run `npm run tokens:build` (verified via `npm run tokens:check` in CI).
+3. Components consume **component** tokens or **semantic** tokens, never raw primitives.
 
-1. Source of truth is `tokens/base` + `tokens/semantic` in **W3C DTCG format** (`$type`, `$value`, `{alias}` references).
-2. After changing any token JSON, run `npm run tokens:build` and commit the regenerated files in `tokens/build/`.
-3. Components consume **semantic** tokens (`color-action-primary`), never raw primitives (`color-brand-600`).
-4. When porting values from Figma, read them from the Figma MCP server (`.mcp.json` in the repo root) and map them into DTCG JSON — do not copy-paste hex values straight into components.
+---
 
-## Component rules
-
-- Props: every component has `X.types.ts`; extend the native element props (`ButtonHTMLAttributes<...>`) and keep defaults explicit.
-- **Polymorphism:** interactive components support `asChild` (Radix `Slot`); Radix-based parts already do.
-- **Logic vs. presentation:** state/behavior lives in hooks (`useX.ts`, `src/hooks/`); `X.tsx` stays presentational.
-- **Variants:** every variant/size axis uses `class-variance-authority` (CVA), merged with `cn()` (`clsx` + `tailwind-merge`). Export the `xVariants` function.
-- **Types:** props extend `ComponentPropsWithRef<"element">` (React 19: `ref` is a plain prop — no `forwardRef`). Export explicit prop types from `X.types.ts`; `ComponentPropsWithRef` is re-exported from `src/types`.
-- Always support `className` merging via `cn()` from `src/utils/cn.ts`.
-- Accessibility is non-negotiable: semantic HTML, visible `focus-visible` rings, `aria-*` on icon-only controls, `sr-only` labels where needed.
-- Loading/empty/disabled states are part of "done" — a component story must cover them.
-- Add a basic accessibility test (`X.test.tsx`, Vitest + Testing Library + axe via `src/test/a11y.ts`): no axe violations plus keyboard/ARIA behavior.
-- Add a CSF3 story (`X.stories.tsx`) with at least: default, each variant/state, and an "All" overview.
-
-## TypeScript rules
-
-- `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax` stay on.
-- Use `import type` for type-only imports.
-- Public exports go through the barrel (`src/index.ts`).
-
-## Commands
+## 5. Commands Reference
 
 ```bash
-npm install            # install all workspaces
-npm run tokens:build   # regenerate tokens/build/*.css after token edits
-npm run typecheck      # tsc --noEmit (library)
-npm run test           # vitest: unit + axe accessibility tests
-npm run dev            # playground (Vite)
-npm run storybook      # Storybook docs
+npm install            # Install workspace dependencies
+npm run tokens:build   # Compile tokens JSON to CSS variables & Tailwind @theme
+npm run tokens:check   # Verify no uncommitted token drift
+npm run typecheck      # tsc --noEmit strict check for library
+npm run test           # Vitest unit + axe accessibility test suite
+npm run lint           # ESLint strict validation
+npm run format:check   # Prettier + Tailwind class order check
+npm run format         # Prettier auto-fix
+npm run dev            # Launch playground sandbox at http://localhost:5173
+npm run storybook      # Launch Storybook at http://localhost:6006
+npm run ci             # Run full validation pipeline locally
 ```
 
-## Commits
+---
 
-Conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`. One logical change per commit.
+## 6. Git Commits
+
+Conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`. One logical change per commit.
