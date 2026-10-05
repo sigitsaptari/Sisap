@@ -9,8 +9,9 @@ Lucide icons, Storybook, dan design tokens W3C DTCG.
 Sisap/
 ├── .antigravity/        # Rules & conventions untuk AI agents
 ├── tokens/              # Design tokens (W3C DTCG format)
-│   ├── base/            # Primitives: color, typography, spacing, radii
+│   ├── base/            # Primitives: color, typography, spacing, border-radius, shadow, z-index, motion
 │   ├── semantic/        # Light/dark tokens, brand intents
+│   ├── component/       # Per-component tokens (button, dialog) → alias semantic
 │   └── build/           # Generated CSS variables / Tailwind @theme
 ├── scripts/             # Token build tooling
 ├── src/                 # Library (@sisapds/react)
@@ -43,7 +44,8 @@ npm run typecheck      # tsc --noEmit untuk library
 - Jalankan `npm run tokens:build` setiap mengubah token — script me-resolve alias,
   menghasilkan `tokens.css` (`:root` + `[data-theme="dark"]`) dan mapping
   `@theme inline` untuk Tailwind v4.
-- Komponen hanya memakai token **semantic** (`var(--ds-color-action-primary)`),
+- 3 tier: base → semantic → component. Komponen memakai token **component**
+  (`var(--ds-button-primary-bg)` / `bg-button-primary-bg`) yang merujuk token semantic,
   bukan primitive (`var(--ds-color-brand-600)`).
 - Tema diganti lewat `data-theme="dark"` pada `<html>` — coba di playground.
 

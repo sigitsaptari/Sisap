@@ -22,8 +22,9 @@ design tokens — never hardcode visual values.
 
 | Path                | Role                                                          |
 | ------------------- | ------------------------------------------------------------- |
-| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, radii)  |
+| `tokens/base/`      | W3C DTCG primitive tokens (color, typography, spacing, border-radius, shadow, z-index, motion)  |
 | `tokens/semantic/`  | Light/dark semantic tokens referencing `{base}` aliases        |
+| `tokens/component/` | Per-component tokens aliasing semantic tokens (`button.primary.bg`) |
 | `tokens/build/`     | GENERATED CSS (`tokens.css`, `tailwind-theme.css`) — never edit |
 | `scripts/`          | Token build tooling                                           |
 | `src/components/`   | One folder per component (`X.tsx`, `X.types.ts`, `X.stories.tsx`, `index.ts`) |
@@ -36,12 +37,16 @@ design tokens — never hardcode visual values.
 
 1. Source of truth is `tokens/base` + `tokens/semantic` in **W3C DTCG format** (`$type`, `$value`, `{alias}` references).
 2. After changing any token JSON, run `npm run tokens:build` and commit the regenerated files in `tokens/build/`.
-3. Components consume **semantic** tokens (`--ds-color-action-primary`), never raw primitives (`--ds-color-brand-600`).
+3. Components consume **semantic** tokens (`color-action-primary`), never raw primitives (`color-brand-600`).
 4. When porting values from Figma, read them from the Figma MCP server (`.mcp.json` in the repo root) and map them into DTCG JSON — do not copy-paste hex values straight into components.
 
 ## Component rules
 
 - Props: every component has `X.types.ts`; extend the native element props (`ButtonHTMLAttributes<...>`) and keep defaults explicit.
+- **Polymorphism:** interactive components support `asChild` (Radix `Slot`); Radix-based parts already do.
+- **Logic vs. presentation:** state/behavior lives in hooks (`useX.ts`, `src/hooks/`); `X.tsx` stays presentational.
+- **Variants:** every variant/size axis uses `class-variance-authority` (CVA), merged with `cn()` (`clsx` + `tailwind-merge`). Export the `xVariants` function.
+- **Types:** props extend `ComponentPropsWithRef<"element">` (React 19: `ref` is a plain prop — no `forwardRef`). Export explicit prop types from `X.types.ts`; `ComponentPropsWithRef` is re-exported from `src/types`.
 - Always support `className` merging via `cn()` from `src/utils/cn.ts`.
 - Accessibility is non-negotiable: semantic HTML, visible `focus-visible` rings, `aria-*` on icon-only controls, `sr-only` labels where needed.
 - Loading/empty/disabled states are part of "done" — a component story must cover them.
