@@ -1,0 +1,10 @@
+{
+  "input": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.md}" },
+    "bg": { "$type": "color", "$value": "{color.bg.surface}" },
+    "fg": { "$type": "color", "$value": "{color.fg.default}" },
+    "placeholder": { "$type": "color", "$value": "{color.fg.subtle}" },
+    "border": { "$type": "color", "$value": "{color.border.strong}" },
+    "border-invalid": { "$type": "color", "$value": "{color.feedback.danger}" }
+  }
+}

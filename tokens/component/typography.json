@@ -1,0 +1,11 @@
+{
+  "typography": {
+    "fg": { "$type": "color", "$value": "{color.fg.default}" },
+    "fg-muted": { "$type": "color", "$value": "{color.fg.muted}" },
+    "fg-subtle": { "$type": "color", "$value": "{color.fg.subtle}" },
+    "code": {
+      "bg": { "$type": "color", "$value": "{color.action.secondary}" },
+      "radius": { "$type": "dimension", "$value": "{border-radius.sm}" }
+    }
+  }
+}

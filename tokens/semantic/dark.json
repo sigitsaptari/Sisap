@@ -24,6 +24,14 @@
       "secondary-hover": { "$type": "color", "$value": "{color.neutral.700}" },
       "ghost-hover": { "$type": "color", "$value": "{color.neutral.800}" }
     },
+    "feedback": {
+      "success": { "$type": "color", "$value": "{color.green.200}" },
+      "success-bg": { "$type": "color", "$value": "{color.green.700}" },
+      "warning": { "$type": "color", "$value": "{color.amber.200}" },
+      "warning-bg": { "$type": "color", "$value": "{color.amber.700}" },
+      "danger": { "$type": "color", "$value": "{color.red.200}" },
+      "danger-bg": { "$type": "color", "$value": "{color.red.700}" }
+    },
     "overlay": {
       "default": { "$type": "color", "$value": "#00000099" }
     }

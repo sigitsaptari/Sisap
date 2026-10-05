@@ -1,0 +1,9 @@
+{
+  "checkbox": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.sm}" },
+    "bg": { "$type": "color", "$value": "{color.bg.surface}" },
+    "bg-checked": { "$type": "color", "$value": "{color.action.primary}" },
+    "border": { "$type": "color", "$value": "{color.border.strong}" },
+    "fg": { "$type": "color", "$value": "{color.fg.on-brand}" }
+  }
+}

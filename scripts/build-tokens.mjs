@@ -132,6 +132,24 @@ const animationTheme = `
   --animate-zoom-in: zoom-in var(--ds-motion-duration-normal) var(--ds-motion-easing-decelerate);
   --animate-zoom-out: zoom-out var(--ds-motion-duration-fast) var(--ds-motion-easing-accelerate);
 
+  --animate-slide-in-from-left: slide-in-from-left var(--ds-motion-duration-slow) var(--ds-motion-easing-decelerate);
+  --animate-slide-out-to-left: slide-out-to-left var(--ds-motion-duration-normal) var(--ds-motion-easing-accelerate);
+  --animate-slide-in-from-right: slide-in-from-right var(--ds-motion-duration-slow) var(--ds-motion-easing-decelerate);
+  --animate-slide-out-to-right: slide-out-to-right var(--ds-motion-duration-normal) var(--ds-motion-easing-accelerate);
+  --animate-slide-in-from-top: slide-in-from-top var(--ds-motion-duration-slow) var(--ds-motion-easing-decelerate);
+  --animate-slide-out-to-top: slide-out-to-top var(--ds-motion-duration-normal) var(--ds-motion-easing-accelerate);
+  --animate-slide-in-from-bottom: slide-in-from-bottom var(--ds-motion-duration-slow) var(--ds-motion-easing-decelerate);
+  --animate-slide-out-to-bottom: slide-out-to-bottom var(--ds-motion-duration-normal) var(--ds-motion-easing-accelerate);
+
+  @keyframes slide-in-from-left { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  @keyframes slide-out-to-left { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  @keyframes slide-in-from-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  @keyframes slide-out-to-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+  @keyframes slide-in-from-top { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  @keyframes slide-out-to-top { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+  @keyframes slide-in-from-bottom { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  @keyframes slide-out-to-bottom { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
   @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
   @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
   @keyframes zoom-in {
