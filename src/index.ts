@@ -36,6 +36,9 @@ export type { InputProps, InputSize } from "./components/Input";
 export { TextField, textFieldVariants } from "./components/TextField";
 export type { TextFieldProps, TextFieldSize, TextFieldState } from "./components/TextField";
 
+export { TextArea, Textarea, textAreaVariants } from "./components/TextArea";
+export type { TextAreaProps, TextAreaSize, TextAreaState } from "./components/TextArea";
+
 export { Checkbox } from "./components/Checkbox";
 export type { CheckboxProps } from "./components/Checkbox";
 

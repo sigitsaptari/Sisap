@@ -50,6 +50,7 @@ import {
   Grid,
   Input,
   Stack,
+  TextArea,
   Typography,
 } from "@sisapds/react";
 
@@ -294,17 +295,21 @@ export default function App() {
                       </div>
 
                       {/* Catatan Field */}
-                      <div className="space-y-1.5">
-                        <label htmlFor="note-input" className="text-fg-default text-xs font-medium">
-                          Catatan (Opsional)
-                        </label>
-                        <Input
-                          id="note-input"
-                          value={note}
-                          onChange={(e) => setNote(e.target.value)}
-                          placeholder="Tulis pesan..."
-                        />
-                      </div>
+                      <TextArea
+                        id="note-input"
+                        label="Catatan Transfer"
+                        description="Tambahkan pesan atau referensi pembayaran untuk penerima"
+                        optional
+                        showInfoTooltip
+                        infoTooltip="Pesan ini akan terlihat di mutasi dan bukti transaksi penerima."
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                        placeholder="Tulis pesan..."
+                        maxLength={200}
+                        showCounter
+                        hint="Maksimal 200 karakter"
+                        size="md"
+                      />
 
                       {/* Simpan kontak checkbox */}
                       <div className="flex items-center gap-2 pt-1">
@@ -646,6 +651,104 @@ export default function App() {
                     <Typography variant="code">npm run tokens:build</Typography>
                   </div>
                 </Stack>
+              </CardContent>
+            </Card>
+
+            {/* TextArea Component Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>4. Text Area (Figma 92211:8704)</CardTitle>
+                <CardDescription>
+                  Komponen Text Area multiline input sesuai PaDi DS v3.0 — sizes (sm, md, lg),
+                  states (default, focussed, error, success, disabled), karakter counter, dan status
+                  caption.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                  {/* Size: sm */}
+                  <div className="border-border-default space-y-4 rounded-lg border p-4">
+                    <span className="text-action-primary text-xs font-semibold tracking-wider uppercase">
+                      Size Small (sm)
+                    </span>
+                    <TextArea
+                      size="sm"
+                      label="Deskripsi Singkat"
+                      description="Format ringkas (text 12px)"
+                      placeholder="Masukkan catatan ringkas..."
+                      required
+                      showInfoTooltip
+                      hint="Petunjuk teks"
+                      showCounter
+                      maxLength={100}
+                    />
+                    <TextArea
+                      size="sm"
+                      label="Status Sukses"
+                      defaultValue="Spesifikasi telah memenuhi syarat"
+                      state="success"
+                      successMessage="Information"
+                      showCounter
+                      counterText="35/100"
+                    />
+                  </div>
+
+                  {/* Size: md */}
+                  <div className="border-border-default space-y-4 rounded-lg border p-4">
+                    <span className="text-action-primary text-xs font-semibold tracking-wider uppercase">
+                      Size Medium (md) — Default
+                    </span>
+                    <TextArea
+                      size="md"
+                      label="Catatan Pengadaan"
+                      description="Ukuran standar formulir PaDi"
+                      placeholder="Tuliskan catatan atau instruksi tender..."
+                      required
+                      optional
+                      showInfoTooltip
+                      infoTooltip="Petunjuk pengisian spesifikasi tender"
+                      hint="Hint Text"
+                      showCounter
+                      counterText="0/200"
+                    />
+                    <TextArea
+                      size="md"
+                      label="Status Error"
+                      defaultValue="Format salah"
+                      state="error"
+                      errorMessage="Information"
+                      showCounter
+                      counterText="12/200"
+                    />
+                  </div>
+
+                  {/* Size: lg */}
+                  <div className="border-border-default space-y-4 rounded-lg border p-4">
+                    <span className="text-action-primary text-xs font-semibold tracking-wider uppercase">
+                      Size Large (lg)
+                    </span>
+                    <TextArea
+                      size="lg"
+                      label="Spesifikasi Lengkap"
+                      description="Ukuran luas untuk detail dokumen"
+                      placeholder="Jelaskan kebutuhan secara mendalam..."
+                      optional
+                      showInfoTooltip
+                      hint="Hint Text"
+                      showCounter
+                      counterText="0/500"
+                    />
+                    <TextArea
+                      size="lg"
+                      label="Status Nonaktif (Disabled)"
+                      disabled
+                      defaultValue="Bagian ini terkunci untuk pengeditan umum."
+                      hint="Hint Text"
+                      showCounter
+                      counterText="43/500"
+                    />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </Stack>

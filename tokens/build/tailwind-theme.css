@@ -154,6 +154,15 @@
   --color-text-field-border-hover: var(--ds-text-field-border-hover);
   --color-text-field-border-success: var(--ds-text-field-border-success);
   --radius-text-field: var(--ds-text-field-radius);
+  --color-textarea-bg-default: var(--ds-textarea-bg-default);
+  --color-textarea-bg-disabled: var(--ds-textarea-bg-disabled);
+  --color-textarea-border-default: var(--ds-textarea-border-default);
+  --color-textarea-border-disabled: var(--ds-textarea-border-disabled);
+  --color-textarea-border-error: var(--ds-textarea-border-error);
+  --color-textarea-border-focus: var(--ds-textarea-border-focus);
+  --color-textarea-border-hover: var(--ds-textarea-border-hover);
+  --color-textarea-border-success: var(--ds-textarea-border-success);
+  --radius-textarea: var(--ds-textarea-radius);
   --color-typography-code-bg: var(--ds-typography-code-bg);
   --radius-typography-code: var(--ds-typography-code-radius);
   --color-typography-fg: var(--ds-typography-fg);
