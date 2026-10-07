@@ -69,12 +69,12 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
     const indicatorElement = (
       <div
         className={cn(
-          "z-10 flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-solid text-sm font-bold transition-colors select-none",
+          "z-10 flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-solid text-sm font-bold font-sans transition-colors select-none",
           isSuccess
             ? "border-[#009ea9] bg-[#009ea9] text-white"
             : isActive
               ? "border-[#009ea9] bg-white text-[#444b55] dark:border-[#009ea9] dark:bg-neutral-900 dark:text-neutral-100"
-              : "border-[#dee3ed] bg-white text-[#444b55] dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200",
+              : "border-[#d5d7d9] bg-white text-[#444b55] dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200",
         )}
       >
         {indicatorContent}
@@ -190,7 +190,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 ? "invisible"
                 : isActive || isSuccess
                   ? "bg-[#009ea9]"
-                  : "bg-[#dee3ed] dark:bg-neutral-700",
+                  : "bg-[#d5d7d9] dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -220,7 +220,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 ? "invisible"
                 : isSuccess
                   ? "bg-[#009ea9]"
-                  : "bg-[#dee3ed] dark:bg-neutral-700",
+                  : "bg-[#d5d7d9] dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />

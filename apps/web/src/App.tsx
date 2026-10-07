@@ -4,9 +4,9 @@ import {
   InfoCircle,
   Edit2,
   Trash,
-  Box,
   CloseCircle,
   TickCircle,
+  ArrowDown2,
 } from "iconsax-react";
 import {
   Button,
@@ -16,7 +16,9 @@ import {
   Uploader,
   Switch,
   Checkbox,
+  RadioCard,
   Chip,
+  Divider,
   type UploaderFile,
 } from "@sisapds/react";
 import { SellerHeader } from "./components/SellerHeader";
@@ -29,7 +31,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Toast timer
+  // Toast notification timer
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
@@ -42,10 +44,10 @@ export default function App() {
   const [productName, setProductName] = useState(
     "MacBook Pro M5 14-Inch 16/512GB 16/1TB 24/1TB Space Black Silver - 16/1 TB IBOX Original Space Grey"
   );
-  const [category, setCategory] = useState("Elektronik/Komputer & Laptop");
-  const [brand, setBrand] = useState("Apple");
-  const [unitType, setUnitType] = useState("Unit");
-  const [sku, setSku] = useState("SKU-MBP-M5-001");
+  const [category, setCategory] = useState("Furniture/Furniture Perkantoran");
+  const [brand, setBrand] = useState("Fantech");
+  const [unitType, setUnitType] = useState("Pcs");
+  const [sku, setSku] = useState("1");
   const [isPdn, setIsPdn] = useState(false);
   const [pph, setPph] = useState("Tidak Dipotong");
   const [description, setDescription] = useState(
@@ -56,37 +58,38 @@ export default function App() {
   const [photos, setPhotos] = useState<UploaderFile[]>([
     {
       id: "photo-1",
-      name: "macbook-angle-1.jpg",
+      name: "macbook-1.jpg",
       url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&auto=format&fit=crop&q=80",
       status: "success",
       progress: 100,
     },
     {
       id: "photo-2",
-      name: "macbook-angle-2.jpg",
+      name: "macbook-2.jpg",
       url: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=300&auto=format&fit=crop&q=80",
       status: "success",
       progress: 100,
     },
     {
       id: "photo-3",
-      name: "macbook-angle-3.jpg",
+      name: "macbook-3.jpg",
       url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&auto=format&fit=crop&q=80",
       status: "success",
       progress: 100,
     },
     {
       id: "photo-4",
-      name: "macbook-angle-4.jpg",
+      name: "macbook-4.jpg",
       url: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300&auto=format&fit=crop&q=80",
       status: "success",
       progress: 100,
     },
   ]);
+
   const [video, setVideo] = useState<UploaderFile[]>([
     {
       id: "video-1",
-      name: "macbook-review.mp4",
+      name: "macbook-video.mp4",
       url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       status: "success",
       progress: 100,
@@ -99,7 +102,7 @@ export default function App() {
       id: "cert-1",
       type: "TKDN (80%)",
       status: "-",
-      docUrl: "#",
+      docUrl: "https://example.com/doc",
       webUrl: "https://kemenperin.go.id",
     },
     {
@@ -108,7 +111,7 @@ export default function App() {
       number: "ID26356455565746561",
       status: "Aktif",
       expiryDate: "12-02-2025",
-      docUrl: "#",
+      docUrl: "https://example.com/doc",
     },
     {
       id: "cert-3",
@@ -116,7 +119,7 @@ export default function App() {
       number: "04-8883-1002",
       status: "Kedaluwarsa",
       expiryDate: "12-02-2025",
-      docUrl: "#",
+      docUrl: "https://example.com/doc",
     },
     {
       id: "cert-4",
@@ -124,7 +127,7 @@ export default function App() {
       number: "MD263564555657465",
       status: "Aktif",
       expiryDate: "12-02-2025",
-      docUrl: "#",
+      docUrl: "https://example.com/doc",
     },
     {
       id: "cert-5",
@@ -132,7 +135,7 @@ export default function App() {
       number: "P-IRT2635645556574-56",
       status: "Aktif",
       expiryDate: "12-02-2025",
-      docUrl: "#",
+      docUrl: "https://example.com/doc",
     },
   ]);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
@@ -157,9 +160,9 @@ export default function App() {
   // ----------------------------------------------------
   const [weight, setWeight] = useState("30");
   const [weightUnit, setWeightUnit] = useState("Gram");
-  const [pkgLength, setPkgLength] = useState("30");
-  const [pkgWidth, setPkgWidth] = useState("30");
-  const [pkgHeight, setPkgHeight] = useState("30");
+  const [pkgLength, setPkgLength] = useState("100");
+  const [pkgWidth, setPkgWidth] = useState("150");
+  const [pkgHeight, setPkgHeight] = useState("100");
   const [isFreeShipping, setIsFreeShipping] = useState(false);
 
   // Volume weight calculation: (P x L x T) / 6000
@@ -217,10 +220,10 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f9fafa] text-[#444b55]">
+    <div className="flex min-h-screen flex-col bg-[#f9fafa] font-['Ubuntu',sans-serif] text-[#444b55]">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-20 right-8 z-50 flex items-center gap-2 rounded-[8px] bg-[#182958] px-4 py-3 text-sm font-semibold text-[#ffffff] shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="fixed bottom-24 right-8 z-50 flex items-center gap-2 rounded-[8px] bg-[#182958] px-4 py-3 text-sm font-semibold text-[#ffffff] shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-200">
           <TickCircle size={18} variant="Bulk" color="#009ea9" />
           <span>{toastMessage}</span>
         </div>
@@ -230,21 +233,22 @@ export default function App() {
       <SellerHeader />
 
       {/* Main Layout Container (Sidebar + Content) */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 min-h-[calc(100vh-80px)]">
         {/* Left Seller Sidebar */}
         <SellerSidebar />
 
-        {/* Center Main Work Area */}
-        <main className="flex-1 overflow-x-hidden p-8">
-          <div className="mx-auto flex max-w-[1096px] flex-col gap-6">
+        {/* Center Main Work Area (1096px content width, 32px padding) */}
+        <main className="flex-1 overflow-x-hidden pl-[32px] pr-[32px] py-[16px] pb-[100px] bg-[#f9fafa]">
+          <div className="w-[1096px] flex flex-col gap-[32px]">
             {/* Page Title */}
-            <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold text-[#444b55]">Tambah Produk</h1>
-              <span className="text-xs text-[#8c9197]">Langkah {currentStep} dari 4</span>
+            <div className="h-[32px] flex items-center">
+              <h1 className="font-['Ubuntu'] font-bold text-[24px] leading-[32px] text-[#444b55]">
+                Tambah Produk
+              </h1>
             </div>
 
             {/* Stepper Navigation */}
-            <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] px-6 py-3 shadow-xs">
+            <div className="w-[1096px]">
               <AddProductStepper
                 currentStep={currentStep}
                 onStepClick={(step) => setCurrentStep(step)}
@@ -255,45 +259,57 @@ export default function App() {
             {/* STEP 1: INFORMASI PRODUK */}
             {/* ======================================================== */}
             {currentStep === 1 && (
-              <div className="flex flex-col gap-6 animate-in fade-in duration-200">
-                {/* Card 1: Jenis Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Jenis Produk</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-[32px] animate-in fade-in duration-200">
+                {/* Card 1: Jenis Produk (6935:7549) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Jenis Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex gap-[24px]">
                     {/* Option: Barang */}
                     <button
                       type="button"
                       onClick={() => setProductType("Barang")}
-                      className={`flex items-start justify-between rounded-[8px] border p-4 text-left transition-all cursor-pointer ${
+                      className={`flex flex-1 items-start justify-between rounded-[4px] p-[12px] border transition-all cursor-pointer ${
                         productType === "Barang"
-                          ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                          : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                          ? "border-[#009ea9] bg-white ring-1 ring-[#009ea9]"
+                          : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
                       }`}
                     >
-                      <div className="flex items-start gap-3">
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-[6px] bg-[#009ea9]/15 text-[#009ea9]">
-                          <Box size={22} variant="Bulk" color="#009ea9" />
+                      <div className="flex items-start gap-[16px]">
+                        {/* Device icon (40x40) */}
+                        <div className="flex size-[40px] shrink-0 items-center justify-center rounded-[4px] bg-[#e6f4f7] text-[#009ea9]">
+                          <svg className="size-[24px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6C4 4.89543 4.89543 4 6 4H18C19.1046 4 20 4.89543 20 6V14C20 15.1046 19.1046 16 18 16H6C4.89543 16 4 15.1046 4 14V6Z" stroke="#009ea9" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M2 18H22" stroke="#009ea9" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M10 20H14" stroke="#009ea9" strokeWidth="2" strokeLinecap="round" />
+                          </svg>
                         </div>
-                        <div className="flex flex-col">
-                          <span className="font-bold text-sm text-[#444b55]">Barang</span>
-                          <span className="text-xs text-[#686e76] mt-0.5">
+                        <div className="flex flex-col text-left gap-[4px]">
+                          <span className="font-['Ubuntu'] font-medium text-[12px] leading-[18px] text-[#444b55]">
+                            Barang
+                          </span>
+                          <span className="font-['Ubuntu'] font-normal text-[10px] leading-[15px] text-[#444b55]">
                             Berupa produk fisik yang memiliki dimensi berat, panjang dan lebar
                           </span>
                         </div>
                       </div>
                       <div
-                        className={`flex size-5 shrink-0 items-center justify-center rounded-[4px] border ${
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] border ${
                           productType === "Barang"
-                            ? "border-[#009ea9] bg-[#009ea9] text-[#ffffff]"
-                            : "border-[#b1b4b8] bg-[#ffffff]"
+                            ? "border-[#009ea9] bg-[#009ea9] text-white shadow-xs"
+                            : "border-[#d5d7d9] bg-white"
                         }`}
                       >
                         {productType === "Barang" && (
-                          <svg className="size-3.5" viewBox="0 0 14 14" fill="none">
+                          <svg className="size-[14px]" viewBox="0 0 16 16" fill="none">
                             <path
-                              d="M3 7L5.5 9.5L11 4"
+                              d="M3.5 8.5L6.5 11.5L12.5 4.5"
                               stroke="#ffffff"
-                              strokeWidth="2"
+                              strokeWidth="2.2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
                             />
@@ -306,38 +322,41 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => setProductType("Jasa")}
-                      className={`flex items-start justify-between rounded-[8px] border p-4 text-left transition-all cursor-pointer ${
+                      className={`flex flex-1 items-start justify-between rounded-[4px] p-[12px] border transition-all cursor-pointer ${
                         productType === "Jasa"
-                          ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                          : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                          ? "border-[#009ea9] bg-white ring-1 ring-[#009ea9]"
+                          : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
                       }`}
                     >
-                      <div className="flex items-start gap-3">
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-[6px] bg-[#182958]/10 text-[#182958]">
-                          <svg className="size-5.5 text-[#182958]" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.5 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
+                      <div className="flex items-start gap-[16px]">
+                        {/* Service/Wrench icon (40x40) */}
+                        <div className="flex size-[40px] shrink-0 items-center justify-center rounded-[4px] bg-[#f2f4f7] text-[#444b55]">
+                          <svg className="size-[24px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.9 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#444b55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
-                        <div className="flex flex-col">
-                          <span className="font-bold text-sm text-[#444b55]">Jasa</span>
-                          <span className="text-xs text-[#686e76] mt-0.5">
+                        <div className="flex flex-col text-left gap-[4px]">
+                          <span className="font-['Ubuntu'] font-medium text-[12px] leading-[18px] text-[#444b55]">
+                            Jasa
+                          </span>
+                          <span className="font-['Ubuntu'] font-normal text-[10px] leading-[15px] text-[#444b55]">
                             Berupa produk non-fisik dalam bentuk layanan
                           </span>
                         </div>
                       </div>
                       <div
-                        className={`flex size-5 shrink-0 items-center justify-center rounded-[4px] border ${
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] border ${
                           productType === "Jasa"
-                            ? "border-[#009ea9] bg-[#009ea9] text-[#ffffff]"
-                            : "border-[#b1b4b8] bg-[#ffffff]"
+                            ? "border-[#009ea9] bg-[#009ea9] text-white shadow-xs"
+                            : "border-[#d5d7d9] bg-white"
                         }`}
                       >
                         {productType === "Jasa" && (
-                          <svg className="size-3.5" viewBox="0 0 14 14" fill="none">
+                          <svg className="size-[14px]" viewBox="0 0 16 16" fill="none">
                             <path
-                              d="M3 7L5.5 9.5L11 4"
+                              d="M3.5 8.5L6.5 11.5L12.5 4.5"
                               stroke="#ffffff"
-                              strokeWidth="2"
+                              strokeWidth="2.2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
                             />
@@ -348,10 +367,15 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Card 2: Informasi Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Informasi Produk</h2>
-                  <div className="flex flex-col gap-5">
+                {/* Card 2: Informasi Produk (6935:7550) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Informasi Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
                     {/* Nama Produk */}
                     <TextField
                       label="Nama Produk"
@@ -360,54 +384,60 @@ export default function App() {
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       maxLength={100}
-                      showCounter
+                      suffix={`${productName.length}/100`}
                     />
 
-                    {/* 3 Column Select Fields */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <SelectField
-                        label="Kategori Produk"
-                        isWajib
-                        value={category}
-                        onChange={setCategory}
-                        options={[
-                          { label: "Elektronik/Komputer & Laptop", value: "Elektronik/Komputer & Laptop" },
-                          { label: "Furniture/Furniture Perkantoran", value: "Furniture/Furniture Perkantoran" },
-                          { label: "Peralatan Kantor (ATK)", value: "Peralatan Kantor (ATK)" },
-                          { label: "Makanan & Minuman", value: "Makanan & Minuman" },
-                        ]}
-                      />
+                    {/* 3 Column Select Fields (Kategori, Brand, Satuan) */}
+                    <div className="flex gap-[24px] items-start w-full">
+                      <div className="flex-1 min-w-0">
+                        <SelectField
+                          label="Kategori Produk"
+                          isWajib
+                          value={category}
+                          onChange={setCategory}
+                          options={[
+                            { label: "Furniture/Furniture Perkantoran", value: "Furniture/Furniture Perkantoran" },
+                            { label: "Elektronik/Komputer & Laptop", value: "Elektronik/Komputer & Laptop" },
+                            { label: "Peralatan Kantor (ATK)", value: "Peralatan Kantor (ATK)" },
+                            { label: "Makanan & Minuman", value: "Makanan & Minuman" },
+                          ]}
+                        />
+                      </div>
 
-                      <SelectField
-                        label="Brand Produk"
-                        isWajib
-                        value={brand}
-                        onChange={setBrand}
-                        options={[
-                          { label: "Apple", value: "Apple" },
-                          { label: "Fantech", value: "Fantech" },
-                          { label: "Asus", value: "Asus" },
-                          { label: "Lenovo", value: "Lenovo" },
-                          { label: "Samsung", value: "Samsung" },
-                        ]}
-                      />
+                      <div className="w-[300px] shrink-0">
+                        <SelectField
+                          label="Brand Produk"
+                          isWajib
+                          value={brand}
+                          onChange={setBrand}
+                          options={[
+                            { label: "Fantech", value: "Fantech" },
+                            { label: "Apple", value: "Apple" },
+                            { label: "Asus", value: "Asus" },
+                            { label: "Lenovo", value: "Lenovo" },
+                            { label: "Samsung", value: "Samsung" },
+                          ]}
+                        />
+                      </div>
 
-                      <SelectField
-                        label="Jenis Satuan Produk"
-                        isWajib
-                        value={unitType}
-                        onChange={setUnitType}
-                        options={[
-                          { label: "Unit", value: "Unit" },
-                          { label: "Pcs", value: "Pcs" },
-                          { label: "Pack", value: "Pack" },
-                          { label: "Set", value: "Set" },
-                          { label: "Box", value: "Box" },
-                        ]}
-                      />
+                      <div className="w-[233.33px] shrink-0">
+                        <SelectField
+                          label="Jenis Satuan Produk"
+                          isWajib
+                          value={unitType}
+                          onChange={setUnitType}
+                          options={[
+                            { label: "Pcs", value: "Pcs" },
+                            { label: "Unit", value: "Unit" },
+                            { label: "Pack", value: "Pack" },
+                            { label: "Set", value: "Set" },
+                            { label: "Box", value: "Box" },
+                          ]}
+                        />
+                      </div>
                     </div>
 
-                    {/* SKU */}
+                    {/* Kode SKU */}
                     <TextField
                       label="Kode SKU"
                       optional
@@ -416,15 +446,16 @@ export default function App() {
                       onChange={(e) => setSku(e.target.value)}
                     />
 
-                    {/* PDN Checkbox */}
-                    <div className="pt-1">
+                    {/* Checkbox PDN */}
+                    <div className="flex flex-col gap-[4px]">
                       <Checkbox
                         id="pdn-checkbox"
                         checked={isPdn}
                         onCheckedChange={(checked) => setIsPdn(Boolean(checked))}
+                        size="lg"
                         text="Produk Dalam Negeri (PDN)"
                       />
-                      <p className="ms-7 mt-0.5 text-xs text-[#686e76]">
+                      <p className="pl-[32px] font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76]">
                         Barang dan jasa produksi Indonesia yang memanfaatkan tenaga kerja serta bahan baku dalam negeri.
                       </p>
                     </div>
@@ -453,10 +484,15 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Card 3: Media Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Media Produk</h2>
-                  <div className="flex flex-col gap-6">
+                {/* Card 3: Media Produk (6937:9362) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Media Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
                     {/* Foto Produk */}
                     <Uploader
                       type="image"
@@ -486,79 +522,92 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Card 4: Sertifikat Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <div className="mb-4 flex items-center justify-between">
-                    <h2 className="text-base font-bold text-[#444b55]">Sertifikat Produk</h2>
+                {/* Card 4: Sertifikat Produk (6954:14695) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px] flex items-center justify-between">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Sertifikat Produk
+                    </h2>
                     <Button
                       type="button"
-                      variant="outline"
-                      size="sm"
+                      variant="secondary"
+                      size="md"
                       onClick={() => setIsCertModalOpen(true)}
                     >
                       Tambah Sertifikat
                     </Button>
                   </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px]">
+                    {certificates.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <p className="font-['Ubuntu'] font-bold text-[16px] text-[#444b55]">
+                          Sertifikat Produk Belum ditambahkan.
+                        </p>
+                        <p className="font-['Ubuntu'] font-normal text-[14px] text-[#686e76] mt-1">
+                          Silahkan Tambahkan dahulu sertifikat produk untuk mendukung informasi produk Anda.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="w-full border border-[#dee3ed] rounded-[4px] overflow-hidden">
+                        {/* Table Header (56px) */}
+                        <div className="h-[56px] bg-[#f9fafa] border-b border-[#8c9197] flex items-center px-[16px] text-[#444b55] font-['Ubuntu'] font-medium text-[14px] leading-[21px]">
+                          <div className="flex-1">Jenis Sertifikat</div>
+                          <div className="w-[240px]">Status/Kedaluwarsa</div>
+                          <div className="w-[200px]">Lampiran</div>
+                          <div className="w-[105px] text-center">Aksi</div>
+                        </div>
 
-                  {certificates.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-8 text-center">
-                      <p className="font-bold text-sm text-[#444b55]">
-                        Sertifikat Produk Belum ditambahkan.
-                      </p>
-                      <p className="text-xs text-[#8c9197] mt-1">
-                        Silahkan Tambahkan dahulu sertifikat produk untuk mendukung informasi produk Anda.
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="overflow-x-auto rounded-[8px] border border-[#e7e8e9]">
-                      <table className="w-full text-left text-xs text-[#444b55]">
-                        <thead className="bg-[#f9fafa] text-[#686e76] font-semibold border-b border-[#e7e8e9]">
-                          <tr>
-                            <th className="px-4 py-3">Jenis Sertifikat</th>
-                            <th className="px-4 py-3">Status/Kedaluwarsa</th>
-                            <th className="px-4 py-3">Lampiran</th>
-                            <th className="px-4 py-3 text-right">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-[#e7e8e9]">
-                          {certificates.map((cert) => (
-                            <tr key={cert.id} className="hover:bg-[#f9fafa] transition-colors">
-                              <td className="px-4 py-3 font-medium">
-                                <div className="flex flex-col">
-                                  <span>{cert.type}</span>
+                        {/* Table Rows (66px each, zebra stripe) */}
+                        <div className="divide-y divide-[#dee3ed]">
+                          {certificates.map((cert, index) => {
+                            const isZebra = index % 2 === 1;
+                            return (
+                              <div
+                                key={cert.id}
+                                className={`h-[66px] flex items-center px-[16px] text-[14px] leading-[21px] font-['Ubuntu'] transition-colors ${
+                                  isZebra ? "bg-[#f9fafa]" : "bg-white"
+                                }`}
+                              >
+                                {/* Column 1: Jenis Sertifikat */}
+                                <div className="flex-1 flex items-center gap-[8px] text-[#444b55]">
+                                  <span className="font-normal">{cert.type}</span>
                                   {cert.number && (
-                                    <span className="text-[11px] text-[#8c9197] font-mono">
-                                      {cert.number}
-                                    </span>
+                                    <span className="font-medium text-[#444b55]">{cert.number}</span>
                                   )}
                                 </div>
-                              </td>
-                              <td className="px-4 py-3">
-                                {cert.status === "-" ? (
-                                  <span>-</span>
-                                ) : (
-                                  <div className="flex items-center gap-1.5">
-                                    <span
-                                      className={`px-1.5 py-0.5 rounded-[4px] text-[10px] font-bold ${
-                                        cert.status === "Aktif"
-                                          ? "bg-[#edf7ee] text-[#25974c]"
-                                          : "bg-[#eff0f1] text-[#8c9197]"
-                                      }`}
-                                    >
-                                      {cert.status}
-                                    </span>
-                                    {cert.expiryDate && (
-                                      <span className="text-[11px] text-[#686e76]">
-                                        {cert.expiryDate}
-                                      </span>
-                                    )}
-                                  </div>
-                                )}
-                              </td>
-                              <td className="px-4 py-3">
-                                <div className="flex items-center gap-2 text-[#009ea9] font-medium">
+
+                                {/* Column 2: Status / Kedaluwarsa */}
+                                <div className="w-[240px] flex items-center gap-[8px] text-[#444b55]">
+                                  {cert.status === "-" ? (
+                                    <span className="text-[#444b55]">-</span>
+                                  ) : (
+                                    <>
+                                      <Chip
+                                        label={cert.status}
+                                        type="soft"
+                                        color={cert.status === "Aktif" ? "tosca" : "grey"}
+                                        size="sm"
+                                        className="h-[20px] text-[12px] font-medium"
+                                      />
+                                      {cert.expiryDate && (
+                                        <span className="font-normal text-[#444b55]">
+                                          {cert.expiryDate}
+                                        </span>
+                                      )}
+                                    </>
+                                  )}
+                                </div>
+
+                                {/* Column 3: Lampiran */}
+                                <div className="w-[200px] flex items-center gap-[8px] text-[#009ea9] font-medium text-[12px]">
                                   {cert.docUrl && (
-                                    <a href={cert.docUrl} className="hover:underline">
+                                    <a
+                                      href={cert.docUrl}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="hover:underline cursor-pointer"
+                                    >
                                       Lihat doc.
                                     </a>
                                   )}
@@ -570,21 +619,21 @@ export default function App() {
                                       href={cert.webUrl}
                                       target="_blank"
                                       rel="noreferrer"
-                                      className="hover:underline"
+                                      className="hover:underline cursor-pointer"
                                     >
                                       Lihat di Web
                                     </a>
                                   )}
                                 </div>
-                              </td>
-                              <td className="px-4 py-3 text-right">
-                                <div className="flex items-center justify-end gap-2 text-[#686e76]">
+
+                                {/* Column 4: Aksi */}
+                                <div className="w-[105px] flex items-center justify-center gap-[12px]">
                                   <button
                                     type="button"
-                                    className="p-1 hover:text-[#009ea9] transition-colors"
-                                    title="Edit"
+                                    className="text-[#444b55] hover:text-[#009ea9] transition-colors cursor-pointer"
+                                    title="Ubah Sertifikat"
                                   >
-                                    <Edit2 size={16} variant="Linear" />
+                                    <Edit2 size={18} variant="Linear" />
                                   </button>
                                   <button
                                     type="button"
@@ -593,19 +642,19 @@ export default function App() {
                                         prev.filter((c) => c.id !== cert.id)
                                       )
                                     }
-                                    className="p-1 hover:text-[#ee3124] transition-colors"
-                                    title="Hapus"
+                                    className="text-[#ee3124] hover:text-[#c4251a] transition-colors cursor-pointer"
+                                    title="Hapus Sertifikat"
                                   >
-                                    <Trash size={16} variant="Linear" />
+                                    <Trash size={18} variant="Linear" />
                                   </button>
                                 </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -614,86 +663,83 @@ export default function App() {
             {/* STEP 2: HARGA & STOK */}
             {/* ======================================================== */}
             {currentStep === 2 && (
-              <div className="flex flex-col gap-6 animate-in fade-in duration-200">
-                {/* Card 1: Harga Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Harga Produk</h2>
+              <div className="flex flex-col gap-[32px] animate-in fade-in duration-200">
+                {/* Card 1: Harga Produk (6941:8292) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Harga Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
+                    {/* Dismissible Alert Banner */}
+                    {showAlertBanner && (
+                      <div className="w-full bg-[#fff5ea] border border-[#f7931e] rounded-[8px] px-[16px] py-[16px] flex items-center justify-between gap-[12px]">
+                        <div className="flex items-center gap-[12px]">
+                          <div className="size-[32px] rounded-full bg-[#f7931e] flex items-center justify-center text-white shrink-0">
+                            <Danger size={20} variant="Bulk" color="#ffffff" />
+                          </div>
+                          <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#444b55]">
+                            Mulai 1 Oktober 2024 terdapat perubahan biaya transaksi penjual.{" "}
+                            <a
+                              href="#biaya"
+                              className="font-medium text-[#009ea9] hover:underline"
+                            >
+                              Lihat Selengkapnya
+                            </a>
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setShowAlertBanner(false)}
+                          className="text-[#444b55] hover:text-[#000000] transition-colors cursor-pointer"
+                          aria-label="Tutup notifikasi"
+                        >
+                          <CloseCircle size={20} variant="Linear" />
+                        </button>
+                      </div>
+                    )}
 
-                  {/* Dismissible Alert Banner */}
-                  {showAlertBanner && (
-                    <div className="mb-6 flex items-center justify-between rounded-[8px] border border-[#fec84b] bg-[#fffcf5] p-3 text-xs text-[#b54708]">
-                      <div className="flex items-center gap-2">
-                        <Danger size={18} variant="Bulk" color="#f79009" className="shrink-0" />
-                        <span>
-                          Mulai 1 Oktober 2024 terdapat perubahan biaya transaksi penjual.{" "}
-                          <a href="#biaya" className="font-bold underline hover:text-[#7a2e0e]">
-                            Lihat Selengkapnya
-                          </a>
+                    {/* Jenis Harga */}
+                    <div className="flex flex-col gap-[8px]">
+                      <div className="flex items-center gap-[4px]">
+                        <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                          Jenis Harga
+                        </span>
+                        <span className="font-['Ubuntu'] italic text-[12px] leading-[18px] text-[#ee3124]">
+                          Wajib
                         </span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => setShowAlertBanner(false)}
-                        className="text-[#b54708] hover:text-[#7a2e0e] transition-colors"
-                      >
-                        <CloseCircle size={18} variant="Linear" />
-                      </button>
-                    </div>
-                  )}
-
-                  <div className="flex flex-col gap-5">
-                    {/* Jenis Harga */}
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-sm text-[#444b55]">Jenis Harga</span>
-                        <span className="text-xs text-[#ee3124] italic">Wajib</span>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
-                        <button
-                          type="button"
-                          onClick={() => setPriceType("normal")}
-                          className={`flex items-center gap-3 rounded-[8px] border p-3.5 transition-all cursor-pointer ${
+                      <div className="flex gap-[24px]">
+                        <RadioCard
+                          id="price-normal"
+                          name="priceType"
+                          value="normal"
+                          checked={priceType === "normal"}
+                          onChange={() => setPriceType("normal")}
+                          label="Harga Normal"
+                          radioRight={false}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
                             priceType === "normal"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
-                        >
-                          <div
-                            className={`flex size-4.5 items-center justify-center rounded-full border ${
-                              priceType === "normal"
-                                ? "border-[#009ea9]"
-                                : "border-[#b1b4b8]"
-                            }`}
-                          >
-                            {priceType === "normal" && (
-                              <div className="size-2 rounded-full bg-[#009ea9]" />
-                            )}
-                          </div>
-                          <span className="font-bold text-sm text-[#444b55]">Harga Normal</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => setPriceType("tempo")}
-                          className={`flex items-center gap-3 rounded-[8px] border p-3.5 transition-all cursor-pointer ${
+                        />
+                        <RadioCard
+                          id="price-tempo"
+                          name="priceType"
+                          value="tempo"
+                          checked={priceType === "tempo"}
+                          onChange={() => setPriceType("tempo")}
+                          label="Harga Tempo"
+                          radioRight={false}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
                             priceType === "tempo"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
-                        >
-                          <div
-                            className={`flex size-4.5 items-center justify-center rounded-full border ${
-                              priceType === "tempo"
-                                ? "border-[#009ea9]"
-                                : "border-[#b1b4b8]"
-                            }`}
-                          >
-                            {priceType === "tempo" && (
-                              <div className="size-2 rounded-full bg-[#009ea9]" />
-                            )}
-                          </div>
-                          <span className="font-bold text-sm text-[#444b55]">Harga Tempo</span>
-                        </button>
+                        />
                       </div>
                     </div>
 
@@ -706,19 +752,22 @@ export default function App() {
                       onChange={(e) => setUnitPrice(e.target.value)}
                     />
 
-                    {/* Tampilkan Harga Diskon */}
-                    <div className="flex flex-col gap-3 rounded-[8px] border border-[#e7e8e9] bg-[#f9fafa] p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-sm text-[#444b55]">Tampilkan Harga Diskon</span>
+                    {/* Tampilkan Harga Diskon Box */}
+                    <div className="bg-[#f9fafa] rounded-[8px] p-[12px] flex flex-col gap-[24px] w-full">
+                      <div className="flex items-center">
                         <Switch
+                          id="switch-diskon"
+                          size="lg"
+                          label="Tampilkan Harga Diskon"
                           checked={showDiscount}
                           onCheckedChange={setShowDiscount}
                         />
                       </div>
 
                       {showDiscount && (
-                        <div className="flex flex-wrap items-end gap-4 pt-2">
-                          <div className="flex-1 min-w-[200px]">
+                        <div className="flex items-end gap-[24px] w-full">
+                          {/* Harga Sebelum Diskon Input */}
+                          <div className="flex-1">
                             <TextField
                               label="Harga Sebelum Diskon"
                               required
@@ -729,186 +778,215 @@ export default function App() {
                           </div>
 
                           {/* Pratinjau Harga Diskon Box */}
-                          <div className="flex flex-col gap-1.5">
-                            <span className="text-xs font-medium text-[#686e76]">
+                          <div className="flex flex-col gap-[8px]">
+                            <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
                               Pratinjau Harga Diskon
                             </span>
-                            <div className="flex h-11 items-center gap-2 rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] px-3 text-sm">
-                              <span className="font-bold text-[#444b55]">Rp{unitPrice}</span>
-                              <span className="rounded bg-[#ee3124]/10 px-1 text-[11px] font-bold text-[#ee3124]">
-                                50%
+                            <div className="h-[44px] bg-white border border-[#d5d7d9] rounded-[4px] px-[8px] py-[8px] flex items-center gap-[12px]">
+                              <span className="font-['Ubuntu'] font-bold text-[14px] leading-[21px] text-[#444b55]">
+                                Rp{unitPrice}
                               </span>
-                              <span className="text-xs text-[#8c9197] line-through">
-                                Rp{priceBeforeDiscount}
-                              </span>
+                              <div className="flex items-center gap-[8px]">
+                                <span className="bg-[#ffedf1] text-[#ee3124] text-[12px] font-medium px-[6px] py-[1px] rounded-[4px]">
+                                  50%
+                                </span>
+                                <span className="text-[#686e76] line-through text-[12px] leading-[18px]">
+                                  Rp{priceBeforeDiscount}.000
+                                </span>
+                              </div>
                             </div>
                           </div>
 
-                          {/* Estimasi Pendapatan Box */}
-                          <div className="flex h-11 items-center gap-2 rounded-[4px] bg-[#edf7ee] px-4 text-sm font-semibold text-[#25974c]">
-                            <InfoCircle size={18} variant="Bulk" color="#25974c" />
-                            <span>Estimasi pendapatan</span>
-                            <span className="font-bold">Rp{unitPrice}</span>
+                          {/* Estimasi Pendapatan */}
+                          <div className="h-[44px] bg-[#ddf2e4] rounded-[4px] px-[12px] flex items-center gap-[12px]">
+                            <div className="flex items-center gap-[4px]">
+                              <span className="font-['Ubuntu'] font-bold text-[14px] leading-[21px] text-[#444b55]">
+                                Estimasi pendapatan
+                              </span>
+                              <InfoCircle size={16} variant="Linear" color="#444b55" />
+                            </div>
+                            <span className="font-['Ubuntu'] font-bold text-[20px] leading-[28px] text-[#25974c]">
+                              Rp{unitPrice}
+                            </span>
                           </div>
                         </div>
                       )}
                     </div>
 
                     {/* Barang / Jasa Dikenakan PPN */}
-                    <div className="flex flex-col gap-2 pt-2">
-                      <span className="font-bold text-sm text-[#444b55]">
+                    <div className="flex flex-col gap-[8px]">
+                      <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
                         Barang / Jasa Dikenakan PPN
                       </span>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-3 gap-[24px]">
                         {/* PPN 12% */}
-                        <button
-                          type="button"
+                        <div
                           onClick={() => setPpnType("ppn12")}
-                          className={`flex flex-col p-4 rounded-[8px] border text-left transition-all cursor-pointer ${
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
                             ppnType === "ppn12"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-2 mb-1.5">
+                          <div className="flex items-center gap-[8px]">
                             <div
-                              className={`flex size-4 items-center justify-center rounded-full border ${
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${
                                 ppnType === "ppn12"
                                   ? "border-[#009ea9]"
                                   : "border-[#b1b4b8]"
                               }`}
                             >
                               {ppnType === "ppn12" && (
-                                <div className="size-2 rounded-full bg-[#009ea9]" />
+                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
                               )}
                             </div>
-                            <span className="font-bold text-sm text-[#444b55]">PPN 12%</span>
+                            <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                              PPN 12%
+                            </span>
                           </div>
-                          <span className="text-xs text-[#686e76] leading-relaxed">
+                          <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#686e76] pl-[26px]">
                             Transaksi dikenakan PPN 12% sesuai ketentuan PMK No. 131 Tahun 2024.
-                          </span>
-                        </button>
+                          </p>
+                        </div>
 
                         {/* PPN 1.1% */}
-                        <button
-                          type="button"
+                        <div
                           onClick={() => setPpnType("ppn1")}
-                          className={`flex flex-col p-4 rounded-[8px] border text-left transition-all cursor-pointer ${
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
                             ppnType === "ppn1"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-2 mb-1.5">
+                          <div className="flex items-center gap-[8px]">
                             <div
-                              className={`flex size-4 items-center justify-center rounded-full border ${
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${
                                 ppnType === "ppn1"
                                   ? "border-[#009ea9]"
                                   : "border-[#b1b4b8]"
                               }`}
                             >
                               {ppnType === "ppn1" && (
-                                <div className="size-2 rounded-full bg-[#009ea9]" />
+                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
                               )}
                             </div>
-                            <span className="font-bold text-sm text-[#444b55]">PPN 1.1%</span>
+                            <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                              PPN 1.1%
+                            </span>
                           </div>
-                          <span className="text-xs text-[#686e76] leading-relaxed">
+                          <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#686e76] pl-[26px]">
                             Transaksi dikenakan PPN 1,1% dan wajib dilaporkan secara mandiri oleh pembeli.
-                          </span>
-                        </button>
+                          </p>
+                        </div>
 
                         {/* Tidak Dikenakan PPN */}
-                        <button
-                          type="button"
+                        <div
                           onClick={() => setPpnType("noppn")}
-                          className={`flex flex-col p-4 rounded-[8px] border text-left transition-all cursor-pointer ${
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
                             ppnType === "noppn"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-2 mb-1.5">
+                          <div className="flex items-center gap-[8px]">
                             <div
-                              className={`flex size-4 items-center justify-center rounded-full border ${
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${
                                 ppnType === "noppn"
                                   ? "border-[#009ea9]"
                                   : "border-[#b1b4b8]"
                               }`}
                             >
                               {ppnType === "noppn" && (
-                                <div className="size-2 rounded-full bg-[#009ea9]" />
+                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
                               )}
                             </div>
-                            <span className="font-bold text-sm text-[#444b55]">Tidak Dikenakan PPN</span>
+                            <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                              Tidak Dikenakan PPN
+                            </span>
                           </div>
-                          <span className="text-xs text-[#686e76] leading-relaxed">
+                          <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#686e76] pl-[26px]">
                             Harga Barang / Jasa tidak dikenakan PPN.
-                          </span>
-                        </button>
+                          </p>
+                        </div>
                       </div>
 
-                      <span className="text-xs text-[#686e76] mt-1">
+                      <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#686e76] mt-[4px]">
                         Pastikan pemilihan pengenaan PPN pada barang/jasa Anda sesuai dengan peraturan perundangan yang berlaku.{" "}
-                        <a href="#ppn-info" className="text-[#009ea9] font-semibold hover:underline">
+                        <a href="#ppn" className="text-[#009ea9] font-medium hover:underline">
                           Daftar Barang/Jasa Dikecualikan PPN
                         </a>
-                      </span>
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Card 2: Stok Produk */}
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Stok Produk</h2>
-                  <div className="flex flex-col gap-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <TextField
-                        label="Stok Unit"
-                        required
-                        suffix="Pack"
-                        value={stock}
-                        onChange={(e) => setStock(e.target.value)}
-                      />
-                      <TextField
-                        label="Minimum Pembelian"
-                        required
-                        suffix="Pack"
-                        value={minPurchase}
-                        onChange={(e) => setMinPurchase(e.target.value)}
-                      />
+                {/* Card 2: Stok Produk (6941:8434) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Stok Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
+                    {/* Row Stok Unit & Minimum Pembelian */}
+                    <div className="flex gap-[24px] w-full">
+                      <div className="flex-1">
+                        <TextField
+                          label="Stok Unit"
+                          required
+                          suffix="Pack"
+                          value={stock}
+                          onChange={(e) => setStock(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <TextField
+                          label="Minimum Pembelian"
+                          required
+                          suffix="Pack"
+                          value={minPurchase}
+                          onChange={(e) => setMinPurchase(e.target.value)}
+                        />
+                      </div>
                     </div>
 
+                    {/* Checkbox Stok Selalu Tersedia */}
                     <Checkbox
                       id="stock-always"
+                      size="lg"
                       checked={stockAlwaysAvailable}
                       onCheckedChange={(c) => setStockAlwaysAvailable(Boolean(c))}
                       text="Stok Selalu Tersedia"
                     />
 
                     {/* Pre-Order Toggle Card */}
-                    <div className="rounded-[8px] border border-[#e7e8e9] bg-[#f9fafa] p-4 flex flex-col gap-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex flex-col">
-                          <span className="font-bold text-sm text-[#444b55]">Pre-Order</span>
-                          <span className="text-xs text-[#686e76]">
-                            Jika kamu memerlukan waktu pengiriman yang lebih lama, silakan aktifkan opsi Pre Order.
-                          </span>
-                        </div>
-                        <Switch checked={isPreOrder} onCheckedChange={setIsPreOrder} />
+                    <div className="bg-[#f9fafa] rounded-[8px] p-[12px] flex flex-col gap-[16px]">
+                      <div className="flex flex-col gap-[4px]">
+                        <Switch
+                          id="preorder-switch"
+                          size="lg"
+                          label="Pre-Order"
+                          checked={isPreOrder}
+                          onCheckedChange={setIsPreOrder}
+                        />
+                        <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76] pl-[48px]">
+                          Jika kamu memerlukan waktu pengiriman yang lebih lama, silakan aktifkan opsi Pre Order.
+                        </p>
                       </div>
 
                       {isPreOrder && (
-                        <div className="pt-2">
+                        <div className="flex flex-col gap-[4px] pt-[8px]">
                           <TextField
                             label="Waktu Proses"
                             required
                             suffix="Hari"
                             value={processDays}
                             onChange={(e) => setProcessDays(e.target.value)}
-                            hint="Waktu proses wajib diisi untuk memberikan perkiraan lama pemrosesan pesanan. Maksimal 180 hari."
-                            showHint
                           />
+                          <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#686e76]">
+                            Waktu proses wajib diisi untuk memberikan perkiraan lama pemrosesan pesanan. Maksimal 180 hari.
+                          </p>
                         </div>
                       )}
                     </div>
@@ -921,78 +999,93 @@ export default function App() {
             {/* STEP 3: PENGIRIMAN */}
             {/* ======================================================== */}
             {currentStep === 3 && (
-              <div className="flex flex-col gap-6 animate-in fade-in duration-200">
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Pengiriman</h2>
-
-                  <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-[32px] animate-in fade-in duration-200">
+                {/* Card Pengiriman (6941:9762) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Pengiriman
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
                     {/* Berat Produk */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-[4px]">
                       <TextField
                         label="Berat Produk"
                         required
                         suffix={weightUnit}
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
-                        hint="Perhatikan dengan baik berat produk agar tidak terjadi selisih data dengan pihak kurir."
-                        showHint
                       />
+                      <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#686e76]">
+                        Perhatikan dengan baik berat produk agar tidak terjadi selisih data dengan pihak kurir.
+                      </p>
                     </div>
 
                     {/* Dimensi */}
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-sm text-[#444b55]">Dimensi</span>
-                        <span className="text-xs text-[#ee3124] italic">Wajib</span>
+                    <div className="flex flex-col gap-[8px]">
+                      <div className="flex items-center gap-[4px]">
+                        <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                          Dimensi
+                        </span>
+                        <span className="font-['Ubuntu'] italic text-[12px] leading-[18px] text-[#ee3124]">
+                          Wajib
+                        </span>
                       </div>
-                      <p className="text-xs text-[#686e76]">
+                      <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76]">
                         Masukkan ukuran produk setelah dikemas untuk menghitung berat volume. Jika terdapat angka desimal, mohon dibulatkan ke atas.
                       </p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end pt-1">
-                        <TextField
-                          label="Panjang"
-                          suffix="CM"
-                          value={pkgLength}
-                          onChange={(e) => setPkgLength(e.target.value)}
-                        />
-                        <TextField
-                          label="Lebar"
-                          suffix="CM"
-                          value={pkgWidth}
-                          onChange={(e) => setPkgWidth(e.target.value)}
-                        />
-                        <TextField
-                          label="Tinggi"
-                          suffix="CM"
-                          value={pkgHeight}
-                          onChange={(e) => setPkgHeight(e.target.value)}
-                        />
+                      <div className="flex items-center gap-[16px] pt-[8px]">
+                        <div className="flex-1">
+                          <TextField
+                            suffix="CM"
+                            value={pkgLength}
+                            onChange={(e) => setPkgLength(e.target.value)}
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <TextField
+                            suffix="CM"
+                            value={pkgWidth}
+                            onChange={(e) => setPkgWidth(e.target.value)}
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <TextField
+                            suffix="CM"
+                            value={pkgHeight}
+                            onChange={(e) => setPkgHeight(e.target.value)}
+                          />
+                        </div>
 
                         {/* Berat Volume Box */}
-                        <div className="flex h-11 items-center justify-center rounded-[6px] bg-[#eff0f1] px-4 text-xs font-semibold text-[#444b55]">
+                        <div className="h-[44px] bg-[#eff0f1] rounded-[4px] px-[16px] flex items-center justify-center shrink-0 font-['Ubuntu'] text-[14px] text-[#444b55]">
                           <span>Berat Volume :&nbsp;</span>
-                          <span className="font-bold text-[#182958]">{calculatedVolumeWeight} Kilogram</span>
+                          <span className="font-bold text-[#444b55]">
+                            {calculatedVolumeWeight} Kilogram
+                          </span>
                         </div>
                       </div>
 
-                      <span className="text-xs text-[#686e76] mt-1">
-                        Ongkir dihitung berdasarkan berat volume ({calculatedVolumeWeight} kilogram) karena lebih besar dari berat aktual.
-                      </span>
+                      <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76]">
+                        Ongkir dihitung berdasarkan berat volume (2 kilogram) karena lebih besar dari berat aktual.
+                      </p>
                     </div>
 
-                    {/* Gratis Ongkos Kirim Toggle */}
-                    <div className="rounded-[8px] border border-[#e7e8e9] bg-[#f9fafa] p-4 flex items-center justify-between">
-                      <div className="flex flex-col">
-                        <span className="font-bold text-sm text-[#444b55]">Gratis Ongkos Kirim</span>
-                        <span className="text-xs text-[#686e76]">
-                          Jika Gratis Ongkir aktif, ongkir ditanggung penjual dan dipotong dari total penjualan.
-                        </span>
-                      </div>
+                    {/* Gratis Ongkos Kirim Box */}
+                    <div className="bg-[#f9fafa] rounded-[8px] p-[16px] flex flex-col gap-[4px]">
                       <Switch
+                        id="ongkir-switch"
+                        size="lg"
+                        label="Gratis Ongkos Kirim"
                         checked={isFreeShipping}
                         onCheckedChange={setIsFreeShipping}
                       />
+                      <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76] pl-[48px]">
+                        Jika Gratis Ongkir aktif, ongkir ditanggung penjual dan dipotong dari total penjualan.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1003,117 +1096,117 @@ export default function App() {
             {/* STEP 4: VISIBILITAS / LAINNYA */}
             {/* ======================================================== */}
             {currentStep === 4 && (
-              <div className="flex flex-col gap-6 animate-in fade-in duration-200">
-                <div className="rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] p-6 shadow-xs">
-                  <h2 className="mb-4 text-base font-bold text-[#444b55]">Visibilitas Produk</h2>
-
-                  <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-[32px] animate-in fade-in duration-200">
+                {/* Card Visibilitas Produk (6941:10909) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="p-[16px]">
+                    <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
+                      Visibilitas Produk
+                    </h2>
+                  </div>
+                  <Divider className="bg-[#dee3ed]" />
+                  <div className="p-[24px] flex flex-col gap-[24px]">
                     {/* Jenis Visibilitas Produk */}
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-sm text-[#444b55]">Jenis Visibilitas Produk</span>
-                        <span className="text-xs text-[#ee3124] italic">Wajib</span>
+                    <div className="flex flex-col gap-[8px]">
+                      <div className="flex items-center gap-[4px]">
+                        <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                          Jenis Visibilitas Produk
+                        </span>
+                        <span className="font-['Ubuntu'] italic text-[12px] leading-[18px] text-[#ee3124]">
+                          Wajib
+                        </span>
                       </div>
-                      <span className="text-xs text-[#686e76]">
+                      <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76]">
                         Tentukan jenis visibilitas produk dari sistem pencarian dan halaman penjual PaDi UMKM
-                      </span>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md pt-1">
-                        {/* Option: Publik */}
-                        <button
-                          type="button"
-                          onClick={() => setVisibilityType("publik")}
-                          className={`flex items-center gap-3 rounded-[8px] border p-3.5 transition-all cursor-pointer ${
+                      </p>
+                      <div className="flex gap-[24px] pt-[4px]">
+                        <RadioCard
+                          id="vis-publik"
+                          name="visibilityType"
+                          value="publik"
+                          checked={visibilityType === "publik"}
+                          onChange={() => setVisibilityType("publik")}
+                          label="Publik"
+                          radioRight={false}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
                             visibilityType === "publik"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
-                        >
-                          <div
-                            className={`flex size-4.5 items-center justify-center rounded-full border ${
-                              visibilityType === "publik"
-                                ? "border-[#009ea9]"
-                                : "border-[#b1b4b8]"
-                            }`}
-                          >
-                            {visibilityType === "publik" && (
-                              <div className="size-2 rounded-full bg-[#009ea9]" />
-                            )}
-                          </div>
-                          <span className="font-bold text-sm text-[#444b55]">Publik</span>
-                        </button>
-
-                        {/* Option: Privat */}
-                        <button
-                          type="button"
-                          onClick={() => setVisibilityType("privat")}
-                          className={`flex items-center gap-3 rounded-[8px] border p-3.5 transition-all cursor-pointer ${
+                        />
+                        <RadioCard
+                          id="vis-privat"
+                          name="visibilityType"
+                          value="privat"
+                          checked={visibilityType === "privat"}
+                          onChange={() => setVisibilityType("privat")}
+                          label="Privat"
+                          radioRight={false}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
                             visibilityType === "privat"
-                              ? "border-[#009ea9] bg-[#009ea9]/5 ring-1 ring-[#009ea9]"
-                              : "border-[#d5d7d9] bg-[#ffffff] hover:border-[#b1b4b8]"
+                              ? "border-[#009ea9] bg-[#e6f4f7]"
+                              : "border-[#d5d7d9] bg-white"
                           }`}
-                        >
-                          <div
-                            className={`flex size-4.5 items-center justify-center rounded-full border ${
-                              visibilityType === "privat"
-                                ? "border-[#009ea9]"
-                                : "border-[#b1b4b8]"
-                            }`}
-                          >
-                            {visibilityType === "privat" && (
-                              <div className="size-2 rounded-full bg-[#009ea9]" />
-                            )}
-                          </div>
-                          <span className="font-bold text-sm text-[#444b55]">Privat</span>
-                        </button>
+                        />
                       </div>
                     </div>
 
                     {/* Daftar BUMN yang diizinkan */}
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-sm text-[#444b55]">Daftar BUMN yang diizinkan</span>
-                        <span className="text-xs text-[#8c9197] italic">Opsional</span>
+                    <div className="flex flex-col gap-[8px]">
+                      <div className="flex items-center gap-[4px]">
+                        <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                          Daftar BUMN yang diizinkan
+                        </span>
+                        <span className="font-['Ubuntu'] italic text-[12px] leading-[18px] text-[#8c9197]">
+                          Opsional
+                        </span>
                       </div>
-                      <span className="text-xs text-[#686e76]">
+                      <p className="font-['Ubuntu'] font-normal text-[14px] leading-[21px] text-[#686e76]">
                         Anda dapat secara opsional menentukan BUMN mana saja yang dapat mengakses produk Anda
-                      </span>
+                      </p>
 
-                      {/* Chip Multi-select Box */}
-                      <div className="flex min-h-11 flex-wrap items-center gap-2 rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] p-2">
-                        {allowedBumnList.map((bumn) => (
-                          <Chip
-                            key={bumn}
-                            label={bumn}
-                            type="soft"
-                            color="grey"
-                            size="md"
-                            removable
-                            onDismiss={() => handleRemoveBumn(bumn)}
-                          />
-                        ))}
-
-                        {/* Quick Add BUMN Select Dropdown if less than 5 */}
-                        {allowedBumnList.length < 5 && (
-                          <div className="w-44 ml-auto">
-                            <SelectField
-                              size="sm"
-                              placeholder="+ Tambah BUMN"
-                              value=""
-                              onChange={(val) => handleAddBumn(val)}
-                              options={[
-                                { label: "Bank Mandiri", value: "Bank Mandiri" },
-                                { label: "BRI", value: "BRI" },
-                                { label: "KAI", value: "KAI" },
-                                { label: "Garuda Indonesia", value: "Garuda Indonesia" },
-                                { label: "Pos Indonesia", value: "Pos Indonesia" },
-                                { label: "Bio Farma", value: "Bio Farma" },
-                              ].filter((opt) => !allowedBumnList.includes(opt.value))}
+                      {/* Chip Select Box */}
+                      <div className="w-full min-h-[44px] rounded-[4px] border border-[#d5d7d9] bg-white px-[12px] py-[8px] flex items-center justify-between">
+                        <div className="flex flex-wrap items-center gap-[8px]">
+                          {allowedBumnList.map((bumn) => (
+                            <Chip
+                              key={bumn}
+                              label={bumn}
+                              type="soft"
+                              color="grey"
+                              size="md"
+                              removable
+                              onDismiss={() => handleRemoveBumn(bumn)}
+                              className="bg-[#e7e8e9] text-[#444b55] font-['Ubuntu']"
                             />
-                          </div>
-                        )}
+                          ))}
+
+                          {/* Quick Add BUMN dropdown if under 5 */}
+                          {allowedBumnList.length < 5 && (
+                            <div className="w-[160px] ml-2">
+                              <SelectField
+                                size="sm"
+                                placeholder="+ Tambah BUMN"
+                                value=""
+                                onChange={(val) => handleAddBumn(val as string)}
+                                options={[
+                                  { label: "Bank Mandiri", value: "Bank Mandiri" },
+                                  { label: "BRI", value: "BRI" },
+                                  { label: "KAI", value: "KAI" },
+                                  { label: "Garuda Indonesia", value: "Garuda Indonesia" },
+                                  { label: "Pos Indonesia", value: "Pos Indonesia" },
+                                  { label: "Bio Farma", value: "Bio Farma" },
+                                ].filter((opt) => !allowedBumnList.includes(opt.value))}
+                              />
+                            </div>
+                          )}
+                        </div>
+                        <ArrowDown2 size={18} variant="Linear" color="#686e76" className="shrink-0" />
                       </div>
-                      <span className="text-xs text-[#8c9197]">Maksimal 5 BUMN</span>
+
+                      <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#8c9197]">
+                        Maksimal 5 BUMN
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1123,21 +1216,32 @@ export default function App() {
         </main>
       </div>
 
-      {/* Sticky Bottom Action Bar */}
-      <footer className="sticky bottom-0 z-30 flex items-center justify-end gap-3 border-t border-[#e7e8e9] bg-[#ffffff] px-8 py-3.5 shadow-lg">
+      {/* Sticky Bottom CTA Bar (6954:13282) */}
+      <footer className="fixed bottom-0 left-[280px] right-0 h-[68px] z-40 flex items-center justify-end gap-[16px] border-t border-[#dee3ed] bg-white px-[24px] py-[16px] drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
         {currentStep > 1 && (
-          <Button variant="outline" size="md" onClick={handlePrev}>
+          <Button
+            variant="secondary"
+            size="md"
+            onClick={handlePrev}
+            className="h-[36px] px-[12px] text-[12px] leading-[18px] rounded-[4px] border border-[#444b55] text-[#444b55] font-medium"
+          >
             Kembali
           </Button>
         )}
         <Button
-          variant="outline"
+          variant="secondary"
           size="md"
           onClick={() => showToast("Draf produk berhasil disimpan!")}
+          className="h-[36px] px-[12px] text-[12px] leading-[18px] rounded-[4px] border border-[#444b55] text-[#444b55] font-medium"
         >
           Simpan Draft
         </Button>
-        <Button variant="primary" size="md" onClick={handleNext}>
+        <Button
+          variant="primary"
+          size="md"
+          onClick={handleNext}
+          className="h-[36px] px-[12px] text-[12px] leading-[18px] rounded-[4px] bg-[#009ea9] text-white font-medium"
+        >
           {currentStep === 4 ? "Selesai" : "Selanjutnya"}
         </Button>
       </footer>
