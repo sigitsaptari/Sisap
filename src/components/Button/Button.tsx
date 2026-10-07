@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-import { Loader2 } from "lucide-react";
+import { Refresh2 } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import type { ButtonProps } from "./Button.types";
 import { useButton } from "./useButton";
@@ -139,7 +139,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   return (
     <button ref={ref} type={type} className={classes} {...buttonHookState} {...rest}>
       {isLoading ? (
-        <Loader2 className={cn("shrink-0 animate-spin", iconSizeClass)} aria-hidden="true" />
+        <Refresh2 className={cn("shrink-0 animate-spin", iconSizeClass)} aria-hidden="true" />
       ) : shouldShowLeft && effectiveLeftIcon ? (
         <span className={cn("inline-flex shrink-0", iconSizeClass)}>{effectiveLeftIcon}</span>
       ) : null}

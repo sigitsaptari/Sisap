@@ -1,7 +1,7 @@
 # SisapDS
 
 Design system untuk produk Sisap — React 19 + TypeScript, Tailwind CSS v4, Radix UI,
-Lucide icons, Storybook, dan design tokens W3C DTCG.
+Iconsax icons, Storybook, dan design tokens W3C DTCG.
 
 ## Struktur
 
@@ -70,6 +70,6 @@ proyek — set token OAuth/PAT via environment `FIGMA_MCP_TOKEN` atau file
 | Framework         | React 19 + TypeScript (strict)                 |
 | Styling           | Tailwind CSS v4 + CSS variables (DTCG)         |
 | Headless          | Radix UI (`@radix-ui/react-checkbox`, `-slot`) |
-| Icons             | Lucide React                                   |
+| Icons             | Iconsax React (`iconsax-react`)                |
 | Catalog & testing | Storybook 10                                   |
 | Playground        | Vite                                           |

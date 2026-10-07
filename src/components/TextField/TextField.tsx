@@ -1,6 +1,6 @@
 import { forwardRef, useId, useState } from "react";
 import { cva } from "class-variance-authority";
-import { AlertCircle, CheckCircle2, Info } from "lucide-react";
+import { Danger, InfoCircle, TickCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import type { TextFieldProps, TextFieldSize, TextFieldState } from "./TextField.types";
 
@@ -189,7 +189,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
                   aria-label="Informasi tambahan"
                 >
-                  <Info className="size-4" aria-hidden="true" />
+                  <InfoCircle className="size-4" aria-hidden="true" />
                 </span>
               )}
             </div>
@@ -287,7 +287,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   hintSizeClass,
                 )}
               >
-                <AlertCircle className="size-3.5 shrink-0" aria-hidden="true" />
+                <Danger className="size-3.5 shrink-0" aria-hidden="true" />
                 <span>{errorMessage}</span>
               </p>
             ) : successMessage ? (
@@ -298,7 +298,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   hintSizeClass,
                 )}
               >
-                <CheckCircle2 className="size-3.5 shrink-0" aria-hidden="true" />
+                <TickCircle className="size-3.5 shrink-0" aria-hidden="true" />
                 <span>{successMessage}</span>
               </p>
             ) : showHint ? (

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArrowRight, Plus, Trash2 } from "lucide-react";
+import { Add, ArrowRight, Trash } from "iconsax-react";
 import { Button } from "./Button";
 import type { ButtonVariant } from "./Button.types";
 
@@ -54,7 +54,7 @@ export const Disabled: Story = {
 export const WithIcons: Story = {
   args: {
     variant: "primary",
-    leftIcon: <Plus />,
+    leftIcon: <Add />,
     rightIcon: <ArrowRight />,
     children: "Add item",
   },
@@ -78,7 +78,7 @@ export const AllVariants: Story = {
             Large
           </Button>
           <Button variant={variant} size="icon" aria-label="Delete">
-            <Trash2 />
+            <Trash />
           </Button>
         </div>
       ))}
@@ -184,19 +184,19 @@ export const FigmaWithIconsMatrix: Story = {
               {label}
             </span>
             <div className="flex flex-wrap items-center gap-4">
-              <Button variant={variant} size="sm" leftIcon={<Plus />}>
+              <Button variant={variant} size="sm" leftIcon={<Add />}>
                 Icon Left (sm)
               </Button>
-              <Button variant={variant} size="md" leftIcon={<Plus />}>
+              <Button variant={variant} size="md" leftIcon={<Add />}>
                 Icon Left (md)
               </Button>
-              <Button variant={variant} size="lg" leftIcon={<Plus />}>
+              <Button variant={variant} size="lg" leftIcon={<Add />}>
                 Icon Left (lg)
               </Button>
               <Button variant={variant} size="md" rightIcon={<ArrowRight />}>
                 Icon Right (md)
               </Button>
-              <Button variant={variant} size="md" leftIcon={<Plus />} rightIcon={<ArrowRight />}>
+              <Button variant={variant} size="md" leftIcon={<Add />} rightIcon={<ArrowRight />}>
                 Both Icons (md)
               </Button>
             </div>

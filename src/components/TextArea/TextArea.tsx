@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useId, useRef, useState } from "react";
 import { cva } from "class-variance-authority";
-import { AlertCircle, CheckCircle2, Info } from "lucide-react";
+import { Danger, InfoCircle, TickCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import type { TextAreaProps, TextAreaSize, TextAreaState } from "./TextArea.types";
 
@@ -212,7 +212,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                   className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
                   aria-label="Informasi tambahan"
                 >
-                  <Info className="size-4" aria-hidden="true" />
+                  <InfoCircle className="size-4" aria-hidden="true" />
                 </span>
               )}
             </div>
@@ -275,7 +275,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           >
             {isError ? (
               <>
-                <AlertCircle
+                <Danger
                   className={cn("shrink-0 text-[#ee3124]", statusIconSizes[size])}
                   aria-hidden="true"
                 />
@@ -287,7 +287,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
               </>
             ) : isSuccess ? (
               <>
-                <CheckCircle2
+                <TickCircle
                   className={cn("shrink-0 text-[#25974c]", statusIconSizes[size])}
                   aria-hidden="true"
                 />

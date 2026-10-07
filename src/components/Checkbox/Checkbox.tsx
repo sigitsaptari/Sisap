@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Check } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { CheckboxProps } from "./Checkbox.types";
@@ -44,7 +43,18 @@ export const Checkbox = forwardRef<React.ElementRef<typeof CheckboxPrimitive.Roo
         <CheckboxPrimitive.Indicator
           className={cn("flex items-center justify-center text-current")}
         >
-          <Check className={iconSizeClass} strokeWidth={3} />
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={iconSizeClass}
+            aria-hidden="true"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
     );

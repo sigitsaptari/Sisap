@@ -1,21 +1,21 @@
 import { useState } from "react";
 import {
-  ArrowDownLeft,
+  Add,
+  ArrowDown2,
   ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
-  ChevronDown,
-  History,
-  LayoutDashboard,
-  Layers,
+  Category,
+  Clock,
+  Export,
+  Layer,
+  Mobile,
   Moon,
-  Plus,
-  Send,
-  SlidersHorizontal,
-  Smartphone,
-  Sun,
+  Receive,
+  Send2,
+  Setting4,
+  Sun1,
+  TickCircle,
   Wallet,
-} from "lucide-react";
+} from "iconsax-react";
 import { Button, Checkbox, Chip, TextArea, TextField, Typography } from "@sisapds/react";
 import {
   Card,
@@ -107,7 +107,7 @@ export default function App() {
                     : "text-fg-muted hover:text-fg-default"
                 }`}
               >
-                <Smartphone className="size-3.5" />
+                <Mobile className="size-3.5" />
                 <span>E-Wallet Prototype</span>
               </button>
               <button
@@ -119,7 +119,7 @@ export default function App() {
                     : "text-fg-muted hover:text-fg-default"
                 }`}
               >
-                <Layers className="size-3.5" />
+                <Layer className="size-3.5" />
                 <span>Components</span>
               </button>
               <button
@@ -131,7 +131,7 @@ export default function App() {
                     : "text-fg-muted hover:text-fg-default"
                 }`}
               >
-                <LayoutDashboard className="size-3.5" />
+                <Category className="size-3.5" />
                 <span>Blank Canvas</span>
               </button>
             </nav>
@@ -142,7 +142,7 @@ export default function App() {
               aria-label="Toggle color theme"
               onClick={toggleTheme}
             >
-              {theme === "light" ? <Moon className="size-4" /> : <Sun className="size-4" />}
+              {theme === "light" ? <Moon className="size-4" /> : <Sun1 className="size-4" />}
             </Button>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function App() {
                 {/* Filter Drawer Trigger */}
                 <Drawer>
                   <DrawerTrigger asChild>
-                    <Button variant="outline" leftIcon={<SlidersHorizontal className="size-4" />}>
+                    <Button variant="outline" leftIcon={<Setting4 className="size-4" />}>
                       Pengaturan Akun & Limit
                     </Button>
                   </DrawerTrigger>
@@ -220,7 +220,7 @@ export default function App() {
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Send className="text-action-primary size-5" />
+                        <Send2 className="text-action-primary size-5" />
                         <CardTitle>Transfer Saldo</CardTitle>
                       </div>
                       <Chip color="tosca" type="soft" label="Bebas Biaya Admin" />
@@ -329,7 +329,7 @@ export default function App() {
                       <DialogContent>
                         {transferSuccess ? (
                           <div className="py-4 text-center">
-                            <CheckCircle2 className="text-feedback-success mx-auto size-14" />
+                            <TickCircle className="text-feedback-success mx-auto size-14" />
                             <DialogTitle className="mt-4 text-center">
                               Transfer Berhasil!
                             </DialogTitle>
@@ -435,7 +435,7 @@ export default function App() {
                       variant="secondary"
                       size="sm"
                       className="flex-1"
-                      leftIcon={<Plus className="size-3.5" />}
+                      leftIcon={<Add className="size-3.5" />}
                     >
                       Top Up
                     </Button>
@@ -444,7 +444,7 @@ export default function App() {
                         <Button
                           variant="outline"
                           size="sm"
-                          rightIcon={<ChevronDown className="size-3.5" />}
+                          rightIcon={<ArrowDown2 className="size-3.5" />}
                         >
                           Opsi
                         </Button>
@@ -465,7 +465,7 @@ export default function App() {
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <History className="text-fg-muted size-4" />
+                        <Clock className="text-fg-muted size-4" />
                         <CardTitle className="text-base font-semibold">Riwayat Transaksi</CardTitle>
                       </div>
                       <Button variant="ghost" size="sm" className="text-xs">
@@ -508,9 +508,9 @@ export default function App() {
                               }`}
                             >
                               {tx.type === "in" ? (
-                                <ArrowDownLeft className="size-4" />
+                                <Receive className="size-4" />
                               ) : (
-                                <ArrowUpRight className="size-4" />
+                                <Export className="size-4" />
                               )}
                             </div>
                             <div>
@@ -567,7 +567,7 @@ export default function App() {
                   </Button>
                   <Button disabled>Disabled</Button>
                   <Button size="icon" aria-label="Add item">
-                    <Plus className="size-4" />
+                    <Add className="size-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -734,7 +734,7 @@ export default function App() {
           <Card className="min-h-[400px] border-dashed">
             <CardContent className="flex flex-col items-center justify-center p-12 text-center">
               <div className="bg-action-secondary text-fg-muted flex size-14 items-center justify-center rounded-full">
-                <LayoutDashboard className="size-7" />
+                <Category className="size-7" />
               </div>
               <Typography variant="h3" className="mt-4">
                 Blank Prototyping Canvas
@@ -746,7 +746,7 @@ export default function App() {
                 </em>
               </Typography>
               <div className="mt-6 flex gap-3">
-                <Button variant="primary" leftIcon={<Plus className="size-4" />}>
+                <Button variant="primary" leftIcon={<Add className="size-4" />}>
                   Tambah Komponen
                 </Button>
                 <Button variant="secondary">Dokumentasi</Button>

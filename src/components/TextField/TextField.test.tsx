@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Search } from "lucide-react";
+import { SearchNormal1 } from "iconsax-react";
 import { describe, expect, it } from "vitest";
 import { axeViolations } from "../../test/a11y";
 import { TextField } from "./TextField";
@@ -42,7 +42,7 @@ describe("TextField", () => {
         label="Harga Produk"
         prefix="Rp"
         suffix="IDR"
-        leftIcon={<Search data-testid="search-icon" />}
+        leftIcon={<SearchNormal1 data-testid="search-icon" />}
         placeholder="100.000"
       />,
     );

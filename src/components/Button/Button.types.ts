@@ -18,11 +18,11 @@ export interface ButtonProps extends ComponentPropsWithRef<"button"> {
   isLoading?: boolean;
   /** Optional label swap while loading (e.g. "Saving…"). */
   loadingText?: ReactNode;
-  /** Element rendered before the label (typically a Lucide icon). */
+  /** Element rendered before the label (typically an icon). */
   leftIcon?: ReactNode;
   /** Figma alias for leftIcon */
   iconL?: ReactNode;
-  /** Element rendered after the label (typically a Lucide icon). */
+  /** Element rendered after the label (typically an icon). */
   rightIcon?: ReactNode;
   /** Figma alias for rightIcon */
   iconR?: ReactNode;

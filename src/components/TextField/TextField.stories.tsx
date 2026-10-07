@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ChevronDown, Search } from "lucide-react";
+import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { TextField } from "./TextField";
 import type { TextFieldSize, TextFieldState } from "./TextField.types";
 
@@ -53,8 +53,8 @@ type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
   args: {
-    leftIcon: <Search className="size-full" />,
-    rightIcon: <ChevronDown className="size-full" />,
+    leftIcon: <SearchNormal1 className="size-full" />,
+    rightIcon: <ArrowDown2 className="size-full" />,
   },
 };
 
@@ -67,8 +67,8 @@ export const Sizes: Story = {
         description="Ukuran ringkas untuk form padat"
         prefix="Rp"
         suffix="IDR"
-        leftIcon={<Search className="size-full" />}
-        rightIcon={<ChevronDown className="size-full" />}
+        leftIcon={<SearchNormal1 className="size-full" />}
+        rightIcon={<ArrowDown2 className="size-full" />}
         placeholder="Input small"
         required
         showInfoTooltip
@@ -80,8 +80,8 @@ export const Sizes: Story = {
         description="Ukuran standar formulir PaDi"
         prefix="Prefix"
         suffix="Suffix"
-        leftIcon={<Search className="size-full" />}
-        rightIcon={<ChevronDown className="size-full" />}
+        leftIcon={<SearchNormal1 className="size-full" />}
+        rightIcon={<ArrowDown2 className="size-full" />}
         placeholder="Input medium"
         required
         showInfoTooltip
@@ -93,7 +93,7 @@ export const Sizes: Story = {
         description="Ukuran besar untuk hero / search input"
         prefix="Search"
         suffix="GO"
-        leftIcon={<Search className="size-full" />}
+        leftIcon={<SearchNormal1 className="size-full" />}
         placeholder="Input large"
         optional
         showInfoTooltip
@@ -180,8 +180,8 @@ export const FigmaMatrix: Story = {
                 description="Description"
                 prefix="Prefix"
                 suffix="Suffix"
-                leftIcon={<Search className="size-full" />}
-                rightIcon={<ChevronDown className="size-full" />}
+                leftIcon={<SearchNormal1 className="size-full" />}
+                rightIcon={<ArrowDown2 className="size-full" />}
                 placeholder="placeholder"
                 required
                 optional
@@ -199,8 +199,8 @@ export const FigmaMatrix: Story = {
                 description="Description"
                 prefix="Prefix"
                 suffix="Suffix"
-                leftIcon={<Search className="size-full" />}
-                rightIcon={<ChevronDown className="size-full" />}
+                leftIcon={<SearchNormal1 className="size-full" />}
+                rightIcon={<ArrowDown2 className="size-full" />}
                 placeholder="placeholder"
                 required
                 optional
@@ -218,8 +218,8 @@ export const FigmaMatrix: Story = {
                 description="Description"
                 prefix="Prefix"
                 suffix="Suffix"
-                leftIcon={<Search className="size-full" />}
-                rightIcon={<ChevronDown className="size-full" />}
+                leftIcon={<SearchNormal1 className="size-full" />}
+                rightIcon={<ArrowDown2 className="size-full" />}
                 placeholder="placeholder"
                 required
                 optional
