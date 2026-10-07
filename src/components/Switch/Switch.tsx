@@ -21,7 +21,7 @@ const switchTrackVariants = cva(
 );
 
 const switchThumbVariants = cva(
-  "pointer-events-none block rounded-full bg-white !bg-white shadow-sm ring-0 transition-transform data-[state=unchecked]:translate-x-[2px] data-[state=checked]:translate-x-[16px]",
+  "pointer-events-none block rounded-full bg-[#ffffff] shadow-[0_0_2px_rgba(0,0,0,0.2),0_2px_10px_rgba(0,0,0,0.1)] ring-0 transition-transform duration-200 ease-in-out data-[state=unchecked]:translate-x-[2px] data-[state=checked]:translate-x-[16px]",
   {
     variants: {
       size: {
@@ -73,7 +73,9 @@ const switchContainerVariants = cva(
 );
 
 export const Switch = forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, SwitchProps>(
-  ({ className, size = "md", label, showText = true, disabled, id, ...props }, ref) => {
+  ({ className, size = "md", label, text, showText = true, disabled, id, ...props }, ref) => {
+    const labelContent = label ?? text;
+
     return (
       <div className={cn(switchContainerVariants({ size }), className)}>
         <SwitchPrimitive.Root
@@ -85,12 +87,12 @@ export const Switch = forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, 
         >
           <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
         </SwitchPrimitive.Root>
-        {showText && label && (
+        {showText && labelContent && (
           <label 
             htmlFor={id} 
             className={cn(switchLabelVariants({ size, disabled }))}
           >
-            {label}
+            {labelContent}
           </label>
         )}
       </div>

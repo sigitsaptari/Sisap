@@ -16,6 +16,11 @@ export interface SwitchProps extends Omit<ComponentPropsWithoutRef<typeof Switch
   label?: ReactNode;
   
   /**
+   * Alias for label
+   */
+  text?: ReactNode;
+  
+  /**
    * Whether to show the text label
    * @default true
    */
