@@ -1,0 +1,13 @@
+{
+  "radio-card": {
+    "radius": { "$type": "dimension", "$value": "{border-radius.sm}" },
+    "bg": { "$type": "color", "$value": "{color.bg.surface}" },
+    "bg-active": { "$type": "color", "$value": "#e6f4f7" },
+    "bg-disabled": { "$type": "color", "$value": "{color.neutral.100}" },
+    "border": { "$type": "color", "$value": "#d5d7d9" },
+    "border-active": { "$type": "color", "$value": "{color.action.primary}" },
+    "label": { "$type": "color", "$value": "{color.neutral.500}" },
+    "description": { "$type": "color", "$value": "#686e76" },
+    "text-disabled": { "$type": "color", "$value": "{color.neutral.400}" }
+  }
+}

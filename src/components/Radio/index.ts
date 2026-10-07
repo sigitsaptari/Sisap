@@ -1,2 +1,15 @@
-export { Radio, RadioGroup, radioVariants, useRadioGroup } from "./Radio";
-export type { RadioProps, RadioGroupProps, RadioSize } from "./Radio.types";
+export {
+  Radio,
+  RadioGroup,
+  RadioIndicator,
+  radioVariants,
+  useRadioControl,
+  useRadioGroup,
+} from "./Radio";
+export type {
+  RadioProps,
+  RadioGroupProps,
+  RadioIndicatorProps,
+  RadioSize,
+  UseRadioControlOptions,
+} from "./Radio.types";

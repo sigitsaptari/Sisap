@@ -1,7 +1,13 @@
 import { createContext, forwardRef, useCallback, useContext, useId, useState } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import type { RadioGroupProps, RadioProps, RadioSize } from "./Radio.types";
+import type {
+  RadioGroupProps,
+  RadioIndicatorProps,
+  RadioProps,
+  RadioSize,
+  UseRadioControlOptions,
+} from "./Radio.types";
 
 export const radioVariants = cva(
   "relative inline-flex items-center justify-center shrink-0 rounded-full border transition-colors",
@@ -100,15 +106,107 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
 
 RadioGroup.displayName = "RadioGroup";
 
+/**
+ * Resolves the shared radio state (name, checked, disabled, change handler)
+ * from props and the surrounding `RadioGroup` context. Used by `Radio` and
+ * `RadioCard` so both behave identically inside a group.
+ */
+export function useRadioControl({
+  checked,
+  selected,
+  disabled,
+  disable,
+  name,
+  value,
+  onChange,
+}: UseRadioControlOptions) {
+  const group = useRadioGroup();
+
+  const isDisabled = disabled ?? disable ?? group?.disabled ?? false;
+
+  let isChecked: boolean | undefined = undefined;
+  if (selected !== undefined || checked !== undefined) {
+    isChecked = selected ?? checked;
+  } else if (group && group.value !== undefined && value !== undefined) {
+    isChecked = group.value === String(value);
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e);
+    if (group && value !== undefined) {
+      group.onChange?.(String(value));
+    }
+  };
+
+  return {
+    group,
+    name: name ?? group?.name,
+    isChecked,
+    isDisabled,
+    handleChange,
+  };
+}
+
+const dotSizeClasses: Record<RadioSize, string> = {
+  sm: "size-2",
+  md: "size-2.5",
+  lg: "size-3",
+};
+
+/**
+ * Visual-only radio circle (aria-hidden). Place it inside an element with the
+ * `group/radio` class that also contains the native `<input type="radio">`;
+ * the checked style then follows the input automatically. Pass `checked` to
+ * force the state instead.
+ */
+export function RadioIndicator({
+  size = "sm",
+  checked,
+  disabled = false,
+  focusRing = true,
+  className,
+}: RadioIndicatorProps) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        radioVariants({ size }),
+        disabled
+          ? "border-radio-border-disabled bg-radio-bg-disabled"
+          : cn(
+              "border-radio-border bg-radio-bg group-hover/radio:border-radio-border-hover",
+              checked === true && "border-radio-border-selected",
+              checked === undefined && "group-has-[:checked]/radio:border-radio-border-selected",
+            ),
+        focusRing &&
+          "group-has-[:focus-visible]/radio:ring-focus-ring group-has-[:focus-visible]/radio:ring-offset-bg-canvas group-has-[:focus-visible]/radio:ring-2 group-has-[:focus-visible]/radio:ring-offset-2",
+        className,
+      )}
+    >
+      <span
+        className={cn(
+          "pointer-events-none rounded-full transition-all",
+          dotSizeClasses[size],
+          disabled ? "bg-radio-dot-disabled" : "bg-radio-dot",
+          checked === true && "scale-100 opacity-100",
+          checked === false && "scale-0 opacity-0",
+          checked === undefined &&
+            "scale-0 opacity-0 group-has-[:checked]/radio:scale-100 group-has-[:checked]/radio:opacity-100",
+        )}
+      />
+    </span>
+  );
+}
+
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       className,
       containerClassName,
       size: sizeProp,
-      disabled: disabledProp,
+      disabled,
       disable,
-      checked: checkedProp,
+      checked,
       selected,
       defaultChecked,
       label,
@@ -124,40 +222,25 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     },
     ref,
   ) => {
-    const group = useRadioGroup();
     const generatedId = useId();
     const id = idProp ?? generatedId;
 
+    const { group, name, isChecked, isDisabled, handleChange } = useRadioControl({
+      checked,
+      selected,
+      disabled,
+      disable,
+      name: nameProp,
+      value,
+      onChange,
+    });
+
     const size = sizeProp ?? group?.size ?? "sm";
-    const isDisabled = disabledProp ?? disable ?? group?.disabled ?? false;
-
-    // Check state resolution
-    const isExplicitlyControlled = checkedProp !== undefined || selected !== undefined;
-    const groupControlled = Boolean(group && group.value !== undefined && value !== undefined);
-
-    let isChecked: boolean | undefined = undefined;
-    if (isExplicitlyControlled) {
-      isChecked = selected ?? checkedProp;
-    } else if (groupControlled) {
-      isChecked = group?.value === value;
-    }
-
-    const name = nameProp ?? group?.name;
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e);
-      if (group && value !== undefined) {
-        group.onChange?.(String(value));
-      }
-    };
 
     // Label content resolution
     const labelContent = label ?? text;
     const shouldDisplayLabel =
       Boolean(labelContent) && labelText !== false && showLabel !== false && showText !== false;
-
-    // Dot sizing
-    const dotSizeClass = size === "lg" ? "size-3" : size === "md" ? "size-2.5" : "size-2";
 
     // Text typography matching Figma specs
     const textSizeClass =
@@ -171,61 +254,36 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       <label
         htmlFor={id}
         className={cn(
-          "inline-flex cursor-pointer items-center gap-2 select-none",
+          "group/radio inline-flex cursor-pointer items-center gap-2 select-none",
           isDisabled && "cursor-not-allowed",
           containerClassName,
         )}
       >
-        <span className="relative inline-flex shrink-0 items-center justify-center">
-          <input
-            ref={ref}
-            id={id}
-            type="radio"
-            name={name}
-            value={value}
-            disabled={isDisabled}
-            checked={isChecked}
-            defaultChecked={defaultChecked}
-            onChange={handleChange}
-            className="peer sr-only"
-            {...props}
-          />
-          <span
-            aria-hidden="true"
-            className={cn(
-              radioVariants({ size }),
-              "border-radio-border bg-radio-bg",
-              "peer-hover:border-radio-border-hover",
-              "peer-checked:border-radio-border-selected",
-              "peer-focus-visible:ring-focus-ring peer-focus-visible:ring-offset-bg-canvas peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
-              "peer-disabled:border-radio-border-disabled peer-disabled:bg-radio-bg-disabled peer-disabled:cursor-not-allowed",
-              className,
-            )}
-          />
-          <span
-            aria-hidden="true"
-            className={cn(
-              "pointer-events-none absolute rounded-full transition-all",
-              dotSizeClass,
-              isChecked === true
-                ? "scale-100 opacity-100"
-                : isChecked === false
-                  ? "scale-0 opacity-0"
-                  : "scale-0 opacity-0 peer-checked:scale-100 peer-checked:opacity-100",
-              isDisabled
-                ? "bg-radio-dot-disabled"
-                : "bg-radio-dot peer-disabled:bg-radio-dot-disabled",
-            )}
-          />
-        </span>
+        <input
+          ref={ref}
+          id={id}
+          type="radio"
+          name={name}
+          value={value}
+          disabled={isDisabled}
+          checked={isChecked}
+          defaultChecked={defaultChecked}
+          onChange={handleChange}
+          className="sr-only"
+          {...props}
+        />
+        <RadioIndicator
+          size={size}
+          checked={isChecked}
+          disabled={isDisabled}
+          className={className}
+        />
         {shouldDisplayLabel && (
           <span
             className={cn(
               "font-sans transition-colors",
               textSizeClass,
-              isDisabled
-                ? "text-content-muted cursor-not-allowed"
-                : "text-content-primary peer-disabled:text-content-muted cursor-pointer peer-disabled:cursor-not-allowed",
+              isDisabled ? "text-content-muted" : "text-content-primary",
             )}
           >
             {labelContent}

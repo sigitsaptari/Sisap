@@ -94,3 +94,39 @@ export interface RadioGroupProps {
    */
   "aria-labelledby"?: string;
 }
+
+export interface RadioIndicatorProps {
+  /**
+   * Visual size of the circle.
+   * @default "sm"
+   */
+  size?: RadioSize;
+  /**
+   * Explicit checked state. When omitted, the indicator follows the `:checked`
+   * state of the native radio input inside the nearest `group/radio` ancestor.
+   */
+  checked?: boolean;
+  /**
+   * Whether the indicator renders in its disabled style.
+   */
+  disabled?: boolean;
+  /**
+   * Whether to show a focus ring when the radio input is keyboard-focused.
+   * @default true
+   */
+  focusRing?: boolean;
+  /**
+   * Additional class name for the outer circle.
+   */
+  className?: string;
+}
+
+export interface UseRadioControlOptions {
+  checked?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
+  disable?: boolean;
+  name?: string;
+  value?: InputHTMLAttributes<HTMLInputElement>["value"];
+  onChange?: InputHTMLAttributes<HTMLInputElement>["onChange"];
+}

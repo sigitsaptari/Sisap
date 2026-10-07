@@ -22,6 +22,7 @@ import {
   Chip,
   Divider,
   Radio,
+  RadioCard,
   RadioGroup,
   Stepper,
   TextArea,
@@ -875,6 +876,67 @@ export default function App() {
                       </RadioGroup>
                     </div>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Radio Card Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>8. Radio Button Card (Figma 92512:18197)</CardTitle>
+                <CardDescription>
+                  Kartu pilihan tunggal yang memakai ulang komponen Radio — state default, active,
+                  disabled, dengan opsi radio kiri/kanan dan deskripsi.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    State (Default, Active, Disabled)
+                  </h4>
+                  <div className="flex flex-wrap gap-5">
+                    <RadioCard name="rc-state-1" label="Label" description="Label" />
+                    <RadioCard
+                      name="rc-state-2"
+                      label="Label"
+                      description="Label"
+                      state="active"
+                      onChange={() => {}}
+                    />
+                    <RadioCard
+                      name="rc-state-3"
+                      label="Label"
+                      description="Label"
+                      state="disabled"
+                    />
+                  </div>
+                </div>
+
+                <div className="border-border-default border-t pt-4">
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    RadioGroup — Pilih Paket
+                  </h4>
+                  <RadioGroup defaultValue="pro" orientation="horizontal" aria-label="Pilih paket">
+                    <RadioCard
+                      value="basic"
+                      label="Basic"
+                      description="Rp 50.000 / bulan"
+                      radioRight={false}
+                    />
+                    <RadioCard
+                      value="pro"
+                      label="Pro"
+                      description="Rp 150.000 / bulan"
+                      radioRight={false}
+                    />
+                    <RadioCard
+                      value="enterprise"
+                      label="Enterprise"
+                      description="Hubungi tim sales"
+                      radioRight={false}
+                      disabled
+                    />
+                  </RadioGroup>
                 </div>
               </CardContent>
             </Card>
