@@ -3,13 +3,6 @@
 
 @theme inline {
   --color-*: initial;
-  --color-badge-border-color: var(--ds-badge-border-color);
-  --color-badge-color: var(--ds-badge-color);
-  --color-badge-counter-bg: var(--ds-badge-counter-bg);
-  --color-badge-counter-border: var(--ds-badge-counter-border);
-  --color-badge-counter-fg: var(--ds-badge-counter-fg);
-  --radius-badge: var(--ds-badge-radius);
-  --color-badge-text-color: var(--ds-badge-text-color);
   --radius-2xl: var(--ds-border-radius-2xl);
   --radius-full: var(--ds-border-radius-full);
   --radius-lg: var(--ds-border-radius-lg);

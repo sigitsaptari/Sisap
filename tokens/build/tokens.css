@@ -4,13 +4,6 @@
 :root, [data-theme="light"], .light {
   color-scheme: light;
 
-  --ds-badge-border-color: #ffffff;
-  --ds-badge-color: #ee3124;
-  --ds-badge-counter-bg: #ee3124;
-  --ds-badge-counter-border: #ffffff;
-  --ds-badge-counter-fg: #ffffff;
-  --ds-badge-radius: 9999px;
-  --ds-badge-text-color: #ffffff;
   --ds-border-radius-2xl: 1rem;
   --ds-border-radius-full: 9999px;
   --ds-border-radius-lg: 0.5rem;
@@ -394,13 +387,6 @@
 [data-theme="dark"], .dark, html.dark {
   color-scheme: dark;
 
-  --ds-badge-border-color: #ffffff;
-  --ds-badge-color: #ee3124;
-  --ds-badge-counter-bg: #ee3124;
-  --ds-badge-counter-border: #ffffff;
-  --ds-badge-counter-fg: #ffffff;
-  --ds-badge-radius: 9999px;
-  --ds-badge-text-color: #ffffff;
   --ds-border-radius-2xl: 1rem;
   --ds-border-radius-full: 9999px;
   --ds-border-radius-lg: 0.5rem;

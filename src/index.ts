@@ -22,9 +22,6 @@ export type { CheckboxProps, CheckboxSize } from "./components/Checkbox";
 export { Typography, typographyVariants } from "./components/Typography";
 export type { TypographyProps, TypographyVariant } from "./components/Typography";
 
-export { Badge, badgeVariants } from "./components/Badge";
-export type { BadgeProps, BadgeVariant, BadgeSize, BadgeShape } from "./components/Badge";
-
 export { Chip, chipVariants } from "./components/Chip";
 export type { ChipProps, ChipColor, ChipType, ChipSize } from "./components/Chip";
 

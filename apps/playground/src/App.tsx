@@ -17,7 +17,6 @@ import {
   Wallet,
 } from "lucide-react";
 import {
-  Badge,
   Button,
   Checkbox,
   Chip,
@@ -171,7 +170,7 @@ export default function App() {
                   <Typography variant="h2">Kirim Uang (E-Wallet Transfer)</Typography>
                   <Typography variant="muted">
                     Prototipe alur transaksi instan menggunakan komponen Button, Card, Dialog,
-                    Input, Badge, dsb.
+                    TextField, dsb.
                   </Typography>
                 </div>
 
@@ -610,13 +609,11 @@ export default function App() {
               </CardContent>
             </Card>
 
-            {/* Badges & Typography */}
+            {/* Chips & Typography */}
             <Card>
               <CardHeader>
-                <CardTitle>3. Chip & Badge Indikator</CardTitle>
-                <CardDescription>
-                  Chip status (Figma 91105:6246) dan PaDi Counter Badge (Figma 91797:378).
-                </CardDescription>
+                <CardTitle>3. Chip Indikator</CardTitle>
+                <CardDescription>Chip status (Figma 91105:6246).</CardDescription>
               </CardHeader>
               <CardContent>
                 <Stack gap={4}>
@@ -627,10 +624,6 @@ export default function App() {
                     <Chip color="orange" type="soft" label="Orange Soft" />
                     <Chip color="blue" type="soft" label="Blue Soft" />
                     <Chip color="grey" type="outline" label="Grey Outline" />
-                    <div className="border-border-subtle flex items-center gap-2 border-l pl-2">
-                      <Badge variant="counter" size="sm" label="1" />
-                      <Badge variant="counter" size="md" label="99+" />
-                    </div>
                   </div>
                   <div className="border-border-default space-y-1 border-t pt-3">
                     <Typography variant="h3">Heading 3 Tipografi</Typography>
