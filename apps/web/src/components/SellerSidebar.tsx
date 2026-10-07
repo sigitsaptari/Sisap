@@ -29,7 +29,7 @@ export function SellerSidebar() {
   const [activeItem, setActiveItem] = useState("Tambah Produk");
 
   return (
-    <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] select-none ">
+    <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] select-none font-['Ubuntu']">
       {/* Store Header Profile Card (6901:5207) */}
       <div className="flex flex-col w-full">
         <div className="flex items-center justify-between p-[16px] w-full">
@@ -38,7 +38,7 @@ export function SellerSidebar() {
               <Shop size={16} variant="Bulk" color="#009ea9" />
             </div>
             <div className="flex flex-col">
-              <span className="font-['Ubuntu:Medium'] text-[14px] leading-[21px] text-[#444b55]">
+              <span className="font-medium text-[14px] leading-[21px] text-[#444b55]">
                 Toko Maju Jaya
               </span>
             </div>
@@ -74,13 +74,14 @@ export function SellerSidebar() {
           <button
             type="button"
             onClick={() => setActiveItem("Dashboard")}
-            className={`relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-left transition-colors cursor-pointer ${activeItem === "Dashboard"
+            className={`relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-left transition-colors cursor-pointer ${
+              activeItem === "Dashboard"
                 ? "text-[#009ea9] font-medium"
-                : "text-[#444b55] hover:bg-[#f9fafa]"
-              }`}
+                : "text-[#444b55] hover:bg-[#f9fafa] font-normal"
+            }`}
           >
             <Category size={20} variant="Bulk" color={activeItem === "Dashboard" ? "#009ea9" : "#444b55"} />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Dashboard</span>
+            <span className="text-[12px] leading-[18px]">Dashboard</span>
             {activeItem === "Dashboard" && (
               <div className="absolute left-0 top-0 h-[28px] w-[4px] rounded-r-[4px] bg-[#0092ac]" />
             )}
@@ -89,14 +90,15 @@ export function SellerSidebar() {
           <button
             type="button"
             onClick={() => setActiveItem("Chat")}
-            className={`relative flex w-full items-center justify-between px-[16px] py-[6px] text-left transition-colors cursor-pointer ${activeItem === "Chat"
+            className={`relative flex w-full items-center justify-between px-[16px] py-[6px] text-left transition-colors cursor-pointer ${
+              activeItem === "Chat"
                 ? "text-[#009ea9] font-medium"
-                : "text-[#444b55] hover:bg-[#f9fafa]"
-              }`}
+                : "text-[#444b55] hover:bg-[#f9fafa] font-normal"
+            }`}
           >
             <div className="flex items-center gap-[8px]">
               <Messages1 size={20} variant="Bulk" color={activeItem === "Chat" ? "#009ea9" : "#444b55"} />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Chat</span>
+              <span className="text-[12px] leading-[18px]">Chat</span>
             </div>
             <div className="flex h-[16px] min-w-[16px] items-center justify-center rounded-[900px] bg-[#ee3124] px-[5px]">
               <span className="text-[10px] font-bold leading-[15px] text-white">2</span>
@@ -110,7 +112,7 @@ export function SellerSidebar() {
         {/* Section: Transaksi */}
         <div className="flex flex-col gap-[4px] py-[4px]">
           <div className="px-[16px] py-[4px]">
-            <span className="text-[14px] leading-[21px] font-['Ubuntu:Medium'] text-[#686e76]">
+            <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
               Transaksi
             </span>
           </div>
@@ -118,34 +120,34 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Pesanan")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <ReceiptItem size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Pesanan</span>
+              <span className="text-[12px] leading-[18px]">Pesanan</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("PaDi Kasir")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <Card size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">PaDi Kasir</span>
+              <span className="text-[12px] leading-[18px]">PaDi Kasir</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Biaya Transaksi Penjual")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <MoneyChange size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Biaya Transaksi Penjual</span>
+              <span className="text-[12px] leading-[18px]">Biaya Transaksi Penjual</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Export Data Pesanan")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <ExportCurve size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Export Data Pesanan</span>
+              <span className="text-[12px] leading-[18px]">Export Data Pesanan</span>
             </button>
           </div>
         </div>
@@ -153,7 +155,7 @@ export function SellerSidebar() {
         {/* Section: Produk */}
         <div className="flex flex-col gap-[4px] py-[4px]">
           <div className="px-[16px] py-[4px]">
-            <span className="text-[14px] leading-[21px] font-['Ubuntu:Medium'] text-[#686e76]">
+            <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
               Produk
             </span>
           </div>
@@ -161,20 +163,20 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Data Produk")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <Box size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Data Produk</span>
+              <span className="text-[12px] leading-[18px]">Data Produk</span>
             </button>
 
             {/* Tambah Produk (Active Item with exact Figma #0092ac indicator) */}
             <button
               type="button"
               onClick={() => setActiveItem("Tambah Produk")}
-              className="relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-[#009ea9] cursor-pointer bg-white"
+              className="relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-[#009ea9] font-medium cursor-pointer bg-white"
             >
               <BoxAdd size={20} variant="Bulk" color="#009ea9" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular'] text-[#009ea9]">
+              <span className="text-[12px] leading-[18px] text-[#009ea9]">
                 Tambah Produk
               </span>
               <div className="absolute left-0 top-0 h-[28px] w-[4px] rounded-r-[4px] bg-[#0092ac]" />
@@ -183,10 +185,10 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Tambah Produk Bulk")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <BoxAdd size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Tambah Produk Bulk</span>
+              <span className="text-[12px] leading-[18px]">Tambah Produk Bulk</span>
             </button>
           </div>
         </div>
@@ -194,7 +196,7 @@ export function SellerSidebar() {
         {/* Section: Pinjaman */}
         <div className="flex flex-col gap-[4px] py-[4px]">
           <div className="px-[16px] py-[4px]">
-            <span className="text-[14px] leading-[21px] font-['Ubuntu:Medium'] text-[#686e76]">
+            <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
               Pinjaman
             </span>
           </div>
@@ -202,18 +204,18 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Tersedia")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <WalletMoney size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Tersedia</span>
+              <span className="text-[12px] leading-[18px]">Tersedia</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Berlangsung")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <Timer1 size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Berlangsung</span>
+              <span className="text-[12px] leading-[18px]">Berlangsung</span>
             </button>
           </div>
         </div>
@@ -221,7 +223,7 @@ export function SellerSidebar() {
         {/* Section: Tender Kilat */}
         <div className="flex flex-col gap-[4px] py-[4px]">
           <div className="px-[16px] py-[4px]">
-            <span className="text-[14px] leading-[21px] font-['Ubuntu:Medium'] text-[#686e76]">
+            <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
               Tender Kilat
             </span>
           </div>
@@ -229,26 +231,26 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Daftar")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <Judge size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Daftar</span>
+              <span className="text-[12px] leading-[18px]">Daftar</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Data Penawaran")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <DocumentFilter size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Data Penawaran</span>
+              <span className="text-[12px] leading-[18px]">Data Penawaran</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Buat Penawaran")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <Edit2 size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Buat Penawaran</span>
+              <span className="text-[12px] leading-[18px]">Buat Penawaran</span>
             </button>
           </div>
         </div>
@@ -256,7 +258,7 @@ export function SellerSidebar() {
         {/* Section: Promosi Produk */}
         <div className="flex flex-col gap-[4px] py-[4px]">
           <div className="px-[16px] py-[4px]">
-            <span className="text-[14px] leading-[21px] font-['Ubuntu:Medium'] text-[#686e76]">
+            <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
               Promosi Produk
             </span>
           </div>
@@ -264,18 +266,18 @@ export function SellerSidebar() {
             <button
               type="button"
               onClick={() => setActiveItem("Promo Koleksi")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <DiscountShape size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Promo Koleksi</span>
+              <span className="text-[12px] leading-[18px]">Promo Koleksi</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveItem("Voucher")}
-              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+              className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
             >
               <TicketDiscount size={20} variant="Bulk" color="#444b55" />
-              <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Voucher</span>
+              <span className="text-[12px] leading-[18px]">Voucher</span>
             </button>
           </div>
         </div>
@@ -285,42 +287,42 @@ export function SellerSidebar() {
           <button
             type="button"
             onClick={() => setActiveItem("Ulasan")}
-            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
           >
             <Star1 size={20} variant="Bulk" color="#444b55" />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Ulasan</span>
+            <span className="text-[12px] leading-[18px]">Ulasan</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveItem("Dekorasi Toko")}
-            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
           >
             <Brush size={20} variant="Bulk" color="#444b55" />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Dekorasi Toko</span>
+            <span className="text-[12px] leading-[18px]">Dekorasi Toko</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveItem("Pengaturan")}
-            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
           >
             <Setting2 size={20} variant="Bulk" color="#444b55" />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Pengaturan</span>
+            <span className="text-[12px] leading-[18px]">Pengaturan</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveItem("Insight Seller")}
-            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
           >
             <ChartSquare size={20} variant="Bulk" color="#444b55" />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Insight Seller</span>
+            <span className="text-[12px] leading-[18px]">Insight Seller</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveItem("Bantuan Hukum")}
-            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer"
+            className="flex w-full items-center gap-[8px] px-[16px] py-[4px] text-[#444b55] hover:bg-[#f9fafa] cursor-pointer font-normal"
           >
             <ShieldSecurity size={20} variant="Bulk" color="#444b55" />
-            <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Bantuan Hukum</span>
+            <span className="text-[12px] leading-[18px]">Bantuan Hukum</span>
           </button>
         </div>
       </nav>
