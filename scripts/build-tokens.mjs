@@ -152,7 +152,15 @@ function renderTailwindTheme(tokens) {
       return [];
     });
   // Drop Tailwind's default palette so only semantic colors are available.
-  return ["  --color-*: initial;", ...lines].join("\n");
+  // Preserve essential base colors: white, black, transparent, current.
+  return [
+    "  --color-*: initial;",
+    "  --color-white: #ffffff;",
+    "  --color-black: #000000;",
+    "  --color-transparent: transparent;",
+    "  --color-current: currentColor;",
+    ...lines,
+  ].join("\n");
 }
 
 /** Static overlay animations (Radix `data-[state]` friendly), driven by motion tokens. */

@@ -169,7 +169,7 @@ export function SelectField({
       isErrorCounter={isErrorCounter}
       containerClassName={containerClassName}
     >
-      <div className="relative w-full" ref={containerRef}>
+      <div className={cn("relative w-full", isOpen && "z-50")} ref={containerRef}>
         {/* Trigger */}
         <button
           type="button"
@@ -178,7 +178,7 @@ export function SelectField({
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             textFieldVariants({ size, state: effectiveState }),
-            "justify-between text-left focus:outline-none",
+            "justify-between text-left focus:outline-none bg-white bg-[#ffffff]",
             disabled ? "cursor-not-allowed" : "cursor-pointer",
             className
           )}
@@ -208,13 +208,17 @@ export function SelectField({
           <div
             className={cn(
               "absolute left-0 top-full z-50 mt-1 w-full max-h-[260px] overflow-hidden flex flex-col",
-              "bg-white dark:bg-neutral-900 rounded-[4px] border border-[#d5d7d9] dark:border-neutral-700 shadow-lg",
+              "bg-white bg-[#ffffff] dark:bg-neutral-900 rounded-[4px] border border-[#d5d7d9] dark:border-neutral-700 shadow-xl",
               dropdownClassName
             )}
+            style={{ backgroundColor: "#ffffff" }}
           >
             {/* Search Input */}
             {searchable && (
-              <div className="p-3 border-b border-[#d5d7d9] dark:border-neutral-700 shrink-0 bg-white dark:bg-neutral-900 z-10">
+              <div
+                className="p-3 border-b border-[#d5d7d9] dark:border-neutral-700 shrink-0 bg-white bg-[#ffffff] dark:bg-neutral-900 z-10"
+                style={{ backgroundColor: "#ffffff" }}
+              >
                 <TextField
                   size="sm"
                   placeholder={searchPlaceholder}
@@ -227,9 +231,10 @@ export function SelectField({
 
             {/* List */}
             <ul
-              className="flex-1 overflow-y-auto py-2"
+              className="flex-1 overflow-y-auto py-1.5 bg-white bg-[#ffffff] dark:bg-neutral-900"
               role="listbox"
               aria-multiselectable={multiple}
+              style={{ backgroundColor: "#ffffff" }}
             >
               {filteredOptions.length > 0 ? (
                 filteredOptions.map((option) => {
@@ -244,9 +249,10 @@ export function SelectField({
                       aria-selected={isSelected}
                       onClick={() => handleOptionClick(option.value)}
                       className={cn(
-                        "flex items-center gap-2 px-3 py-2.5 cursor-pointer text-sm transition-colors",
-                        "hover:bg-[#f9fafa] dark:hover:bg-neutral-800 text-[#444b55] dark:text-neutral-200",
-                        isSelected && !multiple && "bg-[#f0f9fa] dark:bg-neutral-800 text-[#009ea9]"
+                        "flex items-center gap-2 px-3 py-2.5 cursor-pointer text-sm transition-colors font-['Ubuntu',sans-serif]",
+                        isSelected && !multiple
+                          ? "bg-[#f0f9fa] text-[#009ea9] font-medium"
+                          : "bg-white bg-[#ffffff] text-[#444b55] hover:bg-[#f9fafa] dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800"
                       )}
                     >
                       {multiple && (
@@ -263,7 +269,7 @@ export function SelectField({
                   );
                 })
               ) : (
-                <li className="px-3 py-4 text-center text-sm text-[#b1b4b8]">
+                <li className="px-3 py-4 text-center text-sm text-[#b1b4b8] bg-white bg-[#ffffff]">
                   No options found
                 </li>
               )}

@@ -261,7 +261,7 @@ export default function App() {
             {currentStep === 1 && (
               <div className="flex flex-col gap-[32px] animate-in fade-in duration-200">
                 {/* Card 1: Jenis Produk (6935:7549) */}
-                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden bg-[#ffffff]">
                   <div className="p-[16px]">
                     <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
                       Jenis Produk
@@ -272,20 +272,19 @@ export default function App() {
                     {/* Option: Barang (Figma 6901:13127) */}
                     <div
                       onClick={() => setProductType("Barang")}
-                      className={`flex flex-1 items-center justify-between rounded-[4px] px-[12px] py-[10px] h-[60px] border transition-all cursor-pointer select-none ${
-                        productType === "Barang"
-                          ? "border-[#009ea9] bg-white"
-                          : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
-                      }`}
+                      className={`flex flex-1 items-center justify-between rounded-[4px] px-[12px] py-[10px] h-[60px] border transition-all cursor-pointer select-none ${productType === "Barang"
+                        ? "border-[#009ea9] bg-white"
+                        : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
+                        }`}
                     >
                       <div className="flex items-center gap-[16px] min-w-0 flex-1">
                         {/* Device icon (40x40) - vuesax/bulk/devices */}
                         <div className="size-[40px] shrink-0 relative flex items-center justify-center">
                           <svg className="size-[40px]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.4" d="M26.6667 3.33333H10C4.66667 3.33333 3.33333 4.66667 3.33333 10V19.8334C3.38333 24.8834 4.78333 26.1667 10 26.1667H13.75V32.0833H8.25002C7.56669 32.0833 7.00002 32.65 7.00002 33.3333C7.00002 34.0167 7.56669 34.5833 8.25002 34.5833H20.4167C20.1667 33.9333 20.05 33.1167 20.0333 32.0833H16.25V26.1667H20.0333V19.8334V17.65C20.0333 14.0834 21.2167 12.9 24.7833 12.9H31.9167C32.4333 12.9 32.9167 12.9333 33.3333 12.9833V10C33.3333 4.66667 32 3.33333 26.6667 3.33333Z" fill="#009EA9"/>
-                            <path d="M33.3333 12.9833C32.9167 12.9333 32.4333 12.9 31.9167 12.9H24.7833C21.2167 12.9 20.0333 14.0834 20.0333 17.65V32.0833C20.05 33.1167 20.1667 33.9333 20.4167 34.5833C21 36.1 22.3167 36.6667 24.7833 36.6667H31.9167C35.4833 36.6667 36.6667 35.4834 36.6667 31.9167V17.65C36.6667 14.6 35.8 13.3 33.3333 12.9833ZM28.35 16.8167C29.8 16.8167 30.9666 17.9833 30.9666 19.4333C30.9666 20.8833 29.8 22.05 28.35 22.05C26.9 22.05 25.7333 20.8833 25.7333 19.4333C25.7333 17.9833 26.9 16.8167 28.35 16.8167ZM28.35 31.9167C26.3834 31.9167 24.7833 30.3167 24.7833 28.35C24.7833 27.5333 25.0667 26.7667 25.5333 26.1667C26.1833 25.3334 27.2 24.7833 28.35 24.7833C29.25 24.7833 30.0667 25.1167 30.6833 25.65C31.4333 26.3167 31.9167 27.2834 31.9167 28.35C31.9167 30.3167 30.3167 31.9167 28.35 31.9167Z" fill="#009EA9"/>
-                            <path opacity="0.4" d="M31.9167 28.35C31.9167 30.3167 30.3167 31.9167 28.35 31.9167C26.3833 31.9167 24.7833 30.3167 24.7833 28.35C24.7833 27.5333 25.0667 26.7667 25.5333 26.1667C26.1833 25.3334 27.2 24.7833 28.35 24.7833C29.25 24.7833 30.0667 25.1167 30.6833 25.65C31.4333 26.3167 31.9167 27.2833 31.9167 28.35Z" fill="#009EA9"/>
-                            <path opacity="0.4" d="M28.35 22.05C29.7952 22.05 30.9666 20.8784 30.9666 19.4333C30.9666 17.9881 29.7952 16.8167 28.35 16.8167C26.9049 16.8167 25.7333 17.9881 25.7333 19.4333C25.7333 20.8784 26.9049 22.05 28.35 22.05Z" fill="#009EA9"/>
+                            <path opacity="0.4" d="M26.6667 3.33333H10C4.66667 3.33333 3.33333 4.66667 3.33333 10V19.8334C3.38333 24.8834 4.78333 26.1667 10 26.1667H13.75V32.0833H8.25002C7.56669 32.0833 7.00002 32.65 7.00002 33.3333C7.00002 34.0167 7.56669 34.5833 8.25002 34.5833H20.4167C20.1667 33.9333 20.05 33.1167 20.0333 32.0833H16.25V26.1667H20.0333V19.8334V17.65C20.0333 14.0834 21.2167 12.9 24.7833 12.9H31.9167C32.4333 12.9 32.9167 12.9333 33.3333 12.9833V10C33.3333 4.66667 32 3.33333 26.6667 3.33333Z" fill="#009EA9" />
+                            <path d="M33.3333 12.9833C32.9167 12.9333 32.4333 12.9 31.9167 12.9H24.7833C21.2167 12.9 20.0333 14.0834 20.0333 17.65V32.0833C20.05 33.1167 20.1667 33.9333 20.4167 34.5833C21 36.1 22.3167 36.6667 24.7833 36.6667H31.9167C35.4833 36.6667 36.6667 35.4834 36.6667 31.9167V17.65C36.6667 14.6 35.8 13.3 33.3333 12.9833ZM28.35 16.8167C29.8 16.8167 30.9666 17.9833 30.9666 19.4333C30.9666 20.8833 29.8 22.05 28.35 22.05C26.9 22.05 25.7333 20.8833 25.7333 19.4333C25.7333 17.9833 26.9 16.8167 28.35 16.8167ZM28.35 31.9167C26.3834 31.9167 24.7833 30.3167 24.7833 28.35C24.7833 27.5333 25.0667 26.7667 25.5333 26.1667C26.1833 25.3334 27.2 24.7833 28.35 24.7833C29.25 24.7833 30.0667 25.1167 30.6833 25.65C31.4333 26.3167 31.9167 27.2834 31.9167 28.35C31.9167 30.3167 30.3167 31.9167 28.35 31.9167Z" fill="#009EA9" />
+                            <path opacity="0.4" d="M31.9167 28.35C31.9167 30.3167 30.3167 31.9167 28.35 31.9167C26.3833 31.9167 24.7833 30.3167 24.7833 28.35C24.7833 27.5333 25.0667 26.7667 25.5333 26.1667C26.1833 25.3334 27.2 24.7833 28.35 24.7833C29.25 24.7833 30.0667 25.1167 30.6833 25.65C31.4333 26.3167 31.9167 27.2833 31.9167 28.35Z" fill="#009EA9" />
+                            <path opacity="0.4" d="M28.35 22.05C29.7952 22.05 30.9666 20.8784 30.9666 19.4333C30.9666 17.9881 29.7952 16.8167 28.35 16.8167C26.9049 16.8167 25.7333 17.9881 25.7333 19.4333C25.7333 20.8784 26.9049 22.05 28.35 22.05Z" fill="#009EA9" />
                           </svg>
                         </div>
                         <div className="flex flex-col text-left gap-[4px] flex-1 min-w-0">
@@ -298,11 +297,10 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`size-[20px] shrink-0 rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] flex items-center justify-center ${
-                          productType === "Barang"
-                            ? "bg-[#009ea9]"
-                            : "bg-white border border-[#8c9197]"
-                        }`}
+                        className={`size-[20px] shrink-0 rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] flex items-center justify-center ${productType === "Barang"
+                          ? "bg-[#009ea9]"
+                          : "bg-white border border-[#8c9197]"
+                          }`}
                       >
                         {productType === "Barang" && (
                           <svg className="size-[16px]" viewBox="0 0 16 16" fill="none">
@@ -321,20 +319,19 @@ export default function App() {
                     {/* Option: Jasa (Figma 6901:13134) */}
                     <div
                       onClick={() => setProductType("Jasa")}
-                      className={`flex flex-1 items-center justify-between rounded-[4px] px-[12px] py-[10px] h-[60px] border transition-all cursor-pointer select-none ${
-                        productType === "Jasa"
-                          ? "border-[#009ea9] bg-white"
-                          : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
-                      }`}
+                      className={`flex flex-1 items-center justify-between rounded-[4px] px-[12px] py-[10px] h-[60px] border transition-all cursor-pointer select-none ${productType === "Jasa"
+                        ? "border-[#009ea9] bg-white"
+                        : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
+                        }`}
                     >
                       <div className="flex items-center gap-[16px] min-w-0 flex-1">
                         {/* Jasa icon (40x40) - vuesax/bulk/like */}
                         <div className="size-[40px] shrink-0 relative flex items-center justify-center">
                           <svg className="w-[36.24px] h-[40.5px]" viewBox="0 0 36.242 40.5026" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.4" d="M32.3495 16.2763C31.7667 15.4395 30.7357 14.9614 29.5553 14.9614H23.429C23.0256 14.9614 22.652 14.797 22.398 14.4981C22.1291 14.1993 22.0245 13.7809 22.0842 13.3476L21.6821 11.9344C22.0108 10.4701 21.0396 8.82643 19.5752 8.33334C18.2155 7.82531 16.6167 8.51264 15.9742 9.48388L10.8328 15.3648L10.6535 15.6636V28.8724L10.8777 29.0966L15.6143 32.7574C16.2419 33.3849 17.6614 33.7286 18.6625 33.7286H24.4899C26.4921 33.7286 28.5093 32.2195 28.9576 30.3816L32.6333 19.19C33.0218 18.1291 32.9172 17.0981 32.3495 16.2763Z" fill="#444B55"/>
-                            <path d="M24.8793 6.63772L25.9535 10.6466L29.9623 9.5724L32.571 5.05417C33.5229 6.23132 34.2856 10.5623 32.6552 13.3862C31.0248 16.2101 27.3275 16.9621 25.8864 16.6321L20.8034 13.6975C19.7971 12.6144 18.5997 9.03647 20.23 6.21257C22.4474 2.37207 25.9925 1.88364 27.4879 2.11949L24.8793 6.63772Z" fill="#182958"/>
-                            <path d="M7.78483 10.8224H6.24579C3.92977 10.8224 2.98842 11.7189 2.98842 13.9303V28.9621C2.98842 31.1735 3.92977 32.07 6.24579 32.07H7.78483C10.1009 32.07 11.0422 31.1735 11.0422 28.9621V13.9303C11.0422 11.7189 10.1009 10.8224 7.78483 10.8224Z" fill="#444B55"/>
-                            <path d="M12.4197 38.5083C12.097 38.3219 11.8219 38.1053 11.5882 37.8688C9.66102 35.9186 11.3483 32.8874 13.1097 30.7862L18.7622 34.0497C17.8232 36.6257 16.0418 39.6025 13.3893 38.9087C13.0676 38.8246 12.7425 38.6946 12.4197 38.5083Z" fill="#182958"/>
+                            <path opacity="0.4" d="M32.3495 16.2763C31.7667 15.4395 30.7357 14.9614 29.5553 14.9614H23.429C23.0256 14.9614 22.652 14.797 22.398 14.4981C22.1291 14.1993 22.0245 13.7809 22.0842 13.3476L21.6821 11.9344C22.0108 10.4701 21.0396 8.82643 19.5752 8.33334C18.2155 7.82531 16.6167 8.51264 15.9742 9.48388L10.8328 15.3648L10.6535 15.6636V28.8724L10.8777 29.0966L15.6143 32.7574C16.2419 33.3849 17.6614 33.7286 18.6625 33.7286H24.4899C26.4921 33.7286 28.5093 32.2195 28.9576 30.3816L32.6333 19.19C33.0218 18.1291 32.9172 17.0981 32.3495 16.2763Z" fill="#444B55" />
+                            <path d="M24.8793 6.63772L25.9535 10.6466L29.9623 9.5724L32.571 5.05417C33.5229 6.23132 34.2856 10.5623 32.6552 13.3862C31.0248 16.2101 27.3275 16.9621 25.8864 16.6321L20.8034 13.6975C19.7971 12.6144 18.5997 9.03647 20.23 6.21257C22.4474 2.37207 25.9925 1.88364 27.4879 2.11949L24.8793 6.63772Z" fill="#182958" />
+                            <path d="M7.78483 10.8224H6.24579C3.92977 10.8224 2.98842 11.7189 2.98842 13.9303V28.9621C2.98842 31.1735 3.92977 32.07 6.24579 32.07H7.78483C10.1009 32.07 11.0422 31.1735 11.0422 28.9621V13.9303C11.0422 11.7189 10.1009 10.8224 7.78483 10.8224Z" fill="#444B55" />
+                            <path d="M12.4197 38.5083C12.097 38.3219 11.8219 38.1053 11.5882 37.8688C9.66102 35.9186 11.3483 32.8874 13.1097 30.7862L18.7622 34.0497C17.8232 36.6257 16.0418 39.6025 13.3893 38.9087C13.0676 38.8246 12.7425 38.6946 12.4197 38.5083Z" fill="#182958" />
                           </svg>
                         </div>
                         <div className="flex flex-col text-left gap-[4px] flex-1 min-w-0">
@@ -347,11 +344,10 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`size-[20px] shrink-0 rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] flex items-center justify-center ${
-                          productType === "Jasa"
-                            ? "bg-[#009ea9]"
-                            : "bg-white border border-[#8c9197]"
-                        }`}
+                        className={`size-[20px] shrink-0 rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] flex items-center justify-center ${productType === "Jasa"
+                          ? "bg-[#009ea9]"
+                          : "bg-white border border-[#8c9197]"
+                          }`}
                       >
                         {productType === "Jasa" && (
                           <svg className="size-[16px]" viewBox="0 0 16 16" fill="none">
@@ -370,7 +366,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: Informasi Produk (6935:7550) */}
-                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden bg-[#ffffff]">
                   <div className="p-[16px]">
                     <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
                       Informasi Produk
@@ -390,7 +386,7 @@ export default function App() {
                     />
 
                     {/* 3 Column Select Fields (Kategori, Brand, Satuan) */}
-                    <div className="flex gap-[24px] items-start w-full">
+                    <div className="flex gap-[24px] items-start w-full relative z-20">
                       <div className="flex-1 min-w-0">
                         <SelectField
                           label="Kategori Produk"
@@ -487,7 +483,7 @@ export default function App() {
                 </div>
 
                 {/* Card 3: Media Produk (6937:9362) */}
-                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden bg-[#ffffff]">
                   <div className="p-[16px]">
                     <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
                       Media Produk
@@ -525,7 +521,7 @@ export default function App() {
                 </div>
 
                 {/* Card 4: Sertifikat Produk (6954:14695) */}
-                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden bg-[#ffffff]">
                   <div className="p-[16px] flex items-center justify-between">
                     <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
                       Sertifikat Produk
@@ -567,9 +563,8 @@ export default function App() {
                             return (
                               <div
                                 key={cert.id}
-                                className={`h-[66px] flex items-center px-[16px] text-[14px] leading-[21px] font-['Ubuntu'] transition-colors ${
-                                  isZebra ? "bg-[#f9fafa]" : "bg-white"
-                                }`}
+                                className={`h-[66px] flex items-center px-[16px] text-[14px] leading-[21px] font-['Ubuntu'] transition-colors ${isZebra ? "bg-[#f9fafa]" : "bg-white"
+                                  }`}
                               >
                                 {/* Column 1: Jenis Sertifikat */}
                                 <div className="flex-1 flex items-center gap-[8px] text-[#444b55]">
@@ -722,11 +717,10 @@ export default function App() {
                           onChange={() => setPriceType("normal")}
                           label="Harga Normal"
                           radioRight={false}
-                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
-                            priceType === "normal"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${priceType === "normal"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         />
                         <RadioCard
                           id="price-tempo"
@@ -736,11 +730,10 @@ export default function App() {
                           onChange={() => setPriceType("tempo")}
                           label="Harga Tempo"
                           radioRight={false}
-                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
-                            priceType === "tempo"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${priceType === "tempo"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         />
                       </div>
                     </div>
@@ -824,19 +817,17 @@ export default function App() {
                         {/* PPN 12% */}
                         <div
                           onClick={() => setPpnType("ppn12")}
-                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
-                            ppnType === "ppn12"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${ppnType === "ppn12"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         >
                           <div className="flex items-center gap-[8px]">
                             <div
-                              className={`size-[18px] rounded-full border flex items-center justify-center ${
-                                ppnType === "ppn12"
-                                  ? "border-[#009ea9]"
-                                  : "border-[#b1b4b8]"
-                              }`}
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${ppnType === "ppn12"
+                                ? "border-[#009ea9]"
+                                : "border-[#b1b4b8]"
+                                }`}
                             >
                               {ppnType === "ppn12" && (
                                 <div className="size-[10px] rounded-full bg-[#009ea9]" />
@@ -854,19 +845,17 @@ export default function App() {
                         {/* PPN 1.1% */}
                         <div
                           onClick={() => setPpnType("ppn1")}
-                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
-                            ppnType === "ppn1"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${ppnType === "ppn1"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         >
                           <div className="flex items-center gap-[8px]">
                             <div
-                              className={`size-[18px] rounded-full border flex items-center justify-center ${
-                                ppnType === "ppn1"
-                                  ? "border-[#009ea9]"
-                                  : "border-[#b1b4b8]"
-                              }`}
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${ppnType === "ppn1"
+                                ? "border-[#009ea9]"
+                                : "border-[#b1b4b8]"
+                                }`}
                             >
                               {ppnType === "ppn1" && (
                                 <div className="size-[10px] rounded-full bg-[#009ea9]" />
@@ -884,19 +873,17 @@ export default function App() {
                         {/* Tidak Dikenakan PPN */}
                         <div
                           onClick={() => setPpnType("noppn")}
-                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${
-                            ppnType === "noppn"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`rounded-[4px] p-[16px] border flex flex-col gap-[6px] cursor-pointer transition-all ${ppnType === "noppn"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         >
                           <div className="flex items-center gap-[8px]">
                             <div
-                              className={`size-[18px] rounded-full border flex items-center justify-center ${
-                                ppnType === "noppn"
-                                  ? "border-[#009ea9]"
-                                  : "border-[#b1b4b8]"
-                              }`}
+                              className={`size-[18px] rounded-full border flex items-center justify-center ${ppnType === "noppn"
+                                ? "border-[#009ea9]"
+                                : "border-[#b1b4b8]"
+                                }`}
                             >
                               {ppnType === "noppn" && (
                                 <div className="size-[10px] rounded-full bg-[#009ea9]" />
@@ -1130,11 +1117,10 @@ export default function App() {
                           onChange={() => setVisibilityType("publik")}
                           label="Publik"
                           radioRight={false}
-                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
-                            visibilityType === "publik"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${visibilityType === "publik"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         />
                         <RadioCard
                           id="vis-privat"
@@ -1144,11 +1130,10 @@ export default function App() {
                           onChange={() => setVisibilityType("privat")}
                           label="Privat"
                           radioRight={false}
-                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${
-                            visibilityType === "privat"
-                              ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                          className={`w-[200px] rounded-[4px] p-[16px] cursor-pointer ${visibilityType === "privat"
+                            ? "border-[#009ea9] bg-[#e6f4f7]"
+                            : "border-[#d5d7d9] bg-white"
+                            }`}
                         />
                       </div>
                     </div>
@@ -1219,7 +1204,7 @@ export default function App() {
       </div>
 
       {/* Sticky Bottom CTA Bar (6954:13282) */}
-      <footer className="fixed bottom-0 left-[280px] right-0 h-[68px] z-40 flex items-center justify-end gap-[16px] border-t border-[#dee3ed] bg-white px-[24px] py-[16px] drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
+      <footer className="fixed bottom-0 left-[280px] right-0 h-[68px] z-40 flex items-center justify-end gap-[16px] border-t border-[#dee3ed] bg-white px-[24px] py-[16px] drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)] bg-[#ffffff]">
         {currentStep > 1 && (
           <Button
             variant="secondary"

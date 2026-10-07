@@ -3,6 +3,10 @@
 
 @theme inline {
   --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
   --radius-2xl: var(--ds-border-radius-2xl);
   --radius-full: var(--ds-border-radius-full);
   --radius-lg: var(--ds-border-radius-lg);
