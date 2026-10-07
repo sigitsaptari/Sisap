@@ -40,9 +40,9 @@ npm run test           # Vitest + axe (tes aksesibilitas dasar)
 
 ## Design tokens
 
-- Sumber kebenaran: `tokens/base/*.json` + `tokens/semantic/*.json` (W3C DTCG:
+- Source of Truth: `tokens/base/*.json` + `tokens/semantic/*.json` (W3C DTCG:
   `$type`, `$value`, referensi `{alias}`).
-- Jalankan `npm run tokens:build` setiap mengubah token — script me-resolve alias,
+- Run `npm run tokens:build` setiap mengubah token — script me-resolve alias,
   menghasilkan `tokens.css` (`:root` + `[data-theme="dark"]`) dan mapping
   `@theme inline` untuk Tailwind v4.
 - 3 tier: base → semantic → component. Komponen memakai token **component**
