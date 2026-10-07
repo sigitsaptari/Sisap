@@ -123,7 +123,11 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
     return (
       <span
         ref={ref}
-        className={cn(chipVariants({ type, color: normalizedColor, size }), className)}
+        className={cn(
+          chipVariants({ type, color: normalizedColor, size }),
+          Boolean(rest.onClick) && "cursor-pointer",
+          className
+        )}
         {...rest}
       >
         {icon && (

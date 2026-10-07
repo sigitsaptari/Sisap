@@ -10,7 +10,7 @@ import type {
 } from "./Radio.types";
 
 export const radioVariants = cva(
-  "relative inline-flex items-center justify-center shrink-0 rounded-full border transition-colors",
+  "relative inline-flex items-center justify-center shrink-0 rounded-full border transition-colors cursor-pointer",
   {
     variants: {
       size: {

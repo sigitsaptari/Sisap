@@ -8,7 +8,7 @@ import type { ButtonProps } from "./Button.types";
 import { useButton } from "./useButton";
 
 export const buttonVariants = cva(
-  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-button font-medium outline-none transition-[background-color,border-color,color,box-shadow] focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg-canvas disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed",
+  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-button font-medium outline-none transition-[background-color,border-color,color,box-shadow] focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg-canvas cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed",
   {
     variants: {
       variant: {

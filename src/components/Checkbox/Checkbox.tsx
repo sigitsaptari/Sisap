@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 import type { CheckboxProps } from "./Checkbox.types";
 
 export const checkboxVariants = cva(
-  "peer shrink-0 border border-checkbox-border bg-checkbox-bg ring-offset-bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-button-disabled-bg disabled:border-button-disabled-border data-[state=checked]:bg-checkbox-bg-checked data-[state=checked]:border-checkbox-bg-checked data-[state=checked]:text-checkbox-fg hover:data-[state=checked]:bg-action-primary-hover hover:data-[state=checked]:border-action-primary-hover hover:data-[state=unchecked]:border-action-primary-hover transition-colors",
+  "peer shrink-0 border border-checkbox-border bg-checkbox-bg ring-offset-bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:bg-button-disabled-bg disabled:border-button-disabled-border data-[state=checked]:bg-checkbox-bg-checked data-[state=checked]:border-checkbox-bg-checked data-[state=checked]:text-checkbox-fg hover:data-[state=checked]:bg-action-primary-hover hover:data-[state=checked]:border-action-primary-hover hover:data-[state=unchecked]:border-action-primary-hover transition-colors",
   {
     variants: {
       size: {

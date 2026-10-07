@@ -178,7 +178,8 @@ export function SelectField({
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             textFieldVariants({ size, state: effectiveState }),
-            "justify-between cursor-pointer text-left focus:outline-none",
+            "justify-between text-left focus:outline-none",
+            disabled ? "cursor-not-allowed" : "cursor-pointer",
             className
           )}
           aria-haspopup="listbox"

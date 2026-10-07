@@ -183,11 +183,14 @@ export function RichTextEditor({
       }}
       className={cn(
         "flex h-7 min-w-7 items-center justify-center rounded p-1 transition-all text-[#444b55] dark:text-neutral-200",
-        disabled 
-          ? "cursor-not-allowed opacity-50" 
-          : isActive 
-            ? "bg-[#e6f5f6] text-[#009ea9] dark:bg-[#009ea9]/20" 
-            : "hover:bg-neutral-200 dark:hover:bg-neutral-800"
+        disabled
+          ? "cursor-not-allowed opacity-50"
+          : cn(
+              "cursor-pointer",
+              isActive
+                ? "bg-[#e6f5f6] text-[#009ea9] dark:bg-[#009ea9]/20"
+                : "hover:bg-neutral-200 dark:hover:bg-neutral-800"
+            )
       )}
     >
       {text ? <span className="text-sm font-bold">{text}</span> : icon}
