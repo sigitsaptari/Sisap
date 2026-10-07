@@ -28,9 +28,9 @@ import { PublishSuccessModal } from "./components/PublishSuccessModal";
 function EditIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
   return (
     <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#009EA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M16.04 3.02L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.2 16.44 12.79 16.14 13.1 15.84L20.98 7.96C22.34 6.6 22.98 5.02 20.98 3.02C18.98 1.02 17.4 1.66 16.04 3.02Z" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M14.91 4.15C15.58 6.54 17.45 8.41 19.85 9.09" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#009EA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M16.04 3.02L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.2 16.44 12.79 16.14 13.1 15.84L20.98 7.96C22.34 6.6 22.98 5.02 20.98 3.02C18.98 1.02 17.4 1.66 16.04 3.02Z" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M14.91 4.15C15.58 6.54 17.45 8.41 19.85 9.09" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -38,11 +38,11 @@ function EditIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
 function TrashIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
   return (
     <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 5.98C17.67 5.65 14.32 5.48 10.98 5.48C9 5.48 7.02 5.58 5.04 5.78L3 5.98" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M18.85 9.14L18.2 19.21C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M10.33 16.5H13.66" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M9.5 12.5H14.5" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M21 5.98C17.67 5.65 14.32 5.48 10.98 5.48C9 5.48 7.02 5.58 5.04 5.78L3 5.98" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M18.85 9.14L18.2 19.21C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10.33 16.5H13.66" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.5 12.5H14.5" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -573,7 +573,7 @@ export default function App() {
                   ) : (
                     <div className="w-full">
                       {/* Table Header (56px) */}
-                      <div className="h-[56px] bg-[#f9fafa] border-b border-[#8c9197] flex items-center font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                      <div className="h-[56px] bg-[#f9fafa] border-b border-[#dee3ed] flex items-center font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
                         <div className="flex-1 px-[16px] py-[8px]">Jenis Sertifikat</div>
                         <div className="w-[240px] px-[16px] py-[8px]">Status/Kedaluwarsa</div>
                         <div className="w-[200px] px-[16px] py-[8px]">Lampiran</div>
@@ -590,9 +590,8 @@ export default function App() {
                           return (
                             <div
                               key={cert.id}
-                              className={`h-[66px] flex items-center font-['Ubuntu'] ${
-                                isZebra ? "bg-[#f9fafa]" : "bg-white"
-                              } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
+                              className={`h-[66px] flex items-center font-['Ubuntu'] ${isZebra ? "bg-[#f9fafa]" : "bg-white"
+                                } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
                             >
                               {/* Column 1: Jenis Sertifikat */}
                               <div className="flex-1 px-[16px] py-[8px] flex items-center gap-[8px] text-[#444b55]">
@@ -601,9 +600,8 @@ export default function App() {
                                 </span>
                                 {cert.number && (
                                   <span
-                                    className={`text-[14px] leading-[21px] text-[#444b55] ${
-                                      isBoldNumber ? "font-bold" : "font-medium"
-                                    }`}
+                                    className={`text-[14px] leading-[21px] text-[#444b55] ${isBoldNumber ? "font-bold" : "font-medium"
+                                      }`}
                                   >
                                     {cert.number}
                                   </span>
@@ -839,12 +837,12 @@ export default function App() {
                           {/* Estimasi Pendapatan */}
                           <div className="h-[44px] bg-[#ddf2e4] rounded-[4px] px-[12px] flex items-center gap-[12px]">
                             <div className="flex items-center gap-[4px]">
-                              <span className="font-['Ubuntu'] font-bold text-[14px] leading-[21px] text-[#444b55]">
+                              <span className="font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
                                 Estimasi pendapatan
                               </span>
                               <InfoCircle size={16} variant="Linear" color="#444b55" />
                             </div>
-                            <span className="font-['Ubuntu'] font-bold text-[20px] leading-[28px] text-[#25974c]">
+                            <span className="font-['Ubuntu'] font-bold text-[18px] leading-[28px] text-[#25974c]">
                               Rp{unitPrice}
                             </span>
                           </div>

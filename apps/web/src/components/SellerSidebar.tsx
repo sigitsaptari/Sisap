@@ -29,7 +29,7 @@ export function SellerSidebar() {
   const [activeItem, setActiveItem] = useState("Tambah Produk");
 
   return (
-    <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] select-none">
+    <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] select-none ">
       {/* Store Header Profile Card (6901:5207) */}
       <div className="flex flex-col w-full">
         <div className="flex items-center justify-between p-[16px] w-full">
@@ -74,11 +74,10 @@ export function SellerSidebar() {
           <button
             type="button"
             onClick={() => setActiveItem("Dashboard")}
-            className={`relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-left transition-colors cursor-pointer ${
-              activeItem === "Dashboard"
+            className={`relative flex w-full items-center gap-[8px] px-[16px] py-[6px] text-left transition-colors cursor-pointer ${activeItem === "Dashboard"
                 ? "text-[#009ea9] font-medium"
                 : "text-[#444b55] hover:bg-[#f9fafa]"
-            }`}
+              }`}
           >
             <Category size={20} variant="Bulk" color={activeItem === "Dashboard" ? "#009ea9" : "#444b55"} />
             <span className="text-[12px] leading-[18px] font-['Ubuntu:Regular']">Dashboard</span>
@@ -90,11 +89,10 @@ export function SellerSidebar() {
           <button
             type="button"
             onClick={() => setActiveItem("Chat")}
-            className={`relative flex w-full items-center justify-between px-[16px] py-[6px] text-left transition-colors cursor-pointer ${
-              activeItem === "Chat"
+            className={`relative flex w-full items-center justify-between px-[16px] py-[6px] text-left transition-colors cursor-pointer ${activeItem === "Chat"
                 ? "text-[#009ea9] font-medium"
                 : "text-[#444b55] hover:bg-[#f9fafa]"
-            }`}
+              }`}
           >
             <div className="flex items-center gap-[8px]">
               <Messages1 size={20} variant="Bulk" color={activeItem === "Chat" ? "#009ea9" : "#444b55"} />
