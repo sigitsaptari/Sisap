@@ -30,6 +30,7 @@ import {
   SelectField,
   RichTextEditor,
   Switch,
+  Uploader,
 } from "@sisapds/react";
 import {
   Card,
@@ -1017,6 +1018,30 @@ export default function App() {
                   <Switch id="play-sw-lg" size="lg" label="Large" />
                   <Switch id="play-sw-dis" size="md" label="Disabled" disabled />
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* Uploader Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>12. Media Uploader (Figma 6920:22092)</CardTitle>
+                <CardDescription>
+                  Komponen Uploader untuk Foto dan Video produk lengkap dengan interaksi proses upload dan sukses upload.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <Uploader
+                  type="image"
+                  label="Foto Produk"
+                  required
+                  maxFiles={5}
+                />
+                <Uploader
+                  type="video"
+                  label="Video Produk"
+                  required={false}
+                  maxFiles={1}
+                />
               </CardContent>
             </Card>
           </div>

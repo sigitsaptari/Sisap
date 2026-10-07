@@ -68,3 +68,13 @@ export type { RichTextEditorProps, RichTextEditorSize, RichTextEditorState } fro
 export { Switch } from "./components/Switch";
 export type { SwitchProps, SwitchSize } from "./components/Switch";
 
+export { Uploader, UploaderItem, UploaderTrigger } from "./components/Uploader";
+export type {
+  UploaderProps,
+  UploaderFile,
+  UploaderFileType,
+  UploadItemStatus,
+  UploaderItemProps,
+  UploaderTriggerProps,
+} from "./components/Uploader";
+
