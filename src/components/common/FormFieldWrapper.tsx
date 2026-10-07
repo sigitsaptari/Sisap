@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 export type FormFieldSize = "sm" | "md" | "lg";
 
 export interface FormFieldWrapperProps {
-  id: string;
+  id?: string;
   size?: FormFieldSize;
   label?: ReactNode;
   showLabel?: boolean;
