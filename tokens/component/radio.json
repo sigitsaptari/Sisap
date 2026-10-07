@@ -1,0 +1,12 @@
+{
+  "radio": {
+    "border": { "$type": "color", "$value": "{color.border.strong}" },
+    "border-selected": { "$type": "color", "$value": "{color.action.primary}" },
+    "border-hover": { "$type": "color", "$value": "{color.action.primary}" },
+    "dot": { "$type": "color", "$value": "{color.action.primary}" },
+    "bg": { "$type": "color", "$value": "{color.bg.surface}" },
+    "border-disabled": { "$type": "color", "$value": "{color.border.subtle}" },
+    "bg-disabled": { "$type": "color", "$value": "{color.neutral.100}" },
+    "dot-disabled": { "$type": "color", "$value": "{color.content.muted}" }
+  }
+}

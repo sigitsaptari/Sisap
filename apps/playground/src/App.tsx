@@ -16,7 +16,17 @@ import {
   TickCircle,
   Wallet,
 } from "iconsax-react";
-import { Button, Checkbox, Chip, Divider, Stepper, TextArea, TextField } from "@sisapds/react";
+import {
+  Button,
+  Checkbox,
+  Chip,
+  Divider,
+  Radio,
+  RadioGroup,
+  Stepper,
+  TextArea,
+  TextField,
+} from "@sisapds/react";
 import {
   Card,
   CardContent,
@@ -793,6 +803,77 @@ export default function App() {
                     <span>Menu 2</span>
                     <Divider type="vertical" />
                     <span>Menu 3</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Radio Button Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>7. Radio Button (Figma 82763:5831)</CardTitle>
+                <CardDescription>
+                  Komponen pilihan tunggal (Single Choice) sesuai spesifikasi Figma PaDi DS v3.0 —
+                  sizes (sm, md, lg), states (default, hover, selected, disabled), dan dukungan
+                  RadioGroup.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    Variasi Ukuran (sm, md, lg)
+                  </h4>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <Radio size="sm" name="sizes-demo" label="Small (16px)" defaultChecked />
+                    <Radio size="md" name="sizes-demo" label="Medium (20px)" />
+                    <Radio size="lg" name="sizes-demo" label="Large (24px)" />
+                  </div>
+                </div>
+
+                <div className="border-border-default border-t pt-4">
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    State Interaktif & Disabled
+                  </h4>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <Radio size="md" name="state-demo" label="Default Unselected" />
+                    <Radio size="md" name="state-demo" label="Default Selected" defaultChecked />
+                    <Radio size="md" label="Disabled Unselected" disabled />
+                    <Radio size="md" label="Disabled Selected" disabled selected />
+                    <Radio size="md" labelText={false} aria-label="Tanpa label" defaultChecked />
+                  </div>
+                </div>
+
+                <div className="border-border-default border-t pt-4">
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    RadioGroup (Vertical & Horizontal)
+                  </h4>
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-neutral-500">
+                        Metode Pembayaran (Vertical)
+                      </p>
+                      <RadioGroup defaultValue="va" aria-label="Metode Pembayaran">
+                        <Radio value="va" label="Virtual Account Bank Mandiri" />
+                        <Radio value="qris" label="QRIS Instant Pay" />
+                        <Radio value="cc" label="Kartu Kredit / Debit" />
+                        <Radio value="cod" label="Cash on Delivery (Nonaktif)" disabled />
+                      </RadioGroup>
+                    </div>
+
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-neutral-500">
+                        Durasi Langganan (Horizontal)
+                      </p>
+                      <RadioGroup
+                        defaultValue="1bln"
+                        orientation="horizontal"
+                        aria-label="Durasi Langganan"
+                      >
+                        <Radio value="1bln" label="1 Bulan" />
+                        <Radio value="6bln" label="6 Bulan" />
+                        <Radio value="1thn" label="1 Tahun" />
+                      </RadioGroup>
+                    </div>
                   </div>
                 </div>
               </CardContent>

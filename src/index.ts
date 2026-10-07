@@ -39,3 +39,6 @@ export type {
 
 export { Divider, dividerVariants } from "./components/Divider";
 export type { DividerProps, DividerType, DividerOrientation } from "./components/Divider";
+
+export { Radio, RadioGroup, radioVariants, useRadioGroup } from "./components/Radio";
+export type { RadioProps, RadioGroupProps, RadioSize } from "./components/Radio";
