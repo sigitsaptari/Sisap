@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { axeViolations } from "../../test/a11y";
@@ -108,4 +108,50 @@ describe("Uploader", () => {
     expect(screen.getByRole("button", { name: "Putar video" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Hapus file" })).toBeTruthy();
   });
+
+  it("updates progress and reaches success in simulated upload", async () => {
+    vi.useFakeTimers();
+    const onChangeMock = vi.fn();
+    const file = new File(["dummy content"], "photo.png", { type: "image/png" });
+
+    // Mock URL.createObjectURL and revokeObjectURL
+    const origCreate = URL.createObjectURL;
+    const origRevoke = URL.revokeObjectURL;
+    URL.createObjectURL = vi.fn(() => "blob:mock-url");
+    URL.revokeObjectURL = vi.fn();
+
+    const { container } = render(
+      <Uploader
+        type="image"
+        simulateUpload={true}
+        files={[]}
+        onChange={onChangeMock}
+      />
+    );
+
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    expect(input).toBeTruthy();
+
+    // Trigger file change
+    fireEvent.change(input, { target: { files: [file] } });
+
+    // Initial item added with status uploading, progress 0
+    expect(onChangeMock).toHaveBeenCalled();
+    const initialCallArg = onChangeMock.mock.calls[0][0];
+    expect(initialCallArg[0].status).toBe("uploading");
+    expect(initialCallArg[0].progress).toBe(0);
+
+    // Advance timers for progress ticks
+    vi.advanceTimersByTime(1200);
+
+    // Final call should have status success and progress 100
+    const lastCallArg = onChangeMock.mock.calls[onChangeMock.mock.calls.length - 1][0];
+    expect(lastCallArg[0].status).toBe("success");
+    expect(lastCallArg[0].progress).toBe(100);
+
+    URL.createObjectURL = origCreate;
+    URL.revokeObjectURL = origRevoke;
+    vi.useRealTimers();
+  });
 });
+

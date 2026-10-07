@@ -37,9 +37,25 @@ export function Uploader({
 
   const files = controlledFiles !== undefined ? controlledFiles : internalFiles;
 
-  // Clean up object URLs on unmount
+  // Active uploads map to manage interval timers per file id
+  const activeUploadsRef = useRef<Map<string, ReturnType<typeof setInterval>>>(new Map());
+
+  // Track latest files and onChange callback
+  const latestFilesRef = useRef(files);
+  useEffect(() => {
+    latestFilesRef.current = files;
+  }, [files]);
+
+  const onChangeRef = useRef(onChange);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
+
+  // Clean up object URLs and active timers on unmount
   useEffect(() => {
     return () => {
+      activeUploadsRef.current.forEach((intervalId) => clearInterval(intervalId));
+      activeUploadsRef.current.clear();
       internalFiles.forEach((f) => {
         if (f.url && f.url.startsWith("blob:")) {
           URL.revokeObjectURL(f.url);
@@ -50,81 +66,72 @@ export function Uploader({
 
   const updateFiles = useCallback(
     (newFiles: UploaderFile[]) => {
+      latestFilesRef.current = newFiles;
       if (controlledFiles === undefined) {
         setInternalFiles(newFiles);
       }
-      onChange?.(newFiles);
+      onChangeRef.current?.(newFiles);
     },
-    [controlledFiles, onChange]
+    [controlledFiles]
+  );
+
+  const updateFileItem = useCallback(
+    (id: string, patch: Partial<UploaderFile>) => {
+      const nextList = latestFilesRef.current.map((item) =>
+        item.id === id ? { ...item, ...patch } : item
+      );
+      latestFilesRef.current = nextList;
+      if (controlledFiles === undefined) {
+        setInternalFiles(nextList);
+      }
+      onChangeRef.current?.(nextList);
+    },
+    [controlledFiles]
   );
 
   const processUpload = useCallback(
     (fileItem: UploaderFile, rawFile: File) => {
+      // Clear any prior timer for this file
+      if (activeUploadsRef.current.has(fileItem.id)) {
+        clearInterval(activeUploadsRef.current.get(fileItem.id)!);
+        activeUploadsRef.current.delete(fileItem.id);
+      }
+
       if (onUpload) {
         onUpload(rawFile, (progressPct) => {
-          setInternalFiles((prev) =>
-            prev.map((item) =>
-              item.id === fileItem.id
-                ? { ...item, progress: progressPct }
-                : item
-            )
-          );
+          updateFileItem(fileItem.id, { progress: progressPct });
         })
           .then((resultUrl) => {
-            setInternalFiles((prev) =>
-              prev.map((item) =>
-                item.id === fileItem.id
-                  ? {
-                      ...item,
-                      url: typeof resultUrl === "string" ? resultUrl : item.url,
-                      status: "success",
-                      progress: 100,
-                    }
-                  : item
-              )
-            );
+            updateFileItem(fileItem.id, {
+              url: typeof resultUrl === "string" ? resultUrl : fileItem.url,
+              status: "success",
+              progress: 100,
+            });
           })
           .catch((err) => {
-            setInternalFiles((prev) =>
-              prev.map((item) =>
-                item.id === fileItem.id
-                  ? {
-                      ...item,
-                      status: "error",
-                      errorMessage: err instanceof Error ? err.message : "Gagal mengunggah",
-                    }
-                  : item
-              )
-            );
+            updateFileItem(fileItem.id, {
+              status: "error",
+              errorMessage: err instanceof Error ? err.message : "Gagal mengunggah",
+            });
           });
       } else if (simulateUpload) {
         // Realistic simulated upload
         let currentProgress = 0;
         const interval = setInterval(() => {
-          currentProgress += Math.floor(Math.random() * 25) + 15;
+          currentProgress += Math.floor(Math.random() * 20) + 12;
           if (currentProgress >= 100) {
             currentProgress = 100;
             clearInterval(interval);
-            setInternalFiles((prev) =>
-              prev.map((item) =>
-                item.id === fileItem.id
-                  ? { ...item, progress: 100, status: "success" }
-                  : item
-              )
-            );
+            activeUploadsRef.current.delete(fileItem.id);
+            updateFileItem(fileItem.id, { progress: 100, status: "success" });
           } else {
-            setInternalFiles((prev) =>
-              prev.map((item) =>
-                item.id === fileItem.id
-                  ? { ...item, progress: currentProgress }
-                  : item
-              )
-            );
+            updateFileItem(fileItem.id, { progress: currentProgress });
           }
         }, 200);
+        activeUploadsRef.current.set(fileItem.id, interval);
       }
     },
-    [onUpload, simulateUpload]
+    [onUpload, simulateUpload, updateFileItem]
   );
 
   const handleFilesAdded = useCallback(
@@ -185,22 +192,26 @@ export function Uploader({
 
   const handleRemove = useCallback(
     (id: string) => {
-      const target = files.find((f) => f.id === id);
+      if (activeUploadsRef.current.has(id)) {
+        clearInterval(activeUploadsRef.current.get(id)!);
+        activeUploadsRef.current.delete(id);
+      }
+      const target = latestFilesRef.current.find((f) => f.id === id);
       if (target?.url && target.url.startsWith("blob:")) {
         URL.revokeObjectURL(target.url);
       }
-      const next = files.filter((f) => f.id !== id);
+      const next = latestFilesRef.current.filter((f) => f.id !== id);
       updateFiles(next);
     },
-    [files, updateFiles]
+    [updateFiles]
   );
 
   const handleRetry = useCallback(
     (id: string) => {
-      const target = files.find((f) => f.id === id);
+      const target = latestFilesRef.current.find((f) => f.id === id);
       if (!target || !target.file) return;
 
-      const updated = files.map((f) =>
+      const updated = latestFilesRef.current.map((f) =>
         f.id === id
           ? {
               ...f,
@@ -214,7 +225,7 @@ export function Uploader({
       updateFiles(updated);
       processUpload(target, target.file);
     },
-    [files, processUpload, updateFiles]
+    [processUpload, updateFiles]
   );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
