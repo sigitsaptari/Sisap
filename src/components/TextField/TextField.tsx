@@ -1,8 +1,8 @@
 import { forwardRef, useId, useState } from "react";
 import { cva } from "class-variance-authority";
-import { Danger, InfoCircle, TickCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import { renderIcon } from "../../utils/icon";
+import { FormFieldWrapper } from "../common/FormFieldWrapper";
 import type { TextFieldProps, TextFieldSize, TextFieldState } from "./TextField.types";
 
 export const textFieldVariants = cva(
@@ -143,78 +143,32 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const isLg = size === "lg";
 
     const iconPixelSize = isSm ? 16 : isLg ? 24 : 20;
-    const labelSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-
-    const descSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-
-    const badgeSizeClass = isSm ? "text-[10px]" : "text-xs";
-    const hintSizeClass = isSm ? "text-[10px]" : isLg ? "text-sm" : "text-xs";
     const dividerHeightClass = isSm ? "h-3.5" : isLg ? "h-6" : "h-5";
-
     const hasInfoTooltip = Boolean(showInfoTooltip ?? infoTooltip);
 
     return (
-      <div className={cn("flex w-full flex-col gap-2", containerClassName)}>
-        {/* Header row: Label + Wajib/Opsional + Info Tooltip + Description */}
-        {showLabel && (
-          <div className="flex w-full flex-col gap-1">
-            <div className="flex w-full items-center gap-1.5">
-              <label
-                htmlFor={inputId}
-                className={cn(
-                  "font-medium text-[#444b55] select-none dark:text-neutral-200",
-                  labelSizeClass,
-                )}
-              >
-                {resolvedLabel}
-              </label>
-
-              {isWajib && (
-                <span
-                  className={cn("font-normal text-[#ee3124] italic select-none", badgeSizeClass)}
-                >
-                  Wajib
-                </span>
-              )}
-
-              {isOpsional && (
-                <span
-                  className={cn("font-normal text-[#b1b4b8] italic select-none", badgeSizeClass)}
-                >
-                  Opsional
-                </span>
-              )}
-
-              {hasInfoTooltip && (
-                <span
-                  title={typeof infoTooltip === "string" ? infoTooltip : undefined}
-                  className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
-                  aria-label="Informasi tambahan"
-                >
-                  <InfoCircle
-                    color="currentColor"
-                    size={16}
-                    className="size-4"
-                    aria-hidden="true"
-                  />
-                </span>
-              )}
-            </div>
-
-            {showDescription && (
-              <p
-                className={cn(
-                  "leading-normal font-normal text-[#686e76] dark:text-neutral-400",
-                  descSizeClass,
-                )}
-              >
-                {resolvedDescription}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Input Container Box: Prefix | IconL | Input | IconR | Suffix */}
+      <FormFieldWrapper
+        id={inputId}
+        size={size}
+        label={resolvedLabel}
+        showLabel={showLabel}
+        isWajib={isWajib}
+        isOpsional={isOpsional}
+        description={resolvedDescription}
+        showDescription={showDescription}
+        hasInfoTooltip={hasInfoTooltip}
+        infoTooltip={infoTooltip}
+        hint={resolvedHint}
+        showHint={showHint}
+        hintId={hintId}
+        errorMessage={errorMessage}
+        errorId={errorId}
+        successMessage={successMessage}
+        successId={successId}
+        showCounter={showCounter}
+        counterText={maxLength ? `${currentLength}/${maxLength}` : currentLength}
+        containerClassName={containerClassName}
+      >
         <div className={textFieldVariants({ size, state: effectiveState })}>
           {/* Prefix Slot with Divider */}
           {showPrefix && (
@@ -282,69 +236,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             </div>
           )}
         </div>
-
-        {/* Footer row: Error / Success / Hint message + Counter */}
-        {(errorMessage || successMessage || showHint || showCounter) && (
-          <div className="flex w-full items-center justify-between gap-2">
-            {errorMessage ? (
-              <p
-                id={errorId}
-                className={cn(
-                  "flex items-center gap-1.5 leading-normal font-medium text-[#ee3124]",
-                  hintSizeClass,
-                )}
-              >
-                <Danger
-                  color="currentColor"
-                  size={14}
-                  className="size-3.5 shrink-0"
-                  aria-hidden="true"
-                />
-                <span>{errorMessage}</span>
-              </p>
-            ) : successMessage ? (
-              <p
-                id={successId}
-                className={cn(
-                  "flex items-center gap-1.5 leading-normal font-medium text-[#25974c]",
-                  hintSizeClass,
-                )}
-              >
-                <TickCircle
-                  color="currentColor"
-                  size={14}
-                  className="size-3.5 shrink-0"
-                  aria-hidden="true"
-                />
-                <span>{successMessage}</span>
-              </p>
-            ) : showHint ? (
-              <p
-                id={hintId}
-                className={cn(
-                  "leading-normal font-normal text-[#686e76] dark:text-neutral-400",
-                  hintSizeClass,
-                )}
-              >
-                {resolvedHint}
-              </p>
-            ) : (
-              <span />
-            )}
-
-            {showCounter && (
-              <span
-                className={cn(
-                  "ml-auto shrink-0 font-mono text-[#b1b4b8] dark:text-neutral-500",
-                  hintSizeClass,
-                )}
-              >
-                {maxLength ? `${currentLength}/${maxLength}` : currentLength}
-              </span>
-            )}
-          </div>
-        )}
-      </div>
+      </FormFieldWrapper>
     );
   },
 );

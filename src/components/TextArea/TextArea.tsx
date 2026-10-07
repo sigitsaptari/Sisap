@@ -1,8 +1,8 @@
 import { forwardRef, useEffect, useId, useRef, useState } from "react";
 import { cva } from "class-variance-authority";
-import { Danger, InfoCircle, TickCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
-import type { TextAreaProps, TextAreaSize, TextAreaState } from "./TextArea.types";
+import { FormFieldWrapper } from "../common/FormFieldWrapper";
+import type { TextAreaProps, TextAreaState } from "./TextArea.types";
 
 export const textAreaVariants = cva(
   "w-full rounded-[4px] border border-solid transition-[border-color,box-shadow] outline-none text-[#444b55] placeholder:text-[#b1b4b8] dark:text-neutral-100 dark:placeholder:text-neutral-500",
@@ -41,12 +41,6 @@ export const textAreaVariants = cva(
     },
   },
 );
-
-const statusIconSizes: Record<TextAreaSize, string> = {
-  sm: "size-3",
-  md: "size-4",
-  lg: "size-5",
-};
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
@@ -146,14 +140,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const isSm = size === "sm";
     const isLg = size === "lg";
 
-    // Typography scale according to Figma design specification
-    const labelSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-    const descSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-    const badgeSizeClass = isSm ? "text-[10px]" : isLg ? "text-sm" : "text-xs";
-    const hintSizeClass = isSm ? "text-[10px]" : isLg ? "text-sm" : "text-xs";
-    const statusMsgSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-    const statusGapClass = isSm ? "gap-1" : isLg ? "gap-2" : "gap-1.5";
-
     // Auto-resize textarea height logic
     const handleAutoResize = (textareaEl: HTMLTextAreaElement) => {
       if (!autoResize) return;
@@ -168,74 +154,31 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     const isErrorCounter = effectiveState === "error counter";
     const isError = effectiveState === "error";
-    const isSuccess = effectiveState === "success";
-
-    const displayStatusRow =
-      isError || isSuccess || Boolean(errorMessage) || Boolean(successMessage);
-    const displayHintRow = showHint || showCounter;
 
     return (
-      <div className={cn("flex w-full flex-col items-start gap-2", containerClassName)}>
-        {/* Header Row: Label + Wajib / Opsional + Tooltip + Description */}
-        {showLabel && (
-          <div className="flex w-full flex-col items-start gap-1">
-            <div className="flex w-full items-center gap-1.5">
-              <label
-                htmlFor={textareaId}
-                className={cn(
-                  "font-medium text-[#444b55] select-none dark:text-neutral-200",
-                  labelSizeClass,
-                )}
-              >
-                {resolvedLabel}
-              </label>
-
-              {isWajib && (
-                <span
-                  className={cn("font-normal text-[#ee3124] italic select-none", badgeSizeClass)}
-                >
-                  Wajib
-                </span>
-              )}
-
-              {isOpsional && (
-                <span
-                  className={cn("font-normal text-[#b1b4b8] italic select-none", badgeSizeClass)}
-                >
-                  Opsional
-                </span>
-              )}
-
-              {hasInfoTooltip && (
-                <span
-                  title={typeof infoTooltip === "string" ? infoTooltip : undefined}
-                  className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
-                  aria-label="Informasi tambahan"
-                >
-                  <InfoCircle
-                    color="currentColor"
-                    size={16}
-                    className="size-4"
-                    aria-hidden="true"
-                  />
-                </span>
-              )}
-            </div>
-
-            {showDescription && (
-              <p
-                className={cn(
-                  "w-full leading-normal font-normal text-[#686e76] dark:text-neutral-400",
-                  descSizeClass,
-                )}
-              >
-                {resolvedDescription}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Textarea Input Element */}
+      <FormFieldWrapper
+        id={textareaId}
+        size={size}
+        label={resolvedLabel}
+        showLabel={showLabel}
+        isWajib={isWajib}
+        isOpsional={isOpsional}
+        description={resolvedDescription}
+        showDescription={showDescription}
+        hasInfoTooltip={hasInfoTooltip}
+        infoTooltip={infoTooltip}
+        hint={resolvedHint}
+        showHint={showHint}
+        hintId={hintId}
+        errorMessage={errorMessage}
+        errorId={errorId}
+        successMessage={successMessage}
+        successId={successId}
+        showCounter={showCounter}
+        counterText={resolvedCounterText}
+        isErrorCounter={isErrorCounter}
+        containerClassName={containerClassName}
+      >
         <textarea
           ref={(node) => {
             internalRef.current = node;
@@ -254,7 +197,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           placeholder={placeholder}
           aria-invalid={isError || isErrorCounter ? true : undefined}
           aria-describedby={
-            isError ? errorId : isSuccess ? successId : showHint ? hintId : undefined
+            isError ? errorId : successMessage ? successId : showHint ? hintId : undefined
           }
           onChange={(e) => {
             setCurrentLength(e.target.value.length);
@@ -271,78 +214,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
           {...rest}
         />
-
-        {/* Status Caption Row: Error or Success message with standard icon */}
-        {displayStatusRow && (
-          <div
-            id={isError ? errorId : successId}
-            className={cn("flex w-full items-center", statusGapClass)}
-          >
-            {isError ? (
-              <>
-                <Danger
-                  color="currentColor"
-                  size={isSm ? 12 : isLg ? 20 : 16}
-                  className={cn("shrink-0 text-[#ee3124]", statusIconSizes[size])}
-                  aria-hidden="true"
-                />
-                <span
-                  className={cn("leading-normal font-normal text-[#ee3124]", statusMsgSizeClass)}
-                >
-                  {errorMessage ?? "Information"}
-                </span>
-              </>
-            ) : isSuccess ? (
-              <>
-                <TickCircle
-                  color="currentColor"
-                  size={isSm ? 12 : isLg ? 20 : 16}
-                  className={cn("shrink-0 text-[#25974c]", statusIconSizes[size])}
-                  aria-hidden="true"
-                />
-                <span
-                  className={cn("leading-normal font-normal text-[#25974c]", statusMsgSizeClass)}
-                >
-                  {successMessage ?? "Information"}
-                </span>
-              </>
-            ) : null}
-          </div>
-        )}
-
-        {/* Footer Hint Row: Hint Text (left) and Character Counter (right) */}
-        {displayHintRow && (
-          <div className="flex w-full items-center justify-between gap-2.5">
-            {showHint ? (
-              <p
-                id={hintId}
-                className={cn(
-                  "leading-normal font-normal text-[#686e76] dark:text-neutral-400",
-                  hintSizeClass,
-                )}
-              >
-                {resolvedHint}
-              </p>
-            ) : (
-              <span />
-            )}
-
-            {showCounter && (
-              <span
-                className={cn(
-                  "ml-auto shrink-0 text-right font-normal transition-colors select-none",
-                  hintSizeClass,
-                  isErrorCounter
-                    ? "font-medium text-[#ee3124]"
-                    : "text-[#686e76] dark:text-neutral-500",
-                )}
-              >
-                {resolvedCounterText}
-              </span>
-            )}
-          </div>
-        )}
-      </div>
+      </FormFieldWrapper>
     );
   },
 );

@@ -25,3 +25,6 @@ export type { TypographyProps, TypographyVariant } from "./components/Typography
 
 export { Chip, chipVariants } from "./components/Chip";
 export type { ChipProps, ChipColor, ChipType, ChipSize } from "./components/Chip";
+
+export { FormFieldWrapper } from "./components/common";
+export type { FormFieldWrapperProps, FormFieldSize } from "./components/common";
