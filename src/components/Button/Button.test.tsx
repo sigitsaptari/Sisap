@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Add, Trash } from "iconsax-react";
 import { describe, expect, it, vi } from "vitest";
 import { axeViolations } from "../../test/a11y";
 import { Button } from "./Button";
@@ -50,5 +51,29 @@ describe("Button a11y", () => {
     const cls = screen.getByRole("button").className;
     expect(cls).toContain("h-12");
     expect(cls).not.toContain("h-10");
+  });
+
+  it("renders leftIcon, rightIcon, and children icon properly", () => {
+    render(
+      <div>
+        <Button leftIcon={<Add data-testid="my-add" />}>Left</Button>
+        <Button size="icon" aria-label="Delete">
+          <Trash data-testid="my-trash" />
+        </Button>
+      </div>,
+    );
+    expect(screen.getByTestId("my-add")).toBeTruthy();
+    expect(screen.getByTestId("my-trash")).toBeTruthy();
+  });
+
+  it("renders default icons when showIconL or showIconR is set without explicit icons", () => {
+    const { container } = render(
+      <div>
+        <Button showIconL>With Left</Button>
+        <Button showIconR>With Right</Button>
+      </div>,
+    );
+    const svgs = container.querySelectorAll("svg");
+    expect(svgs.length).toBe(2);
   });
 });

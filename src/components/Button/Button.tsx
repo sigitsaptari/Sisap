@@ -1,10 +1,23 @@
-import { forwardRef } from "react";
+import { cloneElement, forwardRef, isValidElement } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-import { Refresh2 } from "iconsax-react";
+import { Add, ArrowRight, Refresh2 } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import type { ButtonProps } from "./Button.types";
 import { useButton } from "./useButton";
+
+const renderIcon = (icon: React.ReactNode, sizePx: number) => {
+  if (!icon || !isValidElement(icon)) return icon;
+  const iconProps = (icon.props || {}) as {
+    color?: string;
+    size?: number | string;
+    className?: string;
+  };
+  return cloneElement(icon as React.ReactElement<Record<string, unknown>>, {
+    color: iconProps.color ?? "currentColor",
+    size: iconProps.size ?? sizePx,
+  });
+};
 
 export const buttonVariants = cva(
   "inline-flex select-none items-center justify-center whitespace-nowrap rounded-button font-medium outline-none transition-[background-color,border-color,color,box-shadow] focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg-canvas disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed",
@@ -120,11 +133,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   const classes = cn(buttonVariants({ variant, size, state }), className);
   const buttonHookState = useButton({ isLoading, disabled: isActuallyDisabled });
 
-  const effectiveLeftIcon = leftIcon ?? iconL;
-  const effectiveRightIcon = rightIcon ?? iconR;
-  const shouldShowLeft = showIconL ?? Boolean(effectiveLeftIcon);
-  const shouldShowRight = showIconR ?? Boolean(effectiveRightIcon);
+  const hasExplicitLeftIcon = leftIcon !== undefined || iconL !== undefined;
+  const effectiveLeftIcon = leftIcon ?? iconL ?? (showIconL ? <Add /> : undefined);
+  const shouldShowLeft = hasExplicitLeftIcon ? showIconL !== false : Boolean(showIconL);
+
+  const hasExplicitRightIcon = rightIcon !== undefined || iconR !== undefined;
+  const effectiveRightIcon = rightIcon ?? iconR ?? (showIconR ? <ArrowRight /> : undefined);
+  const shouldShowRight = hasExplicitRightIcon ? showIconR !== false : Boolean(showIconR);
   const labelContent = children ?? labelText;
+  const iconPixelSize = size === "sm" ? 16 : size === "lg" ? 24 : 20;
   const iconSizeClass =
     size === "sm" ? "[&_svg]:size-4" : size === "lg" ? "[&_svg]:size-6" : "[&_svg]:size-5";
 
@@ -139,17 +156,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   return (
     <button ref={ref} type={type} className={classes} {...buttonHookState} {...rest}>
       {isLoading ? (
-        <Refresh2 className={cn("shrink-0 animate-spin", iconSizeClass)} aria-hidden="true" />
+        <Refresh2
+          color="currentColor"
+          size={iconPixelSize}
+          className={cn("shrink-0 animate-spin", iconSizeClass)}
+          aria-hidden="true"
+        />
       ) : shouldShowLeft && effectiveLeftIcon ? (
-        <span className={cn("inline-flex shrink-0", iconSizeClass)}>{effectiveLeftIcon}</span>
+        <span className={cn("inline-flex shrink-0", iconSizeClass)}>
+          {renderIcon(effectiveLeftIcon, iconPixelSize)}
+        </span>
       ) : null}
       {isLoading && loadingText ? (
         loadingText
       ) : showLabel && labelContent ? (
-        <span>{labelContent}</span>
+        <span className={cn(size === "icon" && iconSizeClass)}>
+          {size === "icon" ? renderIcon(labelContent, iconPixelSize) : labelContent}
+        </span>
       ) : null}
       {!isLoading && shouldShowRight && effectiveRightIcon ? (
-        <span className={cn("inline-flex shrink-0", iconSizeClass)}>{effectiveRightIcon}</span>
+        <span className={cn("inline-flex shrink-0", iconSizeClass)}>
+          {renderIcon(effectiveRightIcon, iconPixelSize)}
+        </span>
       ) : null}
     </button>
   );
