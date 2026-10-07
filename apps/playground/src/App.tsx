@@ -27,6 +27,7 @@ import {
   Stepper,
   TextArea,
   TextField,
+  SelectField,
 } from "@sisapds/react";
 import {
   Card,
@@ -937,6 +938,42 @@ export default function App() {
                       disabled
                     />
                   </RadioGroup>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* SelectField Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>9. Select Field (Figma 91243:2178)</CardTitle>
+                <CardDescription>
+                  Komponen Input Dropdown (Select Field) dengan mode single dan multi-select.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <SelectField
+                    label="Pilih Kategori (Single)"
+                    placeholder="Pilih salah satu"
+                    options={[
+                      { label: "Elektronik", value: "elektronik" },
+                      { label: "Pakaian", value: "pakaian" },
+                      { label: "Makanan", value: "makanan" },
+                    ]}
+                  />
+                  <SelectField
+                    label="Pilih Kategori (Multi, Searchable)"
+                    placeholder="Pilih beberapa"
+                    multiple
+                    searchable
+                    options={[
+                      { label: "Elektronik", value: "elektronik" },
+                      { label: "Pakaian", value: "pakaian" },
+                      { label: "Makanan", value: "makanan" },
+                      { label: "Minuman", value: "minuman" },
+                      { label: "Alat Tulis", value: "atk" },
+                    ]}
+                  />
                 </div>
               </CardContent>
             </Card>
