@@ -24,9 +24,3 @@ export type { TypographyProps, TypographyVariant } from "./components/Typography
 
 export { Chip, chipVariants } from "./components/Chip";
 export type { ChipProps, ChipColor, ChipType, ChipSize } from "./components/Chip";
-
-export { Stack, stackVariants } from "./components/Stack";
-export type { StackProps, StackDirection, StackAlign, StackJustify } from "./components/Stack";
-
-export { Grid, gridVariants } from "./components/Grid";
-export type { GridProps, GridColumns } from "./components/Grid";

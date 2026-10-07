@@ -16,16 +16,7 @@ import {
   Sun,
   Wallet,
 } from "lucide-react";
-import {
-  Button,
-  Checkbox,
-  Chip,
-  Grid,
-  Stack,
-  TextArea,
-  TextField,
-  Typography,
-} from "@sisapds/react";
+import { Button, Checkbox, Chip, TextArea, TextField, Typography } from "@sisapds/react";
 import {
   Card,
   CardContent,
@@ -163,7 +154,7 @@ export default function App() {
         {/* TAB 1: E-WALLET TRANSFER PROTOTYPE                        */}
         {/* ========================================================= */}
         {activeTab === "ewallet" && (
-          <Stack gap={8}>
+          <div className="flex flex-col gap-8">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
@@ -188,7 +179,7 @@ export default function App() {
                         Konfigurasi limit harian transfer dan notifikasi keamanan e-wallet.
                       </DrawerDescription>
                     </DrawerHeader>
-                    <Stack gap={4} className="px-6 py-2">
+                    <div className="flex flex-col gap-4 px-6 py-2">
                       <div className="space-y-1.5">
                         <label
                           htmlFor="daily-limit"
@@ -208,7 +199,7 @@ export default function App() {
                         text="Kirim e-receipt otomatis via WhatsApp"
                         defaultChecked
                       />
-                    </Stack>
+                    </div>
                     <DrawerFooter>
                       <DrawerClose asChild>
                         <Button variant="secondary">Tutup</Button>
@@ -222,7 +213,7 @@ export default function App() {
               </div>
             </div>
 
-            <Grid columns={12} gap={6}>
+            <div className="grid grid-cols-12 gap-6">
               {/* Left Column: Transfer Form */}
               <div className="col-span-12 lg:col-span-7">
                 <Card>
@@ -240,7 +231,7 @@ export default function App() {
                   </CardHeader>
 
                   <CardContent>
-                    <Stack gap={5}>
+                    <div className="flex flex-col gap-5">
                       {/* Recipient Field */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-xs">
@@ -319,7 +310,7 @@ export default function App() {
                           onCheckedChange={(c) => setSaveContact(Boolean(c))}
                         />
                       </div>
-                    </Stack>
+                    </div>
                   </CardContent>
 
                   <CardFooter className="border-border-default border-t pt-4">
@@ -483,7 +474,7 @@ export default function App() {
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <Stack gap={3}>
+                    <div className="flex flex-col gap-3">
                       {[
                         {
                           name: "Coffee Shop Senopati",
@@ -536,19 +527,19 @@ export default function App() {
                           </span>
                         </div>
                       ))}
-                    </Stack>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
-            </Grid>
-          </Stack>
+            </div>
+          </div>
         )}
 
         {/* ========================================================= */}
         {/* TAB 2: FULL COMPONENT CATALOG & TOKEN INSPECTOR           */}
         {/* ========================================================= */}
         {activeTab === "catalog" && (
-          <Stack gap={8}>
+          <div className="flex flex-col gap-8">
             <div>
               <Typography variant="h2">Komponen & Token Catalog</Typography>
               <Typography variant="muted">
@@ -592,7 +583,7 @@ export default function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Grid columns={3} gap={4}>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <TextField label="TextField Standard" placeholder="Type here..." />
                   <TextField
                     label="TextField Error"
@@ -605,7 +596,7 @@ export default function App() {
                     <Checkbox id="c2" text="Checkbox Medium" size="md" />
                     <Checkbox id="c3" text="Checkbox Large" size="lg" />
                   </div>
-                </Grid>
+                </div>
               </CardContent>
             </Card>
 
@@ -616,7 +607,7 @@ export default function App() {
                 <CardDescription>Chip status (Figma 91105:6246).</CardDescription>
               </CardHeader>
               <CardContent>
-                <Stack gap={4}>
+                <div className="flex flex-col gap-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <Chip color="tosca" type="soft" label="Tosca Soft" showIconR />
                     <Chip color="green" type="outline" label="Green Outline" showIconR />
@@ -632,7 +623,7 @@ export default function App() {
                     </Typography>
                     <Typography variant="code">npm run tokens:build</Typography>
                   </div>
-                </Stack>
+                </div>
               </CardContent>
             </Card>
 
@@ -733,7 +724,7 @@ export default function App() {
                 </div>
               </CardContent>
             </Card>
-          </Stack>
+          </div>
         )}
 
         {/* ========================================================= */}
