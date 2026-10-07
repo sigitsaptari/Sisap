@@ -15,7 +15,7 @@ Sisap/
 │   └── build/           # Generated CSS variables / Tailwind @theme
 ├── scripts/             # Token build tooling
 ├── src/                 # Library (@sisapds/react)
-│   ├── components/      # Button, Checkbox, Typography, Chip, TextField, TextArea
+│   ├── components/      # Button, Checkbox, Chip, TextField, TextArea, common
 │   ├── hooks/           # useDisclosure, …
 │   ├── utils/           # cn(), …
 │   └── index.ts         # Core barrel export

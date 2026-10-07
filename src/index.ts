@@ -20,9 +20,6 @@ export type { TextAreaProps, TextAreaSize, TextAreaState } from "./components/Te
 export { Checkbox, checkboxVariants } from "./components/Checkbox";
 export type { CheckboxProps, CheckboxSize } from "./components/Checkbox";
 
-export { Typography, typographyVariants } from "./components/Typography";
-export type { TypographyProps, TypographyVariant } from "./components/Typography";
-
 export { Chip, chipVariants } from "./components/Chip";
 export type { ChipProps, ChipColor, ChipType, ChipSize } from "./components/Chip";
 

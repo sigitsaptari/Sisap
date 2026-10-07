@@ -16,7 +16,7 @@ import {
   TickCircle,
   Wallet,
 } from "iconsax-react";
-import { Button, Checkbox, Chip, TextArea, TextField, Typography } from "@sisapds/react";
+import { Button, Checkbox, Chip, TextArea, TextField } from "@sisapds/react";
 import {
   Card,
   CardContent,
@@ -86,12 +86,8 @@ export default function App() {
               S
             </div>
             <div>
-              <Typography variant="h4" className="text-base leading-none font-bold">
-                SisapDS Playground
-              </Typography>
-              <Typography variant="muted" className="text-xs">
-                Rapid prototyping & component sandbox
-              </Typography>
+              <h4 className="text-base leading-none font-bold">SisapDS Playground</h4>
+              <p className="text-fg-muted text-xs">Rapid prototyping & component sandbox</p>
             </div>
           </div>
 
@@ -158,11 +154,13 @@ export default function App() {
             <div>
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <Typography variant="h2">Kirim Uang (E-Wallet Transfer)</Typography>
-                  <Typography variant="muted">
+                  <h2 className="text-2xl leading-tight font-semibold">
+                    Kirim Uang (E-Wallet Transfer)
+                  </h2>
+                  <p className="text-fg-muted text-sm leading-normal">
                     Prototipe alur transaksi instan menggunakan komponen Button, Card, Dialog,
                     TextField, dsb.
-                  </Typography>
+                  </p>
                 </div>
 
                 {/* Filter Drawer Trigger */}
@@ -419,9 +417,7 @@ export default function App() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Wallet className="text-action-primary size-4" />
-                        <Typography variant="small" className="font-medium">
-                          SisapPay Utama
-                        </Typography>
+                        <span className="text-sm font-medium">SisapPay Utama</span>
                       </div>
                       <Chip color="green" type="soft" label="Aktif" />
                     </div>
@@ -541,10 +537,10 @@ export default function App() {
         {activeTab === "catalog" && (
           <div className="flex flex-col gap-8">
             <div>
-              <Typography variant="h2">Komponen & Token Catalog</Typography>
-              <Typography variant="muted">
+              <h2 className="text-2xl leading-tight font-semibold">Komponen & Token Catalog</h2>
+              <p className="text-fg-muted text-sm leading-normal">
                 Daftar semua komponen design system aktif beserta varian dan interaksinya.
-              </Typography>
+              </p>
             </div>
 
             {/* Buttons */}
@@ -600,29 +596,20 @@ export default function App() {
               </CardContent>
             </Card>
 
-            {/* Chips & Typography */}
+            {/* Chips */}
             <Card>
               <CardHeader>
                 <CardTitle>3. Chip Indikator</CardTitle>
                 <CardDescription>Chip status (Figma 91105:6246).</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Chip color="tosca" type="soft" label="Tosca Soft" showIconR />
-                    <Chip color="green" type="outline" label="Green Outline" showIconR />
-                    <Chip color="red" type="solid" label="Red Solid" showIconR />
-                    <Chip color="orange" type="soft" label="Orange Soft" />
-                    <Chip color="blue" type="soft" label="Blue Soft" />
-                    <Chip color="grey" type="outline" label="Grey Outline" />
-                  </div>
-                  <div className="border-border-default space-y-1 border-t pt-3">
-                    <Typography variant="h3">Heading 3 Tipografi</Typography>
-                    <Typography variant="body">
-                      Paragraf body teks yang menggunakan token semantik.
-                    </Typography>
-                    <Typography variant="code">npm run tokens:build</Typography>
-                  </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Chip color="tosca" type="soft" label="Tosca Soft" showIconR />
+                  <Chip color="green" type="outline" label="Green Outline" showIconR />
+                  <Chip color="red" type="solid" label="Red Solid" showIconR />
+                  <Chip color="orange" type="soft" label="Orange Soft" />
+                  <Chip color="blue" type="soft" label="Blue Soft" />
+                  <Chip color="grey" type="outline" label="Grey Outline" />
                 </div>
               </CardContent>
             </Card>
@@ -736,15 +723,13 @@ export default function App() {
               <div className="bg-action-secondary text-fg-muted flex size-14 items-center justify-center rounded-full">
                 <Category className="size-7" />
               </div>
-              <Typography variant="h3" className="mt-4">
-                Blank Prototyping Canvas
-              </Typography>
-              <Typography variant="muted" className="mt-1 max-w-md">
+              <h3 className="mt-4 text-xl leading-tight font-semibold">Blank Prototyping Canvas</h3>
+              <p className="text-fg-muted mt-1 max-w-md text-sm leading-normal">
                 Area siap pakai untuk membuat tampilan prototipe baru. Mintalah Gemini:{" "}
                 <em className="text-fg-default">
                   "Buat halaman analitik / settings di canvas playground."
                 </em>
-              </Typography>
+              </p>
               <div className="mt-6 flex gap-3">
                 <Button variant="primary" leftIcon={<Add className="size-4" />}>
                   Tambah Komponen
