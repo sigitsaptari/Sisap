@@ -53,7 +53,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
       >
         <path
           d="M4.5 10.5L8.5 14.5L15.5 6.5"
-          stroke="currentColor"
+          stroke="#ffffff"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
