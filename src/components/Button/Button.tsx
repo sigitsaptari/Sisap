@@ -1,23 +1,11 @@
-import { cloneElement, forwardRef, isValidElement } from "react";
+import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { Add, ArrowRight, Refresh2 } from "iconsax-react";
 import { cn } from "../../utils/cn";
+import { renderIcon } from "../../utils/icon";
 import type { ButtonProps } from "./Button.types";
 import { useButton } from "./useButton";
-
-const renderIcon = (icon: React.ReactNode, sizePx: number) => {
-  if (!icon || !isValidElement(icon)) return icon;
-  const iconProps = (icon.props || {}) as {
-    color?: string;
-    size?: number | string;
-    className?: string;
-  };
-  return cloneElement(icon as React.ReactElement<Record<string, unknown>>, {
-    color: iconProps.color ?? "currentColor",
-    size: iconProps.size ?? sizePx,
-  });
-};
 
 export const buttonVariants = cva(
   "inline-flex select-none items-center justify-center whitespace-nowrap rounded-button font-medium outline-none transition-[background-color,border-color,color,box-shadow] focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg-canvas disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed",

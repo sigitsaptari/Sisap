@@ -212,7 +212,12 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                   className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
                   aria-label="Informasi tambahan"
                 >
-                  <InfoCircle className="size-4" aria-hidden="true" />
+                  <InfoCircle
+                    color="currentColor"
+                    size={16}
+                    className="size-4"
+                    aria-hidden="true"
+                  />
                 </span>
               )}
             </div>
@@ -276,6 +281,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             {isError ? (
               <>
                 <Danger
+                  color="currentColor"
+                  size={isSm ? 12 : isLg ? 20 : 16}
                   className={cn("shrink-0 text-[#ee3124]", statusIconSizes[size])}
                   aria-hidden="true"
                 />
@@ -288,6 +295,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ) : isSuccess ? (
               <>
                 <TickCircle
+                  color="currentColor"
+                  size={isSm ? 12 : isLg ? 20 : 16}
                   className={cn("shrink-0 text-[#25974c]", statusIconSizes[size])}
                   aria-hidden="true"
                 />

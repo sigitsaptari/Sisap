@@ -2,6 +2,7 @@ import { forwardRef, useId, useState } from "react";
 import { cva } from "class-variance-authority";
 import { Danger, InfoCircle, TickCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
+import { renderIcon } from "../../utils/icon";
 import type { TextFieldProps, TextFieldSize, TextFieldState } from "./TextField.types";
 
 export const textFieldVariants = cva(
@@ -141,6 +142,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const isSm = size === "sm";
     const isLg = size === "lg";
 
+    const iconPixelSize = isSm ? 16 : isLg ? 24 : 20;
     const labelSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
 
     const descSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
@@ -189,7 +191,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
                   aria-label="Informasi tambahan"
                 >
-                  <InfoCircle className="size-4" aria-hidden="true" />
+                  <InfoCircle
+                    color="currentColor"
+                    size={16}
+                    className="size-4"
+                    aria-hidden="true"
+                  />
                 </span>
               )}
             </div>
@@ -226,7 +233,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               className={cn("inline-flex shrink-0 items-center text-[#686e76]", iconSizes[size])}
               aria-hidden="true"
             >
-              {resolvedLeftIcon}
+              {renderIcon(resolvedLeftIcon, iconPixelSize)}
             </span>
           )}
 
@@ -260,7 +267,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               className={cn("inline-flex shrink-0 items-center text-[#686e76]", iconSizes[size])}
               aria-hidden="true"
             >
-              {resolvedRightIcon}
+              {renderIcon(resolvedRightIcon, iconPixelSize)}
             </span>
           )}
 
@@ -287,7 +294,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   hintSizeClass,
                 )}
               >
-                <Danger className="size-3.5 shrink-0" aria-hidden="true" />
+                <Danger
+                  color="currentColor"
+                  size={14}
+                  className="size-3.5 shrink-0"
+                  aria-hidden="true"
+                />
                 <span>{errorMessage}</span>
               </p>
             ) : successMessage ? (
@@ -298,7 +310,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   hintSizeClass,
                 )}
               >
-                <TickCircle className="size-3.5 shrink-0" aria-hidden="true" />
+                <TickCircle
+                  color="currentColor"
+                  size={14}
+                  className="size-3.5 shrink-0"
+                  aria-hidden="true"
+                />
                 <span>{successMessage}</span>
               </p>
             ) : showHint ? (

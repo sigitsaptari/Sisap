@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { CloseCircle } from "iconsax-react";
 import { cn } from "../../utils/cn";
+import { renderIcon } from "../../utils/icon";
 import type { ChipColor, ChipProps, ChipSize, ChipType } from "./Chip.types";
 
 export const chipVariants = cva(
@@ -117,6 +118,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
       colorProp === "dark blue" ? "dark-blue" : colorProp;
     const hasCloseIcon = Boolean(showIconR ?? removable ?? onDismiss);
     const content = label ?? children;
+    const iconPixelSize = size === "sm" ? 12 : size === "lg" ? 20 : 16;
 
     return (
       <span
@@ -124,7 +126,11 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
         className={cn(chipVariants({ type, color: normalizedColor, size }), className)}
         {...rest}
       >
-        {icon && <span className="inline-flex shrink-0 items-center">{icon}</span>}
+        {icon && (
+          <span className="inline-flex shrink-0 items-center">
+            {renderIcon(icon, iconPixelSize)}
+          </span>
+        )}
         <span className="truncate">{content}</span>
         {hasCloseIcon && (
           <button
@@ -136,7 +142,12 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
             }}
             className="focus-visible:ring-action-primary inline-flex shrink-0 cursor-pointer items-center justify-center rounded-xs transition-opacity hover:opacity-75 focus-visible:ring-1 focus-visible:outline-none"
           >
-            <CloseCircle className={iconSizes[size]} aria-hidden="true" />
+            <CloseCircle
+              color="currentColor"
+              size={iconPixelSize}
+              className={iconSizes[size]}
+              aria-hidden="true"
+            />
           </button>
         )}
       </span>

@@ -9,3 +9,11 @@
 body {
   font-family: var(--ds-typography-font-family-sans);
 }
+
+/* React 19 compatibility for iconsax-react (defaultProps workaround) */
+svg path[stroke-width]:not([stroke]) {
+  stroke: currentColor;
+}
+svg path:not([fill]):not([stroke]):not([stroke-width]) {
+  fill: currentColor;
+}

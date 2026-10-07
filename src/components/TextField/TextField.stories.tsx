@@ -52,10 +52,14 @@ export default meta;
 type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
-  args: {
-    leftIcon: <SearchNormal1 className="size-full" />,
-    rightIcon: <ArrowDown2 className="size-full" />,
-  },
+  render: (args) => (
+    <TextField
+      {...args}
+      leftIcon={args.leftIcon ?? <SearchNormal1 className="size-full" />}
+      rightIcon={args.rightIcon ?? <ArrowDown2 className="size-full" />}
+    />
+  ),
+  args: {},
 };
 
 export const Sizes: Story = {

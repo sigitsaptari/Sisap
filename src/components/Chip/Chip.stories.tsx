@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { TickCircle } from "iconsax-react";
 import { Chip } from "./Chip";
 import type { ChipColor, ChipSize, ChipType } from "./Chip.types";
 
@@ -51,6 +52,18 @@ export const Outline: Story = {
 
 export const Solid: Story = {
   args: { type: "solid", color: "red", label: "Dibatalkan" },
+};
+
+export const WithIcon: Story = {
+  render: (args) => (
+    <Chip {...args} icon={<TickCircle />} label="Terverifikasi" color="green" showIconR />
+  ),
+  args: {
+    type: "soft",
+    color: "green",
+    label: "Terverifikasi",
+    showIconR: true,
+  },
 };
 
 export const Sizes: Story = {
