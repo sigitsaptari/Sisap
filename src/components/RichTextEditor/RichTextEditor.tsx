@@ -110,6 +110,37 @@ export function RichTextEditor({
     }
   }, [currentValue]);
 
+  const [activeFormats, setActiveFormats] = useState<Record<string, boolean>>({});
+
+  const updateActiveFormats = () => {
+    if (disabled || !editorRef.current) return;
+    const formats = [
+      'bold', 'italic', 'underline', 'strikeThrough', 
+      'justifyLeft', 'justifyCenter', 'justifyRight', 
+      'insertOrderedList', 'insertUnorderedList'
+    ];
+    const current: Record<string, boolean> = {};
+    
+    formats.forEach(cmd => {
+      try {
+        current[cmd] = document.queryCommandState(cmd);
+      } catch (e) {
+        current[cmd] = false;
+      }
+    });
+
+    try {
+      const block = document.queryCommandValue('formatBlock');
+      current['H1'] = block.toLowerCase() === 'h1';
+      current['H2'] = block.toLowerCase() === 'h2';
+    } catch (e) {
+      current['H1'] = false;
+      current['H2'] = false;
+    }
+
+    setActiveFormats(current);
+  };
+
   const handleInput = () => {
     if (editorRef.current) {
       const html = editorRef.current.innerHTML;
@@ -117,6 +148,7 @@ export function RichTextEditor({
       setCurrentLength(text.length);
       if (!isControlled) setInternalValue(html);
       onChange?.(html);
+      updateActiveFormats();
     }
   };
 
@@ -125,18 +157,21 @@ export function RichTextEditor({
     document.execCommand(command, false, arg);
     editorRef.current?.focus();
     handleInput();
+    updateActiveFormats();
   };
 
   const ToolbarButton = ({ 
     icon, 
     onClick, 
     title,
-    text
+    text,
+    isActive
   }: { 
     icon?: React.ReactNode; 
     onClick: () => void; 
     title: string;
     text?: string;
+    isActive?: boolean;
   }) => (
     <button
       type="button"
@@ -147,8 +182,12 @@ export function RichTextEditor({
         onClick();
       }}
       className={cn(
-        "flex h-6 min-w-6 items-center justify-center rounded p-1 transition-colors text-[#444b55] hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800",
-        disabled && "cursor-not-allowed opacity-50 hover:bg-transparent"
+        "flex h-7 min-w-7 items-center justify-center rounded p-1 transition-all text-[#444b55] dark:text-neutral-200",
+        disabled 
+          ? "cursor-not-allowed opacity-50" 
+          : isActive 
+            ? "bg-[#e6f5f6] text-[#009ea9] dark:bg-[#009ea9]/20" 
+            : "hover:bg-neutral-200 dark:hover:bg-neutral-800"
       )}
     >
       {text ? <span className="text-sm font-bold">{text}</span> : icon}
@@ -179,24 +218,24 @@ export function RichTextEditor({
     >
       <div className={cn(rteVariants({ state: effectiveState }), className)}>
         {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-1 border-b border-[#d5d7d9] bg-[#f9fafa] px-4 py-2.5 dark:border-neutral-700 dark:bg-neutral-800/50">
-          <ToolbarButton text="H1" title="Heading 1" onClick={() => executeCommand('formatBlock', 'H1')} />
-          <ToolbarButton text="H2" title="Heading 2" onClick={() => executeCommand('formatBlock', 'H2')} />
+        <div className="flex flex-wrap items-center gap-1 border-b border-[#d5d7d9] bg-[#f9fafa] px-4 py-2 dark:border-neutral-700 dark:bg-neutral-800/50">
+          <ToolbarButton text="H1" title="Heading 1" isActive={activeFormats['H1']} onClick={() => executeCommand('formatBlock', 'H1')} />
+          <ToolbarButton text="H2" title="Heading 2" isActive={activeFormats['H2']} onClick={() => executeCommand('formatBlock', 'H2')} />
           <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
           
-          <ToolbarButton icon={<TextBold size={18} />} title="Bold" onClick={() => executeCommand('bold')} />
-          <ToolbarButton icon={<TextItalic size={18} />} title="Italic" onClick={() => executeCommand('italic')} />
-          <ToolbarButton icon={<TextUnderline size={18} />} title="Underline" onClick={() => executeCommand('underline')} />
-          <ToolbarButton icon={<StrikethroughIcon className="size-[18px]" />} title="Strikethrough" onClick={() => executeCommand('strikeThrough')} />
+          <ToolbarButton icon={<TextBold size={18} />} title="Bold" isActive={activeFormats['bold']} onClick={() => executeCommand('bold')} />
+          <ToolbarButton icon={<TextItalic size={18} />} title="Italic" isActive={activeFormats['italic']} onClick={() => executeCommand('italic')} />
+          <ToolbarButton icon={<TextUnderline size={18} />} title="Underline" isActive={activeFormats['underline']} onClick={() => executeCommand('underline')} />
+          <ToolbarButton icon={<StrikethroughIcon className="size-[18px]" />} title="Strikethrough" isActive={activeFormats['strikeThrough']} onClick={() => executeCommand('strikeThrough')} />
           <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
           
-          <ToolbarButton icon={<TextalignLeft size={18} />} title="Align Left" onClick={() => executeCommand('justifyLeft')} />
-          <ToolbarButton icon={<TextalignCenter size={18} />} title="Align Center" onClick={() => executeCommand('justifyCenter')} />
-          <ToolbarButton icon={<TextalignRight size={18} />} title="Align Right" onClick={() => executeCommand('justifyRight')} />
+          <ToolbarButton icon={<TextalignLeft size={18} />} title="Align Left" isActive={activeFormats['justifyLeft']} onClick={() => executeCommand('justifyLeft')} />
+          <ToolbarButton icon={<TextalignCenter size={18} />} title="Align Center" isActive={activeFormats['justifyCenter']} onClick={() => executeCommand('justifyCenter')} />
+          <ToolbarButton icon={<TextalignRight size={18} />} title="Align Right" isActive={activeFormats['justifyRight']} onClick={() => executeCommand('justifyRight')} />
           <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
           
-          <ToolbarButton icon={<OrderedListIcon className="size-[18px]" />} title="Ordered List" onClick={() => executeCommand('insertOrderedList')} />
-          <ToolbarButton icon={<UnorderedListIcon className="size-[18px]" />} title="Unordered List" onClick={() => executeCommand('insertUnorderedList')} />
+          <ToolbarButton icon={<OrderedListIcon className="size-[18px]" />} title="Ordered List" isActive={activeFormats['insertOrderedList']} onClick={() => executeCommand('insertOrderedList')} />
+          <ToolbarButton icon={<UnorderedListIcon className="size-[18px]" />} title="Unordered List" isActive={activeFormats['insertUnorderedList']} onClick={() => executeCommand('insertUnorderedList')} />
         </div>
         
         {/* Editor Area */}
@@ -208,6 +247,8 @@ export function RichTextEditor({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onInput={handleInput}
+            onKeyUp={updateActiveFormats}
+            onMouseUp={updateActiveFormats}
             className={cn(
               "min-h-[110px] w-full px-4 py-3 text-sm text-[#444b55] outline-none dark:text-neutral-100",
               "prose prose-sm dark:prose-invert max-w-none focus:outline-none",
