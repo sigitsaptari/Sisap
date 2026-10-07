@@ -1,0 +1,22 @@
+{
+  "stepper": {
+    "indicator": {
+      "size": { "$type": "dimension", "$value": "44px" },
+      "border-width": { "$type": "dimension", "$value": "2px" },
+      "default-border": { "$type": "color", "$value": "{color.neutral.200}" },
+      "default-bg": { "$type": "color", "$value": "{color.neutral.0}" },
+      "default-fg": { "$type": "color", "$value": "{color.neutral.500}" },
+      "active-border": { "$type": "color", "$value": "{color.brand.500}" },
+      "active-bg": { "$type": "color", "$value": "{color.neutral.0}" },
+      "active-fg": { "$type": "color", "$value": "{color.neutral.500}" },
+      "success-border": { "$type": "color", "$value": "{color.brand.500}" },
+      "success-bg": { "$type": "color", "$value": "{color.brand.500}" },
+      "success-fg": { "$type": "color", "$value": "{color.neutral.0}" }
+    },
+    "connector": {
+      "thickness": { "$type": "dimension", "$value": "2px" },
+      "default": { "$type": "color", "$value": "{color.neutral.200}" },
+      "active": { "$type": "color", "$value": "{color.brand.500}" }
+    }
+  }
+}

@@ -25,3 +25,14 @@ export type { ChipProps, ChipColor, ChipType, ChipSize } from "./components/Chip
 
 export { FormFieldWrapper } from "./components/common";
 export type { FormFieldWrapperProps, FormFieldSize } from "./components/common";
+
+export { Stepper, StepperItem, Step } from "./components/Stepper";
+export type {
+  StepperProps,
+  StepperItemProps,
+  StepItemData,
+  StepperMode,
+  StepperPosition,
+  StepperState,
+  StepperTextOn,
+} from "./components/Stepper";

@@ -16,7 +16,7 @@ import {
   TickCircle,
   Wallet,
 } from "iconsax-react";
-import { Button, Checkbox, Chip, TextArea, TextField } from "@sisapds/react";
+import { Button, Checkbox, Chip, Stepper, TextArea, TextField } from "@sisapds/react";
 import {
   Card,
   CardContent,
@@ -708,6 +708,50 @@ export default function App() {
                       counterText="43/500"
                     />
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Stepper Component Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>5. Stepper (Figma 82763:3220)</CardTitle>
+                <CardDescription>
+                  Komponen Stepper navigasi proses — mode Horizontal (Text Bottom & Right) dan
+                  Vertical (Text Right), dengan visual status (Default, Active, Success).
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                <div>
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    Horizontal — Text On Bottom
+                  </h4>
+                  <Stepper
+                    currentStep={2}
+                    mode="horizontal"
+                    textOn="bottom"
+                    steps={[
+                      { title: "Verifikasi Berkas", description: "Upload dokumen legalitas" },
+                      { title: "Review Kurasi", description: "Pengecekan spesifikasi barang" },
+                      { title: "Terbitkan Kontrak", description: "Penandatanganan SPK online" },
+                    ]}
+                  />
+                </div>
+
+                <div className="border-border-default border-t pt-6">
+                  <h4 className="text-action-primary mb-3 text-xs font-semibold tracking-wider uppercase">
+                    Horizontal — Text On Right
+                  </h4>
+                  <Stepper
+                    currentStep={2}
+                    mode="horizontal"
+                    textOn="right"
+                    steps={[
+                      { title: "Langkah 1", description: "Pendaftaran" },
+                      { title: "Langkah 2", description: "Verifikasi" },
+                      { title: "Langkah 3", description: "Selesai" },
+                    ]}
+                  />
                 </div>
               </CardContent>
             </Card>

@@ -96,6 +96,17 @@
   --shadow-md: var(--ds-shadow-md);
   --shadow-sm: var(--ds-shadow-sm);
   --shadow-xl: var(--ds-shadow-xl);
+  --color-stepper-connector-active: var(--ds-stepper-connector-active);
+  --color-stepper-connector-default: var(--ds-stepper-connector-default);
+  --color-stepper-indicator-active-bg: var(--ds-stepper-indicator-active-bg);
+  --color-stepper-indicator-active-border: var(--ds-stepper-indicator-active-border);
+  --color-stepper-indicator-active-fg: var(--ds-stepper-indicator-active-fg);
+  --color-stepper-indicator-default-bg: var(--ds-stepper-indicator-default-bg);
+  --color-stepper-indicator-default-border: var(--ds-stepper-indicator-default-border);
+  --color-stepper-indicator-default-fg: var(--ds-stepper-indicator-default-fg);
+  --color-stepper-indicator-success-bg: var(--ds-stepper-indicator-success-bg);
+  --color-stepper-indicator-success-border: var(--ds-stepper-indicator-success-border);
+  --color-stepper-indicator-success-fg: var(--ds-stepper-indicator-success-fg);
   --color-text-field-bg-default: var(--ds-text-field-bg-default);
   --color-text-field-bg-disabled: var(--ds-text-field-bg-disabled);
   --color-text-field-border-default: var(--ds-text-field-border-default);
