@@ -15,7 +15,7 @@ Sisap/
 │   └── build/           # Generated CSS variables / Tailwind @theme
 ├── scripts/             # Token build tooling
 ├── src/                 # Library (@sisapds/react)
-│   ├── components/      # Button, Input, Checkbox, Typography, Badge, Card, Stack, Grid, Dialog, Drawer, DropdownMenu
+│   ├── components/      # Button, Checkbox, Typography, Badge, Chip, TextField, TextArea, Stack, Grid
 │   ├── hooks/           # useDisclosure, …
 │   ├── utils/           # cn(), …
 │   └── index.ts         # Core barrel export
@@ -65,11 +65,11 @@ proyek — set token OAuth/PAT via environment `FIGMA_MCP_TOKEN` atau file
 
 ## Stack
 
-| Bagian            | Teknologi                                    |
-| ----------------- | -------------------------------------------- |
-| Framework         | React 19 + TypeScript (strict)               |
-| Styling           | Tailwind CSS v4 + CSS variables (DTCG)       |
-| Headless          | Radix UI (`@radix-ui/react-dialog`, `-slot`) |
-| Icons             | Lucide React                                 |
-| Catalog & testing | Storybook 10                                 |
-| Playground        | Vite                                         |
+| Bagian            | Teknologi                                      |
+| ----------------- | ---------------------------------------------- |
+| Framework         | React 19 + TypeScript (strict)                 |
+| Styling           | Tailwind CSS v4 + CSS variables (DTCG)         |
+| Headless          | Radix UI (`@radix-ui/react-checkbox`, `-slot`) |
+| Icons             | Lucide React                                   |
+| Catalog & testing | Storybook 10                                   |
+| Playground        | Vite                                           |

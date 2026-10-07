@@ -1,40 +1,92 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
 
-const meta: Meta<typeof Checkbox> = {
+const meta = {
   title: "Components/Checkbox",
   component: Checkbox,
+  parameters: {
+    layout: "centered",
+  },
   tags: ["autodocs"],
-  args: { "aria-label": "Example checkbox" },
-};
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Size of the checkbox",
+    },
+    text: {
+      control: "text",
+      description: "Text label for the checkbox",
+    },
+    showText: {
+      control: "boolean",
+      description: "Whether to show the text label",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Whether the checkbox is disabled",
+    },
+  },
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
-type Story = StoryObj<typeof Checkbox>;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-export const Checked: Story = { args: { defaultChecked: true } };
-export const Indeterminate: Story = { args: { checked: "indeterminate" } };
-export const Disabled: Story = { args: { disabled: true } };
-
-export const WithLabel: Story = {
-  render: () => (
-    <div className="flex items-center gap-2">
-      <Checkbox id="terms" aria-label={undefined} />
-      <label htmlFor="terms" className="text-fg-default text-sm">
-        Accept terms and conditions
-      </label>
-    </div>
-  ),
+export const Default: Story = {
+  args: {
+    size: "md",
+    text: "checkbox_text",
+    showText: true,
+  },
 };
 
-export const AllStates: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Checkbox aria-label="Unchecked" />
-      <Checkbox aria-label="Checked" defaultChecked />
-      <Checkbox aria-label="Indeterminate" checked="indeterminate" />
-      <Checkbox aria-label="Disabled" disabled />
-      <Checkbox aria-label="Disabled checked" disabled defaultChecked />
-    </div>
-  ),
+export const Small: Story = {
+  args: {
+    size: "sm",
+    text: "checkbox_text",
+    showText: true,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    text: "checkbox_text",
+    showText: true,
+  },
+};
+
+export const Checked: Story = {
+  args: {
+    size: "md",
+    text: "checkbox_text",
+    showText: true,
+    checked: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    size: "md",
+    text: "checkbox_text",
+    showText: true,
+    disabled: true,
+  },
+};
+
+export const CheckedDisabled: Story = {
+  args: {
+    size: "md",
+    text: "checkbox_text",
+    showText: true,
+    checked: true,
+    disabled: true,
+  },
+};
+
+export const WithoutText: Story = {
+  args: {
+    size: "md",
+    showText: false,
+  },
 };

@@ -19,14 +19,21 @@ import {
 import {
   Badge,
   Button,
+  Checkbox,
+  Chip,
+  Grid,
+  Stack,
+  TextArea,
+  TextField,
+  Typography,
+} from "@sisapds/react";
+import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  Checkbox,
-  Chip,
   Dialog,
   DialogClose,
   DialogContent,
@@ -47,12 +54,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Grid,
-  Input,
-  Stack,
-  TextArea,
-  Typography,
-} from "@sisapds/react";
+} from "./components/LocalUi";
 
 type ActiveTab = "ewallet" | "catalog" | "canvas";
 
@@ -195,20 +197,18 @@ export default function App() {
                         >
                           Limit Harian Transfer
                         </label>
-                        <Input id="daily-limit" defaultValue="Rp 25.000.000" />
+                        <TextField id="daily-limit" defaultValue="Rp 25.000.000" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Checkbox id="biometric-auth" defaultChecked />
-                        <label htmlFor="biometric-auth" className="text-fg-default text-sm">
-                          Wajib verifikasi biometrik / PIN
-                        </label>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Checkbox id="instant-receipt" defaultChecked />
-                        <label htmlFor="instant-receipt" className="text-fg-default text-sm">
-                          Kirim e-receipt otomatis via WhatsApp
-                        </label>
-                      </div>
+                      <Checkbox
+                        id="biometric-auth"
+                        text="Wajib verifikasi biometrik / PIN"
+                        defaultChecked
+                      />
+                      <Checkbox
+                        id="instant-receipt"
+                        text="Kirim e-receipt otomatis via WhatsApp"
+                        defaultChecked
+                      />
                     </Stack>
                     <DrawerFooter>
                       <DrawerClose asChild>
@@ -250,7 +250,7 @@ export default function App() {
                           </label>
                           <span className="text-fg-muted">Tersambung: Sigit Saptari</span>
                         </div>
-                        <Input
+                        <TextField
                           id="recipient-input"
                           type="tel"
                           value={recipient}
@@ -267,7 +267,7 @@ export default function App() {
                         >
                           Nominal Transfer (Rp)
                         </label>
-                        <Input
+                        <TextField
                           id="amount-input"
                           type="number"
                           value={amount}
@@ -312,15 +312,13 @@ export default function App() {
                       />
 
                       {/* Simpan kontak checkbox */}
-                      <div className="flex items-center gap-2 pt-1">
+                      <div className="pt-1">
                         <Checkbox
                           id="save-contact"
+                          text="Simpan sebagai kontak favorit"
                           checked={saveContact}
                           onCheckedChange={(c) => setSaveContact(Boolean(c))}
                         />
-                        <label htmlFor="save-contact" className="text-fg-default text-sm">
-                          Simpan sebagai kontak favorit
-                        </label>
                       </div>
                     </Stack>
                   </CardContent>
@@ -585,37 +583,28 @@ export default function App() {
               </CardContent>
             </Card>
 
-            {/* Inputs & Checkboxes */}
+            {/* TextFields & Checkboxes */}
             <Card>
               <CardHeader>
-                <CardTitle>2. Input & Checkbox</CardTitle>
+                <CardTitle>2. TextField & Checkbox</CardTitle>
                 <CardDescription>
-                  Form controls dengan status default, invalid, dan indeterminate.
+                  Form controls sesuai PaDi DS v3.0 — TextField dengan state dan Checkbox varian
+                  ukuran.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Grid columns={3} gap={4}>
-                  <div className="space-y-1">
-                    <label className="text-xs font-medium">Input Standard</label>
-                    <Input placeholder="Type here..." />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-medium">Input Invalid</label>
-                    <Input invalid defaultValue="invalid-email" />
-                  </div>
+                  <TextField label="TextField Standard" placeholder="Type here..." />
+                  <TextField
+                    label="TextField Error"
+                    state="error"
+                    errorMessage="Format tidak valid"
+                    defaultValue="invalid-email"
+                  />
                   <div className="space-y-2 pt-2">
-                    <div className="flex items-center gap-2">
-                      <Checkbox id="c1" defaultChecked />
-                      <label htmlFor="c1" className="text-sm">
-                        Checkbox Checked
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Checkbox id="c2" checked="indeterminate" />
-                      <label htmlFor="c2" className="text-sm">
-                        Indeterminate
-                      </label>
-                    </div>
+                    <Checkbox id="c1" text="Checkbox Checked" defaultChecked />
+                    <Checkbox id="c2" text="Checkbox Medium" size="md" />
+                    <Checkbox id="c3" text="Checkbox Large" size="lg" />
                   </div>
                 </Grid>
               </CardContent>
