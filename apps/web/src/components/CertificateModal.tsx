@@ -1,0 +1,132 @@
+import { useState } from "react";
+import { CloseCircle, DocumentUpload } from "iconsax-react";
+import { Button, TextField, SelectField } from "@sisapds/react";
+
+export interface CertificateItem {
+  id: string;
+  type: string;
+  number?: string;
+  status: "Aktif" | "Kedaluwarsa" | "-";
+  expiryDate?: string;
+  docUrl?: string;
+  webUrl?: string;
+}
+
+interface CertificateModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAdd: (certificate: CertificateItem) => void;
+}
+
+export function CertificateModal({ isOpen, onClose, onAdd }: CertificateModalProps) {
+  const [certType, setCertType] = useState("TKDN");
+  const [certNumber, setCertNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("2026-12-31");
+  const [fileName, setFileName] = useState<string | null>(null);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newCert: CertificateItem = {
+      id: `cert-${Date.now()}`,
+      type: certType === "TKDN" ? `TKDN (${certNumber || "80%"})` : certType,
+      number: certType === "TKDN" ? undefined : certNumber || "ID1234567890",
+      status: "Aktif",
+      expiryDate: certType === "TKDN" ? undefined : expiryDate || "12-02-2027",
+      docUrl: "https://example.com/document.pdf",
+      webUrl: certType === "TKDN" ? "https://kemenperin.go.id" : undefined,
+    };
+    onAdd(newCert);
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/50 p-4 backdrop-blur-xs">
+      <div className="w-full max-w-lg rounded-[12px] bg-[#ffffff] shadow-2xl overflow-hidden border border-[#e7e8e9] animate-in fade-in zoom-in-95 duration-150">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-[#e7e8e9] px-6 py-4">
+          <h3 className="text-base font-bold text-[#444b55]">Tambah Sertifikat Produk</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-[#8c9197] hover:text-[#444b55] transition-colors cursor-pointer"
+            aria-label="Tutup modal"
+          >
+            <CloseCircle size={22} variant="Bulk" color="#8c9197" />
+          </button>
+        </div>
+
+        {/* Form Body */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
+          <SelectField
+            label="Jenis Sertifikat"
+            isWajib
+            placeholder="Pilih Sertifikat"
+            value={certType}
+            onChange={(val) => setCertType(val)}
+            options={[
+              { label: "TKDN (Tingkat Komponen Dalam Negeri)", value: "TKDN" },
+              { label: "MUI (Sertifikat Halal)", value: "MUI (Sertifikat Halal)" },
+              { label: "SNI (Standar Nasional Indonesia)", value: "SNI" },
+              { label: "BPOM MD", value: "BPOM MD" },
+              { label: "SPP-IRT", value: "SPP-IRT" },
+            ]}
+          />
+
+          <TextField
+            label={certType === "TKDN" ? "Persentase TKDN (%)" : "Nomor Sertifikat / Registrasi"}
+            required
+            placeholder={certType === "TKDN" ? "Contoh: 80%" : "Contoh: ID26356455565746561"}
+            value={certNumber}
+            onChange={(e) => setCertNumber(e.target.value)}
+          />
+
+          {certType !== "TKDN" && (
+            <TextField
+              label="Tanggal Kedaluwarsa"
+              type="date"
+              required
+              value={expiryDate}
+              onChange={(e) => setExpiryDate(e.target.value)}
+            />
+          )}
+
+          {/* Upload Dokumen */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-[#444b55]">
+              Upload Dokumen Sertifikat <span className="text-[#ee3124] italic">*</span>
+            </label>
+            <label className="flex flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-4 text-center cursor-pointer hover:border-[#009ea9] hover:bg-[#009ea9]/5 transition-colors">
+              <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-1" />
+              <span className="text-xs font-semibold text-[#009ea9]">
+                {fileName ? fileName : "Pilih Berkas PDF / JPG"}
+              </span>
+              <span className="text-[11px] text-[#8c9197]">Maks. ukuran 5MB</span>
+              <input
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files?.[0]) {
+                    setFileName(e.target.files[0].name);
+                  }
+                }}
+              />
+            </label>
+          </div>
+
+          {/* Buttons */}
+          <div className="mt-4 flex items-center justify-end gap-3 border-t border-[#f2f4f7] pt-4">
+            <Button type="button" variant="outline" size="md" onClick={onClose}>
+              Batal
+            </Button>
+            <Button type="submit" variant="primary" size="md">
+              Simpan Sertifikat
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
