@@ -2,8 +2,6 @@ import { useState, useMemo } from "react";
 import {
   Danger,
   InfoCircle,
-  Edit2,
-  Trash,
   CloseCircle,
   TickCircle,
   ArrowDown2,
@@ -26,6 +24,28 @@ import { SellerSidebar } from "./components/SellerSidebar";
 import { AddProductStepper } from "./components/AddProductStepper";
 import { CertificateModal, type CertificateItem } from "./components/CertificateModal";
 import { PublishSuccessModal } from "./components/PublishSuccessModal";
+
+function EditIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
+  return (
+    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#009EA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M16.04 3.02L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.2 16.44 12.79 16.14 13.1 15.84L20.98 7.96C22.34 6.6 22.98 5.02 20.98 3.02C18.98 1.02 17.4 1.66 16.04 3.02Z" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14.91 4.15C15.58 6.54 17.45 8.41 19.85 9.09" stroke="#009EA9" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function TrashIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
+  return (
+    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 5.98C17.67 5.65 14.32 5.48 10.98 5.48C9 5.48 7.02 5.58 5.04 5.78L3 5.98" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M18.85 9.14L18.2 19.21C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M10.33 16.5H13.66" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9.5 12.5H14.5" stroke="#EE3124" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -125,6 +145,7 @@ export default function App() {
       id: "cert-4",
       type: "BPOM MD",
       number: "MD263564555657465",
+      numberBold: true,
       status: "Aktif",
       expiryDate: "12-02-2025",
       docUrl: "https://example.com/doc",
@@ -139,6 +160,7 @@ export default function App() {
     },
   ]);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [editingCert, setEditingCert] = useState<CertificateItem | null>(null);
 
   // ----------------------------------------------------
   // STEP 2 STATE: HARGA & STOK
@@ -520,138 +542,160 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Card 4: Sertifikat Produk (6954:14695) */}
-                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden bg-[#ffffff]">
-                  <div className="p-[16px] flex items-center justify-between">
+                {/* Card 4: Sertifikat Produk (6954:14866) */}
+                <div className="w-[1096px] bg-white border border-[#d5d7d9] rounded-[8px] overflow-hidden">
+                  <div className="h-[56px] p-[16px] flex items-center justify-between">
                     <h2 className="font-['Ubuntu'] font-bold text-[16px] leading-[24px] text-[#444b55]">
                       Sertifikat Produk
                     </h2>
                     <Button
                       type="button"
                       variant="secondary"
-                      size="md"
-                      onClick={() => setIsCertModalOpen(true)}
+                      size="sm"
+                      onClick={() => {
+                        setEditingCert(null);
+                        setIsCertModalOpen(true);
+                      }}
                     >
                       Tambah Sertifikat
                     </Button>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="p-[24px]">
-                    {certificates.length === 0 ? (
-                      <div className="flex flex-col items-center justify-center py-12 text-center">
-                        <p className="font-['Ubuntu'] font-bold text-[16px] text-[#444b55]">
-                          Sertifikat Produk Belum ditambahkan.
-                        </p>
-                        <p className="font-['Ubuntu'] font-normal text-[14px] text-[#686e76] mt-1">
-                          Silahkan Tambahkan dahulu sertifikat produk untuk mendukung informasi produk Anda.
-                        </p>
+                  {certificates.length === 0 ? (
+                    <div className="py-[16px] px-0 flex flex-col items-center justify-center gap-[4px] text-center w-full">
+                      <p className="font-['Ubuntu'] font-bold text-[14px] leading-[21px] text-[#444b55]">
+                        Sertifikat Produk Belum ditambahkan.
+                      </p>
+                      <p className="font-['Ubuntu'] font-normal text-[12px] leading-[18px] text-[#444b55]">
+                        Silahkan Tambahkan dahulu sertifikat produk untuk mendukung informasi produk Anda
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="w-full">
+                      {/* Table Header (56px) */}
+                      <div className="h-[56px] bg-[#f9fafa] border-b border-[#8c9197] flex items-center font-['Ubuntu'] font-medium text-[14px] leading-[21px] text-[#444b55]">
+                        <div className="flex-1 px-[16px] py-[8px]">Jenis Sertifikat</div>
+                        <div className="w-[240px] px-[16px] py-[8px]">Status/Kedaluwarsa</div>
+                        <div className="w-[200px] px-[16px] py-[8px]">Lampiran</div>
+                        <div className="w-[105px] px-[16px] py-[8px]">Aksi</div>
                       </div>
-                    ) : (
-                      <div className="w-full border border-[#dee3ed] rounded-[4px] overflow-hidden">
-                        {/* Table Header (56px) */}
-                        <div className="h-[56px] bg-[#f9fafa] border-b border-[#8c9197] flex items-center px-[16px] text-[#444b55] font-['Ubuntu'] font-medium text-[14px] leading-[21px]">
-                          <div className="flex-1">Jenis Sertifikat</div>
-                          <div className="w-[240px]">Status/Kedaluwarsa</div>
-                          <div className="w-[200px]">Lampiran</div>
-                          <div className="w-[105px] text-center">Aksi</div>
-                        </div>
 
-                        {/* Table Rows (66px each, zebra stripe) */}
-                        <div className="divide-y divide-[#dee3ed]">
-                          {certificates.map((cert, index) => {
-                            const isZebra = index % 2 === 1;
-                            return (
-                              <div
-                                key={cert.id}
-                                className={`h-[66px] flex items-center px-[16px] text-[14px] leading-[21px] font-['Ubuntu'] transition-colors ${isZebra ? "bg-[#f9fafa]" : "bg-white"
-                                  }`}
-                              >
-                                {/* Column 1: Jenis Sertifikat */}
-                                <div className="flex-1 flex items-center gap-[8px] text-[#444b55]">
-                                  <span className="font-normal">{cert.type}</span>
-                                  {cert.number && (
-                                    <span className="font-medium text-[#444b55]">{cert.number}</span>
-                                  )}
-                                </div>
+                      {/* Table Rows (66px each, zebra stripe) */}
+                      <div className="w-full">
+                        {certificates.map((cert, index) => {
+                          const isZebra = index % 2 === 1;
+                          const isLast = index === certificates.length - 1;
+                          const isBoldNumber = cert.numberBold || cert.type === "BPOM MD";
 
-                                {/* Column 2: Status / Kedaluwarsa */}
-                                <div className="w-[240px] flex items-center gap-[8px] text-[#444b55]">
-                                  {cert.status === "-" ? (
-                                    <span className="text-[#444b55]">-</span>
-                                  ) : (
-                                    <>
-                                      <Chip
-                                        label={cert.status}
-                                        type="soft"
-                                        color={cert.status === "Aktif" ? "tosca" : "grey"}
-                                        size="sm"
-                                        className="h-[20px] text-[12px] font-medium"
-                                      />
-                                      {cert.expiryDate && (
-                                        <span className="font-normal text-[#444b55]">
-                                          {cert.expiryDate}
-                                        </span>
-                                      )}
-                                    </>
-                                  )}
-                                </div>
-
-                                {/* Column 3: Lampiran */}
-                                <div className="w-[200px] flex items-center gap-[8px] text-[#009ea9] font-medium text-[12px]">
-                                  {cert.docUrl && (
-                                    <a
-                                      href={cert.docUrl}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="hover:underline cursor-pointer"
-                                    >
-                                      Lihat doc.
-                                    </a>
-                                  )}
-                                  {cert.docUrl && cert.webUrl && (
-                                    <span className="text-[#d5d7d9]">|</span>
-                                  )}
-                                  {cert.webUrl && (
-                                    <a
-                                      href={cert.webUrl}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="hover:underline cursor-pointer"
-                                    >
-                                      Lihat di Web
-                                    </a>
-                                  )}
-                                </div>
-
-                                {/* Column 4: Aksi */}
-                                <div className="w-[105px] flex items-center justify-center gap-[12px]">
-                                  <button
-                                    type="button"
-                                    className="text-[#444b55] hover:text-[#009ea9] transition-colors cursor-pointer"
-                                    title="Ubah Sertifikat"
+                          return (
+                            <div
+                              key={cert.id}
+                              className={`h-[66px] flex items-center font-['Ubuntu'] ${
+                                isZebra ? "bg-[#f9fafa]" : "bg-white"
+                              } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
+                            >
+                              {/* Column 1: Jenis Sertifikat */}
+                              <div className="flex-1 px-[16px] py-[8px] flex items-center gap-[8px] text-[#444b55]">
+                                <span className="font-normal text-[14px] leading-[21px]">
+                                  {cert.type}
+                                </span>
+                                {cert.number && (
+                                  <span
+                                    className={`text-[14px] leading-[21px] text-[#444b55] ${
+                                      isBoldNumber ? "font-bold" : "font-medium"
+                                    }`}
                                   >
-                                    <Edit2 size={18} variant="Linear" />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      setCertificates((prev) =>
-                                        prev.filter((c) => c.id !== cert.id)
-                                      )
-                                    }
-                                    className="text-[#ee3124] hover:text-[#c4251a] transition-colors cursor-pointer"
-                                    title="Hapus Sertifikat"
-                                  >
-                                    <Trash size={18} variant="Linear" />
-                                  </button>
-                                </div>
+                                    {cert.number}
+                                  </span>
+                                )}
                               </div>
-                            );
-                          })}
-                        </div>
+
+                              {/* Column 2: Status / Kedaluwarsa */}
+                              <div className="w-[240px] px-[16px] py-[8px] flex items-center gap-[4px] text-[#444b55]">
+                                {cert.status === "-" ? (
+                                  <span className="font-normal text-[14px] leading-[21px] text-[#444b55]">
+                                    -
+                                  </span>
+                                ) : (
+                                  <>
+                                    <Chip
+                                      type="soft"
+                                      color={cert.status === "Aktif" ? "tosca" : "grey"}
+                                      size="sm"
+                                      label={cert.status}
+                                      className="h-[16px] px-[2px] rounded-[4px] text-[12px] leading-[18px] font-medium"
+                                    />
+                                    {cert.expiryDate && (
+                                      <span className="font-normal text-[14px] leading-[21px] text-[#444b55]">
+                                        {cert.expiryDate}
+                                      </span>
+                                    )}
+                                  </>
+                                )}
+                              </div>
+
+                              {/* Column 3: Lampiran */}
+                              <div className="w-[200px] px-[16px] py-[8px] flex items-center gap-[8px]">
+                                {cert.docUrl && (
+                                  <a
+                                    href={cert.docUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-medium text-[12px] leading-[18px] text-[#009ea9] hover:underline cursor-pointer"
+                                  >
+                                    Lihat doc.
+                                  </a>
+                                )}
+                                {cert.docUrl && cert.webUrl && (
+                                  <div className="h-[12px] w-px bg-[#d5d7d9] shrink-0" />
+                                )}
+                                {cert.webUrl && (
+                                  <a
+                                    href={cert.webUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-medium text-[12px] leading-[18px] text-[#009ea9] hover:underline cursor-pointer"
+                                  >
+                                    Lihat di Web
+                                  </a>
+                                )}
+                              </div>
+
+                              {/* Column 4: Aksi */}
+                              <div className="w-[105px] px-[16px] py-[8px] flex items-center gap-[12px]">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setEditingCert(cert);
+                                    setIsCertModalOpen(true);
+                                  }}
+                                  className="size-[24px] flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
+                                  title="Ubah Sertifikat"
+                                  aria-label="Ubah Sertifikat"
+                                >
+                                  <EditIcon />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setCertificates((prev) =>
+                                      prev.filter((c) => c.id !== cert.id)
+                                    );
+                                    showToast("Sertifikat berhasil dihapus");
+                                  }}
+                                  className="size-[24px] flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
+                                  title="Hapus Sertifikat"
+                                  aria-label="Hapus Sertifikat"
+                                >
+                                  <TrashIcon />
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -1236,10 +1280,20 @@ export default function App() {
       {/* Certificate Modal */}
       <CertificateModal
         isOpen={isCertModalOpen}
-        onClose={() => setIsCertModalOpen(false)}
+        editingCertificate={editingCert}
+        onClose={() => {
+          setIsCertModalOpen(false);
+          setEditingCert(null);
+        }}
         onAdd={(newCert) => {
           setCertificates((prev) => [...prev, newCert]);
           showToast("Sertifikat berhasil ditambahkan!");
+        }}
+        onUpdate={(updatedCert) => {
+          setCertificates((prev) =>
+            prev.map((c) => (c.id === updatedCert.id ? updatedCert : c))
+          );
+          showToast("Sertifikat berhasil diperbarui!");
         }}
       />
 

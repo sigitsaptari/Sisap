@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CloseCircle, DocumentUpload } from "iconsax-react";
 import { Button, TextField, SelectField } from "@sisapds/react";
 
@@ -6,6 +6,7 @@ export interface CertificateItem {
   id: string;
   type: string;
   number?: string;
+  numberBold?: boolean;
   status: "Aktif" | "Kedaluwarsa" | "-";
   expiryDate?: string;
   docUrl?: string;
@@ -16,22 +17,64 @@ interface CertificateModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAdd: (certificate: CertificateItem) => void;
+  editingCertificate?: CertificateItem | null;
+  onUpdate?: (certificate: CertificateItem) => void;
 }
 
-export function CertificateModal({ isOpen, onClose, onAdd }: CertificateModalProps) {
+export function CertificateModal({
+  isOpen,
+  onClose,
+  onAdd,
+  editingCertificate,
+  onUpdate,
+}: CertificateModalProps) {
   const [certType, setCertType] = useState("TKDN");
   const [certNumber, setCertNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("2026-12-31");
   const [fileName, setFileName] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (editingCertificate) {
+      if (editingCertificate.type.startsWith("TKDN")) {
+        setCertType("TKDN");
+        const match = editingCertificate.type.match(/\((.*?)\)/);
+        setCertNumber(match ? match[1] : "");
+      } else {
+        setCertType(editingCertificate.type);
+        setCertNumber(editingCertificate.number || "");
+      }
+      setExpiryDate(editingCertificate.expiryDate || "2026-12-31");
+    } else {
+      setCertType("TKDN");
+      setCertNumber("");
+      setExpiryDate("2026-12-31");
+      setFileName(null);
+    }
+  }, [editingCertificate, isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (editingCertificate && onUpdate) {
+      const updated: CertificateItem = {
+        ...editingCertificate,
+        type: certType === "TKDN" ? `TKDN (${certNumber || "80%"})` : certType,
+        number: certType === "TKDN" ? undefined : certNumber || "ID1234567890",
+        numberBold: certType === "BPOM MD",
+        status: editingCertificate.status,
+        expiryDate: certType === "TKDN" ? undefined : expiryDate || "12-02-2027",
+      };
+      onUpdate(updated);
+      onClose();
+      return;
+    }
+
     const newCert: CertificateItem = {
       id: `cert-${Date.now()}`,
       type: certType === "TKDN" ? `TKDN (${certNumber || "80%"})` : certType,
       number: certType === "TKDN" ? undefined : certNumber || "ID1234567890",
+      numberBold: certType === "BPOM MD",
       status: "Aktif",
       expiryDate: certType === "TKDN" ? undefined : expiryDate || "12-02-2027",
       docUrl: "https://example.com/document.pdf",
@@ -46,7 +89,9 @@ export function CertificateModal({ isOpen, onClose, onAdd }: CertificateModalPro
       <div className="w-full max-w-lg rounded-[12px] bg-[#ffffff] shadow-2xl overflow-hidden border border-[#e7e8e9] animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#e7e8e9] px-6 py-4">
-          <h3 className="text-base font-bold text-[#444b55]">Tambah Sertifikat Produk</h3>
+          <h3 className="text-base font-bold text-[#444b55]">
+            {editingCertificate ? "Ubah Sertifikat Produk" : "Tambah Sertifikat Produk"}
+          </h3>
           <button
             type="button"
             onClick={onClose}
@@ -122,7 +167,7 @@ export function CertificateModal({ isOpen, onClose, onAdd }: CertificateModalPro
               Batal
             </Button>
             <Button type="submit" variant="primary" size="md">
-              Simpan Sertifikat
+              {editingCertificate ? "Simpan Perubahan" : "Simpan Sertifikat"}
             </Button>
           </div>
         </form>
