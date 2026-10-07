@@ -306,6 +306,8 @@
   --ds-color-surface-sunken: #eff0f1;
   --surface-sunken: #eff0f1;
   --ds-surface-sunken: #eff0f1;
+  --ds-divider-color: #e7e8e9;
+  --ds-divider-thickness: 1px;
   --ds-motion-duration-fast: 120ms;
   --ds-motion-duration-normal: 200ms;
   --ds-motion-duration-slow: 320ms;
@@ -703,6 +705,8 @@
   --ds-color-surface-sunken: #111827;
   --surface-sunken: #111827;
   --ds-surface-sunken: #111827;
+  --ds-divider-color: #e7e8e9;
+  --ds-divider-thickness: 1px;
   --ds-motion-duration-fast: 120ms;
   --ds-motion-duration-normal: 200ms;
   --ds-motion-duration-slow: 320ms;

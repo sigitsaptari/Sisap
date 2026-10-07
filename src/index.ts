@@ -36,3 +36,6 @@ export type {
   StepperState,
   StepperTextOn,
 } from "./components/Stepper";
+
+export { Divider, dividerVariants } from "./components/Divider";
+export type { DividerProps, DividerType, DividerOrientation } from "./components/Divider";

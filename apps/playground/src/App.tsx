@@ -16,7 +16,7 @@ import {
   TickCircle,
   Wallet,
 } from "iconsax-react";
-import { Button, Checkbox, Chip, Stepper, TextArea, TextField } from "@sisapds/react";
+import { Button, Checkbox, Chip, Divider, Stepper, TextArea, TextField } from "@sisapds/react";
 import {
   Card,
   CardContent,
@@ -752,6 +752,48 @@ export default function App() {
                       { title: "Langkah 3", description: "Selesai" },
                     ]}
                   />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Divider Component Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>6. Divider (Figma 92134:1068)</CardTitle>
+                <CardDescription>
+                  Garis pemisah konten visual dalam orientasi Horizontal dan Vertical.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="text-action-primary mb-2 text-xs font-semibold tracking-wider uppercase">
+                    Horizontal
+                  </h4>
+                  <div className="space-y-3">
+                    <p className="text-sm text-neutral-600">Bagian teks atas</p>
+                    <Divider />
+                    <p className="text-sm text-neutral-600">Bagian teks bawah</p>
+                  </div>
+                </div>
+
+                <div className="border-border-default border-t pt-4">
+                  <h4 className="text-action-primary mb-2 text-xs font-semibold tracking-wider uppercase">
+                    Horizontal dengan Label
+                  </h4>
+                  <Divider label="ATAU" />
+                </div>
+
+                <div className="border-border-default border-t pt-4">
+                  <h4 className="text-action-primary mb-2 text-xs font-semibold tracking-wider uppercase">
+                    Vertical
+                  </h4>
+                  <div className="flex h-10 items-center gap-4 text-sm text-neutral-700">
+                    <span>Menu 1</span>
+                    <Divider type="vertical" />
+                    <span>Menu 2</span>
+                    <Divider type="vertical" />
+                    <span>Menu 3</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>

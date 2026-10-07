@@ -1,0 +1,6 @@
+{
+  "divider": {
+    "thickness": { "$type": "dimension", "$value": "1px" },
+    "color": { "$type": "color", "$value": "{color.neutral.200}" }
+  }
+}

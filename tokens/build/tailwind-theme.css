@@ -89,6 +89,7 @@
   --color-surface-base: var(--ds-color-surface-base);
   --color-surface-raised: var(--ds-color-surface-raised);
   --color-surface-sunken: var(--ds-color-surface-sunken);
+  --color-divider-color: var(--ds-divider-color);
   --ease-accelerate: var(--ds-motion-easing-accelerate);
   --ease-decelerate: var(--ds-motion-easing-decelerate);
   --ease-standard: var(--ds-motion-easing-standard);
