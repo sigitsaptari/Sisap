@@ -61,3 +61,6 @@ export type { RadioCardProps, RadioCardState } from "./components/RadioCard";
 
 export { SelectField } from "./components/SelectField";
 export type { SelectFieldProps, SelectFieldSize, SelectFieldState, SelectOption } from "./components/SelectField";
+
+export { RichTextEditor, rteVariants } from "./components/RichTextEditor";
+export type { RichTextEditorProps, RichTextEditorSize, RichTextEditorState } from "./components/RichTextEditor";

@@ -28,6 +28,7 @@ import {
   TextArea,
   TextField,
   SelectField,
+  RichTextEditor,
 } from "@sisapds/react";
 import {
   Card,
@@ -973,6 +974,28 @@ export default function App() {
                       { label: "Minuman", value: "minuman" },
                       { label: "Alat Tulis", value: "atk" },
                     ]}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* RichTextEditor Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>10. Rich Text Editor (Figma 6954:13094)</CardTitle>
+                <CardDescription>
+                  Komponen Editor Teks Kaya (Rich Text Editor) untuk deskripsi produk.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="w-full">
+                  <RichTextEditor
+                    label="Deskripsi Produk"
+                    placeholder="Tulis deskripsi produk di sini..."
+                    isWajib
+                    showCounter
+                    maxLength={2600}
+                    defaultValue="Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar."
                   />
                 </div>
               </CardContent>
