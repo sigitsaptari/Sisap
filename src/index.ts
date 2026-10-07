@@ -64,3 +64,7 @@ export type { SelectFieldProps, SelectFieldSize, SelectFieldState, SelectOption 
 
 export { RichTextEditor, rteVariants } from "./components/RichTextEditor";
 export type { RichTextEditorProps, RichTextEditorSize, RichTextEditorState } from "./components/RichTextEditor";
+
+export { Switch } from "./components/Switch";
+export type { SwitchProps, SwitchSize } from "./components/Switch";
+

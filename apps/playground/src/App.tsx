@@ -29,6 +29,7 @@ import {
   TextField,
   SelectField,
   RichTextEditor,
+  Switch,
 } from "@sisapds/react";
 import {
   Card,
@@ -997,6 +998,24 @@ export default function App() {
                     maxLength={2600}
                     defaultValue="Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar."
                   />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Switch Showcase */}
+            <Card>
+              <CardHeader>
+                <CardTitle>11. Switch / Toggle (Figma 91102:503)</CardTitle>
+                <CardDescription>
+                  Komponen Sakelar untuk menyalakan/mematikan fitur secara instan.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex flex-wrap items-center gap-8">
+                  <Switch id="play-sw-sm" size="sm" label="Small" />
+                  <Switch id="play-sw-md" size="md" label="Medium" defaultChecked />
+                  <Switch id="play-sw-lg" size="lg" label="Large" />
+                  <Switch id="play-sw-dis" size="md" label="Disabled" disabled />
                 </div>
               </CardContent>
             </Card>
