@@ -3,9 +3,9 @@ import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
 
 describe("RichTextEditor", () => {
-  let originalQueryCommandState: any;
-  let originalQueryCommandValue: any;
-  let originalExecCommand: any;
+  let originalQueryCommandState: typeof document.queryCommandState;
+  let originalQueryCommandValue: typeof document.queryCommandValue;
+  let originalExecCommand: typeof document.execCommand;
 
   beforeEach(() => {
     originalQueryCommandState = document.queryCommandState;
