@@ -8,7 +8,7 @@ describe("FormFieldWrapper", () => {
     render(
       <FormFieldWrapper>
         <div data-testid="child-element">Child Content</div>
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByTestId("child-element")).toBeTruthy();
     expect(screen.getByText("Child Content")).toBeTruthy();
@@ -18,7 +18,7 @@ describe("FormFieldWrapper", () => {
     const { rerender } = render(
       <FormFieldWrapper id="test-input" label="Test Label">
         <input id="test-input" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     const label = screen.getByText("Test Label");
     expect(label).toBeTruthy();
@@ -29,7 +29,7 @@ describe("FormFieldWrapper", () => {
     rerender(
       <FormFieldWrapper id="test-input" label="Test Label" showLabel={false}>
         <input id="test-input" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.queryByText("Test Label")).toBeNull();
   });
@@ -38,7 +38,7 @@ describe("FormFieldWrapper", () => {
     render(
       <FormFieldWrapper label="Test Label" isWajib>
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByText("Wajib")).toBeTruthy();
   });
@@ -47,7 +47,7 @@ describe("FormFieldWrapper", () => {
     render(
       <FormFieldWrapper label="Test Label" isOpsional>
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByText("Opsional")).toBeTruthy();
   });
@@ -56,14 +56,14 @@ describe("FormFieldWrapper", () => {
     const { rerender } = render(
       <FormFieldWrapper label="Test" description="This is a description">
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByText("This is a description")).toBeTruthy();
 
     rerender(
       <FormFieldWrapper label="Test" description="This is a description" showDescription={false}>
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.queryByText("This is a description")).toBeNull();
   });
@@ -72,21 +72,23 @@ describe("FormFieldWrapper", () => {
     render(
       <FormFieldWrapper label="Test" hasInfoTooltip infoTooltip="Helpful info">
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
 
     // The tooltip icon has aria-label="Informasi tambahan"
     const tooltipIcon = screen.getByLabelText("Informasi tambahan");
     expect(tooltipIcon).toBeTruthy();
     // title should be "Helpful info"
-    expect(tooltipIcon.parentElement?.getAttribute("title") || tooltipIcon.getAttribute("title")).toBe("Helpful info");
+    expect(
+      tooltipIcon.parentElement?.getAttribute("title") || tooltipIcon.getAttribute("title"),
+    ).toBe("Helpful info");
   });
 
   it("renders errorMessage with Danger icon", () => {
     const { container } = render(
       <FormFieldWrapper errorMessage="Something went wrong" errorId="error-1">
         <input aria-errormessage="error-1" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByText("Something went wrong")).toBeTruthy();
     // Danger icon is rendered
@@ -102,7 +104,7 @@ describe("FormFieldWrapper", () => {
     const { container } = render(
       <FormFieldWrapper successMessage="All good!" successId="success-1">
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.getByText("All good!")).toBeTruthy();
     // TickCircle icon is rendered
@@ -118,7 +120,7 @@ describe("FormFieldWrapper", () => {
     const { rerender } = render(
       <FormFieldWrapper hint="A helpful hint" showHint hintId="hint-1">
         <input aria-describedby="hint-1" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
 
     const hintElement = screen.getByText("A helpful hint");
@@ -128,7 +130,7 @@ describe("FormFieldWrapper", () => {
     rerender(
       <FormFieldWrapper hint="A helpful hint" showHint={false} hintId="hint-1">
         <input aria-describedby="hint-1" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(screen.queryByText("A helpful hint")).toBeNull();
   });
@@ -137,7 +139,7 @@ describe("FormFieldWrapper", () => {
     const { rerender } = render(
       <FormFieldWrapper showCounter counterText="10/100">
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
 
     const counter = screen.getByText("10/100");
@@ -147,7 +149,7 @@ describe("FormFieldWrapper", () => {
     rerender(
       <FormFieldWrapper showCounter counterText="101/100" isErrorCounter>
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
 
     const errorCounter = screen.getByText("101/100");
@@ -159,10 +161,10 @@ describe("FormFieldWrapper", () => {
     const { container } = render(
       <FormFieldWrapper containerClassName="custom-container-class">
         <input />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(container.firstChild?.nodeType).toBe(Node.ELEMENT_NODE);
-    if (container.firstChild && 'className' in container.firstChild) {
+    if (container.firstChild && "className" in container.firstChild) {
       expect((container.firstChild as HTMLElement).className).toContain("custom-container-class");
     }
   });
@@ -177,7 +179,7 @@ describe("FormFieldWrapper", () => {
         showHint
       >
         <input id="test-input" />
-      </FormFieldWrapper>
+      </FormFieldWrapper>,
     );
     expect(await axeViolations(container)).toEqual([]);
   });
