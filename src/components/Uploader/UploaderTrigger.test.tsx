@@ -5,14 +5,7 @@ import { UploaderTrigger } from "./UploaderTrigger";
 
 describe("UploaderTrigger", () => {
   it("renders image uploader trigger correctly", () => {
-    render(
-      <UploaderTrigger
-        type="image"
-        currentCount={1}
-        maxFiles={5}
-        onClick={() => {}}
-      />
-    );
+    render(<UploaderTrigger type="image" currentCount={1} maxFiles={5} onClick={() => {}} />);
     expect(screen.getByText("Tambah")).toBeTruthy();
     expect(screen.getByText("Foto (1/5)")).toBeTruthy();
     expect(screen.getByLabelText("Tambah Foto (1/5)")).toBeTruthy();
@@ -20,14 +13,7 @@ describe("UploaderTrigger", () => {
   });
 
   it("renders video uploader trigger correctly", () => {
-    render(
-      <UploaderTrigger
-        type="video"
-        currentCount={0}
-        maxFiles={1}
-        onClick={() => {}}
-      />
-    );
+    render(<UploaderTrigger type="video" currentCount={0} maxFiles={1} onClick={() => {}} />);
     expect(screen.getByText("Tambah")).toBeTruthy();
     expect(screen.getByText("Video")).toBeTruthy();
     expect(screen.getByLabelText("Tambah Video")).toBeTruthy();
@@ -36,14 +22,7 @@ describe("UploaderTrigger", () => {
 
   it("handles click events", async () => {
     const onClickMock = vi.fn();
-    render(
-      <UploaderTrigger
-        type="image"
-        currentCount={0}
-        maxFiles={5}
-        onClick={onClickMock}
-      />
-    );
+    render(<UploaderTrigger type="image" currentCount={0} maxFiles={5} onClick={onClickMock} />);
 
     const button = screen.getByRole("button");
     await userEvent.click(button);
@@ -59,7 +38,7 @@ describe("UploaderTrigger", () => {
         maxFiles={5}
         onClick={onClickMock}
         disabled={true}
-      />
+      />,
     );
 
     const button = screen.getByRole("button") as HTMLButtonElement;
@@ -79,7 +58,7 @@ describe("UploaderTrigger", () => {
         maxFiles={5}
         onClick={() => {}}
         isDragging={true}
-      />
+      />,
     );
 
     const button = screen.getByRole("button");
