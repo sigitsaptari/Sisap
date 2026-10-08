@@ -7,8 +7,15 @@ import { RichTextEditor } from "./RichTextEditor";
 
 describe("RichTextEditor", () => {
   let originalInnerTextDescriptor: PropertyDescriptor | undefined;
+  let originalQueryCommandState: typeof document.queryCommandState;
+  let originalQueryCommandValue: typeof document.queryCommandValue;
+  let originalExecCommand: typeof document.execCommand;
 
   beforeEach(() => {
+    originalQueryCommandState = document.queryCommandState;
+    originalQueryCommandValue = document.queryCommandValue;
+    originalExecCommand = document.execCommand;
+
     // Mock document methods used by RichTextEditor
     document.execCommand = vi.fn();
     document.queryCommandState = vi.fn().mockReturnValue(false);
@@ -35,11 +42,13 @@ describe("RichTextEditor", () => {
 
   afterEach(() => {
     if (!originalInnerTextDescriptor) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      delete (HTMLElement.prototype as any).innerText;
+      delete (HTMLElement.prototype as { innerText?: string }).innerText;
     } else {
       Object.defineProperty(HTMLElement.prototype, "innerText", originalInnerTextDescriptor);
     }
+    document.queryCommandState = originalQueryCommandState;
+    document.queryCommandValue = originalQueryCommandValue;
+    document.execCommand = originalExecCommand;
     vi.restoreAllMocks();
   });
 
@@ -55,9 +64,6 @@ describe("RichTextEditor", () => {
   it("renders correctly with default props", () => {
     render(<RichTextEditor id="rte-2" placeholder="Write here..." />);
 
-    // The contenteditable div does not inherently have a textbox role in all environments unless explicitly set,
-    // so we can query it by id or role depending on rendering.
-    // Since it lacks role="textbox" directly, let's query by id.
     const editor = document.getElementById("rte-2");
     expect(editor).toBeInTheDocument();
     expect(editor).toHaveAttribute("contenteditable", "true");
@@ -136,5 +142,44 @@ describe("RichTextEditor", () => {
     const alignCenterButton = getByTitle("Align Center");
     fireEvent.click(alignCenterButton);
     expect(document.execCommand).toHaveBeenCalledWith("justifyCenter", false, undefined);
+  });
+
+  it("handles document.queryCommandState throwing an error gracefully and falls back to false", async () => {
+    // Mock to throw an error for queryCommandState
+    document.queryCommandState = vi.fn().mockImplementation(() => {
+      throw new Error("Not supported in this environment");
+    });
+
+    render(<RichTextEditor id="test-rte" label="Content" />);
+
+    const editorDiv = document.getElementById("test-rte");
+    expect(editorDiv).not.toBeNull();
+
+    // Trigger an event that calls updateActiveFormats
+    fireEvent.keyUp(editorDiv!);
+
+    expect(document.queryCommandState).toHaveBeenCalled();
+
+    const boldButton = screen.getByTitle("Bold");
+    expect(boldButton.className).not.toContain("bg-[#e6f5f6]");
+    expect(boldButton.className).not.toContain("text-[#009ea9]");
+    expect(boldButton.className).toContain("hover:bg-neutral-200");
+  });
+
+  it("handles document.queryCommandValue throwing an error gracefully and falls back to false", async () => {
+    // Mock to throw an error for queryCommandValue
+    document.queryCommandValue = vi.fn().mockImplementation(() => {
+      throw new Error("Not supported");
+    });
+
+    render(<RichTextEditor id="test-rte-val" label="Content" />);
+
+    const editorDiv = document.getElementById("test-rte-val");
+    fireEvent.keyUp(editorDiv!);
+
+    expect(document.queryCommandValue).toHaveBeenCalled();
+
+    const h1Button = screen.getByTitle("Heading 1");
+    expect(h1Button.className).not.toContain("bg-[#e6f5f6]");
   });
 });

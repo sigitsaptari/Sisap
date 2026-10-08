@@ -14,6 +14,8 @@ const DEFAULT_VIDEO_RULES = [
   "Format MPEG, MP4, AVI, Quicktime, dan lainnya.",
 ];
 
+const MAX_PROGRESS = 100;
+
 export function Uploader({
   type = "image",
   label,
@@ -107,7 +109,7 @@ export function Uploader({
             updateFileItem(fileItem.id, {
               url: typeof resultUrl === "string" ? resultUrl : fileItem.url,
               status: "success",
-              progress: 100,
+              progress: MAX_PROGRESS,
             });
           })
           .catch((err) => {
@@ -121,11 +123,11 @@ export function Uploader({
         let currentProgress = 0;
         const interval = setInterval(() => {
           currentProgress += Math.floor(Math.random() * 20) + 12;
-          if (currentProgress >= 100) {
-            currentProgress = 100;
+          if (currentProgress >= MAX_PROGRESS) {
+            currentProgress = MAX_PROGRESS;
             clearInterval(interval);
             activeUploadsRef.current.delete(fileItem.id);
-            updateFileItem(fileItem.id, { progress: 100, status: "success" });
+            updateFileItem(fileItem.id, { progress: MAX_PROGRESS, status: "success" });
           } else {
             updateFileItem(fileItem.id, { progress: currentProgress });
           }
@@ -145,7 +147,7 @@ export function Uploader({
       const newItems: { item: UploaderFile; raw: File }[] = [];
 
       fileArray.forEach((raw) => {
-        const id = `file-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        const id = `file-${Date.now()}-${crypto.randomUUID()}`;
         const sizeMb = raw.size / (1024 * 1024);
 
         if (sizeMb > maxSizeMb) {
