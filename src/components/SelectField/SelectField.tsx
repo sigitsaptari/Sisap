@@ -134,10 +134,11 @@ export function SelectField({
   // Filter options if searchable
   const filteredOptions = useMemo(() => {
     if (!searchable || !searchValue) return options;
+    const searchLower = searchValue.toLowerCase();
     return options.filter((opt) => {
       // Very basic text search for now
       const labelStr = String(opt.label).toLowerCase();
-      return labelStr.includes(searchValue.toLowerCase());
+      return labelStr.includes(searchLower);
     });
   }, [options, searchable, searchValue]);
 
