@@ -105,6 +105,15 @@ function TrashIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) 
   );
 }
 
+const BUMN_OPTIONS = [
+  { label: "Bank Mandiri", value: "Bank Mandiri" },
+  { label: "BRI", value: "BRI" },
+  { label: "KAI", value: "KAI" },
+  { label: "Garuda Indonesia", value: "Garuda Indonesia" },
+  { label: "Pos Indonesia", value: "Pos Indonesia" },
+  { label: "Bio Farma", value: "Bio Farma" },
+];
+
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -264,6 +273,11 @@ export default function App() {
     "PLN",
   ]);
   const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
+
+  const filteredBumnOptions = useMemo(
+    () => BUMN_OPTIONS.filter((opt) => !allowedBumnList.includes(opt.value)),
+    [allowedBumnList],
+  );
 
   // Remove BUMN tag
   const handleRemoveBumn = (bumn: string) => {
@@ -1337,14 +1351,7 @@ export default function App() {
                                 placeholder="+ Tambah BUMN"
                                 value=""
                                 onChange={(val) => handleAddBumn(val as string)}
-                                options={[
-                                  { label: "Bank Mandiri", value: "Bank Mandiri" },
-                                  { label: "BRI", value: "BRI" },
-                                  { label: "KAI", value: "KAI" },
-                                  { label: "Garuda Indonesia", value: "Garuda Indonesia" },
-                                  { label: "Pos Indonesia", value: "Pos Indonesia" },
-                                  { label: "Bio Farma", value: "Bio Farma" },
-                                ].filter((opt) => !allowedBumnList.includes(opt.value))}
+                                options={filteredBumnOptions}
                               />
                             </div>
                           )}
