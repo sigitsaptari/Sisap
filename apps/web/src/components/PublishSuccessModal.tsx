@@ -24,7 +24,7 @@ export function PublishSuccessModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/60 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-md rounded-[16px] bg-[#ffffff] p-6 text-center shadow-2xl border border-[#e7e8e9] animate-in fade-in zoom-in-95 duration-200">
+      <div className="animate-in fade-in zoom-in-95 w-full max-w-md rounded-[16px] border border-[#e7e8e9] bg-[#ffffff] p-6 text-center shadow-2xl duration-200">
         {/* Success Icon */}
         <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-[#edf7ee] text-[#25974c]">
           <TickCircle size={44} variant="Bulk" color="#25974c" />
@@ -32,7 +32,8 @@ export function PublishSuccessModal({
 
         <h3 className="text-xl font-bold text-[#444b55]">Produk Berhasil Diterbitkan!</h3>
         <p className="mt-1 text-sm text-[#686e76]">
-          Produk Anda kini telah aktif dan dapat dicari serta dibeli oleh ribuan pembeli BUMN di katalog PaDi UMKM.
+          Produk Anda kini telah aktif dan dapat dicari serta dibeli oleh ribuan pembeli BUMN di
+          katalog PaDi UMKM.
         </p>
 
         {/* Product Summary Card */}
@@ -41,23 +42,27 @@ export function PublishSuccessModal({
             <img
               src={productData.imageUrl}
               alt={productData.name}
-              className="size-16 rounded-[8px] object-cover shrink-0 border border-[#d5d7d9]"
+              className="size-16 shrink-0 rounded-[8px] border border-[#d5d7d9] object-cover"
             />
           ) : (
-            <div className="flex size-16 shrink-0 items-center justify-center rounded-[8px] bg-[#dee3ed] text-[#8c9197] font-bold text-xs">
+            <div className="flex size-16 shrink-0 items-center justify-center rounded-[8px] bg-[#dee3ed] text-xs font-bold text-[#8c9197]">
               Foto
             </div>
           )}
-          <div className="flex flex-col min-w-0">
-            <span className="line-clamp-1 font-bold text-sm text-[#444b55]">
+          <div className="flex min-w-0 flex-col">
+            <span className="line-clamp-1 text-sm font-bold text-[#444b55]">
               {productData.name || "MacBook Pro M5 14-Inch 16/512GB"}
             </span>
-            <span className="text-xs text-[#8c9197]">{productData.category || "Elektronik & Gadget"}</span>
+            <span className="text-xs text-[#8c9197]">
+              {productData.category || "Elektronik & Gadget"}
+            </span>
             <div className="mt-1 flex items-center gap-2">
-              <span className="font-extrabold text-sm text-[#009ea9]">
+              <span className="text-sm font-extrabold text-[#009ea9]">
                 Rp {productData.price || "1.000.000"}
               </span>
-              <span className="text-[11px] text-[#686e76]">• Stok: {productData.stock || "100"}</span>
+              <span className="text-[11px] text-[#686e76]">
+                • Stok: {productData.stock || "100"}
+              </span>
             </div>
           </div>
         </div>

@@ -153,21 +153,9 @@ export const ErrorState: Story = {
 export const CompleteFigmaForm: Story = {
   name: "Figma Form (Foto & Video)",
   render: () => (
-    <div className="flex flex-col gap-6 p-6 bg-white dark:bg-neutral-900 rounded-lg max-w-4xl shadow-sm border border-neutral-100 dark:border-neutral-800">
-      <Uploader
-        type="image"
-        label="Foto Produk"
-        required
-        maxFiles={5}
-        maxSizeMb={5}
-      />
-      <Uploader
-        type="video"
-        label="Video Produk"
-        required={false}
-        maxFiles={1}
-        maxSizeMb={10}
-      />
+    <div className="flex max-w-4xl flex-col gap-6 rounded-lg border border-neutral-100 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+      <Uploader type="image" label="Foto Produk" required maxFiles={5} maxSizeMb={5} />
+      <Uploader type="video" label="Video Produk" required={false} maxFiles={1} maxSizeMb={10} />
     </div>
   ),
 };

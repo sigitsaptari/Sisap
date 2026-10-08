@@ -17,15 +17,15 @@ export function UploaderItem({
 
   return (
     <div
-      className="relative size-[94px] shrink-0 rounded-[8px] overflow-hidden border border-[#d5d7d9] dark:border-neutral-700 bg-[#f9fafa] dark:bg-neutral-800 group transition-all"
+      className="group relative size-[94px] shrink-0 overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#f9fafa] transition-all dark:border-neutral-700 dark:bg-neutral-800"
       data-status={status}
       title={file.name ?? (type === "image" ? "Foto Produk" : "Video Produk")}
     >
       {/* Uploading State */}
       {status === "uploading" && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#ffffff]/95 dark:bg-neutral-900/95 p-2 z-10">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#ffffff]/95 p-2 dark:bg-neutral-900/95">
           {/* Circular Progress */}
-          <div className="relative size-10 flex items-center justify-center mb-1">
+          <div className="relative mb-1 flex size-10 items-center justify-center">
             <svg className="size-10 -rotate-90 transform" viewBox="0 0 36 36">
               <path
                 className="text-[#e7e8e9] dark:text-neutral-700"
@@ -49,7 +49,7 @@ export function UploaderItem({
             </span>
           </div>
 
-          <span className="text-[10px] text-[#686e76] dark:text-neutral-400 font-medium">
+          <span className="text-[10px] font-medium text-[#686e76] dark:text-neutral-400">
             Mengunggah...
           </span>
 
@@ -58,7 +58,7 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-1 right-1 p-0.5 text-[#8c9197] hover:text-[#ee3124] transition-colors rounded-full focus:outline-none cursor-pointer"
+              className="absolute top-1 right-1 cursor-pointer rounded-full p-0.5 text-[#8c9197] transition-colors hover:text-[#ee3124] focus:outline-none"
               title="Batal unggah"
               aria-label="Batal unggah"
             >
@@ -70,9 +70,13 @@ export function UploaderItem({
 
       {/* Error State */}
       {status === "error" && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#ffedf1] dark:bg-red-950/40 p-2 text-center z-10 border border-[#ee3124]/40 rounded-[8px]">
-          {renderIcon(<Danger size={24} variant="Bulk" color="#ee3124" className="mb-1" />, 24, "#ee3124")}
-          <span className="text-[9px] leading-tight text-[#ee3124] font-medium line-clamp-2 mb-1">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-[8px] border border-[#ee3124]/40 bg-[#ffedf1] p-2 text-center dark:bg-red-950/40">
+          {renderIcon(
+            <Danger size={24} variant="Bulk" color="#ee3124" className="mb-1" />,
+            24,
+            "#ee3124",
+          )}
+          <span className="mb-1 line-clamp-2 text-[9px] leading-tight font-medium text-[#ee3124]">
             {file.errorMessage || "Gagal unggah"}
           </span>
           <div className="flex gap-1">
@@ -80,7 +84,7 @@ export function UploaderItem({
               <button
                 type="button"
                 onClick={() => onRetry(file.id)}
-                className="p-1 text-[#686e76] hover:text-[#009ea9] transition-colors cursor-pointer"
+                className="cursor-pointer p-1 text-[#686e76] transition-colors hover:text-[#009ea9]"
                 title="Coba lagi"
                 aria-label="Coba lagi"
               >
@@ -91,7 +95,7 @@ export function UploaderItem({
               <button
                 type="button"
                 onClick={() => onRemove(file.id)}
-                className="p-1 text-[#686e76] hover:text-[#ee3124] transition-colors cursor-pointer"
+                className="cursor-pointer p-1 text-[#686e76] transition-colors hover:text-[#ee3124]"
                 title="Hapus"
                 aria-label="Hapus"
               >
@@ -109,30 +113,34 @@ export function UploaderItem({
             <img
               src={file.url}
               alt={file.name ?? "Foto Produk"}
-              className="size-full object-cover rounded-[8px]"
+              className="size-full rounded-[8px] object-cover"
             />
           ) : (
-            <div className="relative size-full bg-[#182958] rounded-[8px] overflow-hidden flex items-center justify-center">
+            <div className="relative flex size-full items-center justify-center overflow-hidden rounded-[8px] bg-[#182958]">
               {file.url ? (
                 <video
                   src={file.url}
-                  className="size-full object-cover rounded-[8px]"
+                  className="size-full rounded-[8px] object-cover"
                   controls={isPlaying}
                   playsInline
                 />
               ) : (
-                <div className="size-full bg-[#182958] flex items-center justify-center" />
+                <div className="flex size-full items-center justify-center bg-[#182958]" />
               )}
               {!isPlaying && (
                 <button
                   type="button"
                   onClick={() => setIsPlaying(true)}
-                  className="absolute inset-0 flex items-center justify-center bg-[#000000]/40 hover:bg-[#000000]/50 transition-colors cursor-pointer group/play"
+                  className="group/play absolute inset-0 flex cursor-pointer items-center justify-center bg-[#000000]/40 transition-colors hover:bg-[#000000]/50"
                   title="Putar video"
                   aria-label="Putar video"
                 >
-                  <div className="p-1 rounded-full bg-[#000000]/60 group-hover/play:scale-110 transition-transform flex items-center justify-center text-[#ffffff]">
-                    {renderIcon(<PlayCircle size={28} variant="Bulk" color="#ffffff" />, 28, "#ffffff")}
+                  <div className="flex items-center justify-center rounded-full bg-[#000000]/60 p-1 text-[#ffffff] transition-transform group-hover/play:scale-110">
+                    {renderIcon(
+                      <PlayCircle size={28} variant="Bulk" color="#ffffff" />,
+                      28,
+                      "#ffffff",
+                    )}
                   </div>
                 </button>
               )}
@@ -141,7 +149,7 @@ export function UploaderItem({
 
           {/* Primary Badge (First Image) */}
           {isPrimary && type === "image" && (
-            <span className="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 text-[10px] font-medium leading-none text-[#ffffff] bg-[#009ea9] rounded-[4px] shadow-sm select-none pointer-events-none">
+            <span className="pointer-events-none absolute bottom-1.5 left-1.5 rounded-[4px] bg-[#009ea9] px-1.5 py-0.5 text-[10px] leading-none font-medium text-[#ffffff] shadow-sm select-none">
               Utama
             </span>
           )}
@@ -151,7 +159,7 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-1 right-1 p-0.5 rounded-full bg-[#000000]/50 hover:bg-[#ee3124] text-[#ffffff] transition-all shadow-sm focus:outline-none hover:scale-110 cursor-pointer z-20"
+              className="absolute top-1 right-1 z-20 cursor-pointer rounded-full bg-[#000000]/50 p-0.5 text-[#ffffff] shadow-sm transition-all hover:scale-110 hover:bg-[#ee3124] focus:outline-none"
               title="Hapus file"
               aria-label="Hapus file"
             >

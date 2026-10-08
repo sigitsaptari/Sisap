@@ -17,7 +17,7 @@ const switchTrackVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const switchThumbVariants = cva(
@@ -33,7 +33,7 @@ const switchThumbVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const switchLabelVariants = cva(
@@ -53,24 +53,21 @@ const switchLabelVariants = cva(
       size: "md",
       disabled: false,
     },
-  }
+  },
 );
 
-const switchContainerVariants = cva(
-  "inline-flex items-center",
-  {
-    variants: {
-      size: {
-        sm: "gap-[8px] h-[18px]",
-        md: "gap-[8px] h-[21px]",
-        lg: "gap-[12px] h-[24px]",
-      },
+const switchContainerVariants = cva("inline-flex items-center", {
+  variants: {
+    size: {
+      sm: "gap-[8px] h-[18px]",
+      md: "gap-[8px] h-[21px]",
+      lg: "gap-[12px] h-[24px]",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 export const Switch = forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, SwitchProps>(
   ({ className, size = "md", label, text, showText = true, disabled, id, ...props }, ref) => {
@@ -88,16 +85,13 @@ export const Switch = forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, 
           <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
         </SwitchPrimitive.Root>
         {showText && labelContent && (
-          <label 
-            htmlFor={id} 
-            className={cn(switchLabelVariants({ size, disabled }))}
-          >
+          <label htmlFor={id} className={cn(switchLabelVariants({ size, disabled }))}>
             {labelContent}
           </label>
         )}
       </div>
     );
-  }
+  },
 );
 
 Switch.displayName = SwitchPrimitive.Root.displayName;

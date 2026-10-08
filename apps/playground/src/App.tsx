@@ -954,7 +954,7 @@ export default function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <SelectField
                     label="Pilih Kategori (Single)"
                     placeholder="Pilih salah satu"
@@ -1026,22 +1026,13 @@ export default function App() {
               <CardHeader>
                 <CardTitle>12. Media Uploader (Figma 6920:22092)</CardTitle>
                 <CardDescription>
-                  Komponen Uploader untuk Foto dan Video produk lengkap dengan interaksi proses upload dan sukses upload.
+                  Komponen Uploader untuk Foto dan Video produk lengkap dengan interaksi proses
+                  upload dan sukses upload.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <Uploader
-                  type="image"
-                  label="Foto Produk"
-                  required
-                  maxFiles={5}
-                />
-                <Uploader
-                  type="video"
-                  label="Video Produk"
-                  required={false}
-                  maxFiles={1}
-                />
+                <Uploader type="image" label="Foto Produk" required maxFiles={5} />
+                <Uploader type="video" label="Video Produk" required={false} maxFiles={1} />
               </CardContent>
             </Card>
           </div>

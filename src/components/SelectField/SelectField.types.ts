@@ -12,20 +12,20 @@ export interface SelectOption {
 export interface SelectFieldProps extends Omit<FormFieldWrapperProps, "children" | "size"> {
   size?: SelectFieldSize;
   state?: SelectFieldState;
-  
+
   options: SelectOption[];
   value?: string | string[];
   defaultValue?: string | string[];
-  onChange?: (value: any) => void;
-  
+  onChange?: (value: string | string[]) => void;
+
   placeholder?: string;
   searchable?: boolean;
   searchPlaceholder?: string;
   onSearchChange?: (search: string) => void;
-  
+
   multiple?: boolean;
   disabled?: boolean;
-  
+
   className?: string;
   containerClassName?: string;
   dropdownClassName?: string;

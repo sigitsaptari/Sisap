@@ -28,7 +28,8 @@ export const Default: Story = {
 
 export const WithValueAndCounter: Story = {
   args: {
-    defaultValue: "Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar.",
+    defaultValue:
+      "Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar.",
     showCounter: true,
     maxLength: 2600,
   },
