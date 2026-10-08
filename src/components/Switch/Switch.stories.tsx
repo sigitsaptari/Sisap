@@ -63,16 +63,16 @@ export const WithoutLabel: Story = {
 export const FigmaMatrix: Story = {
   name: "Figma Design Matrix",
   render: () => (
-    <div className="flex flex-col gap-8 p-6 bg-white dark:bg-neutral-900 rounded-lg">
+    <div className="flex flex-col gap-8 rounded-lg bg-white p-6 dark:bg-neutral-900">
       <div className="grid grid-cols-4 gap-8">
-        <div className="text-xs font-semibold uppercase text-neutral-400">Off</div>
-        <div className="text-xs font-semibold uppercase text-neutral-400">On</div>
-        <div className="text-xs font-semibold uppercase text-neutral-400">Off (Disabled)</div>
-        <div className="text-xs font-semibold uppercase text-neutral-400">On (Disabled)</div>
+        <div className="text-xs font-semibold text-neutral-400 uppercase">Off</div>
+        <div className="text-xs font-semibold text-neutral-400 uppercase">On</div>
+        <div className="text-xs font-semibold text-neutral-400 uppercase">Off (Disabled)</div>
+        <div className="text-xs font-semibold text-neutral-400 uppercase">On (Disabled)</div>
       </div>
 
       {/* Small */}
-      <div className="grid grid-cols-4 gap-8 items-center">
+      <div className="grid grid-cols-4 items-center gap-8">
         <Switch size="sm" text="switch_text" />
         <Switch size="sm" text="switch_text" defaultChecked />
         <Switch size="sm" text="switch_text" disabled />
@@ -80,7 +80,7 @@ export const FigmaMatrix: Story = {
       </div>
 
       {/* Medium */}
-      <div className="grid grid-cols-4 gap-8 items-center">
+      <div className="grid grid-cols-4 items-center gap-8">
         <Switch size="md" text="switch_text" />
         <Switch size="md" text="switch_text" defaultChecked />
         <Switch size="md" text="switch_text" disabled />
@@ -88,7 +88,7 @@ export const FigmaMatrix: Story = {
       </div>
 
       {/* Large */}
-      <div className="grid grid-cols-4 gap-8 items-center">
+      <div className="grid grid-cols-4 items-center gap-8">
         <Switch size="lg" text="switch_text" />
         <Switch size="lg" text="switch_text" defaultChecked />
         <Switch size="lg" text="switch_text" disabled />
@@ -97,4 +97,3 @@ export const FigmaMatrix: Story = {
     </div>
   ),
 };
-

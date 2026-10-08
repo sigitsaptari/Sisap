@@ -86,7 +86,7 @@ export function CertificateModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/50 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-lg rounded-[12px] bg-[#ffffff] shadow-2xl overflow-hidden border border-[#e7e8e9] animate-in fade-in zoom-in-95 duration-150">
+      <div className="animate-in fade-in zoom-in-95 w-full max-w-lg overflow-hidden rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] shadow-2xl duration-150">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#e7e8e9] px-6 py-4">
           <h3 className="text-base font-bold text-[#444b55]">
@@ -95,7 +95,7 @@ export function CertificateModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-[#8c9197] hover:text-[#444b55] transition-colors cursor-pointer"
+            className="cursor-pointer text-[#8c9197] transition-colors hover:text-[#444b55]"
             aria-label="Tutup modal"
           >
             <CloseCircle size={22} variant="Bulk" color="#8c9197" />
@@ -142,7 +142,7 @@ export function CertificateModal({
             <label className="text-sm font-medium text-[#444b55]">
               Upload Dokumen Sertifikat <span className="text-[#ee3124] italic">*</span>
             </label>
-            <label className="flex flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-4 text-center cursor-pointer hover:border-[#009ea9] hover:bg-[#009ea9]/5 transition-colors">
+            <label className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-4 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5">
               <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-1" />
               <span className="text-xs font-semibold text-[#009ea9]">
                 {fileName ? fileName : "Pilih Berkas PDF / JPG"}

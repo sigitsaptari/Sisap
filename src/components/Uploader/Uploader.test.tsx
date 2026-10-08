@@ -8,13 +8,8 @@ describe("Uploader", () => {
   it("has no axe violations", async () => {
     const { container } = render(
       <div>
-        <Uploader
-          id="up-test-1"
-          type="image"
-          label="Foto Produk"
-          required
-        />
-      </div>
+        <Uploader id="up-test-1" type="image" label="Foto Produk" required />
+      </div>,
     );
     expect(await axeViolations(container)).toEqual([]);
   });
@@ -33,11 +28,9 @@ describe("Uploader", () => {
   it("renders helper rules", () => {
     render(<Uploader type="image" />);
     expect(
-      screen.getByText(/Wajib memiliki 1 foto produk, maksimal pilih foto hingga 5 gambar/i)
+      screen.getByText(/Wajib memiliki 1 foto produk, maksimal pilih foto hingga 5 gambar/i),
     ).toBeTruthy();
-    expect(
-      screen.getByText(/Resolusi minimal 1000 x 1000 px/i)
-    ).toBeTruthy();
+    expect(screen.getByText(/Resolusi minimal 1000 x 1000 px/i)).toBeTruthy();
   });
 
   it("renders uploaded files with remove button", async () => {
@@ -54,7 +47,7 @@ describe("Uploader", () => {
           },
         ]}
         onChange={onRemoveMock}
-      />
+      />,
     );
 
     expect(screen.getByText("Foto (1/5)")).toBeTruthy();
@@ -80,7 +73,7 @@ describe("Uploader", () => {
             progress: 45,
           },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("45%")).toBeTruthy();
@@ -101,7 +94,7 @@ describe("Uploader", () => {
             status: "success",
           },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("Video Produk")).toBeTruthy();
@@ -121,12 +114,7 @@ describe("Uploader", () => {
     URL.revokeObjectURL = vi.fn();
 
     const { container } = render(
-      <Uploader
-        type="image"
-        simulateUpload={true}
-        files={[]}
-        onChange={onChangeMock}
-      />
+      <Uploader type="image" simulateUpload={true} files={[]} onChange={onChangeMock} />,
     );
 
     const input = container.querySelector('input[type="file"]') as HTMLInputElement;
@@ -137,21 +125,20 @@ describe("Uploader", () => {
 
     // Initial item added with status uploading, progress 0
     expect(onChangeMock).toHaveBeenCalled();
-    const initialCallArg = onChangeMock.mock.calls[0][0];
-    expect(initialCallArg[0].status).toBe("uploading");
-    expect(initialCallArg[0].progress).toBe(0);
+    const initialCallArg = onChangeMock.mock.calls[0]?.[0];
+    expect(initialCallArg?.[0]?.status).toBe("uploading");
+    expect(initialCallArg?.[0]?.progress).toBe(0);
 
     // Advance timers for progress ticks
     vi.advanceTimersByTime(1200);
 
     // Final call should have status success and progress 100
-    const lastCallArg = onChangeMock.mock.calls[onChangeMock.mock.calls.length - 1][0];
-    expect(lastCallArg[0].status).toBe("success");
-    expect(lastCallArg[0].progress).toBe(100);
+    const lastCallArg = onChangeMock.mock.calls[onChangeMock.mock.calls.length - 1]?.[0];
+    expect(lastCallArg?.[0]?.status).toBe("success");
+    expect(lastCallArg?.[0]?.progress).toBe(100);
 
     URL.createObjectURL = origCreate;
     URL.revokeObjectURL = origRevoke;
     vi.useRealTimers();
   });
 });
-

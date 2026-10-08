@@ -69,7 +69,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
     const indicatorElement = (
       <div
         className={cn(
-          "z-10 flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-solid text-sm font-bold font-sans transition-colors select-none",
+          "z-10 flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-solid font-sans text-sm font-bold transition-colors select-none",
           isSuccess
             ? "border-[#009ea9] bg-[#009ea9] text-white"
             : isActive

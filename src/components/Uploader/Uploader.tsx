@@ -20,7 +20,9 @@ export function Uploader({
   required = false,
   maxFiles = type === "image" ? 5 : 1,
   maxSizeMb = type === "image" ? 5 : 10,
-  accept = type === "image" ? "image/jpeg,image/png,image/jpg" : "video/mp4,video/mpeg,video/avi,video/quicktime,video/*",
+  accept = type === "image"
+    ? "image/jpeg,image/png,image/jpg"
+    : "video/mp4,video/mpeg,video/avi,video/quicktime,video/*",
   helperRules,
   files: controlledFiles,
   defaultFiles = [],
@@ -72,13 +74,13 @@ export function Uploader({
       }
       onChangeRef.current?.(newFiles);
     },
-    [controlledFiles]
+    [controlledFiles],
   );
 
   const updateFileItem = useCallback(
     (id: string, patch: Partial<UploaderFile>) => {
       const nextList = latestFilesRef.current.map((item) =>
-        item.id === id ? { ...item, ...patch } : item
+        item.id === id ? { ...item, ...patch } : item,
       );
       latestFilesRef.current = nextList;
       if (controlledFiles === undefined) {
@@ -86,7 +88,7 @@ export function Uploader({
       }
       onChangeRef.current?.(nextList);
     },
-    [controlledFiles]
+    [controlledFiles],
   );
 
   const processUpload = useCallback(
@@ -131,7 +133,7 @@ export function Uploader({
         activeUploadsRef.current.set(fileItem.id, interval);
       }
     },
-    [onUpload, simulateUpload, updateFileItem]
+    [onUpload, simulateUpload, updateFileItem],
   );
 
   const handleFilesAdded = useCallback(
@@ -187,7 +189,7 @@ export function Uploader({
         }
       });
     },
-    [files, maxFiles, maxSizeMb, processUpload, updateFiles]
+    [files, maxFiles, maxSizeMb, processUpload, updateFiles],
   );
 
   const handleRemove = useCallback(
@@ -203,7 +205,7 @@ export function Uploader({
       const next = latestFilesRef.current.filter((f) => f.id !== id);
       updateFiles(next);
     },
-    [updateFiles]
+    [updateFiles],
   );
 
   const handleRetry = useCallback(
@@ -220,12 +222,12 @@ export function Uploader({
               errorMessage: undefined,
               url: f.url || URL.createObjectURL(target.file!),
             }
-          : f
+          : f,
       );
       updateFiles(updated);
       processUpload(target, target.file);
     },
-    [processUpload, updateFiles]
+    [processUpload, updateFiles],
   );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -272,7 +274,7 @@ export function Uploader({
 
   return (
     <div
-      className={cn("flex flex-col gap-2 w-full", className)}
+      className={cn("flex w-full flex-col gap-2", className)}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -281,11 +283,11 @@ export function Uploader({
       {/* Header Label */}
       {displayLabel && (
         <div className="flex items-center gap-1">
-          <span className="font-medium text-[14px] leading-[21px] text-[#444b55] dark:text-neutral-200">
+          <span className="text-[14px] leading-[21px] font-medium text-[#444b55] dark:text-neutral-200">
             {displayLabel}
           </span>
           {required && (
-            <span className="font-normal italic text-[12px] leading-[18px] text-[#ee3124] dark:text-red-400">
+            <span className="text-[12px] leading-[18px] font-normal text-[#ee3124] italic dark:text-red-400">
               Wajib
             </span>
           )}
@@ -293,8 +295,8 @@ export function Uploader({
       )}
 
       {/* Upload Items & Trigger Row */}
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-wrap gap-3 items-start min-h-[94px]">
+      <div className="flex w-full flex-col gap-4">
+        <div className="flex min-h-[94px] flex-wrap items-start gap-3">
           {/* Uploaded / In-Progress Items */}
           {files.map((file, idx) => (
             <UploaderItem
@@ -337,7 +339,7 @@ export function Uploader({
 
         {/* Helper Rules List */}
         {rules && rules.length > 0 && (
-          <ul className="list-disc ms-[21px] flex flex-col gap-0 text-[14px] leading-[21px] text-[#686e76] dark:text-neutral-400">
+          <ul className="ms-[21px] flex list-disc flex-col gap-0 text-[14px] leading-[21px] text-[#686e76] dark:text-neutral-400">
             {rules.map((rule, idx) => (
               <li key={idx} className="marker:text-[#686e76] dark:marker:text-neutral-400">
                 {rule}

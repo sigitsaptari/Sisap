@@ -11,7 +11,7 @@ describe("Switch", () => {
         <Switch id="s1" label="Enable notifications" />
         <Switch id="s2" label="Disabled switch" disabled />
         <Switch id="s3" aria-label="Standalone switch" />
-      </div>
+      </div>,
     );
     expect(await axeViolations(container)).toEqual([]);
   });
@@ -46,7 +46,9 @@ describe("Switch", () => {
 
   it("does not trigger when disabled", async () => {
     const onCheckedChange = vi.fn();
-    render(<Switch id="s-dis" label="Disabled switch" disabled onCheckedChange={onCheckedChange} />);
+    render(
+      <Switch id="s-dis" label="Disabled switch" disabled onCheckedChange={onCheckedChange} />,
+    );
     const switchEl = screen.getByRole("switch");
 
     await userEvent.click(switchEl);

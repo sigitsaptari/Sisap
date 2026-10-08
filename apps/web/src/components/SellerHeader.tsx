@@ -62,45 +62,45 @@ export function SellerHeader() {
   return (
     <header className="sticky top-0 z-40 flex h-[87px] w-full items-center justify-between border-b border-[#d5d7d9] bg-white px-[24px] py-[16px] select-none">
       {/* Logo PaDi New with Tagline (98px x 53.84px) */}
-      <div className="h-[53.84px] w-[98px] shrink-0 relative">
+      <div className="relative h-[53.84px] w-[98px] shrink-0">
         <img
           src="/assets/logo-padi-header.svg"
           alt="PaDi UMKM"
-          className="size-full block object-contain"
+          className="block size-full object-contain"
         />
       </div>
 
       {/* Right Section (.Account Login) */}
-      <div className="flex h-[55px] items-center justify-end gap-[24px] shrink-0">
+      <div className="flex h-[55px] shrink-0 items-center justify-end gap-[24px]">
         {/* Button: Daftar Transaksi */}
         <button
           type="button"
-          className="h-[36px] px-[10px] bg-white border border-[#009ea9] rounded-[4px] flex items-center justify-center gap-[4px] hover:bg-[#e6f4f7] transition-colors cursor-pointer"
+          className="flex h-[36px] cursor-pointer items-center justify-center gap-[4px] rounded-[4px] border border-[#009ea9] bg-white px-[10px] transition-colors hover:bg-[#e6f4f7]"
         >
-          <div className="size-[16px] shrink-0 flex items-center justify-center">
+          <div className="flex size-[16px] shrink-0 items-center justify-center">
             <ArrowSwapHorizontalIcon />
           </div>
-          <div className="px-[7px] flex items-center justify-center">
-            <span className="font-['Ubuntu'] font-medium text-[12px] leading-[18px] text-[#009ea9] capitalize whitespace-nowrap">
+          <div className="flex items-center justify-center px-[7px]">
+            <span className="font-['Ubuntu'] text-[12px] leading-[18px] font-medium whitespace-nowrap text-[#009ea9] capitalize">
               Daftar Transaksi
             </span>
           </div>
         </button>
 
         {/* Icons + Badges (.Right Icon+Badge) */}
-        <div className="flex items-center justify-end gap-[24px] shrink-0">
+        <div className="flex shrink-0 items-center justify-end gap-[24px]">
           {/* Notification Icon */}
           <button
             type="button"
-            className="relative size-[32px] p-[4px] rounded-[4px] bg-white flex items-center justify-center hover:bg-[#f9fafa] transition-colors cursor-pointer"
+            className="relative flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] bg-white p-[4px] transition-colors hover:bg-[#f9fafa]"
             aria-label="Notifikasi"
           >
-            <div className="size-[24px] shrink-0 flex items-center justify-center">
+            <div className="flex size-[24px] shrink-0 items-center justify-center">
               <BulkNotificationIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] h-[16px] w-[20px] rounded-full bg-[#ee3124] border border-white flex items-center justify-center px-[4px]">
-              <span className="font-['Ubuntu'] font-bold text-[10px] leading-[15px] text-white whitespace-nowrap">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-[16px] w-[20px] items-center justify-center rounded-full border border-white bg-[#ee3124] px-[4px]">
+              <span className="font-['Ubuntu'] text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
             </div>
@@ -109,15 +109,15 @@ export function SellerHeader() {
           {/* Message Icon */}
           <button
             type="button"
-            className="relative size-[32px] p-[4px] rounded-[4px] bg-white flex items-center justify-center hover:bg-[#f9fafa] transition-colors cursor-pointer"
+            className="relative flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] bg-white p-[4px] transition-colors hover:bg-[#f9fafa]"
             aria-label="Pesan"
           >
-            <div className="size-[24px] shrink-0 flex items-center justify-center">
+            <div className="flex size-[24px] shrink-0 items-center justify-center">
               <BulkMessageTextIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] h-[16px] w-[20px] rounded-full bg-[#ee3124] border border-white flex items-center justify-center px-[4px]">
-              <span className="font-['Ubuntu'] font-bold text-[10px] leading-[15px] text-white whitespace-nowrap">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-[16px] w-[20px] items-center justify-center rounded-full border border-white bg-[#ee3124] px-[4px]">
+              <span className="font-['Ubuntu'] text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
             </div>
@@ -125,25 +125,25 @@ export function SellerHeader() {
         </div>
 
         {/* Vertical Divider */}
-        <div className="h-[55px] w-px bg-[#d5d7d9] shrink-0" />
+        <div className="h-[55px] w-px shrink-0 bg-[#d5d7d9]" />
 
         {/* Account Login (Profile) */}
-        <div className="flex h-[40px] items-center justify-end gap-[8px] shrink-0">
+        <div className="flex h-[40px] shrink-0 items-center justify-end gap-[8px]">
           {/* Avatar (32px circular) */}
-          <div className="size-[32px] rounded-full overflow-hidden shrink-0 relative">
+          <div className="relative size-[32px] shrink-0 overflow-hidden rounded-full">
             <img
               src="/assets/avatar-seller.png"
               alt="King Arthur"
-              className="size-full object-cover rounded-full pointer-events-none"
+              className="pointer-events-none size-full rounded-full object-cover"
             />
           </div>
 
           {/* User Name & Role */}
-          <div className="flex flex-col items-start font-['Ubuntu'] not-italic text-left shrink-0">
-            <p className="font-medium text-[14px] leading-[21px] text-[#444b55] whitespace-nowrap">
+          <div className="flex shrink-0 flex-col items-start text-left font-['Ubuntu'] not-italic">
+            <p className="text-[14px] leading-[21px] font-medium whitespace-nowrap text-[#444b55]">
               King Arthur
             </p>
-            <p className="font-medium text-[12px] leading-[18px] text-[#8c9197] whitespace-nowrap">
+            <p className="text-[12px] leading-[18px] font-medium whitespace-nowrap text-[#8c9197]">
               Seller
             </p>
           </div>
