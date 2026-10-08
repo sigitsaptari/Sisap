@@ -145,7 +145,7 @@ export function Uploader({
       const newItems: { item: UploaderFile; raw: File }[] = [];
 
       fileArray.forEach((raw) => {
-        const id = `file-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        const id = `file-${Date.now()}-${crypto.randomUUID()}`;
         const sizeMb = raw.size / (1024 * 1024);
 
         if (sizeMb > maxSizeMb) {
