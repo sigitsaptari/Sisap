@@ -118,8 +118,9 @@ export function SelectField({
       const currentValues = Array.isArray(currentValue) ? currentValue : [];
       if (currentValues.length === 0) return null;
 
+      const currentValuesSet = new Set(currentValues);
       const selectedLabels = options
-        .filter((opt) => currentValues.includes(opt.value))
+        .filter((opt) => currentValuesSet.has(opt.value))
         .map((opt) => opt.label);
 
       return selectedLabels.length > 0 ? selectedLabels.join(", ") : null;
