@@ -47,9 +47,7 @@ describe("SelectField", () => {
   it("handles single selection", async () => {
     const user = userEvent.setup();
     const handleChange = vi.fn();
-    render(
-      <SelectField placeholder="Choose..." options={mockOptions} onChange={handleChange} />
-    );
+    render(<SelectField placeholder="Choose..." options={mockOptions} onChange={handleChange} />);
 
     await user.click(screen.getByRole("button", { name: "Choose..." }));
 
@@ -72,7 +70,7 @@ describe("SelectField", () => {
         options={mockOptions}
         multiple
         onChange={handleChange}
-      />
+      />,
     );
 
     await user.click(screen.getByRole("button", { name: "Choose..." }));
@@ -108,7 +106,7 @@ describe("SelectField", () => {
         searchable
         searchPlaceholder="Find option"
         onSearchChange={handleSearchChange}
-      />
+      />,
     );
 
     await user.click(screen.getByRole("button", { name: "Choose..." }));
@@ -130,7 +128,7 @@ describe("SelectField", () => {
         options={mockOptions}
         searchable
         searchPlaceholder="Find option"
-      />
+      />,
     );
 
     await user.click(screen.getByRole("button", { name: "Choose..." }));
@@ -163,7 +161,7 @@ describe("SelectField", () => {
         options={mockOptions}
         value="opt1"
         onChange={handleChange}
-      />
+      />,
     );
 
     // Initial value
@@ -184,7 +182,7 @@ describe("SelectField", () => {
         options={mockOptions}
         value="opt2"
         onChange={handleChange}
-      />
+      />,
     );
 
     expect(screen.getByRole("button", { name: "Option 2" })).toBeTruthy();
