@@ -1,5 +1,12 @@
-import { useState, useMemo } from "react";
-import { Danger, InfoCircle, CloseCircle, TickCircle, ArrowDown2 } from "iconsax-react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import {
+  Danger,
+  InfoCircle,
+  CloseCircle,
+  TickCircle,
+  ArrowDown2,
+  SearchNormal1,
+} from "iconsax-react";
 import {
   Button,
   TextField,
@@ -11,6 +18,7 @@ import {
   RadioCard,
   Chip,
   Divider,
+  cn,
   type UploaderFile,
 } from "@sisapds/react";
 import { SellerHeader } from "./components/SellerHeader";
@@ -106,12 +114,24 @@ function TrashIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) 
 }
 
 const BUMN_OPTIONS = [
+  { label: "Telkom Indonesia", value: "Telkom Indonesia" },
+  { label: "Pertamina", value: "Pertamina" },
+  { label: "Pelni", value: "Pelni" },
+  { label: "PLN", value: "PLN" },
   { label: "Bank Mandiri", value: "Bank Mandiri" },
   { label: "BRI", value: "BRI" },
+  { label: "BNI", value: "BNI" },
+  { label: "BTN", value: "BTN" },
   { label: "KAI", value: "KAI" },
   { label: "Garuda Indonesia", value: "Garuda Indonesia" },
   { label: "Pos Indonesia", value: "Pos Indonesia" },
   { label: "Bio Farma", value: "Bio Farma" },
+  { label: "Pupuk Indonesia", value: "Pupuk Indonesia" },
+  { label: "Semen Indonesia (SIG)", value: "Semen Indonesia (SIG)" },
+  { label: "Kimia Farma", value: "Kimia Farma" },
+  { label: "Jasa Marga", value: "Jasa Marga" },
+  { label: "Antam", value: "Antam" },
+  { label: "Krakatau Steel", value: "Krakatau Steel" },
 ];
 
 const COURIER_OPTIONS = [
@@ -269,31 +289,41 @@ export default function App() {
   }, [pkgLength, pkgWidth, pkgHeight]);
 
   // ----------------------------------------------------
-  // STEP 4 STATE: VISIBILITAS / LAINNYA
+  // STEP 4 STATE: VISIBILITAS / LAINNYA (6935:4190)
   // ----------------------------------------------------
   const [visibilityType, setVisibilityType] = useState<"publik" | "privat">("publik");
-  const [allowedBumnList, setAllowedBumnList] = useState<string[]>([
-    "Telkom Indonesia",
-    "Pertamina",
-    "PLN",
-  ]);
+  const [allowedBumnList, setAllowedBumnList] = useState<string[]>([]);
+  const [isBumnDropdownOpen, setIsBumnDropdownOpen] = useState(false);
+  const [bumnSearch, setBumnSearch] = useState("");
   const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
+  const bumnDropdownRef = useRef<HTMLDivElement>(null);
 
-  const filteredBumnOptions = useMemo(
-    () => BUMN_OPTIONS.filter((opt) => !allowedBumnList.includes(opt.value)),
-    [allowedBumnList],
-  );
+  // Click outside to close BUMN dropdown
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (bumnDropdownRef.current && !bumnDropdownRef.current.contains(event.target as Node)) {
+        setIsBumnDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-  // Remove BUMN tag
-  const handleRemoveBumn = (bumn: string) => {
-    setAllowedBumnList((prev) => prev.filter((item) => item !== bumn));
+  const filteredBumnOptions = useMemo(() => {
+    const query = bumnSearch.toLowerCase().trim();
+    return BUMN_OPTIONS.filter((opt) => opt.label.toLowerCase().includes(query));
+  }, [bumnSearch]);
+
+  const handleToggleBumn = (bumnValue: string) => {
+    if (allowedBumnList.includes(bumnValue)) {
+      setAllowedBumnList((prev) => prev.filter((item) => item !== bumnValue));
+    } else if (allowedBumnList.length < 5) {
+      setAllowedBumnList((prev) => [...prev, bumnValue]);
+    }
   };
 
-  // Add BUMN tag
-  const handleAddBumn = (bumn: string) => {
-    if (bumn && !allowedBumnList.includes(bumn) && allowedBumnList.length < 5) {
-      setAllowedBumnList((prev) => [...prev, bumn]);
-    }
+  const handleRemoveBumn = (bumnValue: string) => {
+    setAllowedBumnList((prev) => prev.filter((item) => item !== bumnValue));
   };
 
   // Navigation handlers
@@ -1323,42 +1353,137 @@ export default function App() {
                         produk Anda
                       </p>
 
-                      {/* Chip Select Box */}
-                      <div className="flex min-h-[44px] w-full items-center justify-between rounded-[4px] border border-[#d5d7d9] bg-white px-12 py-8">
-                        <div className="flex flex-wrap items-center gap-8">
-                          {allowedBumnList.map((bumn) => (
-                            <Chip
-                              key={bumn}
-                              label={bumn}
-                              type="soft"
-                              color="grey"
-                              size="md"
-                              removable
-                              onDismiss={() => handleRemoveBumn(bumn)}
-                              className="bg-[#e7e8e9] font-['Ubuntu'] text-[#444b55]"
-                            />
-                          ))}
+                      {/* Dropdown Container */}
+                      <div className="relative w-full" ref={bumnDropdownRef}>
+                        <button
+                          type="button"
+                          onClick={() => setIsBumnDropdownOpen((prev) => !prev)}
+                          className={cn(
+                            "flex h-[44px] w-full items-center justify-between rounded-[4px] border bg-white px-16 text-left transition-colors cursor-pointer",
+                            isBumnDropdownOpen
+                              ? "border-[#009ea9] ring-1 ring-[#009ea9]"
+                              : "border-[#d5d7d9] hover:border-[#8c9197]"
+                          )}
+                        >
+                          <span className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#8c9197]">
+                            Pilih BUMN
+                          </span>
+                          <ArrowDown2
+                            size={18}
+                            variant="Linear"
+                            color="#686e76"
+                            className={cn(
+                              "shrink-0 transition-transform duration-200",
+                              isBumnDropdownOpen && "rotate-180"
+                            )}
+                          />
+                        </button>
 
-                          {/* Quick Add BUMN dropdown if under 5 */}
-                          {allowedBumnList.length < 5 && (
-                            <div className="ml-2 w-[160px]">
-                              <SelectField
-                                size="sm"
-                                placeholder="+ Tambah BUMN"
-                                value=""
-                                onChange={(val) => handleAddBumn(val as string)}
-                                options={filteredBumnOptions}
+                        {/* Dropdown Menu */}
+                        {isBumnDropdownOpen && (
+                          <div className="absolute top-[calc(100%+4px)] left-0 z-50 flex w-full flex-col overflow-hidden rounded-[4px] border border-[#d5d7d9] bg-white shadow-lg">
+                            {/* Search Bar */}
+                            <div className="flex items-center gap-8 border-b border-[#dee3ed] px-12 py-8">
+                              <SearchNormal1 size={18} color="#8c9197" className="shrink-0" />
+                              <input
+                                type="text"
+                                value={bumnSearch}
+                                onChange={(e) => setBumnSearch(e.target.value)}
+                                placeholder="Cari BUMN..."
+                                autoFocus
+                                className="w-full bg-transparent font-['Ubuntu'] text-[14px] text-[#444b55] outline-none placeholder:text-[#8c9197]"
                               />
                             </div>
-                          )}
-                        </div>
-                        <ArrowDown2
-                          size={18}
-                          variant="Linear"
-                          color="#686e76"
-                          className="shrink-0"
-                        />
+
+                            {/* BUMN List */}
+                            <div className="max-h-[220px] overflow-y-auto py-4">
+                              {filteredBumnOptions.length === 0 ? (
+                                <div className="px-16 py-12 text-center font-['Ubuntu'] text-[14px] text-[#8c9197]">
+                                  BUMN tidak ditemukan
+                                </div>
+                              ) : (
+                                filteredBumnOptions.map((opt) => {
+                                  const isSelected = allowedBumnList.includes(opt.value);
+                                  const isMaxReached = allowedBumnList.length >= 5 && !isSelected;
+
+                                  return (
+                                    <div
+                                      key={opt.value}
+                                      onClick={() => {
+                                        if (!isMaxReached) {
+                                          handleToggleBumn(opt.value);
+                                        }
+                                      }}
+                                      className={cn(
+                                        "flex items-center justify-between px-16 py-10 transition-colors select-none",
+                                        isMaxReached
+                                          ? "cursor-not-allowed opacity-50"
+                                          : "cursor-pointer hover:bg-[#f6f8fb]",
+                                        isSelected && "bg-[#f0f9fa]"
+                                      )}
+                                    >
+                                      <span
+                                        className={cn(
+                                          "font-['Ubuntu'] text-[14px] leading-[21px]",
+                                          isSelected
+                                            ? "font-medium text-[#009ea9]"
+                                            : "text-[#444b55]"
+                                        )}
+                                      >
+                                        {opt.label}
+                                      </span>
+                                      {isSelected && (
+                                        <TickCircle
+                                          size={18}
+                                          variant="Bold"
+                                          color="#009ea9"
+                                          className="shrink-0"
+                                        />
+                                      )}
+                                    </div>
+                                  );
+                                })
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
+
+                      {/* Chips Container - Only shown when allowedBumnList has items */}
+                      {allowedBumnList.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-8 pt-4">
+                          {allowedBumnList.map((bumn) => (
+                            <div
+                              key={bumn}
+                              className="flex h-[24px] items-center justify-center gap-6 rounded-[4px] border border-[#d5d7d9] bg-[#f9fafa] px-8 py-2 transition-colors"
+                            >
+                              <span className="font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#444b55]">
+                                {bumn}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveBumn(bumn)}
+                                className="flex size-[12px] cursor-pointer items-center justify-center text-[#8c9197] transition-colors hover:text-[#ee3124]"
+                                aria-label={`Hapus ${bumn}`}
+                              >
+                                <svg
+                                  width="10"
+                                  height="10"
+                                  viewBox="0 0 12 12"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="1.75"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <line x1="9" y1="3" x2="3" y2="9" />
+                                  <line x1="3" y1="3" x2="9" y2="9" />
+                                </svg>
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
                       <p className="font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#8c9197]">
                         Maksimal 5 BUMN
