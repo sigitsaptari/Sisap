@@ -3,9 +3,9 @@
     "indicator": {
       "size": { "$type": "dimension", "$value": "44px" },
       "border-width": { "$type": "dimension", "$value": "2px" },
-      "default-border": { "$type": "color", "$value": "{color.neutral.200}" },
-      "default-bg": { "$type": "color", "$value": "{color.neutral.0}" },
-      "default-fg": { "$type": "color", "$value": "{color.neutral.500}" },
+      "default-border": { "$type": "color", "$value": "transparent" },
+      "default-bg": { "$type": "color", "$value": "{color.surface.sunken}" },
+      "default-fg": { "$type": "color", "$value": "{color.content.secondary}" },
       "active-border": { "$type": "color", "$value": "{color.brand.500}" },
       "active-bg": { "$type": "color", "$value": "{color.neutral.0}" },
       "active-fg": { "$type": "color", "$value": "{color.neutral.500}" },
@@ -15,7 +15,7 @@
     },
     "connector": {
       "thickness": { "$type": "dimension", "$value": "2px" },
-      "default": { "$type": "color", "$value": "{color.neutral.200}" },
+      "default": { "$type": "color", "$value": "transparent" },
       "active": { "$type": "color", "$value": "{color.brand.500}" }
     }
   }

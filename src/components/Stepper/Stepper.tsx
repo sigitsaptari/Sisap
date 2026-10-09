@@ -74,7 +74,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             ? "border-action-primary bg-action-primary text-white"
             : isActive
               ? "border-action-primary bg-surface-base text-primary dark:border-action-primary dark:bg-neutral-900 dark:text-neutral-100"
-              : "border-border-primary bg-surface-base text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200",
+              : "border-transparent bg-surface-sunken text-secondary dark:border-transparent dark:bg-neutral-800 dark:text-neutral-400",
         )}
       >
         {indicatorContent}
@@ -93,11 +93,11 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           onKeyDown={
             isInteractive
               ? (e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    onClick?.();
-                  }
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onClick?.();
                 }
+              }
               : undefined
           }
           className={cn(
@@ -168,11 +168,11 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           onKeyDown={
             isInteractive
               ? (e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    onClick?.();
-                  }
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onClick?.();
                 }
+              }
               : undefined
           }
           className={cn(
@@ -190,7 +190,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 ? "invisible"
                 : isActive || isSuccess
                   ? "bg-action-primary"
-                  : "bg-border-primary dark:bg-neutral-700",
+                  : "bg-transparent dark:bg-transparent",
             )}
             aria-hidden="true"
           />
@@ -201,7 +201,12 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           {/* Label */}
           <div className="flex shrink-0 flex-col justify-center px-8 text-left">
             {title && (
-              <p className="text-base leading-6 font-medium text-primary dark:text-neutral-100">
+              <p
+                className={cn(
+                  "text-base leading-6 text-primary dark:text-neutral-100",
+                  isActive ? "font-bold" : "font-medium",
+                )}
+              >
                 {title}
               </p>
             )}
@@ -220,7 +225,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 ? "invisible"
                 : isSuccess
                   ? "bg-action-primary"
-                  : "bg-border-primary dark:bg-neutral-700",
+                  : "bg-transparent dark:bg-transparent",
             )}
             aria-hidden="true"
           />
@@ -239,11 +244,11 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
         onKeyDown={
           isInteractive
             ? (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onClick?.();
-                }
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick?.();
               }
+            }
             : undefined
         }
         className={cn(
