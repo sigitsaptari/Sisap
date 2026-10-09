@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 import type { SwitchProps } from "./Switch.types";
 
 const switchTrackVariants = cva(
-  "peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-disabled data-[state=checked]:bg-action-primary data-[state=unchecked]:bg-border-primary dark:data-[state=unchecked]:bg-neutral-600",
+  "peer inline-flex shrink-0 cursor-pointer items-center rounded-pill transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-disabled data-[state=checked]:bg-action-primary data-[state=unchecked]:bg-border-primary dark:data-[state=unchecked]:bg-neutral-600",
   {
     variants: {
       size: {
@@ -21,7 +21,7 @@ const switchTrackVariants = cva(
 );
 
 const switchThumbVariants = cva(
-  "pointer-events-none block rounded-full bg-surface-base shadow-sm ring-0 transition-transform duration-200 ease-in-out data-[state=unchecked]:translate-x-[2px] data-[state=checked]:translate-x-[16px]",
+  "pointer-events-none block rounded-circle bg-surface-base shadow-sm ring-0 transition-transform duration-200 ease-in-out data-[state=unchecked]:translate-x-[2px] data-[state=checked]:translate-x-[16px]",
   {
     variants: {
       size: {

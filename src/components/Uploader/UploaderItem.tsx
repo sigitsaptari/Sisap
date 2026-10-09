@@ -17,7 +17,7 @@ export function UploaderItem({
 
   return (
     <div
-      className="group relative size-[94px] shrink-0 overflow-hidden rounded-lg border border-border-primary bg-bg-canvas transition-all dark:border-neutral-700 dark:bg-neutral-800"
+      className="group relative size-[94px] shrink-0 overflow-hidden rounded-uploader border border-border-primary bg-bg-canvas transition-all dark:border-neutral-700 dark:bg-neutral-800"
       data-status={status}
       title={file.name ?? (type === "image" ? "Foto Produk" : "Video Produk")}
     >
@@ -58,7 +58,7 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
+              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-circle bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
               title="Batal unggah"
               aria-label="Batal unggah"
             >
@@ -82,7 +82,7 @@ export function UploaderItem({
 
       {/* Error State */}
       {status === "error" && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-lg border border-error/40 bg-feedback-danger-bg p-2 text-center dark:bg-red-950/40">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-uploader border border-error/40 bg-feedback-danger-bg p-2 text-center dark:bg-red-950/40">
           {renderIcon(
             <Danger size={24} variant="Bulk" className="mb-1 text-error" />,
             24,
@@ -125,14 +125,14 @@ export function UploaderItem({
             <img
               src={file.url}
               alt={file.name ?? "Foto Produk"}
-              className="size-full rounded-lg object-cover"
+              className="size-full rounded-uploader object-cover"
             />
           ) : (
-            <div className="relative flex size-full items-center justify-center overflow-hidden rounded-lg bg-brand-badge">
+            <div className="relative flex size-full items-center justify-center overflow-hidden rounded-uploader bg-brand-badge">
               {file.url ? (
                 <video
                   src={file.url}
-                  className="size-full rounded-lg object-cover"
+                  className="size-full rounded-uploader object-cover"
                   controls={isPlaying}
                   playsInline
                 />
@@ -147,7 +147,7 @@ export function UploaderItem({
                   title="Putar video"
                   aria-label="Putar video"
                 >
-                  <div className="flex items-center justify-center rounded-full bg-black/60 p-1 text-white transition-transform group-hover/play:scale-110">
+                  <div className="flex items-center justify-center rounded-circle bg-black/60 p-1 text-white transition-transform group-hover/play:scale-110">
                     {renderIcon(
                       <PlayCircle size={28} variant="Bulk" className="text-white" />,
                       28,
@@ -171,7 +171,7 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
+              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-circle bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
               title="Hapus file"
               aria-label="Hapus file"
             >

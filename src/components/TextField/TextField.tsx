@@ -6,7 +6,7 @@ import { FormFieldWrapper } from "../common/FormFieldWrapper";
 import type { TextFieldProps, TextFieldSize, TextFieldState } from "./TextField.types";
 
 export const textFieldVariants = cva(
-  "flex w-full items-center border border-solid rounded-chip transition-colors bg-white dark:bg-neutral-900",
+  "flex w-full items-center border border-solid rounded-control transition-colors bg-white dark:bg-neutral-900",
   {
     variants: {
       size: {

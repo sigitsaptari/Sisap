@@ -387,7 +387,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col bg-bg-canvas font-sans text-primary">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="animate-in fade-in slide-in-from-bottom-4 fixed right-8 bottom-24 z-50 flex items-center gap-2 rounded-lg bg-brand-badge px-4 py-3 text-sm font-semibold text-white shadow-xl duration-200">
+        <div className="animate-in fade-in slide-in-from-bottom-4 fixed right-8 bottom-24 z-50 flex items-center gap-2 rounded-card bg-brand-badge px-4 py-3 text-sm font-semibold text-white shadow-xl duration-200">
           <TickCircle size={18} variant="Bulk" color="#009ea9" />
           <span>{toastMessage}</span>
         </div>
@@ -437,7 +437,7 @@ export default function App() {
             {currentStep === 1 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card 1: Jenis Produk (6935:7549) */}
-                <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+                <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Jenis Produk
@@ -448,7 +448,7 @@ export default function App() {
                     {/* Option: Barang (Figma 6901:13127) */}
                     <div
                       onClick={() => setProductType("Barang")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-sm border px-12 py-8 transition-all select-none ${productType === "Barang"
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-control border px-12 py-8 transition-all select-none ${productType === "Barang"
                           ? "border-action-primary bg-white"
                           : "border-border-primary bg-white hover:border-placeholder"
                         }`}
@@ -493,7 +493,7 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-sm drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Barang"
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-checkbox drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Barang"
                             ? "bg-action-primary"
                             : "border border-placeholder bg-white"
                           }`}
@@ -515,7 +515,7 @@ export default function App() {
                     {/* Option: Jasa (Figma 6901:13134) */}
                     <div
                       onClick={() => setProductType("Jasa")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-sm border px-12 py-8 transition-all select-none ${productType === "Jasa"
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-control border px-12 py-8 transition-all select-none ${productType === "Jasa"
                           ? "border-action-primary bg-white"
                           : "border-border-primary bg-white hover:border-placeholder"
                         }`}
@@ -558,7 +558,7 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-sm drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Jasa"
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-checkbox drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Jasa"
                             ? "bg-action-primary"
                             : "border border-placeholder bg-white"
                           }`}
@@ -580,7 +580,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: Informasi Produk (6901:13165) */}
-                <div className="w-full rounded-lg border border-border-primary bg-white">
+                <div className="w-full rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Informasi Produk
@@ -716,7 +716,7 @@ export default function App() {
                 </div>
 
                 {/* Card 3: Media Produk (6920:23188) */}
-                <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+                <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Media Produk
@@ -761,7 +761,7 @@ export default function App() {
                 </div>
 
                 {/* Card 4: Sertifikat Produk (6954:14866) */}
-                <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+                <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
                   <div className="flex h-[56px] items-center justify-between p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Sertifikat Produk
@@ -840,7 +840,7 @@ export default function App() {
                                       color={cert.status === "Aktif" ? "tosca" : "grey"}
                                       size="sm"
                                       label={cert.status}
-                                      className="h-[16px] rounded-sm px-[2px] text-[12px] leading-[18px] font-medium"
+                                      className="h-[16px] rounded-badge px-[2px] text-[12px] leading-[18px] font-medium"
                                     />
                                     {cert.expiryDate && (
                                       <span className="text-[14px] leading-[21px] font-normal text-primary">
@@ -921,7 +921,7 @@ export default function App() {
             {currentStep === 2 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card 1: Harga Produk (6923:24880) */}
-                <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+                <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Harga Produk
@@ -931,9 +931,9 @@ export default function App() {
                   <div className="flex flex-col gap-24 p-24">
                     {/* Dismissible Alert Banner */}
                     {showAlertBanner && (
-                      <div className="flex w-full items-center justify-between gap-12 rounded-lg border border-feedback-warning bg-feedback-warning-bg px-16 py-16">
+                      <div className="flex w-full items-center justify-between gap-12 rounded-card border border-feedback-warning bg-feedback-warning-bg px-16 py-16">
                         <div className="flex items-center gap-12">
-                          <div className="flex size-[32px] shrink-0 items-center justify-center rounded-full bg-feedback-warning text-white">
+                          <div className="flex size-[32px] shrink-0 items-center justify-center rounded-circle bg-feedback-warning text-white">
                             <Danger size={20} variant="Bulk" color="#ffffff" />
                           </div>
                           <p className="font-sans text-[14px] leading-[21px] text-primary">
@@ -985,7 +985,7 @@ export default function App() {
                           onChange={() => setPriceType("normal")}
                           label="Harga Normal"
                           radioRight={false}
-                          className={`w-[200px] rounded-sm p-16 ${priceType === "normal"
+                          className={`w-[200px] rounded-control p-16 ${priceType === "normal"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -998,7 +998,7 @@ export default function App() {
                           onChange={() => setPriceType("tempo")}
                           label="Harga Tempo"
                           radioRight={false}
-                          className={`w-[200px] rounded-sm p-16 ${priceType === "tempo"
+                          className={`w-[200px] rounded-control p-16 ${priceType === "tempo"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1042,7 +1042,7 @@ export default function App() {
 
                       {/* Kolom 3: Estimasi Pendapatan (auto width untuk nominal besar) */}
                       <div className="w-full lg:w-auto shrink-0 pt-0 lg:pt-[29px]">
-                        <div className="flex h-[44px] w-full lg:w-auto min-w-[281px] items-center justify-between gap-16 rounded-sm bg-feedback-success-bg px-16">
+                        <div className="flex h-[44px] w-full lg:w-auto min-w-[281px] items-center justify-between gap-16 rounded-control bg-feedback-success-bg px-16">
                           <div className="flex items-center gap-4">
                             <span className="font-sans text-[14px] leading-[21px] font-medium text-primary whitespace-nowrap">
                               Estimasi pendapatan
@@ -1075,7 +1075,7 @@ export default function App() {
                           label="PPN 12%"
                           description="Transaksi dikenakan PPN 12% sesuai ketentuan PMK No. 131 Tahun 2024."
                           radioRight={false}
-                          className={`w-full rounded-sm p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn12"
+                          className={`w-full rounded-control p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn12"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1089,7 +1089,7 @@ export default function App() {
                           label="PPN 1.1%"
                           description="Transaksi dikenakan PPN 1,1% dan wajib dilaporkan secara mandiri oleh pembeli."
                           radioRight={false}
-                          className={`w-full rounded-sm p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn1"
+                          className={`w-full rounded-control p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn1"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1103,7 +1103,7 @@ export default function App() {
                           label="Tidak Dikenakan PPN"
                           description="Harga Barang / Jasa tidak dikenakan PPN."
                           radioRight={false}
-                          className={`w-full rounded-sm p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "noppn"
+                          className={`w-full rounded-control p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "noppn"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1122,7 +1122,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: Stok Produk (6941:8434) */}
-                <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+                <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Stok Produk
@@ -1162,7 +1162,7 @@ export default function App() {
                     />
 
                     {/* Pre-Order Toggle Card */}
-                    <div className="flex flex-col gap-16 rounded-lg bg-bg-canvas p-12">
+                    <div className="flex flex-col gap-16 rounded-sub-container bg-bg-canvas p-12">
                       <div className="flex flex-col gap-4">
                         <Switch
                           id="preorder-switch"
@@ -1204,7 +1204,7 @@ export default function App() {
             {currentStep === 3 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200 pb-[240px]">
                 {/* Card Pengiriman (6923:27248) */}
-                <div className="w-full rounded-lg border border-border-primary bg-white">
+                <div className="w-full rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Pengiriman
@@ -1277,7 +1277,7 @@ export default function App() {
 
                         {/* Berat Volume Box */}
                         <div className="w-full lg:w-auto shrink-0 pt-0 lg:pt-[29px]">
-                          <div className="flex h-[44px] items-center justify-center rounded-sm bg-surface-sunken px-12 py-8 font-sans text-[14px]">
+                          <div className="flex h-[44px] items-center justify-center rounded-control bg-surface-sunken px-12 py-8 font-sans text-[14px]">
                             <span className="text-secondary whitespace-nowrap">Berat Volume :&nbsp;</span>
                             <span className="font-bold text-primary whitespace-nowrap">
                               {calculatedVolumeWeight} Kilogram
@@ -1333,7 +1333,7 @@ export default function App() {
             {currentStep === 4 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200 pb-[240px]">
                 {/* Card Visibilitas Produk (6941:10909) */}
-                <div className="w-full rounded-lg border border-border-primary bg-white">
+                <div className="w-full rounded-card border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
                       Visibilitas Produk
@@ -1471,7 +1471,7 @@ export default function App() {
                                       {/* Checkbox icon left */}
                                       <div
                                         className={cn(
-                                          "flex size-4 shrink-0 items-center justify-center rounded-2xs border transition-colors",
+                                          "flex size-4 shrink-0 items-center justify-center rounded-checkbox border transition-colors",
                                           isSelected
                                             ? "border-action-primary bg-action-primary text-white"
                                             : "border-placeholder bg-surface-base"
@@ -1509,7 +1509,7 @@ export default function App() {
                           {allowedBumnList.map((bumn) => (
                             <div
                               key={bumn}
-                              className="flex h-6 items-center justify-center gap-6 rounded-sm border border-border-primary bg-bg-canvas px-8 py-2 transition-colors"
+                              className="flex h-6 items-center justify-center gap-6 rounded-badge border border-border-primary bg-bg-canvas px-8 py-2 transition-colors"
                             >
                               <span className="font-sans text-xs font-normal text-primary">
                                 {bumn}

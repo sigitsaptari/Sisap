@@ -10,7 +10,7 @@ import type {
 } from "./Radio.types";
 
 export const radioVariants = cva(
-  "relative inline-flex items-center justify-center shrink-0 rounded-full border transition-colors cursor-pointer",
+  "relative inline-flex items-center justify-center shrink-0 rounded-circle border transition-colors cursor-pointer",
   {
     variants: {
       size: {
@@ -185,7 +185,7 @@ export function RadioIndicator({
     >
       <span
         className={cn(
-          "pointer-events-none rounded-full transition-all",
+          "pointer-events-none rounded-circle transition-all",
           dotSizeClasses[size],
           disabled ? "bg-radio-dot-disabled" : "bg-radio-dot",
           checked === true && "scale-100 opacity-100",

@@ -24,9 +24,9 @@ export function PublishSuccessModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
-      <div className="animate-in fade-in zoom-in-95 w-full max-w-md rounded-2xl border border-border-default bg-surface-base p-6 text-center shadow-2xl duration-200">
+      <div className="animate-in fade-in zoom-in-95 w-full max-w-md rounded-modal border border-border-default bg-surface-base p-6 text-center shadow-2xl duration-200">
         {/* Success Icon */}
-        <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-feedback-success-bg text-feedback-success">
+        <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-circle bg-feedback-success-bg text-feedback-success">
           <TickCircle size={44} variant="Bulk" className="text-feedback-success" />
         </div>
 
@@ -37,15 +37,15 @@ export function PublishSuccessModal({
         </p>
 
         {/* Product Summary Card */}
-        <div className="my-20 flex items-center gap-12 rounded-xl border border-border-default bg-bg-canvas p-12 text-left">
+        <div className="my-20 flex items-center gap-12 rounded-card border border-border-default bg-bg-canvas p-12 text-left">
           {productData.imageUrl ? (
             <img
               src={productData.imageUrl}
               alt={productData.name}
-              className="size-16 shrink-0 rounded-lg border border-border-primary object-cover"
+              className="size-16 shrink-0 rounded-image border border-border-primary object-cover"
             />
           ) : (
-            <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-border-subtle text-xs font-bold text-placeholder">
+            <div className="flex size-16 shrink-0 items-center justify-center rounded-image bg-border-subtle text-xs font-bold text-placeholder">
               Foto
             </div>
           )}

@@ -75,7 +75,7 @@ export function SellerHeader() {
         {/* Button: Daftar Transaksi */}
         <button
           type="button"
-          className="flex h-9 cursor-pointer items-center justify-center gap-4 rounded-sm border border-action-primary bg-surface-base px-8 transition-colors hover:bg-brand-soft"
+          className="flex h-9 cursor-pointer items-center justify-center gap-4 rounded-control border border-action-primary bg-surface-base px-8 transition-colors hover:bg-brand-soft"
         >
           <div className="flex size-16 shrink-0 items-center justify-center">
             <ArrowSwapHorizontalIcon />
@@ -92,14 +92,14 @@ export function SellerHeader() {
           {/* Notification Icon */}
           <button
             type="button"
-            className="relative flex size-32 cursor-pointer items-center justify-center rounded-sm bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-control bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
             aria-label="Notifikasi"
           >
             <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkNotificationIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-full border border-white bg-error px-1">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-pill border border-white bg-error px-1">
               <span className="font-sans text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
@@ -109,14 +109,14 @@ export function SellerHeader() {
           {/* Message Icon */}
           <button
             type="button"
-            className="relative flex size-32 cursor-pointer items-center justify-center rounded-sm bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-control bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
             aria-label="Pesan"
           >
             <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkMessageTextIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-full border border-white bg-error px-1">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-pill border border-white bg-error px-1">
               <span className="font-sans text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
@@ -130,11 +130,11 @@ export function SellerHeader() {
         {/* Account Login (Profile) */}
         <div className="flex h-10 shrink-0 items-center justify-end gap-8">
           {/* Avatar (32px circular) */}
-          <div className="relative size-32 shrink-0 overflow-hidden rounded-full">
+          <div className="relative size-32 shrink-0 overflow-hidden rounded-circle">
             <img
               src="/assets/avatar-seller.png"
               alt="King Arthur"
-              className="pointer-events-none size-full rounded-full object-cover"
+              className="pointer-events-none size-full rounded-circle object-cover"
             />
           </div>
 

@@ -55,12 +55,12 @@ function NavItem({
         <span className="text-xs">{label}</span>
       </div>
       {badge !== undefined && (
-        <div className="flex h-4 min-w-4 items-center justify-center rounded-full bg-error px-1.5">
+        <div className="flex h-4 min-w-4 items-center justify-center rounded-pill bg-error px-1.5">
           <span className="text-[10px] leading-[15px] font-bold text-white">{badge}</span>
         </div>
       )}
       {isActive && (
-        <div className="absolute top-0 left-0 h-7 w-1 rounded-r-sm bg-action-primary" />
+        <div className="absolute top-0 left-0 h-7 w-1 rounded-r-indicator bg-action-primary" />
       )}
     </>
   );
@@ -190,7 +190,7 @@ export function SellerSidebar({ currentPrototype = 1, onNavigate }: SellerSideba
       <div className="flex w-full flex-col">
         <div className="flex w-full items-center justify-between p-16">
           <div className="flex items-center gap-12">
-            <div className="flex size-32 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-action-primary">
+            <div className="flex size-32 shrink-0 items-center justify-center rounded-circle bg-surface-sunken text-action-primary">
               <Shop size={16} variant="Bulk" className="text-action-primary" />
             </div>
             <div className="flex flex-col">

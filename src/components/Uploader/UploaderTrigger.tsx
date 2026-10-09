@@ -20,7 +20,7 @@ export function UploaderTrigger({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50",
+        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-4 rounded-uploader border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50",
         disabled
           ? "cursor-not-allowed opacity-50 hover:border-placeholder hover:bg-transparent active:scale-100"
           : "cursor-pointer",

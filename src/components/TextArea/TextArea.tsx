@@ -5,7 +5,7 @@ import { FormFieldWrapper } from "../common/FormFieldWrapper";
 import type { TextAreaProps, TextAreaState } from "./TextArea.types";
 
 export const textAreaVariants = cva(
-  "w-full rounded-sm border border-solid transition-[border-color,box-shadow] outline-none text-primary placeholder:text-placeholder dark:text-neutral-100 dark:placeholder:text-neutral-500",
+  "w-full rounded-control border border-solid transition-[border-color,box-shadow] outline-none text-primary placeholder:text-placeholder dark:text-neutral-100 dark:placeholder:text-neutral-500",
   {
     variants: {
       size: {

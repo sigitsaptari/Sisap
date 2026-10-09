@@ -226,7 +226,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             variant="secondary"
             size="md"
             onClick={handleSaveDraft}
-            className="h-10 rounded-sm border border-action-primary bg-white px-12 py-8 text-sm font-medium text-action-primary hover:bg-surface-sunken"
+            className="h-10 rounded-control border border-action-primary bg-white px-12 py-8 text-sm font-medium text-action-primary hover:bg-surface-sunken"
           >
             Simpan & Tambah Baru
           </Button>
@@ -235,7 +235,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             variant="primary"
             size="md"
             onClick={() => setIsPublishModalOpen(true)}
-            className="h-10 rounded-sm bg-action-primary px-12 py-8 text-sm font-medium text-white hover:bg-action-hover"
+            className="h-10 rounded-control bg-action-primary px-12 py-8 text-sm font-medium text-white hover:bg-action-hover"
           >
             Simpan
           </Button>
@@ -245,7 +245,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 1: JENIS PRODUK (Figma node 6901:13166) */}
       {/* ======================================================== */}
-      <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+      <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Jenis Produk
@@ -257,7 +257,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
           <div
             onClick={() => setProductType("Barang")}
             className={cn(
-              "flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-sm border px-12 py-8 transition-all select-none",
+              "flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-control border px-12 py-8 transition-all select-none",
               productType === "Barang"
                 ? "border-action-primary bg-white"
                 : "border-border-primary bg-white hover:border-placeholder",
@@ -304,7 +304,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             </div>
             <div
               className={cn(
-                "flex size-[20px] shrink-0 items-center justify-center rounded-sm drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)]",
+                "flex size-[20px] shrink-0 items-center justify-center rounded-checkbox drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)]",
                 productType === "Barang"
                   ? "bg-action-primary"
                   : "border border-placeholder bg-white",
@@ -328,7 +328,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
           <div
             onClick={() => setProductType("Jasa")}
             className={cn(
-              "flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-sm border px-12 py-8 transition-all select-none",
+              "flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-control border px-12 py-8 transition-all select-none",
               productType === "Jasa"
                 ? "border-action-primary bg-white"
                 : "border-border-primary bg-white hover:border-placeholder",
@@ -373,7 +373,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             </div>
             <div
               className={cn(
-                "flex size-[20px] shrink-0 items-center justify-center rounded-sm drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)]",
+                "flex size-[20px] shrink-0 items-center justify-center rounded-checkbox drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)]",
                 productType === "Jasa"
                   ? "bg-action-primary"
                   : "border border-placeholder bg-white",
@@ -398,7 +398,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 2: INFORMASI PRODUK (Figma node 6935:6833) */}
       {/* ======================================================== */}
-      <div className="w-full rounded-lg border border-border-primary bg-white">
+      <div className="w-full rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Informasi Produk
@@ -548,7 +548,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 3: MEDIA PRODUK (Figma node 6923:25642) */}
       {/* ======================================================== */}
-      <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+      <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Media Produk
@@ -595,7 +595,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 4: HARGA PRODUK (Figma node 6923:25072) */}
       {/* ======================================================== */}
-      <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+      <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Harga Produk
@@ -605,9 +605,9 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
         <div className="flex flex-col gap-24 p-24">
           {/* Dismissible Alert Banner */}
           {showAlertBanner && (
-            <div className="flex w-full items-center justify-between gap-12 rounded-lg border border-feedback-warning bg-feedback-warning-bg px-16 py-16">
+            <div className="flex w-full items-center justify-between gap-12 rounded-card border border-feedback-warning bg-feedback-warning-bg px-16 py-16">
               <div className="flex items-center gap-12">
-                <div className="flex size-[32px] shrink-0 items-center justify-center rounded-full bg-feedback-warning text-white">
+                <div className="flex size-[32px] shrink-0 items-center justify-center rounded-circle bg-feedback-warning text-white">
                   <Danger size={20} variant="Bulk" color="#ffffff" />
                 </div>
                 <p className="font-sans text-[14px] leading-[21px] text-primary">
@@ -658,7 +658,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 label="Harga Normal"
                 radioRight={false}
                 className={cn(
-                  "w-full sm:w-[200px] rounded-sm p-16",
+                  "w-full sm:w-[200px] rounded-control p-16",
                   priceType === "normal"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -673,7 +673,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 label="Harga Tempo"
                 radioRight={false}
                 className={cn(
-                  "w-full sm:w-[200px] rounded-sm p-16",
+                  "w-full sm:w-[200px] rounded-control p-16",
                   priceType === "tempo"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -715,7 +715,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             </div>
 
             <div className="flex flex-1 items-end pt-0 lg:pt-[29px] w-full">
-              <div className="flex h-[44px] w-full items-center justify-between gap-16 rounded-sm bg-feedback-success-bg px-16">
+              <div className="flex h-[44px] w-full items-center justify-between gap-16 rounded-control bg-feedback-success-bg px-16">
                 <div className="flex items-center gap-4">
                   <span className="font-sans text-[14px] leading-[21px] font-medium text-primary whitespace-nowrap">
                     Estimasi pendapatan
@@ -747,7 +747,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 description="Transaksi dikenakan PPN 12% sesuai ketentuan PMK No. 131 Tahun 2024."
                 radioRight={false}
                 className={cn(
-                  "w-full rounded-sm p-16",
+                  "w-full rounded-control p-16",
                   ppnType === "ppn12"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -763,7 +763,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 description="Transaksi dikenakan PPN 1,1% dan wajib dilaporkan secara mandiri oleh pembeli."
                 radioRight={false}
                 className={cn(
-                  "w-full rounded-sm p-16",
+                  "w-full rounded-control p-16",
                   ppnType === "ppn1"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -779,7 +779,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 description="Harga Barang / Jasa tidak dikenakan PPN."
                 radioRight={false}
                 className={cn(
-                  "w-full rounded-sm p-16",
+                  "w-full rounded-control p-16",
                   ppnType === "noppn"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -800,7 +800,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 5: STOK PRODUK (Figma node 6923:26267) */}
       {/* ======================================================== */}
-      <div className="w-full overflow-hidden rounded-lg border border-border-primary bg-white">
+      <div className="w-full overflow-hidden rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Stok Produk
@@ -842,7 +842,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
           </div>
 
           {/* Pre-Order Section */}
-          <div className="flex flex-col gap-16 rounded-md bg-surface-sunken p-16">
+          <div className="flex flex-col gap-16 rounded-sub-container bg-surface-sunken p-16">
             <div className="flex flex-col gap-4">
               <Switch
                 id="preorder-switch-p2"
@@ -879,7 +879,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 6: PENGIRIMAN (Figma node 6923:27249) */}
       {/* ======================================================== */}
-      <div className="w-full rounded-lg border border-border-primary bg-white">
+      <div className="w-full rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Pengiriman
@@ -947,7 +947,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                   onChange={(e) => setPkgHeight(e.target.value.replace(/\D/g, ""))}
                 />
               </div>
-              <div className="flex h-[44px] items-center rounded-sm bg-surface-sunken px-16 text-primary">
+              <div className="flex h-[44px] items-center rounded-control bg-surface-sunken px-16 text-primary">
                 <span className="font-sans text-[14px] leading-[21px] text-secondary">
                   Berat Volume :{" "}
                   <strong className="text-primary font-bold">{calculatedVolumeWeight} Kilogram</strong>
@@ -991,7 +991,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
       {/* ======================================================== */}
       {/* SECTION 7: VISIBILITAS PRODUK (Figma node 6935:4191) */}
       {/* ======================================================== */}
-      <div className="w-full rounded-lg border border-border-primary bg-white">
+      <div className="w-full rounded-card border border-border-primary bg-white">
         <div className="p-16">
           <h2 className="font-sans text-[16px] leading-[24px] font-bold text-primary">
             Visibilitas Produk
@@ -1025,7 +1025,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 label="Publik"
                 radioRight={false}
                 className={cn(
-                  "w-full sm:w-[200px] rounded-sm p-16",
+                  "w-full sm:w-[200px] rounded-control p-16",
                   visibilityType === "publik"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -1040,7 +1040,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 label="Privat"
                 radioRight={false}
                 className={cn(
-                  "w-full sm:w-[200px] rounded-sm p-16",
+                  "w-full sm:w-[200px] rounded-control p-16",
                   visibilityType === "privat"
                     ? "border-action-primary bg-action-primary-subtle"
                     : "border-border-primary bg-white hover:border-placeholder",
@@ -1069,7 +1069,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
             <div ref={bumnDropdownRef} className="relative w-full">
               <div
                 onClick={() => setIsBumnDropdownOpen(!isBumnDropdownOpen)}
-                className="flex h-[44px] w-full cursor-pointer items-center justify-between rounded-md border border-border-primary bg-white px-16 transition-all select-none hover:border-placeholder"
+                className="flex h-[44px] w-full cursor-pointer items-center justify-between rounded-control border border-border-primary bg-white px-16 transition-all select-none hover:border-placeholder"
               >
                 <span className="font-sans text-[14px] leading-[21px] text-primary">
                   Pilih BUMN
@@ -1084,9 +1084,9 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
               </div>
 
               {isBumnDropdownOpen && (
-                <div className="animate-in fade-in zoom-in-95 absolute top-[48px] left-0 z-50 flex max-h-[280px] w-full flex-col overflow-hidden rounded-md border border-border-primary bg-white shadow-xl duration-150">
+                <div className="animate-in fade-in zoom-in-95 absolute top-[48px] left-0 z-50 flex max-h-[280px] w-full flex-col overflow-hidden rounded-dropdown border border-border-primary bg-white shadow-xl duration-150">
                   <div className="border-b border-border-subtle p-8">
-                    <div className="flex items-center gap-8 rounded-sm bg-surface-sunken px-12 py-6">
+                    <div className="flex items-center gap-8 rounded-control bg-surface-sunken px-12 py-6">
                       <SearchNormal1 size={16} className="text-secondary" />
                       <input
                         type="text"
@@ -1112,14 +1112,14 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                             key={opt.value}
                             onClick={() => handleToggleBumn(opt.value)}
                             className={cn(
-                              "flex cursor-pointer items-center justify-between rounded-sm px-12 py-8 transition-colors select-none",
+                              "flex cursor-pointer items-center justify-between rounded-control px-12 py-8 transition-colors select-none",
                               isSelected ? "bg-action-primary-subtle" : "hover:bg-surface-sunken",
                             )}
                           >
                             <span className="font-sans text-xs text-primary">{opt.label}</span>
                             <div
                               className={cn(
-                                "flex size-16 items-center justify-center rounded-sm border",
+                                "flex size-16 items-center justify-center rounded-checkbox border",
                                 isSelected
                                   ? "border-action-primary bg-action-primary text-white"
                                   : "border-border-primary bg-white",
@@ -1152,7 +1152,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 {allowedBumnList.map((bumn) => (
                   <div
                     key={bumn}
-                    className="flex h-6 items-center justify-center gap-6 rounded-sm border border-border-primary bg-bg-canvas px-8 py-2 transition-colors"
+                    className="flex h-6 items-center justify-center gap-6 rounded-badge border border-border-primary bg-bg-canvas px-8 py-2 transition-colors"
                   >
                     <span className="font-sans text-xs font-normal text-primary">
                       {bumn}
@@ -1197,7 +1197,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
           variant="secondary"
           size="md"
           onClick={handleSaveDraft}
-          className="h-10 rounded-sm border border-action-primary bg-white px-12 py-8 text-sm font-medium text-action-primary hover:bg-surface-sunken"
+          className="h-10 rounded-control border border-action-primary bg-white px-12 py-8 text-sm font-medium text-action-primary hover:bg-surface-sunken"
         >
           Simpan & Tambah Baru
         </Button>
@@ -1206,7 +1206,7 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
           variant="primary"
           size="md"
           onClick={() => setIsPublishModalOpen(true)}
-          className="h-10 rounded-sm bg-action-primary px-12 py-8 text-sm font-medium text-white hover:bg-action-hover"
+          className="h-10 rounded-control bg-action-primary px-12 py-8 text-sm font-medium text-white hover:bg-action-hover"
         >
           Simpan
         </Button>
