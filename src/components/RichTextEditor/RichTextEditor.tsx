@@ -334,7 +334,15 @@ export function RichTextEditor({
         </div>
 
         {/* Editor Area */}
-        <div className="relative flex flex-col">
+        <div className="relative flex w-full flex-col">
+          {placeholder && (!currentValue || currentLength === 0) && (
+            <div
+              className="pointer-events-none absolute top-12 right-16 left-16 text-sm leading-normal text-placeholder select-none"
+              aria-hidden="true"
+            >
+              {placeholder}
+            </div>
+          )}
           <div
             ref={editorRef}
             id={inputId}
@@ -345,9 +353,8 @@ export function RichTextEditor({
             onKeyUp={updateActiveFormats}
             onMouseUp={updateActiveFormats}
             className={cn(
-              "min-h-[110px] w-full px-16 py-12 text-sm text-primary outline-none dark:text-neutral-100",
-              "prose prose-sm dark:prose-invert max-w-none focus:outline-none",
-              !currentValue && "before:text-placeholder before:content-[attr(data-placeholder)]",
+              "min-h-[110px] w-full px-16 py-12 text-sm leading-normal text-primary outline-none dark:text-neutral-100",
+              "focus:outline-none",
               editorClassName,
             )}
             data-placeholder={placeholder}
