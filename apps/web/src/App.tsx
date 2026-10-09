@@ -26,6 +26,7 @@ import { SellerSidebar } from "./components/SellerSidebar";
 import { AddProductStepper } from "./components/AddProductStepper";
 import { CertificateModal, type CertificateItem } from "./components/CertificateModal";
 import { PublishSuccessModal } from "./components/PublishSuccessModal";
+import { Prototype2 } from "./components/Prototype2";
 
 function EditIcon({ className = "w-[24px] h-[24px]" }: { className?: string }) {
   return (
@@ -149,6 +150,30 @@ function formatCurrency(val: string): string {
 }
 
 export default function App() {
+  const [prototypeVersion, setPrototypeVersion] = useState<1 | 2>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get("p") || params.get("prototype");
+      if (p === "1") return 1;
+      if (p === "2") return 2;
+      const stored = localStorage.getItem("padiumkm_prototype_version");
+      if (stored === "1") return 1;
+      return 2; // Default to Prototype 2 as requested by user
+    }
+    return 2;
+  });
+
+  const handleSwitchPrototype = (v: 1 | 2) => {
+    setPrototypeVersion(v);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("padiumkm_prototype_version", String(v));
+      const url = new URL(window.location.href);
+      url.searchParams.set("p", String(v));
+      window.history.replaceState({}, "", url.toString());
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -361,28 +386,80 @@ export default function App() {
       {/* Header Bar */}
       <SellerHeader />
 
+      {/* Prototype Switcher Banner */}
+      <div className="sticky top-0 z-30 flex items-center justify-between border-b border-border-primary bg-white px-32 py-10 shadow-xs">
+        <div className="flex items-center gap-12">
+          <span className="font-sans text-xs font-bold uppercase tracking-wider text-secondary">
+            Pilih Prototype:
+          </span>
+          <div className="inline-flex rounded-md border border-border-primary bg-surface-sunken p-1">
+            <button
+              type="button"
+              onClick={() => handleSwitchPrototype(1)}
+              className={cn(
+                "cursor-pointer rounded px-16 py-6 font-sans text-xs font-medium transition-all",
+                prototypeVersion === 1
+                  ? "bg-action-primary font-bold text-white shadow-xs"
+                  : "text-secondary hover:text-primary",
+              )}
+            >
+              Prototype 1: Stepper (Multi-Step Wizard)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSwitchPrototype(2)}
+              className={cn(
+                "cursor-pointer rounded px-16 py-6 font-sans text-xs font-medium transition-all",
+                prototypeVersion === 2
+                  ? "bg-action-primary font-bold text-white shadow-xs"
+                  : "text-secondary hover:text-primary",
+              )}
+            >
+              Prototype 2: Single-Page (Semua Section)
+            </button>
+          </div>
+        </div>
+        <div className="hidden sm:flex items-center gap-8 font-sans text-xs text-secondary">
+          <span className="inline-block size-2 rounded-full bg-action-primary" />
+          <span>
+            {prototypeVersion === 2
+              ? "Figma Node 6901:10010 (Tambah Produk Barang - Single Page)"
+              : "Figma Node Stepper Wizard"}
+          </span>
+        </div>
+      </div>
+
       {/* Main Layout Container (Sidebar + Content) */}
       <div className="flex min-h-[calc(100vh-80px)] flex-1">
         {/* Left Seller Sidebar */}
         <SellerSidebar />
 
         {/* Center Main Work Area (1096px content width, 32px padding) */}
-        <main className="flex-1 overflow-x-hidden bg-bg-canvas py-16 pr-32 pb-[100px] pl-32">
+        <main
+          className={cn(
+            "flex-1 overflow-x-hidden bg-bg-canvas py-16 pr-32 pl-32",
+            prototypeVersion === 1 ? "pb-[100px]" : "pb-32",
+          )}
+        >
           <div className="flex w-full max-w-[1096px] flex-col gap-32">
-            {/* Page Title */}
-            <div className="flex h-[32px] items-center">
-              <h1 className="font-sans text-[24px] leading-[32px] font-bold text-primary">
-                Tambah Produk
-              </h1>
-            </div>
+            {prototypeVersion === 2 ? (
+              <Prototype2 onShowToast={showToast} />
+            ) : (
+              <>
+                {/* Page Title */}
+                <div className="flex h-[32px] items-center">
+                  <h1 className="font-sans text-[24px] leading-[32px] font-bold text-primary">
+                    Tambah Produk
+                  </h1>
+                </div>
 
-            {/* Stepper Navigation */}
-            <div className="w-full">
-              <AddProductStepper
-                currentStep={currentStep}
-                onStepClick={(step) => setCurrentStep(step)}
-              />
-            </div>
+                {/* Stepper Navigation */}
+                <div className="w-full">
+                  <AddProductStepper
+                    currentStep={currentStep}
+                    onStepClick={(step) => setCurrentStep(step)}
+                  />
+                </div>
 
             {/* ======================================================== */}
             {/* STEP 1: INFORMASI PRODUK */}
@@ -1500,39 +1577,43 @@ export default function App() {
                 </div>
               </div>
             )}
+              </>
+            )}
           </div>
         </main>
       </div>
 
-      {/* Sticky Bottom CTA Bar (6954:13282) */}
-      <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-gap-md border-t border-border-subtle bg-surface-base bg-white px-layout-card py-inset-md drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
-        {currentStep > 1 && (
+      {/* Sticky Bottom CTA Bar (6954:13282) - Prototype 1 Only */}
+      {prototypeVersion === 1 && (
+        <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-gap-md border-t border-border-subtle bg-surface-base bg-white px-layout-card py-inset-md drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
+          {currentStep > 1 && (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={handlePrev}
+              className="h-9 rounded-control border border-primary px-inset-sm text-xs font-medium text-primary"
+            >
+              Kembali
+            </Button>
+          )}
           <Button
             variant="secondary"
             size="md"
-            onClick={handlePrev}
+            onClick={() => showToast("Draf produk berhasil disimpan!")}
             className="h-9 rounded-control border border-primary px-inset-sm text-xs font-medium text-primary"
           >
-            Kembali
+            Simpan Draft
           </Button>
-        )}
-        <Button
-          variant="secondary"
-          size="md"
-          onClick={() => showToast("Draf produk berhasil disimpan!")}
-          className="h-9 rounded-control border border-primary px-inset-sm text-xs font-medium text-primary"
-        >
-          Simpan Draft
-        </Button>
-        <Button
-          variant="primary"
-          size="md"
-          onClick={handleNext}
-          className="h-9 rounded-control bg-action-primary px-inset-sm text-xs font-medium text-white"
-        >
-          {currentStep === 4 ? "Selesai" : "Selanjutnya"}
-        </Button>
-      </footer>
+          <Button
+            variant="primary"
+            size="md"
+            onClick={handleNext}
+            className="h-9 rounded-control bg-action-primary px-inset-sm text-xs font-medium text-white"
+          >
+            {currentStep === 4 ? "Selesai" : "Selanjutnya"}
+          </Button>
+        </footer>
+      )}
 
       {/* Certificate Modal */}
       <CertificateModal
