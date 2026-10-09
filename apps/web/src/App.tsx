@@ -149,30 +149,40 @@ function formatCurrency(val: string): string {
   return new Intl.NumberFormat("id-ID").format(parseInt(digits, 10));
 }
 
-export default function App() {
-  const [prototypeVersion, setPrototypeVersion] = useState<1 | 2>(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const p = params.get("p") || params.get("prototype");
-      if (p === "1") return 1;
-      if (p === "2") return 2;
-      const stored = localStorage.getItem("padiumkm_prototype_version");
-      if (stored === "1") return 1;
-      return 2; // Default to Prototype 2 as requested by user
-    }
-    return 2;
-  });
+function getPrototypeFromUrl(): 1 | 2 {
+  if (typeof window === "undefined") return 1;
+  const path = window.location.pathname.toLowerCase();
+  const search = new URLSearchParams(window.location.search);
+  const p = search.get("p") || search.get("prototype");
 
-  const handleSwitchPrototype = (v: 1 | 2) => {
+  if (path.includes("prototype-2") || path.includes("prototype2") || p === "2") {
+    return 2;
+  }
+  if (path.includes("prototype-1") || path.includes("prototype1") || p === "1") {
+    return 1;
+  }
+  return 1;
+}
+
+export default function App() {
+  const [prototypeVersion, setPrototypeVersion] = useState<1 | 2>(getPrototypeFromUrl);
+
+  const navigateToPrototype = (v: 1 | 2) => {
     setPrototypeVersion(v);
     if (typeof window !== "undefined") {
-      localStorage.setItem("padiumkm_prototype_version", String(v));
-      const url = new URL(window.location.href);
-      url.searchParams.set("p", String(v));
-      window.history.replaceState({}, "", url.toString());
+      const targetUrl = v === 1 ? "/prototype-1" : "/prototype-2";
+      window.history.pushState({}, "", targetUrl);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPrototypeVersion(getPrototypeFromUrl());
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -386,53 +396,13 @@ export default function App() {
       {/* Header Bar */}
       <SellerHeader />
 
-      {/* Prototype Switcher Banner */}
-      <div className="sticky top-0 z-30 flex items-center justify-between border-b border-border-primary bg-white px-32 py-10 shadow-xs">
-        <div className="flex items-center gap-12">
-          <span className="font-sans text-xs font-bold uppercase tracking-wider text-secondary">
-            Pilih Prototype:
-          </span>
-          <div className="inline-flex rounded-md border border-border-primary bg-surface-sunken p-1">
-            <button
-              type="button"
-              onClick={() => handleSwitchPrototype(1)}
-              className={cn(
-                "cursor-pointer rounded px-16 py-6 font-sans text-xs font-medium transition-all",
-                prototypeVersion === 1
-                  ? "bg-action-primary font-bold text-white shadow-xs"
-                  : "text-secondary hover:text-primary",
-              )}
-            >
-              Prototype 1: Stepper (Multi-Step Wizard)
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSwitchPrototype(2)}
-              className={cn(
-                "cursor-pointer rounded px-16 py-6 font-sans text-xs font-medium transition-all",
-                prototypeVersion === 2
-                  ? "bg-action-primary font-bold text-white shadow-xs"
-                  : "text-secondary hover:text-primary",
-              )}
-            >
-              Prototype 2: Single-Page (Semua Section)
-            </button>
-          </div>
-        </div>
-        <div className="hidden sm:flex items-center gap-8 font-sans text-xs text-secondary">
-          <span className="inline-block size-2 rounded-full bg-action-primary" />
-          <span>
-            {prototypeVersion === 2
-              ? "Figma Node 6901:10010 (Tambah Produk Barang - Single Page)"
-              : "Figma Node Stepper Wizard"}
-          </span>
-        </div>
-      </div>
-
       {/* Main Layout Container (Sidebar + Content) */}
       <div className="flex min-h-[calc(100vh-80px)] flex-1">
         {/* Left Seller Sidebar */}
-        <SellerSidebar />
+        <SellerSidebar
+          currentPrototype={prototypeVersion}
+          onNavigate={navigateToPrototype}
+        />
 
         {/* Center Main Work Area (1096px content width, 32px padding) */}
         <main

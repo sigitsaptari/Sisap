@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Shop,
   Eye,
@@ -32,6 +32,8 @@ interface NavItemProps {
   setActiveItem: (item: string) => void;
   badge?: number;
   pyClass?: string;
+  href?: string;
+  onNavigate?: () => void;
 }
 
 function NavItem({
@@ -41,19 +43,13 @@ function NavItem({
   setActiveItem,
   badge,
   pyClass = "py-4",
+  href,
+  onNavigate,
 }: NavItemProps) {
   const isActive = activeItem === label;
 
-  return (
-    <button
-      type="button"
-      onClick={() => setActiveItem(label)}
-      className={`relative flex w-full cursor-pointer items-center justify-between px-16 text-left transition-colors ${pyClass} ${
-        isActive
-          ? "bg-surface-base font-medium text-action-primary"
-          : "font-normal text-primary hover:bg-bg-canvas"
-      }`}
-    >
+  const content = (
+    <>
       <div className="flex items-center gap-8">
         <Icon size={20} variant="Bulk" className={isActive ? "text-action-primary" : "text-primary"} />
         <span className="text-xs">{label}</span>
@@ -66,6 +62,40 @@ function NavItem({
       {isActive && (
         <div className="absolute top-0 left-0 h-7 w-1 rounded-r-sm bg-action-primary" />
       )}
+    </>
+  );
+
+  const className = `relative flex w-full cursor-pointer items-center justify-between px-16 text-left transition-colors ${pyClass} ${
+    isActive
+      ? "bg-surface-base font-medium text-action-primary"
+      : "font-normal text-primary hover:bg-bg-canvas"
+  }`;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        onClick={(e) => {
+          if (onNavigate) {
+            e.preventDefault();
+            onNavigate();
+          }
+          setActiveItem(label);
+        }}
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setActiveItem(label)}
+      className={className}
+    >
+      {content}
     </button>
   );
 }
@@ -73,48 +103,6 @@ function NavItem({
 const TOP_ITEMS = [
   { label: "Dashboard", icon: Category, pyClass: "py-[6px]" },
   { label: "Chat", icon: Messages1, badge: 2, pyClass: "py-[6px]" },
-];
-
-const MENU_SECTIONS = [
-  {
-    title: "Transaksi",
-    items: [
-      { label: "Pesanan", icon: ReceiptItem },
-      { label: "PaDi Kasir", icon: Card },
-      { label: "Biaya Transaksi Penjual", icon: MoneyChange },
-      { label: "Export Data Pesanan", icon: ExportCurve },
-    ],
-  },
-  {
-    title: "Produk",
-    items: [
-      { label: "Data Produk", icon: Box },
-      { label: "Tambah Produk", icon: BoxAdd, pyClass: "py-8" },
-      { label: "Tambah Produk Bulk", icon: BoxAdd },
-    ],
-  },
-  {
-    title: "Pinjaman",
-    items: [
-      { label: "Tersedia", icon: WalletMoney },
-      { label: "Berlangsung", icon: Timer1 },
-    ],
-  },
-  {
-    title: "Tender Kilat",
-    items: [
-      { label: "Daftar", icon: Judge },
-      { label: "Data Penawaran", icon: DocumentFilter },
-      { label: "Buat Penawaran", icon: Edit2 },
-    ],
-  },
-  {
-    title: "Promosi Produk",
-    items: [
-      { label: "Promo Koleksi", icon: DiscountShape },
-      { label: "Voucher", icon: TicketDiscount },
-    ],
-  },
 ];
 
 const UTILITY_ITEMS = [
@@ -125,8 +113,76 @@ const UTILITY_ITEMS = [
   { label: "Bantuan Hukum", icon: ShieldSecurity },
 ];
 
-export function SellerSidebar() {
-  const [activeItem, setActiveItem] = useState("Tambah Produk");
+export interface SellerSidebarProps {
+  currentPrototype?: 1 | 2;
+  onNavigate?: (version: 1 | 2) => void;
+}
+
+export function SellerSidebar({ currentPrototype = 1, onNavigate }: SellerSidebarProps) {
+  const activeLabel =
+    currentPrototype === 2
+      ? "Tambah Produk (Prototype 2)"
+      : "Tambah Produk (Prototype 1)";
+  const [activeItem, setActiveItem] = useState(activeLabel);
+
+  useEffect(() => {
+    setActiveItem(activeLabel);
+  }, [activeLabel]);
+
+  const menuSections = [
+    {
+      title: "Transaksi",
+      items: [
+        { label: "Pesanan", icon: ReceiptItem },
+        { label: "PaDi Kasir", icon: Card },
+        { label: "Biaya Transaksi Penjual", icon: MoneyChange },
+        { label: "Export Data Pesanan", icon: ExportCurve },
+      ],
+    },
+    {
+      title: "Produk",
+      items: [
+        { label: "Data Produk", icon: Box },
+        {
+          label: "Tambah Produk (Prototype 1)",
+          icon: BoxAdd,
+          href: "/prototype-1",
+          version: 1 as const,
+          pyClass: "py-6",
+        },
+        {
+          label: "Tambah Produk (Prototype 2)",
+          icon: BoxAdd,
+          href: "/prototype-2",
+          version: 2 as const,
+          pyClass: "py-6",
+        },
+        { label: "Tambah Produk Bulk", icon: BoxAdd },
+      ],
+    },
+    {
+      title: "Pinjaman",
+      items: [
+        { label: "Tersedia", icon: WalletMoney },
+        { label: "Berlangsung", icon: Timer1 },
+      ],
+    },
+    {
+      title: "Tender Kilat",
+      items: [
+        { label: "Daftar", icon: Judge },
+        { label: "Data Penawaran", icon: DocumentFilter },
+        { label: "Buat Penawaran", icon: Edit2 },
+      ],
+    },
+    {
+      title: "Promosi Produk",
+      items: [
+        { label: "Promo Koleksi", icon: DiscountShape },
+        { label: "Voucher", icon: TicketDiscount },
+      ],
+    },
+  ];
 
   return (
     <aside className="flex w-[280px] shrink-0 flex-col border-r border-border-subtle bg-surface-base font-sans select-none">
@@ -185,7 +241,7 @@ export function SellerSidebar() {
         </div>
 
         {/* Iterated Sections */}
-        {MENU_SECTIONS.map((section) => (
+        {menuSections.map((section) => (
           <div key={section.title} className="flex flex-col gap-4 py-4">
             <div className="px-16 py-4">
               <span className="text-sm font-medium text-secondary">
@@ -201,6 +257,12 @@ export function SellerSidebar() {
                   activeItem={activeItem}
                   setActiveItem={setActiveItem}
                   pyClass={item.pyClass}
+                  href={"href" in item ? (item.href as string) : undefined}
+                  onNavigate={
+                    "version" in item && onNavigate
+                      ? () => onNavigate(item.version as 1 | 2)
+                      : undefined
+                  }
                 />
               ))}
             </div>
