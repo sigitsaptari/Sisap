@@ -3,6 +3,15 @@
 @import "../../../tokens/build/tokens.css";
 @import "../../../tokens/build/tailwind-theme.css";
 
+@theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-error: #ee3124;
+  --color-placeholder: #8c9197;
+}
+
 /* Scan the design system source so component utility classes are generated. */
 @source "../../../src";
 

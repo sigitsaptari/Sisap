@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useId, useMemo } from "react";
 import { ArrowDown2, SearchNormal1 } from "iconsax-react";
 import { cn } from "../../utils/cn";
 import { FormFieldWrapper } from "../common/FormFieldWrapper";
-import { TextField, textFieldVariants } from "../TextField/TextField";
+import { textFieldVariants } from "../TextField/TextField";
 import { Checkbox } from "../Checkbox/Checkbox";
 import type { SelectFieldProps } from "./SelectField.types";
 
@@ -190,10 +190,8 @@ export function SelectField({
         >
           <span
             className={cn(
-              "block truncate",
-              displayText
-                ? "text-primary"
-                : cn("text-placeholder", placeholderClassName),
+              "block truncate text-primary text-[#444b55]",
+              placeholderClassName,
             )}
           >
             {displayText || placeholder}
@@ -205,35 +203,34 @@ export function SelectField({
           />
         </button>
 
-        {/* Dropdown */}
+        {/* Dropdown (Figma 91049:1917) */}
         {isOpen && (
           <div
             className={cn(
-              "absolute top-full left-0 z-50 mt-4 flex max-h-[260px] w-full flex-col overflow-hidden",
-              "rounded-[4px] border border-border-primary bg-[#ffffff] bg-white shadow-xl dark:bg-neutral-900",
+              "absolute top-full left-0 z-50 mt-4 flex max-h-[280px] w-full flex-col gap-8 overflow-hidden",
+              "rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] bg-white p-12 drop-shadow-[0px_4px_10px_rgba(0,0,0,0.15),0px_0px_1.5px_rgba(0,0,0,0.1)] dark:bg-neutral-900",
               dropdownClassName,
             )}
             style={{ backgroundColor: "#ffffff" }}
           >
             {/* Search Input */}
             {searchable && (
-              <div
-                className="z-10 shrink-0 border-b border-[#d5d7d9] bg-[#ffffff] bg-white p-12 dark:border-neutral-700 dark:bg-neutral-900"
-                style={{ backgroundColor: "#ffffff" }}
-              >
-                <TextField
-                  size="sm"
-                  placeholder={searchPlaceholder}
+              <div className="flex h-[36px] w-full shrink-0 items-center gap-[12px] rounded-[4px] border border-[#d5d7d9] bg-white px-16 dark:border-neutral-700 dark:bg-neutral-900">
+                <SearchNormal1 size={16} color="#b1b4b8" className="shrink-0" />
+                <input
+                  type="text"
                   value={searchValue}
                   onChange={handleSearchChange}
-                  leftIcon={<SearchNormal1 size={16} />}
+                  placeholder={searchPlaceholder}
+                  autoFocus
+                  className="w-full bg-transparent font-['Ubuntu',sans-serif] text-[12px] leading-[18px] text-[#444b55] outline-none placeholder:text-[#b1b4b8] dark:text-neutral-200"
                 />
               </div>
             )}
 
             {/* List */}
             <ul
-              className="flex-1 overflow-y-auto bg-[#ffffff] bg-white py-8 dark:bg-neutral-900"
+              className="flex-1 overflow-y-auto bg-[#ffffff] bg-white dark:bg-neutral-900"
               role="listbox"
               aria-multiselectable={multiple}
               style={{ backgroundColor: "#ffffff" }}
@@ -251,9 +248,9 @@ export function SelectField({
                       aria-selected={isSelected}
                       onClick={() => handleOptionClick(option.value)}
                       className={cn(
-                        "flex cursor-pointer items-center gap-8 px-12 py-8 font-['Ubuntu',sans-serif] text-sm transition-colors",
+                        "flex min-h-[40px] cursor-pointer items-center gap-8 rounded-[4px] px-12 py-[10px] font-['Ubuntu',sans-serif] text-sm leading-[21px] text-primary transition-colors",
                         isSelected && !multiple
-                          ? "bg-[#f0f9fa] font-medium text-[#009ea9]"
+                          ? "bg-[#f0f9fa] font-medium text-[#444b55]"
                           : "bg-[#ffffff] bg-white text-[#444b55] hover:bg-[#f9fafa] dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",
                       )}
                     >
@@ -266,12 +263,12 @@ export function SelectField({
                           onCheckedChange={() => handleOptionClick(option.value)}
                         />
                       )}
-                      <span className="block flex-1 truncate">{option.label}</span>
+                      <span className="block flex-1 truncate text-primary text-[#444b55]">{option.label}</span>
                     </li>
                   );
                 })
               ) : (
-                <li className="bg-[#ffffff] bg-white px-12 py-16 text-center text-sm text-[#b1b4b8]">
+                <li className="bg-[#ffffff] bg-white py-12 text-center font-['Ubuntu',sans-serif] text-[12px] text-[#b1b4b8]">
                   No options found
                 </li>
               )}

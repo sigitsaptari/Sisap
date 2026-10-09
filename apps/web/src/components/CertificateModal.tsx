@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { CloseCircle, DocumentUpload } from "iconsax-react";
-import { Button, TextField, SelectField } from "@sisapds/react";
+import { useState, useEffect, useRef } from "react";
+import { DocumentUpload, Trash } from "iconsax-react";
+import { Modal, TextField, SelectField } from "@sisapds/react";
 
 export interface CertificateItem {
   id: string;
@@ -21,6 +21,14 @@ interface CertificateModalProps {
   onUpdate?: (certificate: CertificateItem) => void;
 }
 
+const CERTIFICATE_TYPE_OPTIONS = [
+  { label: "TKDN (Tingkat Komponen Dalam Negeri)", value: "TKDN" },
+  { label: "MUI (Sertifikat Halal)", value: "MUI (Sertifikat Halal)" },
+  { label: "SNI (Standar Nasional Indonesia)", value: "SNI" },
+  { label: "BPOM MD", value: "BPOM MD" },
+  { label: "SPP-IRT", value: "SPP-IRT" },
+];
+
 export function CertificateModal({
   isOpen,
   onClose,
@@ -32,6 +40,7 @@ export function CertificateModal({
   const [certNumber, setCertNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("2026-12-31");
   const [fileName, setFileName] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (editingCertificate) {
@@ -44,6 +53,7 @@ export function CertificateModal({
         setCertNumber(editingCertificate.number || "");
       }
       setExpiryDate(editingCertificate.expiryDate || "2026-12-31");
+      setFileName(null);
     } else {
       setCertType("TKDN");
       setCertNumber("");
@@ -52,10 +62,7 @@ export function CertificateModal({
     }
   }, [editingCertificate, isOpen]);
 
-  if (!isOpen) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (editingCertificate && onUpdate) {
       const updated: CertificateItem = {
         ...editingCertificate,
@@ -84,94 +91,114 @@ export function CertificateModal({
     onClose();
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      setFileName(e.target.files[0].name);
+    }
+  };
+
+  const handleRemoveFile = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFileName(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/50 p-4 backdrop-blur-xs">
-      <div className="animate-in fade-in zoom-in-95 w-full max-w-lg overflow-hidden rounded-[12px] border border-[#e7e8e9] bg-[#ffffff] shadow-2xl duration-150">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#e7e8e9] px-6 py-4">
-          <h3 className="text-base font-bold text-[#444b55]">
-            {editingCertificate ? "Ubah Sertifikat Produk" : "Tambah Sertifikat Produk"}
-          </h3>
-          <button
-            type="button"
-            onClick={onClose}
-            className="cursor-pointer text-[#8c9197] transition-colors hover:text-[#444b55]"
-            aria-label="Tutup modal"
-          >
-            <CloseCircle size={22} variant="Bulk" color="#8c9197" />
-          </button>
-        </div>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={editingCertificate ? "Ubah Sertifikat Produk" : "Tambah Sertifikat Produk"}
+      size="md"
+      confirmText={editingCertificate ? "Simpan Perubahan" : "Simpan Sertifikat"}
+      cancelText="Batal"
+      onConfirm={handleSubmit}
+      onCancel={onClose}
+    >
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="flex flex-col gap-16 py-8"
+      >
+        {/* Jenis Sertifikat */}
+        <SelectField
+          label="Jenis Sertifikat"
+          isWajib
+          placeholder="Pilih Sertifikat"
+          value={certType}
+          onChange={(val) => setCertType(String(val))}
+          options={CERTIFICATE_TYPE_OPTIONS}
+        />
 
-        {/* Form Body */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-16 p-24">
-          <SelectField
-            label="Jenis Sertifikat"
-            isWajib
-            placeholder="Pilih Sertifikat"
-            value={certType}
-            onChange={(val) => setCertType(String(val))}
-            options={[
-              { label: "TKDN (Tingkat Komponen Dalam Negeri)", value: "TKDN" },
-              { label: "MUI (Sertifikat Halal)", value: "MUI (Sertifikat Halal)" },
-              { label: "SNI (Standar Nasional Indonesia)", value: "SNI" },
-              { label: "BPOM MD", value: "BPOM MD" },
-              { label: "SPP-IRT", value: "SPP-IRT" },
-            ]}
-          />
+        {/* Nomor / Nilai Sertifikat */}
+        <TextField
+          label={certType === "TKDN" ? "Persentase TKDN (%)" : "Nomor Sertifikat / Registrasi"}
+          required
+          placeholder={certType === "TKDN" ? "Contoh: 80%" : "Contoh: ID26356455565746561"}
+          value={certNumber}
+          onChange={(e) => setCertNumber(e.target.value)}
+        />
 
+        {/* Tanggal Kedaluwarsa (Non-TKDN) */}
+        {certType !== "TKDN" && (
           <TextField
-            label={certType === "TKDN" ? "Persentase TKDN (%)" : "Nomor Sertifikat / Registrasi"}
+            label="Tanggal Kedaluwarsa"
+            type="date"
             required
-            placeholder={certType === "TKDN" ? "Contoh: 80%" : "Contoh: ID26356455565746561"}
-            value={certNumber}
-            onChange={(e) => setCertNumber(e.target.value)}
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
           />
+        )}
 
-          {certType !== "TKDN" && (
-            <TextField
-              label="Tanggal Kedaluwarsa"
-              type="date"
-              required
-              value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
-            />
-          )}
+        {/* Upload Dokumen Sertifikat */}
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-4">
+            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
+              Upload Dokumen Sertifikat
+            </span>
+            <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-[#ee3124] italic">
+              Wajib
+            </span>
+          </div>
 
-          {/* Upload Dokumen */}
-          <div className="flex flex-col gap-8">
-            <label className="text-sm font-medium text-[#444b55]">
-              Upload Dokumen Sertifikat <span className="text-[#ee3124] italic">*</span>
-            </label>
-            <label className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-16 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5">
-              <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-4" />
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-16 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5"
+          >
+            <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-4" />
+            {fileName ? (
+              <div className="flex items-center gap-8">
+                <span className="text-xs font-semibold text-[#009ea9] underline">
+                  {fileName}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleRemoveFile}
+                  className="cursor-pointer text-[#ee3124] hover:text-[#d32f2f]"
+                  aria-label="Hapus dokumen"
+                >
+                  <Trash size={16} />
+                </button>
+              </div>
+            ) : (
               <span className="text-xs font-semibold text-[#009ea9]">
-                {fileName ? fileName : "Pilih Berkas PDF / JPG"}
+                Pilih Berkas PDF / JPG
               </span>
-              <span className="text-[11px] text-[#8c9197]">Maks. ukuran 5MB</span>
-              <input
-                type="file"
-                accept=".pdf,.jpg,.jpeg,.png"
-                className="hidden"
-                onChange={(e) => {
-                  if (e.target.files?.[0]) {
-                    setFileName(e.target.files[0].name);
-                  }
-                }}
-              />
-            </label>
+            )}
+            <span className="mt-2 text-[11px] text-[#8c9197]">Maks. ukuran 5MB</span>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.jpg,.jpeg,.png"
+              className="hidden"
+              onChange={handleFileChange}
+            />
           </div>
-
-          {/* Buttons */}
-          <div className="mt-16 flex items-center justify-end gap-12 border-t border-[#f2f4f7] pt-16">
-            <Button type="button" variant="outline" size="md" onClick={onClose}>
-              Batal
-            </Button>
-            <Button type="submit" variant="primary" size="md">
-              {editingCertificate ? "Simpan Perubahan" : "Simpan Sertifikat"}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </Modal>
   );
 }

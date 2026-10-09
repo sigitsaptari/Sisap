@@ -86,3 +86,13 @@ export type {
   UploaderItemProps,
   UploaderTriggerProps,
 } from "./components/Uploader";
+
+export { Modal, ModalHeader, ModalBody, ModalFooter } from "./components/Modal";
+export type {
+  ModalProps,
+  ModalHeaderProps,
+  ModalBodyProps,
+  ModalFooterProps,
+  ModalSize,
+} from "./components/Modal";
+

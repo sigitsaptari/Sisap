@@ -533,7 +533,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: Informasi Produk (6901:13165) */}
-                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
+                <div className="w-full rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Informasi Produk
@@ -1155,9 +1155,9 @@ export default function App() {
             {/* STEP 3: PENGIRIMAN */}
             {/* ======================================================== */}
             {currentStep === 3 && (
-              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200 pb-[240px]">
                 {/* Card Pengiriman (6923:27248) */}
-                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
+                <div className="w-full rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Pengiriman
@@ -1255,7 +1255,7 @@ export default function App() {
                         placeholder="Pilih Kurir"
                         options={COURIER_OPTIONS}
                         value={courier}
-                        onChange={setCourier}
+                        onChange={(val) => setCourier(val as string)}
                       />
                     </div>
 
@@ -1284,9 +1284,9 @@ export default function App() {
             {/* STEP 4: VISIBILITAS / LAINNYA */}
             {/* ======================================================== */}
             {currentStep === 4 && (
-              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200 pb-[240px]">
                 {/* Card Visibilitas Produk (6941:10909) */}
-                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
+                <div className="w-full rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Visibilitas Produk
@@ -1365,7 +1365,7 @@ export default function App() {
                               : "border-[#d5d7d9] hover:border-[#8c9197]"
                           )}
                         >
-                          <span className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#8c9197]">
+                          <span className="font-['Ubuntu'] text-[14px] leading-[21px] text-primary text-[#444b55]">
                             Pilih BUMN
                           </span>
                           <ArrowDown2
@@ -1379,26 +1379,26 @@ export default function App() {
                           />
                         </button>
 
-                        {/* Dropdown Menu */}
+                        {/* Dropdown Menu (Figma 91049:1917) */}
                         {isBumnDropdownOpen && (
-                          <div className="absolute top-[calc(100%+4px)] left-0 z-50 flex w-full flex-col overflow-hidden rounded-[4px] border border-[#d5d7d9] bg-white shadow-lg">
-                            {/* Search Bar */}
-                            <div className="flex items-center gap-8 border-b border-[#dee3ed] px-12 py-8">
-                              <SearchNormal1 size={18} color="#8c9197" className="shrink-0" />
+                          <div className="absolute top-[calc(100%+4px)] left-0 z-50 flex w-full flex-col gap-[8px] rounded-[4px] border border-[#d5d7d9] bg-white p-[12px] drop-shadow-[0px_4px_10px_rgba(0,0,0,0.15),0px_0px_1.5px_rgba(0,0,0,0.1)]">
+                            {/* Search Box */}
+                            <div className="flex h-[36px] w-full shrink-0 items-center gap-[12px] rounded-[4px] border border-[#d5d7d9] bg-white px-[16px]">
+                              <SearchNormal1 size={16} color="#b1b4b8" className="shrink-0" />
                               <input
                                 type="text"
                                 value={bumnSearch}
                                 onChange={(e) => setBumnSearch(e.target.value)}
-                                placeholder="Cari BUMN..."
+                                placeholder="Search"
                                 autoFocus
-                                className="w-full bg-transparent font-['Ubuntu'] text-[14px] text-[#444b55] outline-none placeholder:text-[#8c9197]"
+                                className="w-full bg-transparent font-['Ubuntu'] text-[12px] leading-[18px] text-[#444b55] outline-none placeholder:text-[#b1b4b8]"
                               />
                             </div>
 
-                            {/* BUMN List */}
-                            <div className="max-h-[220px] overflow-y-auto py-4">
+                            {/* BUMN List Items */}
+                            <div className="flex max-h-[200px] flex-col overflow-y-auto">
                               {filteredBumnOptions.length === 0 ? (
-                                <div className="px-16 py-12 text-center font-['Ubuntu'] text-[14px] text-[#8c9197]">
+                                <div className="py-12 text-center font-['Ubuntu'] text-[12px] text-[#b1b4b8]">
                                   BUMN tidak ditemukan
                                 </div>
                               ) : (
@@ -1415,31 +1415,38 @@ export default function App() {
                                         }
                                       }}
                                       className={cn(
-                                        "flex items-center justify-between px-16 py-10 transition-colors select-none",
+                                        "flex h-[41px] shrink-0 items-center gap-[8px] rounded-[4px] px-[12px] py-[10px] transition-colors select-none",
                                         isMaxReached
                                           ? "cursor-not-allowed opacity-50"
-                                          : "cursor-pointer hover:bg-[#f6f8fb]",
-                                        isSelected && "bg-[#f0f9fa]"
+                                          : "cursor-pointer hover:bg-[#f9fafa]"
                                       )}
                                     >
-                                      <span
+                                      {/* Checkbox icon left */}
+                                      <div
                                         className={cn(
-                                          "font-['Ubuntu'] text-[14px] leading-[21px]",
+                                          "flex size-[16px] shrink-0 items-center justify-center rounded-[4px] border transition-colors",
                                           isSelected
-                                            ? "font-medium text-[#009ea9]"
-                                            : "text-[#444b55]"
+                                            ? "border-[#009ea9] bg-[#009ea9] text-white"
+                                            : "border-[#b1b4b8] bg-white"
                                         )}
                                       >
+                                        {isSelected && (
+                                          <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={3}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="size-[12px]"
+                                          >
+                                            <polyline points="20 6 9 17 4 12" />
+                                          </svg>
+                                        )}
+                                      </div>
+                                      <span className="font-['Ubuntu'] text-[14px] leading-[21px] text-primary text-[#444b55]">
                                         {opt.label}
                                       </span>
-                                      {isSelected && (
-                                        <TickCircle
-                                          size={18}
-                                          variant="Bold"
-                                          color="#009ea9"
-                                          className="shrink-0"
-                                        />
-                                      )}
                                     </div>
                                   );
                                 })
