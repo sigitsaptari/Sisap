@@ -3,6 +3,7 @@ import {
   Danger,
   CloseCircle,
   TickCircle,
+  InfoCircle,
   ArrowDown2,
   SearchNormal1,
 } from "iconsax-react";
@@ -704,39 +705,26 @@ export function Prototype2({ onShowToast }: Prototype2Props) {
                 onChange={(e) => setDiscountPrice(formatCurrency(e.target.value))}
               />
               {showDiscountCaption && (
-                <div className="mt-6 flex items-center gap-6">
-                  <div className="flex size-14 items-center justify-center rounded-full bg-feedback-success text-white">
-                    <svg
-                      className="size-10"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <polyline points="2 6 5 9 10 3" />
-                    </svg>
-                  </div>
-                  <span className="font-sans text-[12px] leading-[18px] font-medium text-feedback-success">
+                <div className="mt-8 flex items-center gap-4 text-feedback-success">
+                  <TickCircle size={16} variant="Bold" color="#25974c" />
+                  <span className="font-sans text-[14px] leading-[21px] font-medium text-feedback-success">
                     Persentase Diskon {discountPercent}%
                   </span>
                 </div>
               )}
             </div>
 
-            <div className="flex flex-1 items-end pt-24 w-full">
-              <div className="flex h-[44px] w-full items-center justify-between rounded-md bg-[#e6f7f0] px-16 text-primary">
-                <div className="flex items-center gap-6">
-                  <span className="font-sans text-[14px] leading-[21px] text-primary">
+            <div className="flex flex-1 items-end pt-0 lg:pt-[29px] w-full">
+              <div className="flex h-[44px] w-full items-center justify-between gap-16 rounded-sm bg-feedback-success-bg px-16">
+                <div className="flex items-center gap-4">
+                  <span className="font-sans text-[14px] leading-[21px] font-medium text-primary whitespace-nowrap">
                     Estimasi pendapatan
                   </span>
-                  <div
-                    className="flex size-16 items-center justify-center rounded-full border border-secondary text-[11px] text-secondary"
-                    title="Perkiraan pendapatan bersih setelah diskon"
-                  >
-                    i
-                  </div>
+                  <span title="Estimasi pendapatan bersih setelah diskon" className="cursor-help inline-flex items-center">
+                    <InfoCircle size={16} variant="Linear" className="text-secondary" />
+                  </span>
                 </div>
-                <span className="font-sans text-[16px] leading-[24px] font-bold text-[#008a4b]">
+                <span className="font-sans text-[18px] leading-[26px] font-bold text-feedback-success whitespace-nowrap capitalize">
                   Rp{estimatedIncome}
                 </span>
               </div>
