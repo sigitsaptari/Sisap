@@ -115,7 +115,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 "h-[2px] flex-1 transition-colors",
                 isFirst
                   ? "invisible"
-                  : isSuccess
+                  : isActive || isSuccess
                     ? "bg-action-primary"
                     : "bg-border-primary dark:bg-neutral-700",
               )}
@@ -188,7 +188,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
               "h-[2px] min-w-3 flex-1 transition-colors",
               isFirst
                 ? "invisible"
-                : isSuccess
+                : isActive || isSuccess
                   ? "bg-action-primary"
                   : "bg-border-primary dark:bg-neutral-700",
             )}
@@ -265,7 +265,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             className={cn(
               "w-[2px] transition-colors",
               isFirst ? "invisible h-0" : "min-h-12 flex-1",
-              isActive || isSuccess ? "bg-action-primary" : "bg-border-subtle dark:bg-neutral-700",
+              isActive || isSuccess ? "bg-action-primary" : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -278,7 +278,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             className={cn(
               "w-[2px] transition-colors",
               isLast ? "invisible h-0" : "min-h-12 flex-1",
-              isSuccess ? "bg-action-primary" : "bg-border-subtle dark:bg-neutral-700",
+              isSuccess ? "bg-action-primary" : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
