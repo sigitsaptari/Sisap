@@ -74,7 +74,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             ? "border-action-primary bg-action-primary text-white"
             : isActive
               ? "border-action-primary bg-surface-base text-primary dark:border-action-primary dark:bg-neutral-900 dark:text-neutral-100"
-              : "border-transparent bg-surface-sunken text-secondary dark:border-transparent dark:bg-neutral-800 dark:text-neutral-400",
+              : "border-border-primary bg-surface-sunken text-primary dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200",
         )}
       >
         {indicatorContent}
@@ -115,9 +115,9 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 "h-[2px] flex-1 transition-colors",
                 isFirst
                   ? "invisible"
-                  : isActive || isSuccess
+                  : isSuccess
                     ? "bg-action-primary"
-                    : "bg-border-subtle dark:bg-neutral-700",
+                    : "bg-border-primary dark:bg-neutral-700",
               )}
               aria-hidden="true"
             />
@@ -133,7 +133,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                   ? "invisible"
                   : isSuccess
                     ? "bg-action-primary"
-                    : "bg-border-subtle dark:bg-neutral-700",
+                    : "bg-border-primary dark:bg-neutral-700",
               )}
               aria-hidden="true"
             />
@@ -188,9 +188,9 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
               "h-[2px] min-w-3 flex-1 transition-colors",
               isFirst
                 ? "invisible"
-                : isActive || isSuccess
+                : isSuccess
                   ? "bg-action-primary"
-                  : "bg-transparent dark:bg-transparent",
+                  : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -225,7 +225,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 ? "invisible"
                 : isSuccess
                   ? "bg-action-primary"
-                  : "bg-transparent dark:bg-transparent",
+                  : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />

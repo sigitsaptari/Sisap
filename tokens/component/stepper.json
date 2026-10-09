@@ -3,19 +3,19 @@
     "indicator": {
       "size": { "$type": "dimension", "$value": "44px" },
       "border-width": { "$type": "dimension", "$value": "2px" },
-      "default-border": { "$type": "color", "$value": "transparent" },
+      "default-border": { "$type": "color", "$value": "{color.border.primary}" },
       "default-bg": { "$type": "color", "$value": "{color.surface.sunken}" },
-      "default-fg": { "$type": "color", "$value": "{color.content.secondary}" },
+      "default-fg": { "$type": "color", "$value": "{color.content.primary}" },
       "active-border": { "$type": "color", "$value": "{color.brand.500}" },
       "active-bg": { "$type": "color", "$value": "{color.neutral.0}" },
-      "active-fg": { "$type": "color", "$value": "{color.neutral.500}" },
+      "active-fg": { "$type": "color", "$value": "{color.content.primary}" },
       "success-border": { "$type": "color", "$value": "{color.brand.500}" },
       "success-bg": { "$type": "color", "$value": "{color.brand.500}" },
       "success-fg": { "$type": "color", "$value": "{color.neutral.0}" }
     },
     "connector": {
       "thickness": { "$type": "dimension", "$value": "2px" },
-      "default": { "$type": "color", "$value": "transparent" },
+      "default": { "$type": "color", "$value": "{color.border.primary}" },
       "active": { "$type": "color", "$value": "{color.brand.500}" }
     }
   }
