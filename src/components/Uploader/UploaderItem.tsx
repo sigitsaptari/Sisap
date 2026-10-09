@@ -161,7 +161,7 @@ export function UploaderItem({
 
           {/* Primary Badge (First Image) */}
           {isPrimary && type === "image" && (
-            <span className="pointer-events-none absolute bottom-4 left-4 z-10 inline-flex h-20 items-center justify-center rounded-full bg-action-primary px-8 text-[11px] font-medium whitespace-nowrap text-white shadow-sm select-none">
+            <span className="pointer-events-none absolute bottom-4 left-4 z-10 inline-flex h-20 items-center justify-center rounded-badge bg-action-primary px-8 text-[11px] font-medium whitespace-nowrap text-white shadow-sm select-none">
               Utama
             </span>
           )}

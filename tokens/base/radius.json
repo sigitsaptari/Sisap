@@ -8,6 +8,8 @@
     "8": { "$type": "dimension", "$value": "8px" },
     "12": { "$type": "dimension", "$value": "12px" },
     "16": { "$type": "dimension", "$value": "16px" },
-    "999": { "$type": "dimension", "$value": "999px" }
+    "999": { "$type": "dimension", "$value": "999px" },
+    "Full": { "$type": "dimension", "$value": "{radius.999}" },
+    "full": { "$type": "dimension", "$value": "{radius.999}" }
   }
 }
