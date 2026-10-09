@@ -6,8 +6,10 @@
       "sunken": { "$type": "color", "$value": "{color.neutral.100}" }
     },
     "content": {
-      "primary": { "$type": "color", "$value": "{color.neutral.900}" },
-      "muted": { "$type": "color", "$value": "{color.neutral.500}" },
+      "primary": { "$type": "color", "$value": "{color.neutral.500}" },
+      "secondary": { "$type": "color", "$value": "#686e76" },
+      "placeholder": { "$type": "color", "$value": "#b1b4b8" },
+      "muted": { "$type": "color", "$value": "{color.neutral.400}" },
       "inverse": { "$type": "color", "$value": "{color.neutral.0}" }
     },
     "action": {
@@ -22,6 +24,7 @@
       "danger-hover": { "$type": "color", "$value": "{color.danger.700}" }
     },
     "border": {
+      "primary": { "$type": "color", "$value": "#d5d7d9" },
       "subtle": { "$type": "color", "$value": "{color.neutral.200}" },
       "default": { "$type": "color", "$value": "{color.neutral.200}" },
       "strong": { "$type": "color", "$value": "{color.neutral.300}" }

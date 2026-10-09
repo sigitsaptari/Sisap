@@ -7,6 +7,7 @@ export function UploaderTrigger({
   type,
   currentCount,
   maxFiles,
+  label,
   onClick,
   isDragging = false,
   disabled = false,
@@ -27,7 +28,7 @@ export function UploaderTrigger({
           ? "scale-[1.02] border-[#009ea9] bg-[#009ea9]/10"
           : "border-[#b1b4b8] bg-transparent hover:border-[#009ea9] hover:bg-[#009ea9]/5 active:scale-[0.98] dark:border-neutral-600",
       )}
-      aria-label={isImage ? `Tambah Foto (${currentCount}/${maxFiles})` : "Tambah Video"}
+      aria-label={label || (isImage ? `Tambah Foto (${currentCount}/${maxFiles})` : "Tambah Video")}
     >
       {/* Icon */}
       <div className="flex size-24 shrink-0 items-center justify-center">
@@ -37,11 +38,24 @@ export function UploaderTrigger({
       </div>
 
       {/* Description */}
-      <div className="flex flex-col items-center text-center text-[12px] leading-[18px] font-normal text-[#686e76] dark:text-neutral-400">
-        <span>Tambah</span>
-        <span className="whitespace-nowrap">
-          {isImage ? `Foto (${currentCount}/${maxFiles})` : "Video"}
-        </span>
+      <div className="flex flex-col items-center text-center text-[12px] leading-[18px] font-medium text-secondary">
+        {label ? (
+          label === "Tambah Video" ? (
+            <>
+              <span>Tambah</span>
+              <span className="whitespace-nowrap">Video</span>
+            </>
+          ) : (
+            <span className="whitespace-nowrap">{label}</span>
+          )
+        ) : (
+          <>
+            <span>Tambah</span>
+            <span className="whitespace-nowrap">
+              {isImage ? `Foto (${currentCount}/${maxFiles})` : "Video"}
+            </span>
+          </>
+        )}
       </div>
     </button>
   );

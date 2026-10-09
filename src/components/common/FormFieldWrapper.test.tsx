@@ -144,7 +144,7 @@ describe("FormFieldWrapper", () => {
 
     const counter = screen.getByText("10/100");
     expect(counter).toBeTruthy();
-    expect(counter.className).not.toContain("text-[#ee3124]");
+    expect(counter.className).not.toContain("text-error");
 
     rerender(
       <FormFieldWrapper showCounter counterText="101/100" isErrorCounter>
@@ -154,7 +154,7 @@ describe("FormFieldWrapper", () => {
 
     const errorCounter = screen.getByText("101/100");
     expect(errorCounter).toBeTruthy();
-    expect(errorCounter.className).toContain("text-[#ee3124]");
+    expect(errorCounter.className).toContain("text-error");
   });
 
   it("applies containerClassName", () => {

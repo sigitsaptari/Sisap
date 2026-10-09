@@ -172,10 +172,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <div className={textFieldVariants({ size, state: effectiveState })}>
           {/* Prefix Slot with Divider */}
           {showPrefix && (
-            <div className="flex shrink-0 items-center gap-8 font-medium text-[#444b55] select-none dark:text-neutral-300">
+            <div className="flex shrink-0 items-center gap-8 font-medium text-primary select-none">
               <span>{resolvedPrefix}</span>
               <div
-                className={cn("w-px shrink-0 bg-[#d5d7d9] dark:bg-neutral-700", dividerHeightClass)}
+                className={cn("w-px shrink-0 bg-border-primary", dividerHeightClass)}
                 aria-hidden="true"
               />
             </div>
@@ -184,7 +184,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {/* Left Icon */}
           {showLeftIcon && (
             <span
-              className={cn("inline-flex shrink-0 items-center text-[#686e76]", iconSizes[size])}
+              className={cn("inline-flex shrink-0 items-center text-secondary", iconSizes[size])}
               aria-hidden="true"
             >
               {renderIcon(resolvedLeftIcon, iconPixelSize)}
@@ -209,7 +209,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               onChange?.(e);
             }}
             className={cn(
-              "w-full min-w-0 flex-1 bg-transparent text-[#444b55] outline-none placeholder:text-[#b1b4b8] disabled:cursor-not-allowed dark:text-neutral-100",
+              "w-full min-w-0 flex-1 bg-transparent text-primary outline-none placeholder:text-placeholder disabled:cursor-not-allowed",
               className,
             )}
             {...rest}
@@ -218,7 +218,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {/* Right Icon */}
           {showRightIcon && (
             <span
-              className={cn("inline-flex shrink-0 items-center text-[#686e76]", iconSizes[size])}
+              className={cn("inline-flex shrink-0 items-center text-secondary", iconSizes[size])}
               aria-hidden="true"
             >
               {renderIcon(resolvedRightIcon, iconPixelSize)}
@@ -227,9 +227,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
           {/* Suffix Slot with Divider */}
           {showSuffix && (
-            <div className="flex shrink-0 items-center gap-8 font-medium text-[#444b55] select-none dark:text-neutral-300">
+            <div className="flex shrink-0 items-center gap-8 font-medium text-primary select-none">
               <div
-                className={cn("w-px shrink-0 bg-[#d5d7d9] dark:bg-neutral-700", dividerHeightClass)}
+                className={cn("w-px shrink-0 bg-border-primary", dividerHeightClass)}
                 aria-hidden="true"
               />
               <span>{resolvedSuffix}</span>

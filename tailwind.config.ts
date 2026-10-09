@@ -13,17 +13,30 @@ const config: Config = {
         },
         content: {
           primary: "var(--content-primary)",
+          secondary: "var(--content-secondary)",
+          placeholder: "var(--content-placeholder)",
           muted: "var(--content-muted)",
           inverse: "var(--content-inverse)",
         },
+        // Direct semantic shorthands
+        primary: "var(--content-primary)",
+        secondary: "var(--content-secondary)",
+        placeholder: "var(--content-placeholder)",
+        error: "var(--feedback-danger)",
         action: {
           primary: "var(--action-primary)",
           "primary-hover": "var(--action-primary-hover)",
           destructive: "var(--action-destructive)",
         },
         border: {
+          primary: "var(--border-primary)",
           subtle: "var(--border-subtle)",
           strong: "var(--border-strong)",
+        },
+        status: {
+          error: "var(--feedback-danger)",
+          success: "var(--feedback-success)",
+          warning: "var(--feedback-warning)",
         },
       },
       spacing: {

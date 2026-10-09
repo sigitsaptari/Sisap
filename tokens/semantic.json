@@ -6,8 +6,10 @@
       "sunken": { "$value": "{color.neutral.100}", "$type": "color" }
     },
     "content": {
-      "primary": { "$value": "{color.neutral.900}", "$type": "color" },
-      "muted": { "$value": "{color.neutral.500}", "$type": "color" },
+      "primary": { "$value": "{color.neutral.500}", "$type": "color" },
+      "secondary": { "$value": "#686e76", "$type": "color" },
+      "placeholder": { "$value": "#b1b4b8", "$type": "color" },
+      "muted": { "$value": "{color.neutral.400}", "$type": "color" },
       "inverse": { "$value": "{color.neutral.0}", "$type": "color" }
     },
     "action": {
@@ -16,6 +18,7 @@
       "destructive": { "$value": "{color.danger.600}", "$type": "color" }
     },
     "border": {
+      "primary": { "$value": "#d5d7d9", "$type": "color" },
       "subtle": { "$value": "{color.neutral.200}", "$type": "color" },
       "strong": { "$value": "{color.neutral.300}", "$type": "color" }
     }
@@ -28,6 +31,8 @@
     },
     "content": {
       "primary": { "$value": "{color.neutral.50}", "$type": "color" },
+      "secondary": { "$value": "{color.neutral.300}", "$type": "color" },
+      "placeholder": { "$value": "{color.neutral.500}", "$type": "color" },
       "muted": { "$value": "{color.neutral.400}", "$type": "color" },
       "inverse": { "$value": "{color.neutral.950}", "$type": "color" }
     },
@@ -37,6 +42,7 @@
       "destructive": { "$value": "{color.danger.500}", "$type": "color" }
     },
     "border": {
+      "primary": { "$value": "{color.neutral.700}", "$type": "color" },
       "subtle": { "$value": "{color.neutral.800}", "$type": "color" },
       "strong": { "$value": "{color.neutral.700}", "$type": "color" }
     }

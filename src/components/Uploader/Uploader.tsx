@@ -32,6 +32,7 @@ export function Uploader({
   onUpload,
   simulateUpload = true,
   disabled = false,
+  slotLabels,
   className,
   id,
 }: UploaderProps) {
@@ -285,11 +286,11 @@ export function Uploader({
       {/* Header Label */}
       {displayLabel && (
         <div className="flex items-center gap-4">
-          <span className="text-[14px] leading-[21px] font-medium text-[#444b55] dark:text-neutral-200">
+          <span className="text-[14px] leading-[21px] font-medium text-primary">
             {displayLabel}
           </span>
           {required && (
-            <span className="text-[12px] leading-[18px] font-normal text-[#ee3124] italic dark:text-red-400">
+            <span className="text-[12px] leading-[18px] font-normal text-error italic">
               Wajib
             </span>
           )}
@@ -299,29 +300,63 @@ export function Uploader({
       {/* Upload Items & Trigger Row */}
       <div className="flex w-full flex-col gap-16">
         <div className="flex min-h-[94px] flex-wrap items-start gap-12">
-          {/* Uploaded / In-Progress Items */}
-          {files.map((file, idx) => (
-            <UploaderItem
-              key={file.id}
-              file={file}
-              type={type}
-              isPrimary={idx === 0 && type === "image"}
-              onRemove={handleRemove}
-              onRetry={handleRetry}
-              disabled={disabled}
-            />
-          ))}
+          {slotLabels && slotLabels.length > 0 ? (
+            // Fixed slots mode (e.g. 5 slots for photos or 1 slot for video)
+            Array.from({ length: maxFiles }).map((_, idx) => {
+              const file = files[idx];
+              if (file) {
+                return (
+                  <UploaderItem
+                    key={file.id}
+                    file={file}
+                    type={type}
+                    isPrimary={idx === 0 && type === "image"}
+                    onRemove={handleRemove}
+                    onRetry={handleRetry}
+                    disabled={disabled}
+                  />
+                );
+              }
+              return (
+                <UploaderTrigger
+                  key={`slot-${idx}`}
+                  type={type}
+                  currentCount={files.length}
+                  maxFiles={maxFiles}
+                  label={slotLabels[idx] || (type === "image" ? `Foto ${idx}` : "Tambah Video")}
+                  onClick={() => inputRef.current?.click()}
+                  isDragging={isDragging}
+                  disabled={disabled}
+                />
+              );
+            })
+          ) : (
+            // Dynamic mode (backward-compatible)
+            <>
+              {files.map((file, idx) => (
+                <UploaderItem
+                  key={file.id}
+                  file={file}
+                  type={type}
+                  isPrimary={idx === 0 && type === "image"}
+                  onRemove={handleRemove}
+                  onRetry={handleRetry}
+                  disabled={disabled}
+                />
+              ))}
 
-          {/* Upload Trigger Button */}
-          {files.length < maxFiles && (
-            <UploaderTrigger
-              type={type}
-              currentCount={files.length}
-              maxFiles={maxFiles}
-              onClick={() => inputRef.current?.click()}
-              isDragging={isDragging}
-              disabled={disabled}
-            />
+              {/* Upload Trigger Button */}
+              {files.length < maxFiles && (
+                <UploaderTrigger
+                  type={type}
+                  currentCount={files.length}
+                  maxFiles={maxFiles}
+                  onClick={() => inputRef.current?.click()}
+                  isDragging={isDragging}
+                  disabled={disabled}
+                />
+              )}
+            </>
           )}
         </div>
 
@@ -341,9 +376,9 @@ export function Uploader({
 
         {/* Helper Rules List */}
         {rules && rules.length > 0 && (
-          <ul className="ms-[21px] flex list-disc flex-col gap-0 text-[14px] leading-[21px] text-[#686e76] dark:text-neutral-400">
+          <ul className="ms-[21px] flex list-disc flex-col gap-0 text-[14px] leading-[21px] text-secondary">
             {rules.map((rule, idx) => (
-              <li key={idx} className="marker:text-[#686e76] dark:marker:text-neutral-400">
+              <li key={idx} className="marker:text-secondary">
                 {rule}
               </li>
             ))}

@@ -71,11 +71,14 @@
   --color-bg-raised: var(--ds-color-bg-raised);
   --color-bg-surface: var(--ds-color-bg-surface);
   --color-border-default: var(--ds-color-border-default);
+  --color-border-primary: var(--ds-color-border-primary);
   --color-border-strong: var(--ds-color-border-strong);
   --color-border-subtle: var(--ds-color-border-subtle);
   --color-content-inverse: var(--ds-color-content-inverse);
   --color-content-muted: var(--ds-color-content-muted);
+  --color-content-placeholder: var(--ds-color-content-placeholder);
   --color-content-primary: var(--ds-color-content-primary);
+  --color-content-secondary: var(--ds-color-content-secondary);
   --color-feedback-danger: var(--ds-color-feedback-danger);
   --color-feedback-danger-bg: var(--ds-color-feedback-danger-bg);
   --color-feedback-success: var(--ds-color-feedback-success);

@@ -114,6 +114,20 @@ const BUMN_OPTIONS = [
   { label: "Bio Farma", value: "Bio Farma" },
 ];
 
+const COURIER_OPTIONS = [
+  { label: "JNE", value: "jne" },
+  { label: "J&T Express", value: "jnt" },
+  { label: "SiCepat", value: "sicepat" },
+  { label: "Anteraja", value: "anteraja" },
+  { label: "Pos Indonesia", value: "pos" },
+];
+
+function formatCurrency(val: string): string {
+  const digits = val.replace(/\D/g, "");
+  if (!digits) return "";
+  return new Intl.NumberFormat("id-ID").format(parseInt(digits, 10));
+}
+
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -128,60 +142,18 @@ export default function App() {
   // STEP 1 STATE: INFORMASI PRODUK
   // ----------------------------------------------------
   const [productType, setProductType] = useState<"Barang" | "Jasa">("Barang");
-  const [productName, setProductName] = useState(
-    "MacBook Pro M5 14-Inch 16/512GB 16/1TB 24/1TB Space Black Silver - 16/1 TB IBOX Original Space Grey",
-  );
-  const [category, setCategory] = useState("Furniture/Furniture Perkantoran");
-  const [brand, setBrand] = useState("Fantech");
-  const [unitType, setUnitType] = useState("Pcs");
-  const [sku, setSku] = useState("1");
+  const [productName, setProductName] = useState("");
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [unitType, setUnitType] = useState("");
+  const [sku, setSku] = useState("");
   const [isPdn, setIsPdn] = useState(false);
-  const [pph, setPph] = useState("Tidak Dipotong");
-  const [description, setDescription] = useState(
-    "Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar.",
-  );
+  const [pph, setPph] = useState("");
+  const [description, setDescription] = useState("");
 
   // Media (Fotos & Video)
-  const [photos, setPhotos] = useState<UploaderFile[]>([
-    {
-      id: "photo-1",
-      name: "macbook-1.jpg",
-      url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&auto=format&fit=crop&q=80",
-      status: "success",
-      progress: 100,
-    },
-    {
-      id: "photo-2",
-      name: "macbook-2.jpg",
-      url: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=300&auto=format&fit=crop&q=80",
-      status: "success",
-      progress: 100,
-    },
-    {
-      id: "photo-3",
-      name: "macbook-3.jpg",
-      url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&auto=format&fit=crop&q=80",
-      status: "success",
-      progress: 100,
-    },
-    {
-      id: "photo-4",
-      name: "macbook-4.jpg",
-      url: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300&auto=format&fit=crop&q=80",
-      status: "success",
-      progress: 100,
-    },
-  ]);
-
-  const [video, setVideo] = useState<UploaderFile[]>([
-    {
-      id: "video-1",
-      name: "macbook-video.mp4",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      status: "success",
-      progress: 100,
-    },
-  ]);
+  const [photos, setPhotos] = useState<UploaderFile[]>([]);
+  const [video, setVideo] = useState<UploaderFile[]>([]);
 
   // Certificates list
   const [certificates, setCertificates] = useState<CertificateItem[]>([
@@ -230,13 +202,12 @@ export default function App() {
   const [editingCert, setEditingCert] = useState<CertificateItem | null>(null);
 
   // ----------------------------------------------------
-  // STEP 2 STATE: HARGA & STOK
+  // STEP 2 STATE: HARGA & STOK (6923:24880)
   // ----------------------------------------------------
   const [showAlertBanner, setShowAlertBanner] = useState(true);
   const [priceType, setPriceType] = useState<"normal" | "tempo">("normal");
-  const [unitPrice, setUnitPrice] = useState("1.000.000");
-  const [showDiscount, setShowDiscount] = useState(true);
-  const [priceBeforeDiscount, setPriceBeforeDiscount] = useState("2.000.000");
+  const [unitPrice, setUnitPrice] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
   const [ppnType, setPpnType] = useState<"ppn12" | "ppn1" | "noppn">("ppn12");
   const [stock, setStock] = useState("100");
   const [minPurchase, setMinPurchase] = useState("1");
@@ -244,23 +215,57 @@ export default function App() {
   const [isPreOrder, setIsPreOrder] = useState(true);
   const [processDays, setProcessDays] = useState("30");
 
+  // Perhitungan diskon & estimasi pendapatan (Harga Produk 6923:24880)
+  const { discountPercent, estimatedIncome, showDiscountCaption } = useMemo(() => {
+    const hasPriceInput = unitPrice.trim().length > 0;
+    const hasDiscountInput = discountPrice.trim().length > 0;
+
+    // Jika dua-duanya belum diisi, gunakan baseline placeholder (1.000.000 & 500.000)
+    if (!hasPriceInput && !hasDiscountInput) {
+      return {
+        discountPercent: 50,
+        estimatedIncome: "500.000",
+        showDiscountCaption: true,
+      };
+    }
+
+    const rawPrice = hasPriceInput ? parseInt(unitPrice.replace(/\D/g, ""), 10) || 0 : 1000000;
+    const rawDiscount = hasDiscountInput ? parseInt(discountPrice.replace(/\D/g, ""), 10) || 0 : 0;
+
+    let percent = 0;
+    if (rawPrice > 0 && rawDiscount > 0) {
+      percent = Math.round((rawDiscount / rawPrice) * 100);
+    }
+
+    const income = Math.max(0, rawPrice - rawDiscount);
+    const formattedIncome = new Intl.NumberFormat("id-ID").format(income);
+
+    return {
+      discountPercent: percent,
+      estimatedIncome: formattedIncome,
+      showDiscountCaption: rawDiscount > 0 || (!hasPriceInput && !hasDiscountInput),
+    };
+  }, [unitPrice, discountPrice]);
+
   // ----------------------------------------------------
-  // STEP 3 STATE: PENGIRIMAN
+  // STEP 3 STATE: PENGIRIMAN (6923:27248)
   // ----------------------------------------------------
-  const [weight, setWeight] = useState("30");
-  const [weightUnit, _setWeightUnit] = useState("Gram");
-  const [pkgLength, setPkgLength] = useState("100");
-  const [pkgWidth, setPkgWidth] = useState("150");
-  const [pkgHeight, setPkgHeight] = useState("100");
+  const [weight, setWeight] = useState("");
+  const [pkgLength, setPkgLength] = useState("");
+  const [pkgWidth, setPkgWidth] = useState("");
+  const [pkgHeight, setPkgHeight] = useState("");
+  const [courier, setCourier] = useState("");
   const [isFreeShipping, setIsFreeShipping] = useState(false);
 
   // Volume weight calculation: (P x L x T) / 6000
   const calculatedVolumeWeight = useMemo(() => {
-    const l = parseFloat(pkgLength) || 0;
-    const w = parseFloat(pkgWidth) || 0;
-    const h = parseFloat(pkgHeight) || 0;
+    // Jika dimensi belum diisi, default baseline 30 x 30 x 30 / 6000 = 4.5 Kilogram (sesuai mockup Figma)
+    const hasDimensions = pkgLength !== "" || pkgWidth !== "" || pkgHeight !== "";
+    const l = parseFloat(pkgLength) || (hasDimensions ? 0 : 30);
+    const w = parseFloat(pkgWidth) || (hasDimensions ? 0 : 30);
+    const h = parseFloat(pkgHeight) || (hasDimensions ? 0 : 30);
     const vol = (l * w * h) / 6000;
-    return vol > 0 ? vol.toFixed(1) : "0";
+    return vol > 0 ? (Number.isInteger(vol) ? vol.toString() : vol.toFixed(1)) : "0";
   }, [pkgLength, pkgWidth, pkgHeight]);
 
   // ----------------------------------------------------
@@ -333,16 +338,16 @@ export default function App() {
 
         {/* Center Main Work Area (1096px content width, 32px padding) */}
         <main className="flex-1 overflow-x-hidden bg-[#f9fafa] py-16 pr-32 pb-[100px] pl-32">
-          <div className="flex w-[1096px] flex-col gap-32">
+          <div className="flex w-full max-w-[1096px] flex-col gap-32">
             {/* Page Title */}
             <div className="flex h-[32px] items-center">
-              <h1 className="font-['Ubuntu'] text-[24px] leading-[32px] font-bold text-[#444b55]">
+              <h1 className="font-['Ubuntu'] text-[24px] leading-[32px] font-bold text-primary">
                 Tambah Produk
               </h1>
             </div>
 
             {/* Stepper Navigation */}
-            <div className="w-[1096px]">
+            <div className="w-full">
               <AddProductStepper
                 currentStep={currentStep}
                 onStepClick={(step) => setCurrentStep(step)}
@@ -355,7 +360,7 @@ export default function App() {
             {currentStep === 1 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card 1: Jenis Produk (6935:7549) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Jenis Produk
@@ -366,11 +371,10 @@ export default function App() {
                     {/* Option: Barang (Figma 6901:13127) */}
                     <div
                       onClick={() => setProductType("Barang")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${
-                        productType === "Barang"
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${productType === "Barang"
                           ? "border-[#009ea9] bg-white"
                           : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
-                      }`}
+                        }`}
                     >
                       <div className="flex min-w-0 flex-1 items-center gap-16">
                         {/* Device icon (40x40) - vuesax/bulk/devices */}
@@ -412,11 +416,10 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${
-                          productType === "Barang"
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Barang"
                             ? "bg-[#009ea9]"
                             : "border border-[#8c9197] bg-white"
-                        }`}
+                          }`}
                       >
                         {productType === "Barang" && (
                           <svg className="size-[16px]" viewBox="0 0 16 16" fill="none">
@@ -435,11 +438,10 @@ export default function App() {
                     {/* Option: Jasa (Figma 6901:13134) */}
                     <div
                       onClick={() => setProductType("Jasa")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${
-                        productType === "Jasa"
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${productType === "Jasa"
                           ? "border-[#009ea9] bg-white"
                           : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
-                      }`}
+                        }`}
                     >
                       <div className="flex min-w-0 flex-1 items-center gap-16">
                         {/* Jasa icon (40x40) - vuesax/bulk/like */}
@@ -479,11 +481,10 @@ export default function App() {
                         </div>
                       </div>
                       <div
-                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${
-                          productType === "Jasa"
+                        className={`flex size-[20px] shrink-0 items-center justify-center rounded-[4px] drop-shadow-[0px_1px_1px_rgba(31,41,55,0.08)] ${productType === "Jasa"
                             ? "bg-[#009ea9]"
                             : "border border-[#8c9197] bg-white"
-                        }`}
+                          }`}
                       >
                         {productType === "Jasa" && (
                           <svg className="size-[16px]" viewBox="0 0 16 16" fill="none">
@@ -501,20 +502,21 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Card 2: Informasi Produk (6935:7550) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
+                {/* Card 2: Informasi Produk (6901:13165) */}
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
-                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
+                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Informasi Produk
                     </h2>
                   </div>
-                  <Divider className="bg-[#dee3ed]" />
+                  <Divider />
                   <div className="flex flex-col gap-24 p-24">
                     {/* Nama Produk */}
                     <TextField
                       label="Nama Produk"
                       required
                       description="Min. 5 karakter: Masukkan merek, jenis, warna, bahan, atau tipe. Hindari huruf kapital berlebih, multi-merek, dan kata promosi."
+                      placeholder="MacBook Pro M5 14-Inch 16/512GB 16/1TB 24/1TB Space Black Silver - 16/1 TB IBOX Original Space Grey "
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       maxLength={100}
@@ -526,7 +528,8 @@ export default function App() {
                       <div className="min-w-0 flex-1">
                         <SelectField
                           label="Kategori Produk"
-                          isWajib
+                          placeholder="Pilih Kategori Produk"
+                          placeholderClassName="text-primary"
                           value={category}
                           onChange={(val) => setCategory(String(val))}
                           options={[
@@ -547,7 +550,8 @@ export default function App() {
                       <div className="w-[300px] shrink-0">
                         <SelectField
                           label="Brand Produk"
-                          isWajib
+                          placeholder="Pilih Brand Produk"
+                          placeholderClassName="text-primary"
                           value={brand}
                           onChange={(val) => setBrand(String(val))}
                           options={[
@@ -563,7 +567,8 @@ export default function App() {
                       <div className="w-[233.33px] shrink-0">
                         <SelectField
                           label="Jenis Satuan Produk"
-                          isWajib
+                          placeholder="Pilih Jenis Satuan Produk"
+                          placeholderClassName="text-primary"
                           value={unitType}
                           onChange={(val) => setUnitType(String(val))}
                           options={[
@@ -577,14 +582,44 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Kode SKU */}
-                    <TextField
-                      label="Kode SKU"
-                      optional
-                      description="Kode unik untuk melacak varian produk di inventaris."
-                      value={sku}
-                      onChange={(e) => setSku(e.target.value)}
+                    {/* Deskripsi Produk */}
+                    <RichTextEditor
+                      label="Deskripsi Produk"
+                      isWajib
+                      placeholder="Laptop handal dengan desain tipis, performa cepat, baterai awet, cocok untuk kerja dan belajar."
+                      value={description}
+                      onChange={setDescription}
+                      maxLength={2600}
+                      editorClassName="min-h-[190px] pb-32"
                     />
+
+                    {/* Kode SKU & Pajak Penghasilan (PPh) */}
+                    <div className="relative z-10 flex w-full items-end gap-24">
+                      <div className="min-w-0 flex-1">
+                        <TextField
+                          label="Kode SKU"
+                          optional
+                          description="Kode unik untuk melacak varian produk di inventaris."
+                          placeholder="0"
+                          value={sku}
+                          onChange={(e) => setSku(e.target.value)}
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <SelectField
+                          label="Pajak Penghasilan (PPh)"
+                          placeholder="Pilih Pajak Penghasilan (PPh)"
+                          value={pph}
+                          onChange={(val) => setPph(String(val))}
+                          options={[
+                            { label: "Tidak Dipotong", value: "Tidak Dipotong" },
+                            { label: "PPh Pasal 22 (0.5%)", value: "PPh Pasal 22 (0.5%)" },
+                            { label: "PPh Pasal 22 (1.5%)", value: "PPh Pasal 22 (1.5%)" },
+                            { label: "PPh Pasal 23 (2.0%)", value: "PPh Pasal 23 (2.0%)" },
+                          ]}
+                        />
+                      </div>
+                    </div>
 
                     {/* Checkbox PDN */}
                     <div className="flex flex-col gap-4">
@@ -592,79 +627,64 @@ export default function App() {
                         id="pdn-checkbox"
                         checked={isPdn}
                         onCheckedChange={(checked) => setIsPdn(Boolean(checked))}
-                        size="lg"
+                        size="md"
                         text="Produk Dalam Negeri (PDN)"
                       />
-                      <p className="pl-32 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
+                      <p className="pl-32 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-secondary">
                         Barang dan jasa produksi Indonesia yang memanfaatkan tenaga kerja serta
                         bahan baku dalam negeri.
                       </p>
                     </div>
-
-                    {/* Pajak Penghasilan (PPh) */}
-                    <SelectField
-                      label="Pajak Penghasilan (PPh)"
-                      value={pph}
-                      onChange={(val) => setPph(String(val))}
-                      options={[
-                        { label: "Tidak Dipotong", value: "Tidak Dipotong" },
-                        { label: "PPh Pasal 22 (0.5%)", value: "PPh Pasal 22 (0.5%)" },
-                        { label: "PPh Pasal 22 (1.5%)", value: "PPh Pasal 22 (1.5%)" },
-                        { label: "PPh Pasal 23 (2.0%)", value: "PPh Pasal 23 (2.0%)" },
-                      ]}
-                    />
-
-                    {/* Deskripsi Produk */}
-                    <RichTextEditor
-                      label="Deskripsi Produk"
-                      isWajib
-                      value={description}
-                      onChange={setDescription}
-                      maxLength={2600}
-                    />
                   </div>
                 </div>
 
-                {/* Card 3: Media Produk (6937:9362) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
+                {/* Card 3: Media Produk (6920:23188) */}
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
-                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
+                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Media Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-24 p-24">
-                    {/* Foto Produk */}
-                    <Uploader
-                      type="image"
-                      label="Foto Produk"
-                      required
-                      maxFiles={5}
-                      files={photos}
-                      onChange={setPhotos}
-                      helperRules={[
-                        "Wajib memiliki 1 foto produk, maksimal pilih foto hingga 5 gambar.",
-                        "Resolusi minimal 1000 x 1000 px, ukuran disarankan 1 MB (maksimal 5 MB), format gambar JPG/PNG.",
-                      ]}
-                    />
+                  <div className="flex flex-col lg:flex-row gap-24 p-24 items-start w-full">
+                    {/* Kolom Kiri: Foto Produk */}
+                    <div className="flex-1 min-w-0 w-full">
+                      <Uploader
+                        type="image"
+                        label="Foto Produk"
+                        required
+                        maxFiles={5}
+                        files={photos}
+                        onChange={setPhotos}
+                        slotLabels={["Foto Utama", "Foto 1", "Foto 2", "Foto 3", "Foto 4"]}
+                        helperRules={[
+                          "Wajib memiliki 1 foto produk, maksimal pilih foto hingga 5 gambar.",
+                          "Resolusi minimal 1000 x 1000 px, ukuran disarankan 1 MB (maksimal 5 MB)",
+                          "Format gambar JPG/PNG.",
+                        ]}
+                      />
+                    </div>
 
-                    {/* Video Produk */}
-                    <Uploader
-                      type="video"
-                      label="Video Produk"
-                      maxFiles={1}
-                      files={video}
-                      onChange={setVideo}
-                      helperRules={[
-                        "Video maksimum 10MB",
-                        "Format MPEG, MP4, AVI, Quicktime, dan lainnya.",
-                      ]}
-                    />
+                    {/* Kolom Kanan: Video Produk */}
+                    <div className="w-full lg:w-[466px] shrink-0">
+                      <Uploader
+                        type="video"
+                        label="Video Produk"
+                        maxFiles={1}
+                        files={video}
+                        onChange={setVideo}
+                        slotLabels={["Tambah Video"]}
+                        helperRules={[
+                          "Video maksimum 10MB",
+                          "Format MPEG, MP4, AVI, Quicktime, dan lainnya.",
+                        ]}
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Card 4: Sertifikat Produk (6954:14866) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="flex h-[56px] items-center justify-between p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Sertifikat Produk
@@ -712,9 +732,8 @@ export default function App() {
                           return (
                             <div
                               key={cert.id}
-                              className={`flex h-[66px] items-center font-['Ubuntu'] ${
-                                isZebra ? "bg-[#f9fafa]" : "bg-white"
-                              } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
+                              className={`flex h-[66px] items-center font-['Ubuntu'] ${isZebra ? "bg-[#f9fafa]" : "bg-white"
+                                } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
                             >
                               {/* Column 1: Jenis Sertifikat */}
                               <div className="flex flex-1 items-center gap-8 px-16 py-8 text-[#444b55]">
@@ -723,9 +742,8 @@ export default function App() {
                                 </span>
                                 {cert.number && (
                                   <span
-                                    className={`text-[14px] leading-[21px] text-[#444b55] ${
-                                      isBoldNumber ? "font-bold" : "font-medium"
-                                    }`}
+                                    className={`text-[14px] leading-[21px] text-[#444b55] ${isBoldNumber ? "font-bold" : "font-medium"
+                                      }`}
                                   >
                                     {cert.number}
                                   </span>
@@ -825,10 +843,10 @@ export default function App() {
             {/* ======================================================== */}
             {currentStep === 2 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
-                {/* Card 1: Harga Produk (6941:8292) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
+                {/* Card 1: Harga Produk (6923:24880) */}
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
-                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
+                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Harga Produk
                     </h2>
                   </div>
@@ -841,7 +859,7 @@ export default function App() {
                           <div className="flex size-[32px] shrink-0 items-center justify-center rounded-full bg-[#f7931e] text-white">
                             <Danger size={20} variant="Bulk" color="#ffffff" />
                           </div>
-                          <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#444b55]">
+                          <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-primary">
                             Mulai 1 Oktober 2024 terdapat perubahan biaya transaksi penjual.{" "}
                             <a href="#biaya" className="font-medium text-[#009ea9] hover:underline">
                               Lihat Selengkapnya
@@ -851,10 +869,22 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() => setShowAlertBanner(false)}
-                          className="cursor-pointer text-[#444b55] transition-colors hover:text-[#000000]"
+                          className="flex size-24 shrink-0 cursor-pointer items-center justify-center text-primary transition-colors hover:text-black"
                           aria-label="Tutup notifikasi"
                         >
-                          <CloseCircle size={20} variant="Linear" />
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                          </svg>
                         </button>
                       </div>
                     )}
@@ -862,14 +892,14 @@ export default function App() {
                     {/* Jenis Harga */}
                     <div className="flex flex-col gap-8">
                       <div className="flex items-center gap-4">
-                        <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
+                        <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-primary">
                           Jenis Harga
                         </span>
-                        <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-[#ee3124] italic">
+                        <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-error italic">
                           Wajib
                         </span>
                       </div>
-                      <div className="flex gap-24">
+                      <div className="flex gap-24 items-start">
                         <RadioCard
                           id="price-normal"
                           name="priceType"
@@ -878,11 +908,10 @@ export default function App() {
                           onChange={() => setPriceType("normal")}
                           label="Harga Normal"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
-                            priceType === "normal"
+                          className={`w-[200px] rounded-[4px] p-16 ${priceType === "normal"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                              : "border-border-primary bg-white"
+                            }`}
                         />
                         <RadioCard
                           id="price-tempo"
@@ -892,178 +921,119 @@ export default function App() {
                           onChange={() => setPriceType("tempo")}
                           label="Harga Tempo"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
-                            priceType === "tempo"
+                          className={`w-[200px] rounded-[4px] p-16 ${priceType === "tempo"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
+                              : "border-border-primary bg-white"
+                            }`}
                         />
                       </div>
                     </div>
 
-                    {/* Harga Satuan Diluar PPN */}
-                    <TextField
-                      label="Harga Satuan Diluar PPN"
-                      required
-                      prefix="Rp"
-                      value={unitPrice}
-                      onChange={(e) => setUnitPrice(e.target.value)}
-                    />
-
-                    {/* Tampilkan Harga Diskon Box */}
-                    <div className="flex w-full flex-col gap-24 rounded-[8px] bg-[#f9fafa] p-12">
-                      <div className="flex items-center">
-                        <Switch
-                          id="switch-diskon"
-                          size="lg"
-                          label="Tampilkan Harga Diskon"
-                          checked={showDiscount}
-                          onCheckedChange={setShowDiscount}
+                    {/* Row: Harga Satuan diluar ppn, Diskon, Estimasi Pendapatan */}
+                    <div className="flex flex-col lg:flex-row gap-24 items-start w-full">
+                      {/* Kolom 1: Harga Satuan diluar ppn */}
+                      <div className="flex-1 min-w-0 w-full">
+                        <TextField
+                          label="Harga Satuan diluar ppn"
+                          required
+                          prefix="Rp"
+                          placeholder="1.000.000"
+                          value={unitPrice}
+                          onChange={(e) => setUnitPrice(formatCurrency(e.target.value))}
                         />
                       </div>
 
-                      {showDiscount && (
-                        <div className="flex w-full items-end gap-24">
-                          {/* Harga Sebelum Diskon Input */}
-                          <div className="flex-1">
-                            <TextField
-                              label="Harga Sebelum Diskon"
-                              required
-                              prefix="Rp"
-                              value={priceBeforeDiscount}
-                              onChange={(e) => setPriceBeforeDiscount(e.target.value)}
-                            />
-                          </div>
-
-                          {/* Pratinjau Harga Diskon Box */}
-                          <div className="flex flex-col gap-8">
-                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                              Pratinjau Harga Diskon
-                            </span>
-                            <div className="flex h-[44px] items-center gap-12 rounded-[4px] border border-[#d5d7d9] bg-white px-8 py-8">
-                              <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-bold text-[#444b55]">
-                                Rp{unitPrice}
-                              </span>
-                              <div className="flex items-center gap-8">
-                                <span className="rounded-[4px] bg-[#ffedf1] px-[6px] py-[1px] text-[12px] font-medium text-[#ee3124]">
-                                  50%
-                                </span>
-                                <span className="text-[12px] leading-[18px] text-[#686e76] line-through">
-                                  Rp{priceBeforeDiscount}.000
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Estimasi Pendapatan */}
-                          <div className="flex h-[44px] items-center gap-12 rounded-[4px] bg-[#ddf2e4] px-12">
-                            <div className="flex items-center gap-4">
-                              <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                                Estimasi pendapatan
-                              </span>
-                              <InfoCircle size={16} variant="Linear" color="#444b55" />
-                            </div>
-                            <span className="font-['Ubuntu'] text-[18px] leading-[28px] font-bold text-[#25974c]">
-                              Rp{unitPrice}
+                      {/* Kolom 2: Diskon */}
+                      <div className="flex-1 min-w-0 w-full flex flex-col">
+                        <TextField
+                          label="Diskon"
+                          optional
+                          prefix="Rp"
+                          placeholder="500.000"
+                          value={discountPrice}
+                          onChange={(e) => setDiscountPrice(formatCurrency(e.target.value))}
+                        />
+                        {showDiscountCaption && (
+                          <div className="mt-8 flex items-center gap-4 text-[#25974c]">
+                            <TickCircle size={16} variant="Bold" color="#25974c" />
+                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium">
+                              Persentase Diskon {discountPercent}%
                             </span>
                           </div>
+                        )}
+                      </div>
+
+                      {/* Kolom 3: Estimasi Pendapatan (auto width untuk nominal besar) */}
+                      <div className="w-full lg:w-auto shrink-0 pt-0 lg:pt-[29px]">
+                        <div className="flex h-[44px] w-full lg:w-auto min-w-[281px] items-center justify-between gap-16 rounded-[4px] bg-[#ddf2e4] px-16">
+                          <div className="flex items-center gap-4">
+                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-primary whitespace-nowrap">
+                              Estimasi pendapatan
+                            </span>
+                            <span title="Estimasi pendapatan bersih" className="cursor-help inline-flex items-center">
+                              <InfoCircle size={16} variant="Linear" className="text-primary" />
+                            </span>
+                          </div>
+                          <span className="font-['Ubuntu'] text-[18px] leading-[26px] font-bold text-[#25974c] whitespace-nowrap capitalize">
+                            Rp{estimatedIncome}
+                          </span>
                         </div>
-                      )}
+                      </div>
                     </div>
 
                     {/* Barang / Jasa Dikenakan PPN */}
-                    <div className="flex flex-col gap-8">
-                      <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                        Barang / Jasa Dikenakan PPN
-                      </span>
-                      <div className="grid grid-cols-3 gap-24">
-                        {/* PPN 12% */}
-                        <div
-                          onClick={() => setPpnType("ppn12")}
-                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
-                            ppnType === "ppn12"
+                    <div className="flex flex-col gap-8 w-full">
+                      <div className="flex items-center">
+                        <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-primary">
+                          Barang / Jasa Dikenakan PPN
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-24 w-full">
+                        <RadioCard
+                          id="ppn-12"
+                          name="ppnType"
+                          value="ppn12"
+                          checked={ppnType === "ppn12"}
+                          onChange={() => setPpnType("ppn12")}
+                          label="PPN 12%"
+                          description="Transaksi dikenakan PPN 12% sesuai ketentuan PMK No. 131 Tahun 2024."
+                          radioRight={false}
+                          className={`w-full rounded-[4px] p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn12"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
-                        >
-                          <div className="flex items-center gap-8">
-                            <div
-                              className={`flex size-[18px] items-center justify-center rounded-full border ${
-                                ppnType === "ppn12" ? "border-[#009ea9]" : "border-[#b1b4b8]"
-                              }`}
-                            >
-                              {ppnType === "ppn12" && (
-                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
-                              )}
-                            </div>
-                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                              PPN 12%
-                            </span>
-                          </div>
-                          <p className="pl-[26px] font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#686e76]">
-                            Transaksi dikenakan PPN 12% sesuai ketentuan PMK No. 131 Tahun 2024.
-                          </p>
-                        </div>
-
-                        {/* PPN 1.1% */}
-                        <div
-                          onClick={() => setPpnType("ppn1")}
-                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
-                            ppnType === "ppn1"
+                              : "border-border-primary bg-white"
+                            }`}
+                        />
+                        <RadioCard
+                          id="ppn-1"
+                          name="ppnType"
+                          value="ppn1"
+                          checked={ppnType === "ppn1"}
+                          onChange={() => setPpnType("ppn1")}
+                          label="PPN 1.1%"
+                          description="Transaksi dikenakan PPN 1,1% dan wajib dilaporkan secara mandiri oleh pembeli."
+                          radioRight={false}
+                          className={`w-full rounded-[4px] p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "ppn1"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
-                        >
-                          <div className="flex items-center gap-8">
-                            <div
-                              className={`flex size-[18px] items-center justify-center rounded-full border ${
-                                ppnType === "ppn1" ? "border-[#009ea9]" : "border-[#b1b4b8]"
-                              }`}
-                            >
-                              {ppnType === "ppn1" && (
-                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
-                              )}
-                            </div>
-                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                              PPN 1.1%
-                            </span>
-                          </div>
-                          <p className="pl-[26px] font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#686e76]">
-                            Transaksi dikenakan PPN 1,1% dan wajib dilaporkan secara mandiri oleh
-                            pembeli.
-                          </p>
-                        </div>
-
-                        {/* Tidak Dikenakan PPN */}
-                        <div
-                          onClick={() => setPpnType("noppn")}
-                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
-                            ppnType === "noppn"
+                              : "border-border-primary bg-white"
+                            }`}
+                        />
+                        <RadioCard
+                          id="no-ppn"
+                          name="ppnType"
+                          value="noppn"
+                          checked={ppnType === "noppn"}
+                          onChange={() => setPpnType("noppn")}
+                          label="Tidak Dikenakan PPN"
+                          description="Harga Barang / Jasa tidak dikenakan PPN."
+                          radioRight={false}
+                          className={`w-full rounded-[4px] p-16 [&_[id$=-description]]:text-[14px] [&_[id$=-description]]:leading-[21px] [&_[id$=-description]]:text-primary ${ppnType === "noppn"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
-                              : "border-[#d5d7d9] bg-white"
-                          }`}
-                        >
-                          <div className="flex items-center gap-8">
-                            <div
-                              className={`flex size-[18px] items-center justify-center rounded-full border ${
-                                ppnType === "noppn" ? "border-[#009ea9]" : "border-[#b1b4b8]"
-                              }`}
-                            >
-                              {ppnType === "noppn" && (
-                                <div className="size-[10px] rounded-full bg-[#009ea9]" />
-                              )}
-                            </div>
-                            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                              Tidak Dikenakan PPN
-                            </span>
-                          </div>
-                          <p className="pl-[26px] font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#686e76]">
-                            Harga Barang / Jasa tidak dikenakan PPN.
-                          </p>
-                        </div>
+                              : "border-border-primary bg-white"
+                            }`}
+                        />
                       </div>
 
-                      <p className="mt-4 font-['Ubuntu'] text-[14px] leading-[21px] text-[#686e76]">
+                      <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-secondary">
                         Pastikan pemilihan pengenaan PPN pada barang/jasa Anda sesuai dengan
                         peraturan perundangan yang berlaku.{" "}
                         <a href="#ppn" className="font-medium text-[#009ea9] hover:underline">
@@ -1075,7 +1045,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: Stok Produk (6941:8434) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Stok Produk
@@ -1156,93 +1126,121 @@ export default function App() {
             {/* ======================================================== */}
             {currentStep === 3 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
-                {/* Card Pengiriman (6941:9762) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
+                {/* Card Pengiriman (6923:27248) */}
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
-                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
+                    <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-primary">
                       Pengiriman
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
                   <div className="flex flex-col gap-24 p-24">
                     {/* Berat Produk */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-8 w-full">
                       <TextField
                         label="Berat Produk"
                         required
-                        suffix={weightUnit}
+                        placeholder="30"
+                        rightIcon={<ArrowDown2 size={20} className="text-[#686e76]" />}
+                        suffix="Gram"
                         value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
+                        onChange={(e) => setWeight(e.target.value.replace(/\D/g, ""))}
                       />
-                      <p className="font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-[#686e76]">
+                      <p className="font-['Ubuntu'] text-[12px] leading-[18px] font-normal text-secondary">
                         Perhatikan dengan baik berat produk agar tidak terjadi selisih data dengan
                         pihak kurir.
                       </p>
                     </div>
 
                     {/* Dimensi */}
-                    <div className="flex flex-col gap-8">
-                      <div className="flex items-center gap-4">
-                        <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                          Dimensi
-                        </span>
-                        <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-[#ee3124] italic">
-                          Wajib
-                        </span>
+                    <div className="flex flex-col gap-12 w-full">
+                      <div className="flex flex-col gap-0 w-full">
+                        <div className="flex items-center gap-4">
+                          <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-primary">
+                            Dimensi
+                          </span>
+                          <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-error italic">
+                            Wajib
+                          </span>
+                        </div>
+                        <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-secondary">
+                          Masukkan ukuran produk setelah dikemas untuk menghitung berat volume. Jika
+                          terdapat angka desimal, mohon dibulatkan ke atas.
+                        </p>
                       </div>
-                      <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
-                        Masukkan ukuran produk setelah dikemas untuk menghitung berat volume. Jika
-                        terdapat angka desimal, mohon dibulatkan ke atas.
-                      </p>
 
-                      <div className="flex items-center gap-16 pt-8">
-                        <div className="flex-1">
+                      <div className="flex flex-col lg:flex-row gap-24 items-start w-full">
+                        <div className="flex-1 min-w-0 w-full">
                           <TextField
+                            label="Panjang"
                             suffix="CM"
+                            placeholder="30"
                             value={pkgLength}
-                            onChange={(e) => setPkgLength(e.target.value)}
+                            onChange={(e) => setPkgLength(e.target.value.replace(/\D/g, ""))}
                           />
                         </div>
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0 w-full">
                           <TextField
+                            label="Lebar"
                             suffix="CM"
+                            placeholder="30"
                             value={pkgWidth}
-                            onChange={(e) => setPkgWidth(e.target.value)}
+                            onChange={(e) => setPkgWidth(e.target.value.replace(/\D/g, ""))}
                           />
                         </div>
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0 w-full">
                           <TextField
+                            label="Tinggi"
                             suffix="CM"
+                            placeholder="30"
                             value={pkgHeight}
-                            onChange={(e) => setPkgHeight(e.target.value)}
+                            onChange={(e) => setPkgHeight(e.target.value.replace(/\D/g, ""))}
                           />
                         </div>
 
                         {/* Berat Volume Box */}
-                        <div className="flex h-[44px] shrink-0 items-center justify-center rounded-[4px] bg-[#eff0f1] px-16 font-['Ubuntu'] text-[14px] text-[#444b55]">
-                          <span>Berat Volume :&nbsp;</span>
-                          <span className="font-bold text-[#444b55]">
-                            {calculatedVolumeWeight} Kilogram
-                          </span>
+                        <div className="w-full lg:w-auto shrink-0 pt-0 lg:pt-[29px]">
+                          <div className="flex h-[44px] items-center justify-center rounded-[4px] bg-[#eff0f1] px-12 py-8 font-['Ubuntu'] text-[14px]">
+                            <span className="text-secondary whitespace-nowrap">Berat Volume :&nbsp;</span>
+                            <span className="font-bold text-primary whitespace-nowrap">
+                              {calculatedVolumeWeight} Kilogram
+                            </span>
+                          </div>
                         </div>
                       </div>
 
-                      <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
-                        Ongkir dihitung berdasarkan berat volume (2 kilogram) karena lebih besar
-                        dari berat aktual.
+                      <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-secondary">
+                        Ongkir dihitung berdasarkan berat volume{" "}
+                        <span className="font-medium text-primary">
+                          ({calculatedVolumeWeight === "0" ? "0" : calculatedVolumeWeight} kilogram)
+                        </span>{" "}
+                        karena lebih besar dari berat aktual.
                       </p>
                     </div>
 
-                    {/* Gratis Ongkos Kirim Box */}
-                    <div className="flex flex-col gap-4 rounded-[8px] bg-[#f9fafa] p-16">
-                      <Switch
-                        id="ongkir-switch"
-                        size="lg"
-                        label="Gratis Ongkos Kirim"
-                        checked={isFreeShipping}
-                        onCheckedChange={setIsFreeShipping}
+                    {/* Kurir */}
+                    <div className="w-full">
+                      <SelectField
+                        label="Kurir"
+                        placeholder="Pilih Kurir"
+                        options={COURIER_OPTIONS}
+                        value={courier}
+                        onChange={setCourier}
                       />
-                      <p className="pl-48 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
+                    </div>
+
+                    {/* Gratis Ongkos Kirim */}
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center">
+                        <Switch
+                          id="ongkir-switch"
+                          size="lg"
+                          label="Gratis Ongkos Kirim"
+                          checked={isFreeShipping}
+                          onCheckedChange={setIsFreeShipping}
+                        />
+                      </div>
+                      <p className="pl-48 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-secondary">
                         Jika Gratis Ongkir aktif, ongkir ditanggung penjual dan dipotong dari total
                         penjualan.
                       </p>
@@ -1258,7 +1256,7 @@ export default function App() {
             {currentStep === 4 && (
               <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card Visibilitas Produk (6941:10909) */}
-                <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
+                <div className="w-full overflow-hidden rounded-[8px] border border-border-primary bg-white">
                   <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Visibilitas Produk
@@ -1289,11 +1287,10 @@ export default function App() {
                           onChange={() => setVisibilityType("publik")}
                           label="Publik"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
-                            visibilityType === "publik"
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${visibilityType === "publik"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
-                          }`}
+                            }`}
                         />
                         <RadioCard
                           id="vis-privat"
@@ -1303,11 +1300,10 @@ export default function App() {
                           onChange={() => setVisibilityType("privat")}
                           label="Privat"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
-                            visibilityType === "privat"
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${visibilityType === "privat"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
-                          }`}
+                            }`}
                         />
                       </div>
                     </div>

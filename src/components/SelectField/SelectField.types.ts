@@ -27,6 +27,7 @@ export interface SelectFieldProps extends Omit<FormFieldWrapperProps, "children"
   disabled?: boolean;
 
   className?: string;
+  placeholderClassName?: string;
   containerClassName?: string;
   dropdownClassName?: string;
 }

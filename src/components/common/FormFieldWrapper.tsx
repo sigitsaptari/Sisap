@@ -82,7 +82,7 @@ export function FormFieldWrapper({
             <label
               htmlFor={id}
               className={cn(
-                "font-medium text-[#444b55] select-none dark:text-neutral-200",
+                "font-medium text-primary select-none",
                 labelSizeClass,
               )}
             >
@@ -90,13 +90,13 @@ export function FormFieldWrapper({
             </label>
 
             {isWajib && (
-              <span className={cn("font-normal text-[#ee3124] italic select-none", badgeSizeClass)}>
+              <span className={cn("font-normal text-error italic select-none", badgeSizeClass)}>
                 Wajib
               </span>
             )}
 
             {isOpsional && (
-              <span className={cn("font-normal text-[#b1b4b8] italic select-none", badgeSizeClass)}>
+              <span className={cn("font-normal text-placeholder italic select-none", badgeSizeClass)}>
                 Opsional
               </span>
             )}
@@ -104,7 +104,7 @@ export function FormFieldWrapper({
             {hasInfoTooltip && (
               <span
                 title={typeof infoTooltip === "string" ? infoTooltip : undefined}
-                className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
+                className="inline-flex cursor-help items-center text-secondary transition-colors hover:text-primary"
                 aria-label="Informasi tambahan"
               >
                 <InfoCircle color="currentColor" size={16} className="size-16" aria-hidden="true" />
@@ -115,7 +115,7 @@ export function FormFieldWrapper({
           {showDescription && description && (
             <p
               className={cn(
-                "leading-normal font-normal text-[#686e76] dark:text-neutral-400",
+                "leading-normal font-normal text-secondary",
                 descSizeClass,
               )}
             >
@@ -139,10 +139,10 @@ export function FormFieldWrapper({
               <Danger
                 color="currentColor"
                 size={statusIconSizes[size].sizePx}
-                className={cn("shrink-0 text-[#ee3124]", statusIconSizes[size].className)}
+                className={cn("shrink-0 text-error", statusIconSizes[size].className)}
                 aria-hidden="true"
               />
-              <span className={cn("leading-normal font-normal text-[#ee3124]", statusMsgSizeClass)}>
+              <span className={cn("leading-normal font-normal text-error", statusMsgSizeClass)}>
                 {errorMessage}
               </span>
             </>
@@ -151,10 +151,10 @@ export function FormFieldWrapper({
               <TickCircle
                 color="currentColor"
                 size={statusIconSizes[size].sizePx}
-                className={cn("shrink-0 text-[#25974c]", statusIconSizes[size].className)}
+                className={cn("shrink-0 text-status-success", statusIconSizes[size].className)}
                 aria-hidden="true"
               />
-              <span className={cn("leading-normal font-normal text-[#25974c]", statusMsgSizeClass)}>
+              <span className={cn("leading-normal font-normal text-status-success", statusMsgSizeClass)}>
                 {successMessage}
               </span>
             </>
@@ -169,7 +169,7 @@ export function FormFieldWrapper({
             <p
               id={hintId}
               className={cn(
-                "leading-normal font-normal text-[#686e76] dark:text-neutral-400",
+                "leading-normal font-normal text-secondary",
                 hintSizeClass,
               )}
             >
@@ -185,8 +185,8 @@ export function FormFieldWrapper({
                 "ml-auto shrink-0 text-right font-normal transition-colors select-none",
                 hintSizeClass,
                 isErrorCounter
-                  ? "font-medium text-[#ee3124]"
-                  : "text-[#686e76] dark:text-neutral-500",
+                  ? "font-medium text-error"
+                  : "text-secondary",
               )}
             >
               {counterText}

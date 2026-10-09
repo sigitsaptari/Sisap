@@ -89,6 +89,11 @@ export interface UploaderProps {
   disabled?: boolean;
 
   /**
+   * Optional custom labels for each slot when showing fixed slots (e.g. ["Foto Utama", "Foto 1", ...])
+   */
+  slotLabels?: string[];
+
+  /**
    * Custom CSS classes.
    */
   className?: string;
@@ -112,6 +117,7 @@ export interface UploaderTriggerProps {
   type: UploaderFileType;
   currentCount: number;
   maxFiles: number;
+  label?: string;
   onClick: () => void;
   isDragging?: boolean;
   disabled?: boolean;

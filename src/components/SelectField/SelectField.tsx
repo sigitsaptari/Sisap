@@ -27,6 +27,7 @@ export function SelectField({
   multiple = false,
   disabled = false,
   className,
+  placeholderClassName,
   containerClassName,
   dropdownClassName,
 
@@ -190,14 +191,16 @@ export function SelectField({
           <span
             className={cn(
               "block truncate",
-              displayText ? "text-[#444b55] dark:text-neutral-100" : "text-[#b1b4b8]",
+              displayText
+                ? "text-primary"
+                : cn("text-placeholder", placeholderClassName),
             )}
           >
             {displayText || placeholder}
           </span>
           <ArrowDown2
             size={iconSizes[size] === "size-4" ? 16 : iconSizes[size] === "size-5" ? 20 : 24}
-            className={cn("shrink-0 text-[#686e76] transition-transform", isOpen && "rotate-180")}
+            className={cn("shrink-0 text-secondary transition-transform", isOpen && "rotate-180")}
             variant="Linear"
           />
         </button>
@@ -207,7 +210,7 @@ export function SelectField({
           <div
             className={cn(
               "absolute top-full left-0 z-50 mt-4 flex max-h-[260px] w-full flex-col overflow-hidden",
-              "rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900",
+              "rounded-[4px] border border-border-primary bg-[#ffffff] bg-white shadow-xl dark:bg-neutral-900",
               dropdownClassName,
             )}
             style={{ backgroundColor: "#ffffff" }}
