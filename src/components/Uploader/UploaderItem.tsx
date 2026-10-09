@@ -58,11 +58,23 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-1 right-1 cursor-pointer rounded-full p-0.5 text-placeholder transition-colors hover:text-error focus:outline-none"
+              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
               title="Batal unggah"
               aria-label="Batal unggah"
             >
-              {renderIcon(<CloseCircle size={18} variant="Bulk" className="text-error" />, 18, "currentColor")}
+              <svg
+                className="size-10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
           )}
         </div>
@@ -149,7 +161,7 @@ export function UploaderItem({
 
           {/* Primary Badge (First Image) */}
           {isPrimary && type === "image" && (
-            <span className="pointer-events-none absolute bottom-1.5 left-1.5 rounded-sm bg-action-primary px-1.5 py-0.5 text-[10px] leading-none font-medium text-white shadow-sm select-none">
+            <span className="pointer-events-none absolute bottom-4 left-4 z-10 inline-flex h-20 items-center justify-center rounded-full bg-action-primary px-8 text-[11px] font-medium whitespace-nowrap text-white shadow-sm select-none">
               Utama
             </span>
           )}
@@ -159,11 +171,23 @@ export function UploaderItem({
             <button
               type="button"
               onClick={() => onRemove(file.id)}
-              className="absolute top-1 right-1 z-20 cursor-pointer rounded-full bg-black/50 p-0.5 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
+              className="absolute top-4 right-4 z-20 flex size-20 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white shadow-sm transition-all hover:scale-110 hover:bg-error focus:outline-none"
               title="Hapus file"
               aria-label="Hapus file"
             >
-              {renderIcon(<CloseCircle size={18} variant="Bulk" className="text-white" />, 18, "currentColor")}
+              <svg
+                className="size-10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
           )}
         </>
