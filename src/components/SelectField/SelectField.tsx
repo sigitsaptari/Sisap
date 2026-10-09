@@ -181,7 +181,7 @@ export function SelectField({
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             textFieldVariants({ size, state: effectiveState }),
-            "justify-between bg-[#ffffff] bg-white text-left focus:outline-none",
+            "justify-between bg-surface-base text-left focus:outline-none",
             disabled ? "cursor-not-allowed" : "cursor-pointer",
             className,
           )}
@@ -190,7 +190,7 @@ export function SelectField({
         >
           <span
             className={cn(
-              "block truncate text-primary text-[#444b55]",
+              "block truncate text-primary",
               placeholderClassName,
             )}
           >
@@ -208,32 +208,30 @@ export function SelectField({
           <div
             className={cn(
               "absolute top-full left-0 z-50 mt-4 flex max-h-[280px] w-full flex-col gap-8 overflow-hidden",
-              "rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] bg-white p-12 drop-shadow-[0px_4px_10px_rgba(0,0,0,0.15),0px_0px_1.5px_rgba(0,0,0,0.1)] dark:bg-neutral-900",
+              "rounded-sm border border-border-primary bg-surface-base p-12 shadow-md dark:bg-neutral-900",
               dropdownClassName,
             )}
-            style={{ backgroundColor: "#ffffff" }}
           >
             {/* Search Input */}
             {searchable && (
-              <div className="flex h-[36px] w-full shrink-0 items-center gap-[12px] rounded-[4px] border border-[#d5d7d9] bg-white px-16 dark:border-neutral-700 dark:bg-neutral-900">
-                <SearchNormal1 size={16} color="#b1b4b8" className="shrink-0" />
+              <div className="flex h-9 w-full shrink-0 items-center gap-12 rounded-sm border border-border-primary bg-surface-base px-16 dark:border-neutral-700 dark:bg-neutral-900">
+                <SearchNormal1 size={16} className="shrink-0 text-placeholder" />
                 <input
                   type="text"
                   value={searchValue}
                   onChange={handleSearchChange}
                   placeholder={searchPlaceholder}
                   autoFocus
-                  className="w-full bg-transparent font-['Ubuntu',sans-serif] text-[12px] leading-[18px] text-[#444b55] outline-none placeholder:text-[#b1b4b8] dark:text-neutral-200"
+                  className="w-full bg-transparent font-sans text-xs text-primary outline-none placeholder:text-placeholder dark:text-neutral-200"
                 />
               </div>
             )}
 
             {/* List */}
             <ul
-              className="flex-1 overflow-y-auto bg-[#ffffff] bg-white dark:bg-neutral-900"
+              className="flex-1 overflow-y-auto bg-surface-base dark:bg-neutral-900"
               role="listbox"
               aria-multiselectable={multiple}
-              style={{ backgroundColor: "#ffffff" }}
             >
               {filteredOptions.length > 0 ? (
                 filteredOptions.map((option) => {
@@ -248,10 +246,10 @@ export function SelectField({
                       aria-selected={isSelected}
                       onClick={() => handleOptionClick(option.value)}
                       className={cn(
-                        "flex min-h-[40px] cursor-pointer items-center gap-8 rounded-[4px] px-12 py-[10px] font-['Ubuntu',sans-serif] text-sm leading-[21px] text-primary transition-colors",
+                        "flex min-h-10 cursor-pointer items-center gap-8 rounded-sm px-12 py-2.5 font-sans text-sm text-primary transition-colors",
                         isSelected && !multiple
-                          ? "bg-[#f0f9fa] font-medium text-[#444b55]"
-                          : "bg-[#ffffff] bg-white text-[#444b55] hover:bg-[#f9fafa] dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",
+                          ? "bg-brand-soft font-medium text-primary"
+                          : "bg-surface-base text-primary hover:bg-bg-canvas dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",
                       )}
                     >
                       {multiple && (
@@ -263,12 +261,12 @@ export function SelectField({
                           onCheckedChange={() => handleOptionClick(option.value)}
                         />
                       )}
-                      <span className="block flex-1 truncate text-primary text-[#444b55]">{option.label}</span>
+                      <span className="block flex-1 truncate text-primary">{option.label}</span>
                     </li>
                   );
                 })
               ) : (
-                <li className="bg-[#ffffff] bg-white py-12 text-center font-['Ubuntu',sans-serif] text-[12px] text-[#b1b4b8]">
+                <li className="bg-surface-base py-12 text-center font-sans text-xs text-placeholder">
                   No options found
                 </li>
               )}

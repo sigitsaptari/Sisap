@@ -54,7 +54,7 @@ export function ModalHeader({
     return (
       <div
         className={cn(
-          "flex shrink-0 items-center justify-between p-[16px]",
+          "flex shrink-0 items-center justify-between p-16",
           className,
         )}
       >
@@ -66,7 +66,7 @@ export function ModalHeader({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-between p-[16px]",
+        "flex shrink-0 items-center justify-between p-16",
         className,
       )}
     >
@@ -75,14 +75,14 @@ export function ModalHeader({
           <button
             type="button"
             onClick={onBack}
-            className="flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] text-[#444b55] transition-colors hover:bg-[#f9fafa]"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
             aria-label="Kembali"
           >
-            <ArrowLeft2 size={20} color="#444b55" />
+            <ArrowLeft2 size={20} className="text-primary" />
           </button>
         )}
         {title && (
-          <h3 className="font-['Ubuntu'] text-[18px] leading-[26px] font-bold text-[#444b55]">
+          <h3 className="text-lg font-bold text-primary">
             {title}
           </h3>
         )}
@@ -92,10 +92,10 @@ export function ModalHeader({
         <button
           type="button"
           onClick={onClose}
-          className="flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] text-[#444b55] transition-colors hover:bg-[#f9fafa]"
+          className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
           aria-label="Tutup"
         >
-          <CloseIcon className="size-[20px]" />
+          <CloseIcon className="size-5" />
         </button>
       )}
     </div>
@@ -106,7 +106,7 @@ export function ModalBody({ children, className }: ModalBodyProps) {
   return (
     <div
       className={cn(
-        "flex flex-1 flex-col p-[16px] font-['Ubuntu'] text-[14px] leading-[21px] text-[#444b55]",
+        "flex flex-1 flex-col p-16 text-sm text-primary",
         className,
       )}
     >
@@ -129,7 +129,7 @@ export function ModalFooter({
     return (
       <div
         className={cn(
-          "flex shrink-0 items-center gap-[8px] p-[16px]",
+          "flex shrink-0 items-center gap-8 p-16",
           className,
         )}
       >
@@ -141,7 +141,7 @@ export function ModalFooter({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center gap-[8px] p-[16px]",
+        "flex shrink-0 items-center gap-8 p-16",
         className,
       )}
     >
@@ -151,7 +151,7 @@ export function ModalFooter({
           variant="secondary"
           size="md"
           onClick={onCancel}
-          className="h-[44px] flex-1 rounded-[4px] border border-[#444b55] text-[14px] font-medium text-[#444b55]"
+          className="h-11 flex-1 rounded-sm border border-primary text-sm font-medium text-primary"
         >
           {cancelText}
         </Button>
@@ -164,7 +164,7 @@ export function ModalFooter({
           isLoading={confirmLoading}
           disabled={confirmDisabled}
           onClick={onConfirm}
-          className="h-[44px] flex-1 rounded-[4px] bg-[#009ea9] text-[14px] font-medium text-white hover:bg-[#008a94]"
+          className="h-11 flex-1 rounded-sm bg-action-primary text-sm font-medium text-white hover:bg-action-primary-hover"
         >
           {confirmText}
         </Button>
@@ -303,8 +303,7 @@ export function Modal({
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "relative flex w-full flex-col rounded-[8px] bg-white",
-          "drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1.5px_rgba(0,0,0,0.2)]",
+          "relative flex w-full flex-col rounded-lg bg-surface-base shadow-lg",
           sizeClasses[size],
           // Mantine modal enter/exit animation:
           // Enter: opacity 0 -> 1, scale 0.95 -> 1, translateY -16px -> 0 (cubic-bezier(0.16, 1, 0.3, 1))
@@ -320,30 +319,30 @@ export function Modal({
         {hasImage ? (
           <>
             {showCloseButton && (
-              <div className="flex items-center justify-end pt-[16px] pr-[16px]">
+              <div className="flex items-center justify-end pt-16 pr-16">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] text-[#444b55] transition-colors hover:bg-[#f9fafa]"
+                  className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
                   aria-label="Tutup"
                 >
-                  <CloseIcon className="size-[20px]" />
+                  <CloseIcon className="size-5" />
                 </button>
               </div>
             )}
-            <div className="flex w-full flex-col items-center justify-center px-[16px]">
-              <div className="flex h-[180px] w-[300px] items-center justify-center">
+            <div className="flex w-full flex-col items-center justify-center px-16">
+              <div className="flex h-44 w-72 items-center justify-center">
                 {image}
               </div>
             </div>
-            <div className="flex flex-col gap-[8px] p-[16px] text-center">
+            <div className="flex flex-col gap-2 p-16 text-center">
               {title && (
-                <h3 className="font-['Ubuntu'] text-[18px] leading-[26px] font-bold text-[#444b55]">
+                <h3 className="text-lg font-bold text-primary">
                   {title}
                 </h3>
               )}
               {description && (
-                <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#444b55]">
+                <p className="text-sm text-primary">
                   {description}
                 </p>
               )}
@@ -366,7 +365,7 @@ export function Modal({
         {(children || (!hasImage && description)) && (
           <ModalBody className={contentClassName}>
             {!hasImage && description && (
-              <p className="font-['Ubuntu'] text-[14px] leading-[21px] text-[#444b55]">
+              <p className="text-sm text-primary">
                 {description}
               </p>
             )}
@@ -377,7 +376,7 @@ export function Modal({
         {/* Modal Footer */}
         {hasFooter &&
           (footer ? (
-            <div className="flex shrink-0 items-center gap-[8px] p-[16px]">
+            <div className="flex shrink-0 items-center gap-2 p-16">
               {footer}
             </div>
           ) : (

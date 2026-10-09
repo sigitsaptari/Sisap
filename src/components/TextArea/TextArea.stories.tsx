@@ -180,10 +180,10 @@ export const FigmaMatrix: Story = {
   render: () => (
     <div className="space-y-10">
       <div>
-        <h3 className="mb-4 text-lg font-bold text-[#444b55]">
+        <h3 className="mb-4 text-lg font-bold text-primary">
           Figma PaDi DS v3.0 Matrix — Sizes & States
         </h3>
-        <p className="mb-6 text-sm text-[#686e76]">
+        <p className="mb-6 text-sm text-secondary">
           Representasi lengkap node Figma 92211:8704 (sm, md, lg across all states)
         </p>
       </div>
@@ -193,7 +193,7 @@ export const FigmaMatrix: Story = {
           key={size}
           className="rounded-lg border border-neutral-200 p-6 dark:border-neutral-800"
         >
-          <h4 className="mb-4 font-semibold tracking-wider text-[#009ea9] uppercase">
+          <h4 className="mb-4 font-semibold tracking-wider text-action-primary uppercase">
             Size: {size.toUpperCase()}
           </h4>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">

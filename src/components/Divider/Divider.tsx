@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { DividerProps } from "./Divider.types";
 
-export const dividerVariants = cva("shrink-0 bg-[#d5d7d9] dark:bg-neutral-800 transition-colors", {
+export const dividerVariants = cva("shrink-0 bg-border-primary dark:bg-neutral-800 transition-colors", {
   variants: {
     type: {
       horizontal: "h-px w-full",
@@ -50,17 +50,17 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
         >
           <div
             className={cn(
-              "h-px bg-[#d5d7d9] transition-colors dark:bg-neutral-800",
+              "h-px bg-border-primary transition-colors dark:bg-neutral-800",
               labelPosition === "left" ? "w-24 shrink-0" : "flex-1",
             )}
             aria-hidden="true"
           />
-          <span className="shrink-0 text-xs font-normal text-[#8c9197] select-none dark:text-neutral-400">
+          <span className="shrink-0 text-xs font-normal text-placeholder select-none dark:text-neutral-400">
             {content}
           </span>
           <div
             className={cn(
-              "h-px bg-[#d5d7d9] transition-colors dark:bg-neutral-800",
+              "h-px bg-border-primary transition-colors dark:bg-neutral-800",
               labelPosition === "right" ? "w-6 shrink-0" : "flex-1",
             )}
             aria-hidden="true"

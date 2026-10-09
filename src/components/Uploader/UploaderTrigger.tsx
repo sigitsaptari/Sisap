@@ -20,13 +20,13 @@ export function UploaderTrigger({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-4 rounded-[8px] border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#009ea9]/50",
+        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50",
         disabled
-          ? "cursor-not-allowed opacity-50 hover:border-[#b1b4b8] hover:bg-transparent active:scale-100"
+          ? "cursor-not-allowed opacity-50 hover:border-placeholder hover:bg-transparent active:scale-100"
           : "cursor-pointer",
         isDragging
-          ? "scale-[1.02] border-[#009ea9] bg-[#009ea9]/10"
-          : "border-[#b1b4b8] bg-transparent hover:border-[#009ea9] hover:bg-[#009ea9]/5 active:scale-[0.98] dark:border-neutral-600",
+          ? "scale-[1.02] border-action-primary bg-action-primary/10"
+          : "border-placeholder bg-transparent hover:border-action-primary hover:bg-action-primary/5 active:scale-[0.98] dark:border-neutral-600",
       )}
       aria-label={label || (isImage ? `Tambah Foto (${currentCount}/${maxFiles})` : "Tambah Video")}
     >

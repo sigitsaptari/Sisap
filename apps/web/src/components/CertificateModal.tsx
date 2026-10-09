@@ -156,39 +156,39 @@ export function CertificateModal({
         {/* Upload Dokumen Sertifikat */}
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-4">
-            <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
+            <span className="font-sans text-sm font-medium text-primary">
               Upload Dokumen Sertifikat
             </span>
-            <span className="font-['Ubuntu'] text-[12px] leading-[18px] text-[#ee3124] italic">
+            <span className="font-sans text-xs text-error italic">
               Wajib
             </span>
           </div>
 
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-16 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5"
+            className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-placeholder bg-bg-canvas p-16 text-center transition-colors hover:border-action-primary hover:bg-action-primary/5"
           >
-            <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-4" />
+            <DocumentUpload size={28} variant="Bulk" className="mb-4 text-action-primary" />
             {fileName ? (
               <div className="flex items-center gap-8">
-                <span className="text-xs font-semibold text-[#009ea9] underline">
+                <span className="text-xs font-semibold text-action-primary underline">
                   {fileName}
                 </span>
                 <button
                   type="button"
                   onClick={handleRemoveFile}
-                  className="cursor-pointer text-[#ee3124] hover:text-[#d32f2f]"
+                  className="cursor-pointer text-error hover:text-error/80"
                   aria-label="Hapus dokumen"
                 >
                   <Trash size={16} />
                 </button>
               </div>
             ) : (
-              <span className="text-xs font-semibold text-[#009ea9]">
+              <span className="text-xs font-semibold text-action-primary">
                 Pilih Berkas PDF / JPG
               </span>
             )}
-            <span className="mt-2 text-[11px] text-[#8c9197]">Maks. ukuran 5MB</span>
+            <span className="mt-2 text-xs text-placeholder">Maks. ukuran 5MB</span>
             <input
               ref={fileInputRef}
               type="file"

@@ -16,15 +16,15 @@ export const textFieldVariants = cva(
       },
       state: {
         default:
-          "border-[#d5d7d9] dark:border-neutral-700 hover:border-[#009ea9] focus-within:border-[#009ea9] focus-within:ring-2 focus-within:ring-[#009ea9]/20",
-        hover: "border-[#009ea9]",
-        focussed: "border-[#009ea9] ring-2 ring-[#009ea9]/20",
+          "border-border-primary dark:border-neutral-700 hover:border-action-primary focus-within:border-action-primary focus-within:ring-2 focus-within:ring-action-primary/20",
+        hover: "border-action-primary",
+        focussed: "border-action-primary ring-2 ring-action-primary/20",
         filled:
-          "border-[#d5d7d9] dark:border-neutral-700 hover:border-[#009ea9] focus-within:border-[#009ea9] focus-within:ring-2 focus-within:ring-[#009ea9]/20",
-        error: "border-[#ee3124] ring-2 ring-[#ee3124]/20",
-        success: "border-[#25974c] ring-2 ring-[#25974c]/20",
+          "border-border-primary dark:border-neutral-700 hover:border-action-primary focus-within:border-action-primary focus-within:ring-2 focus-within:ring-action-primary/20",
+        error: "border-error ring-2 ring-error/20",
+        success: "border-feedback-success ring-2 ring-feedback-success/20",
         disabled:
-          "border-[#e7e8e9] bg-[#f2f4f7] dark:bg-neutral-800 text-neutral-400 cursor-not-allowed",
+          "border-border-subtle bg-surface-sunken dark:bg-neutral-800 text-placeholder cursor-not-allowed",
       },
     },
     defaultVariants: {

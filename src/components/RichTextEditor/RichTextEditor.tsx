@@ -64,16 +64,16 @@ const UnorderedListIcon = ({ className }: { className?: string }) => (
 );
 
 export const rteVariants = cva(
-  "flex w-full flex-col overflow-hidden rounded-[8px] bg-white dark:bg-neutral-900 transition-colors",
+  "flex w-full flex-col overflow-hidden rounded-lg bg-surface-base dark:bg-neutral-900 transition-colors",
   {
     variants: {
       state: {
-        default: "border border-[#d5d7d9] dark:border-neutral-700 hover:border-[#009ea9]",
-        error: "border border-[#ee3124] ring-2 ring-[#ee3124]/20",
-        success: "border border-[#25974c] ring-2 ring-[#25974c]/20",
+        default: "border border-border-primary dark:border-neutral-700 hover:border-action-primary",
+        error: "border border-error ring-2 ring-error/20",
+        success: "border border-feedback-success ring-2 ring-feedback-success/20",
         disabled:
-          "border border-[#e7e8e9] bg-[#f2f4f7] dark:bg-neutral-800 text-neutral-400 cursor-not-allowed",
-        focussed: "border border-[#009ea9] ring-2 ring-[#009ea9]/20",
+          "border border-border-subtle bg-surface-sunken dark:bg-neutral-800 text-placeholder cursor-not-allowed",
+        focussed: "border border-action-primary ring-2 ring-action-primary/20",
       },
     },
     defaultVariants: {
@@ -219,13 +219,13 @@ export function RichTextEditor({
         onClick();
       }}
       className={cn(
-        "flex h-7 min-w-7 items-center justify-center rounded p-1 text-[#444b55] transition-all dark:text-neutral-200",
+        "flex h-7 min-w-7 items-center justify-center rounded p-1 text-primary transition-all dark:text-neutral-200",
         disabled
           ? "cursor-not-allowed opacity-50"
           : cn(
               "cursor-pointer",
               isActive
-                ? "bg-[#e6f5f6] text-[#009ea9] dark:bg-[#009ea9]/20"
+                ? "bg-brand-soft text-action-primary dark:bg-action-primary/20"
                 : "hover:bg-neutral-200 dark:hover:bg-neutral-800",
             ),
       )}
@@ -258,7 +258,7 @@ export function RichTextEditor({
     >
       <div className={cn(rteVariants({ state: effectiveState }), className)}>
         {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-4 border-b border-[#d5d7d9] bg-[#f9fafa] px-16 py-8 dark:border-neutral-700 dark:bg-neutral-800/50">
+        <div className="flex flex-wrap items-center gap-4 border-b border-border-primary bg-bg-canvas px-16 py-8 dark:border-neutral-700 dark:bg-neutral-800/50">
           <ToolbarButton
             text="H1"
             title="Heading 1"
@@ -271,7 +271,7 @@ export function RichTextEditor({
             isActive={activeFormats["H2"]}
             onClick={() => executeCommand("formatBlock", "H2")}
           />
-          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-border-primary dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<TextBold size={18} />}
@@ -297,7 +297,7 @@ export function RichTextEditor({
             isActive={activeFormats["strikeThrough"]}
             onClick={() => executeCommand("strikeThrough")}
           />
-          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-border-primary dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<TextalignLeft size={18} />}
@@ -317,7 +317,7 @@ export function RichTextEditor({
             isActive={activeFormats["justifyRight"]}
             onClick={() => executeCommand("justifyRight")}
           />
-          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-border-primary dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<OrderedListIcon className="size-[18px]" />}
@@ -345,9 +345,9 @@ export function RichTextEditor({
             onKeyUp={updateActiveFormats}
             onMouseUp={updateActiveFormats}
             className={cn(
-              "min-h-[110px] w-full px-16 py-12 text-sm text-[#444b55] outline-none dark:text-neutral-100",
+              "min-h-[110px] w-full px-16 py-12 text-sm text-primary outline-none dark:text-neutral-100",
               "prose prose-sm dark:prose-invert max-w-none focus:outline-none",
-              !currentValue && "before:text-[#b1b4b8] before:content-[attr(data-placeholder)]",
+              !currentValue && "before:text-placeholder before:content-[attr(data-placeholder)]",
               editorClassName,
             )}
             data-placeholder={placeholder}
@@ -361,8 +361,8 @@ export function RichTextEditor({
               className={cn(
                 "absolute right-16 bottom-8 text-[10px] sm:text-xs",
                 isErrorCounter || (maxLength && currentLength > maxLength)
-                  ? "font-medium text-[#ee3124]"
-                  : "text-[#9ba3ba]",
+                  ? "font-medium text-error"
+                  : "text-placeholder",
               )}
             >
               {counterText || (maxLength ? `${currentLength}/${maxLength}` : currentLength)}

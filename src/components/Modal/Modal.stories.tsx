@@ -73,7 +73,7 @@ export const ModalImage: Story = {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           image={
-            <div className="flex size-full items-center justify-center rounded-[8px] bg-[#e6f4f7] text-[#009ea9]">
+            <div className="flex size-full items-center justify-center rounded-lg bg-brand-soft text-action-primary">
               <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />

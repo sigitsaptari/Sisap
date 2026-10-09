@@ -161,8 +161,8 @@ describe("RichTextEditor", () => {
     expect(document.queryCommandState).toHaveBeenCalled();
 
     const boldButton = screen.getByTitle("Bold");
-    expect(boldButton.className).not.toContain("bg-[#e6f5f6]");
-    expect(boldButton.className).not.toContain("text-[#009ea9]");
+    expect(boldButton.className).not.toContain("bg-brand-soft");
+    expect(boldButton.className).not.toContain("text-action-primary");
     expect(boldButton.className).toContain("hover:bg-neutral-200");
   });
 
@@ -180,6 +180,6 @@ describe("RichTextEditor", () => {
     expect(document.queryCommandValue).toHaveBeenCalled();
 
     const h1Button = screen.getByTitle("Heading 1");
-    expect(h1Button.className).not.toContain("bg-[#e6f5f6]");
+    expect(h1Button.className).not.toContain("bg-brand-soft");
   });
 });

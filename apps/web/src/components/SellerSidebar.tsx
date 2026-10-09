@@ -50,21 +50,21 @@ function NavItem({
       onClick={() => setActiveItem(label)}
       className={`relative flex w-full cursor-pointer items-center justify-between px-16 text-left transition-colors ${pyClass} ${
         isActive
-          ? "bg-white font-medium text-[#009ea9]"
-          : "font-normal text-[#444b55] hover:bg-[#f9fafa]"
+          ? "bg-surface-base font-medium text-action-primary"
+          : "font-normal text-primary hover:bg-bg-canvas"
       }`}
     >
       <div className="flex items-center gap-8">
-        <Icon size={20} variant="Bulk" color={isActive ? "#009ea9" : "#444b55"} />
-        <span className="text-[12px] leading-[18px]">{label}</span>
+        <Icon size={20} variant="Bulk" className={isActive ? "text-action-primary" : "text-primary"} />
+        <span className="text-xs">{label}</span>
       </div>
       {badge !== undefined && (
-        <div className="flex h-[16px] min-w-[16px] items-center justify-center rounded-[900px] bg-[#ee3124] px-[5px]">
+        <div className="flex h-4 min-w-4 items-center justify-center rounded-full bg-error px-1.5">
           <span className="text-[10px] leading-[15px] font-bold text-white">{badge}</span>
         </div>
       )}
       {isActive && (
-        <div className="absolute top-0 left-0 h-[28px] w-[4px] rounded-r-[4px] bg-[#0092ac]" />
+        <div className="absolute top-0 left-0 h-7 w-1 rounded-r-sm bg-action-primary" />
       )}
     </button>
   );
@@ -129,42 +129,42 @@ export function SellerSidebar() {
   const [activeItem, setActiveItem] = useState("Tambah Produk");
 
   return (
-    <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] font-['Ubuntu'] select-none">
+    <aside className="flex w-[280px] shrink-0 flex-col border-r border-border-subtle bg-surface-base font-sans select-none">
       {/* Store Header Profile Card (6901:5207) */}
       <div className="flex w-full flex-col">
         <div className="flex w-full items-center justify-between p-16">
           <div className="flex items-center gap-12">
-            <div className="flex size-32 shrink-0 items-center justify-center rounded-[99px] bg-[#f1f3f7] text-[#009ea9]">
-              <Shop size={16} variant="Bulk" color="#009ea9" />
+            <div className="flex size-32 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-action-primary">
+              <Shop size={16} variant="Bulk" className="text-action-primary" />
             </div>
             <div className="flex flex-col">
-              <span className="text-[14px] leading-[21px] font-medium text-[#444b55]">
+              <span className="text-sm font-medium text-primary">
                 Toko Maju Jaya
               </span>
             </div>
           </div>
 
           {/* Action Icons: Preview & Share */}
-          <div className="flex items-center gap-12 text-[#8c9197]">
+          <div className="flex items-center gap-12 text-placeholder">
             <button
               type="button"
-              className="flex size-[24px] cursor-pointer items-center justify-center transition-colors hover:text-[#444b55]"
+              className="flex size-6 cursor-pointer items-center justify-center transition-colors hover:text-primary"
               title="Lihat Toko"
             >
-              <Eye size={20} variant="Bulk" color="#8c9197" />
+              <Eye size={20} variant="Bulk" className="text-placeholder" />
             </button>
             <button
               type="button"
-              className="flex size-[20px] cursor-pointer items-center justify-center transition-colors hover:text-[#444b55]"
+              className="flex size-5 cursor-pointer items-center justify-center transition-colors hover:text-primary"
               title="Bagikan Toko"
             >
-              <Share size={18} variant="Linear" color="#8c9197" />
+              <Share size={18} variant="Linear" className="text-placeholder" />
             </button>
           </div>
         </div>
 
         {/* 1px Divider */}
-        <div className="h-px w-full bg-[#dee3ed]" />
+        <div className="h-px w-full bg-border-subtle" />
       </div>
 
       {/* Nav Menu Items List (exact Figma paddings and hierarchy) */}
@@ -188,7 +188,7 @@ export function SellerSidebar() {
         {MENU_SECTIONS.map((section) => (
           <div key={section.title} className="flex flex-col gap-4 py-4">
             <div className="px-16 py-4">
-              <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
+              <span className="text-sm font-medium text-secondary">
                 {section.title}
               </span>
             </div>
@@ -208,7 +208,7 @@ export function SellerSidebar() {
         ))}
 
         {/* Bottom Utility Items */}
-        <div className="flex flex-col gap-4 border-t border-[#f2f4f7] pt-8">
+        <div className="flex flex-col gap-4 border-t border-border-subtle pt-8">
           {UTILITY_ITEMS.map((item) => (
             <NavItem
               key={item.label}

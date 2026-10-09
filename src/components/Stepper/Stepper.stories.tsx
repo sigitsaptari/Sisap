@@ -109,10 +109,10 @@ export const FigmaMatrix: Story = {
     return (
       <div className="space-y-12 p-4">
         <div>
-          <h3 className="text-lg font-bold text-[#444b55]">
+          <h3 className="text-lg font-bold text-primary">
             Figma PaDi DS v3.0 Stepper Matrix — Node 82763:3220
           </h3>
-          <p className="text-sm text-[#686e76]">
+          <p className="text-sm text-secondary">
             Representasi lengkap semua variasi: State (Default, Active, Success) × Position (First,
             Middle, Last) × Mode (Horizontal, Vertical) × Text On (Bottom, Right).
           </p>
@@ -120,7 +120,7 @@ export const FigmaMatrix: Story = {
 
         {/* 1. Horizontal - Text On Bottom */}
         <div className="rounded-lg border border-neutral-200 p-6 dark:border-neutral-800">
-          <h4 className="mb-4 font-semibold text-[#009ea9]">Mode: Horizontal — Text On: Bottom</h4>
+          <h4 className="mb-4 font-semibold text-action-primary">Mode: Horizontal — Text On: Bottom</h4>
           <div className="space-y-6">
             {states.map((st) => (
               <div key={st}>
@@ -148,7 +148,7 @@ export const FigmaMatrix: Story = {
 
         {/* 2. Horizontal - Text On Right */}
         <div className="rounded-lg border border-neutral-200 p-6 dark:border-neutral-800">
-          <h4 className="mb-4 font-semibold text-[#009ea9]">Mode: Horizontal — Text On: Right</h4>
+          <h4 className="mb-4 font-semibold text-action-primary">Mode: Horizontal — Text On: Right</h4>
           <div className="space-y-6">
             {states.map((st) => (
               <div key={st}>
@@ -176,7 +176,7 @@ export const FigmaMatrix: Story = {
 
         {/* 3. Vertical - Text On Right */}
         <div className="rounded-lg border border-neutral-200 p-6 dark:border-neutral-800">
-          <h4 className="mb-4 font-semibold text-[#009ea9]">Mode: Vertical — Text On: Right</h4>
+          <h4 className="mb-4 font-semibold text-action-primary">Mode: Vertical — Text On: Right</h4>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {states.map((st) => (
               <div key={st} className="flex flex-col">

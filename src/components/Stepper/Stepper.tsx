@@ -71,10 +71,10 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
         className={cn(
           "z-10 flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-solid font-sans text-sm font-bold transition-colors select-none",
           isSuccess
-            ? "border-[#009ea9] bg-[#009ea9] text-white"
+            ? "border-action-primary bg-action-primary text-white"
             : isActive
-              ? "border-[#009ea9] bg-white text-[#444b55] dark:border-[#009ea9] dark:bg-neutral-900 dark:text-neutral-100"
-              : "border-[#d5d7d9] bg-white text-[#444b55] dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200",
+              ? "border-action-primary bg-surface-base text-primary dark:border-action-primary dark:bg-neutral-900 dark:text-neutral-100"
+              : "border-border-primary bg-surface-base text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200",
         )}
       >
         {indicatorContent}
@@ -116,8 +116,8 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 isFirst
                   ? "invisible"
                   : isActive || isSuccess
-                    ? "bg-[#009ea9]"
-                    : "bg-[#dee3ed] dark:bg-neutral-700",
+                    ? "bg-action-primary"
+                    : "bg-border-subtle dark:bg-neutral-700",
               )}
               aria-hidden="true"
             />
@@ -132,8 +132,8 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
                 isLast
                   ? "invisible"
                   : isSuccess
-                    ? "bg-[#009ea9]"
-                    : "bg-[#dee3ed] dark:bg-neutral-700",
+                    ? "bg-action-primary"
+                    : "bg-border-subtle dark:bg-neutral-700",
               )}
               aria-hidden="true"
             />
@@ -142,12 +142,12 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           {/* Label Column (Title + Description) */}
           <div className="flex w-full flex-col items-center px-2 text-center">
             {title && (
-              <p className="text-base leading-6 font-medium text-[#444b55] dark:text-neutral-100">
+              <p className="text-base leading-6 font-medium text-primary dark:text-neutral-100">
                 {title}
               </p>
             )}
             {description && (
-              <p className="mt-0.5 text-sm leading-[21px] font-normal text-[#686e76] dark:text-neutral-400">
+              <p className="mt-0.5 text-sm leading-[21px] font-normal text-secondary dark:text-neutral-400">
                 {description}
               </p>
             )}
@@ -189,8 +189,8 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
               isFirst
                 ? "invisible"
                 : isActive || isSuccess
-                  ? "bg-[#009ea9]"
-                  : "bg-[#d5d7d9] dark:bg-neutral-700",
+                  ? "bg-action-primary"
+                  : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -201,12 +201,12 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           {/* Label */}
           <div className="flex shrink-0 flex-col justify-center px-8 text-left">
             {title && (
-              <p className="text-base leading-6 font-medium text-[#444b55] dark:text-neutral-100">
+              <p className="text-base leading-6 font-medium text-primary dark:text-neutral-100">
                 {title}
               </p>
             )}
             {description && (
-              <p className="text-sm leading-[21px] font-normal text-[#686e76] dark:text-neutral-400">
+              <p className="text-sm leading-[21px] font-normal text-secondary dark:text-neutral-400">
                 {description}
               </p>
             )}
@@ -219,8 +219,8 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
               isLast
                 ? "invisible"
                 : isSuccess
-                  ? "bg-[#009ea9]"
-                  : "bg-[#d5d7d9] dark:bg-neutral-700",
+                  ? "bg-action-primary"
+                  : "bg-border-primary dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -260,7 +260,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             className={cn(
               "w-[2px] transition-colors",
               isFirst ? "invisible h-0" : "min-h-12 flex-1",
-              isActive || isSuccess ? "bg-[#009ea9]" : "bg-[#dee3ed] dark:bg-neutral-700",
+              isActive || isSuccess ? "bg-action-primary" : "bg-border-subtle dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -273,7 +273,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             className={cn(
               "w-[2px] transition-colors",
               isLast ? "invisible h-0" : "min-h-12 flex-1",
-              isSuccess ? "bg-[#009ea9]" : "bg-[#dee3ed] dark:bg-neutral-700",
+              isSuccess ? "bg-action-primary" : "bg-border-subtle dark:bg-neutral-700",
             )}
             aria-hidden="true"
           />
@@ -282,12 +282,12 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
         {/* Right Column: Title and Description */}
         <div className="flex flex-col justify-start pt-2.5 pb-4 text-left">
           {title && (
-            <p className="text-base leading-6 font-medium text-[#444b55] dark:text-neutral-100">
+            <p className="text-base leading-6 font-medium text-primary dark:text-neutral-100">
               {title}
             </p>
           )}
           {description && (
-            <p className="mt-0.5 text-sm leading-[21px] font-normal text-[#686e76] dark:text-neutral-400">
+            <p className="mt-0.5 text-sm leading-[21px] font-normal text-secondary dark:text-neutral-400">
               {description}
             </p>
           )}

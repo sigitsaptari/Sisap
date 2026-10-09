@@ -90,13 +90,13 @@ export function FormFieldWrapper({
             </label>
 
             {isWajib && (
-              <span className={cn("font-normal text-[#ee3124] text-error italic select-none", badgeSizeClass)}>
+              <span className={cn("font-normal text-error italic select-none", badgeSizeClass)}>
                 Wajib
               </span>
             )}
 
             {isOpsional && (
-              <span className={cn("font-normal text-[#8c9197] text-placeholder italic select-none", badgeSizeClass)}>
+              <span className={cn("font-normal text-placeholder italic select-none", badgeSizeClass)}>
                 Opsional
               </span>
             )}

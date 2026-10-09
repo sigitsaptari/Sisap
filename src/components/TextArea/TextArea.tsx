@@ -5,7 +5,7 @@ import { FormFieldWrapper } from "../common/FormFieldWrapper";
 import type { TextAreaProps, TextAreaState } from "./TextArea.types";
 
 export const textAreaVariants = cva(
-  "w-full rounded-[4px] border border-solid transition-[border-color,box-shadow] outline-none text-[#444b55] placeholder:text-[#b1b4b8] dark:text-neutral-100 dark:placeholder:text-neutral-500",
+  "w-full rounded-sm border border-solid transition-[border-color,box-shadow] outline-none text-primary placeholder:text-placeholder dark:text-neutral-100 dark:placeholder:text-neutral-500",
   {
     variants: {
       size: {
@@ -15,17 +15,17 @@ export const textAreaVariants = cva(
       },
       state: {
         default:
-          "border-[#d5d7d9] bg-white dark:border-neutral-700 dark:bg-neutral-900 hover:border-[#009ea9] focus:border-[#009ea9] focus:ring-2 focus:ring-[#009ea9]/20 focus:shadow-[0px_0px_0px_2px_#eee9fa]",
-        hover: "border-[#009ea9] bg-white dark:bg-neutral-900",
+          "border-border-primary bg-surface-base dark:border-neutral-700 dark:bg-neutral-900 hover:border-action-primary focus:border-action-primary focus:ring-2 focus:ring-action-primary/20",
+        hover: "border-action-primary bg-surface-base dark:bg-neutral-900",
         focussed:
-          "border-[#009ea9] bg-white dark:bg-neutral-900 ring-2 ring-[#009ea9]/20 shadow-[0px_0px_0px_2px_#eee9fa]",
+          "border-action-primary bg-surface-base dark:bg-neutral-900 ring-2 ring-action-primary/20",
         filled:
-          "border-[#d5d7d9] bg-white dark:border-neutral-700 dark:bg-neutral-900 hover:border-[#009ea9] focus:border-[#009ea9] focus:ring-2 focus:ring-[#009ea9]/20 focus:shadow-[0px_0px_0px_2px_#eee9fa]",
-        error: "border-[#ee3124] bg-white dark:bg-neutral-900 ring-2 ring-[#ee3124]/20",
-        "error counter": "border-[#ee3124] bg-white dark:bg-neutral-900 ring-2 ring-[#ee3124]/20",
-        success: "border-[#25974c] bg-white dark:bg-neutral-900 ring-2 ring-[#25974c]/20",
+          "border-border-primary bg-surface-base dark:border-neutral-700 dark:bg-neutral-900 hover:border-action-primary focus:border-action-primary focus:ring-2 focus:ring-action-primary/20",
+        error: "border-error bg-surface-base dark:bg-neutral-900 ring-2 ring-error/20",
+        "error counter": "border-error bg-surface-base dark:bg-neutral-900 ring-2 ring-error/20",
+        success: "border-feedback-success bg-surface-base dark:bg-neutral-900 ring-2 ring-feedback-success/20",
         disabled:
-          "border-[#dee3ed] bg-[#eff0f1] text-[#8c9197] cursor-not-allowed dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500",
+          "border-border-subtle bg-surface-sunken text-placeholder cursor-not-allowed dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500",
       },
       resize: {
         none: "resize-none",

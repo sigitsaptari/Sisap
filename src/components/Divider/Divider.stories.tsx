@@ -57,23 +57,23 @@ export const FigmaMatrix: Story = {
   render: () => (
     <div className="w-full max-w-xl space-y-8 p-6">
       <div>
-        <h3 className="text-lg font-bold text-[#444b55]">
+        <h3 className="text-lg font-bold text-primary">
           Figma PaDi DS v3.0 Divider — Node 92134:1068
         </h3>
-        <p className="text-sm text-[#686e76]">
+        <p className="text-sm text-secondary">
           Types: Horizontal (w-full, h-px), Vertical (h-full, w-px).
         </p>
       </div>
 
       <div className="space-y-4 rounded-lg border border-neutral-200 p-6 dark:border-neutral-800">
-        <h4 className="text-xs font-semibold text-[#009ea9] uppercase">1. Horizontal Type</h4>
+        <h4 className="text-xs font-semibold text-action-primary uppercase">1. Horizontal Type</h4>
         <div className="w-full py-2">
           <Divider type="horizontal" />
         </div>
       </div>
 
       <div className="space-y-4 rounded-lg border border-neutral-200 p-6 dark:border-neutral-800">
-        <h4 className="text-xs font-semibold text-[#009ea9] uppercase">2. Vertical Type</h4>
+        <h4 className="text-xs font-semibold text-action-primary uppercase">2. Vertical Type</h4>
         <div className="flex h-16 items-center gap-6 py-2">
           <span className="text-sm text-neutral-600">Kolom 1</span>
           <Divider type="vertical" />

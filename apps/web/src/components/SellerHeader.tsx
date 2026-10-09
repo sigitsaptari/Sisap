@@ -60,7 +60,7 @@ function BulkMessageTextIcon() {
 
 export function SellerHeader() {
   return (
-    <header className="sticky top-0 z-40 flex h-[87px] w-full items-center justify-between border-b border-[#d5d7d9] bg-white px-[24px] py-[16px] select-none">
+    <header className="sticky top-0 z-40 flex h-[87px] w-full items-center justify-between border-b border-border-primary bg-surface-base px-24 py-16 select-none">
       {/* Logo PaDi New with Tagline (98px x 53.84px) */}
       <div className="relative h-[53.84px] w-[98px] shrink-0">
         <img
@@ -75,13 +75,13 @@ export function SellerHeader() {
         {/* Button: Daftar Transaksi */}
         <button
           type="button"
-          className="flex h-[36px] cursor-pointer items-center justify-center gap-4 rounded-[4px] border border-[#009ea9] bg-white px-8 transition-colors hover:bg-[#e6f4f7]"
+          className="flex h-9 cursor-pointer items-center justify-center gap-4 rounded-sm border border-action-primary bg-surface-base px-8 transition-colors hover:bg-brand-soft"
         >
           <div className="flex size-16 shrink-0 items-center justify-center">
             <ArrowSwapHorizontalIcon />
           </div>
           <div className="flex items-center justify-center px-8">
-            <span className="font-['Ubuntu'] text-[12px] leading-[18px] font-medium whitespace-nowrap text-[#009ea9] capitalize">
+            <span className="font-sans text-xs font-medium whitespace-nowrap text-action-primary capitalize">
               Daftar Transaksi
             </span>
           </div>
@@ -92,15 +92,15 @@ export function SellerHeader() {
           {/* Notification Icon */}
           <button
             type="button"
-            className="relative flex size-32 cursor-pointer items-center justify-center rounded-[4px] bg-white p-4 transition-colors hover:bg-[#f9fafa]"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-sm bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
             aria-label="Notifikasi"
           >
             <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkNotificationIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] flex h-[16px] w-[20px] items-center justify-center rounded-full border border-white bg-[#ee3124] px-[4px]">
-              <span className="font-['Ubuntu'] text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-full border border-white bg-error px-1">
+              <span className="font-sans text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
             </div>
@@ -109,15 +109,15 @@ export function SellerHeader() {
           {/* Message Icon */}
           <button
             type="button"
-            className="relative flex size-32 cursor-pointer items-center justify-center rounded-[4px] bg-white p-4 transition-colors hover:bg-[#f9fafa]"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-sm bg-surface-base p-4 transition-colors hover:bg-bg-canvas"
             aria-label="Pesan"
           >
             <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkMessageTextIcon />
             </div>
             {/* Badge */}
-            <div className="absolute -top-[2.5px] -right-[3px] flex h-[16px] w-[20px] items-center justify-center rounded-full border border-white bg-[#ee3124] px-[4px]">
-              <span className="font-['Ubuntu'] text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
+            <div className="absolute -top-[2.5px] -right-[3px] flex h-4 w-5 items-center justify-center rounded-full border border-white bg-error px-1">
+              <span className="font-sans text-[10px] leading-[15px] font-bold whitespace-nowrap text-white">
                 12
               </span>
             </div>
@@ -125,10 +125,10 @@ export function SellerHeader() {
         </div>
 
         {/* Vertical Divider */}
-        <div className="h-[55px] w-px shrink-0 bg-[#d5d7d9]" />
+        <div className="h-[55px] w-px shrink-0 bg-border-primary" />
 
         {/* Account Login (Profile) */}
-        <div className="flex h-[40px] shrink-0 items-center justify-end gap-8">
+        <div className="flex h-10 shrink-0 items-center justify-end gap-8">
           {/* Avatar (32px circular) */}
           <div className="relative size-32 shrink-0 overflow-hidden rounded-full">
             <img
@@ -139,11 +139,11 @@ export function SellerHeader() {
           </div>
 
           {/* User Name & Role */}
-          <div className="flex shrink-0 flex-col items-start text-left font-['Ubuntu'] not-italic">
-            <p className="text-[14px] leading-[21px] font-medium whitespace-nowrap text-[#444b55]">
+          <div className="flex shrink-0 flex-col items-start text-left font-sans not-italic">
+            <p className="text-sm font-medium whitespace-nowrap text-primary">
               King Arthur
             </p>
-            <p className="text-[12px] leading-[18px] font-medium whitespace-nowrap text-[#8c9197]">
+            <p className="text-xs font-medium whitespace-nowrap text-placeholder">
               Seller
             </p>
           </div>

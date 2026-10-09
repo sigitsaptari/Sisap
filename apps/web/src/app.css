@@ -8,8 +8,53 @@
   --color-black: #000000;
   --color-transparent: transparent;
   --color-current: currentColor;
-  --color-error: #ee3124;
-  --color-placeholder: #8c9197;
+
+  /* Semantic Content Colors (Text) */
+  --color-primary: var(--ds-color-content-primary, #444b55);
+  --color-content-primary: var(--ds-color-content-primary, #444b55);
+  --color-secondary: var(--ds-color-content-secondary, #686e76);
+  --color-content-secondary: var(--ds-color-content-secondary, #686e76);
+  --color-placeholder: var(--ds-color-content-placeholder, #b1b4b8);
+  --color-content-placeholder: var(--ds-color-content-placeholder, #b1b4b8);
+  --color-muted: var(--ds-color-content-muted, #8c9197);
+  --color-content-muted: var(--ds-color-content-muted, #8c9197);
+  --color-inverse: var(--ds-color-content-inverse, #ffffff);
+  --color-content-inverse: var(--ds-color-content-inverse, #ffffff);
+
+  /* Semantic Feedback & Action Colors */
+  --color-error: var(--ds-color-feedback-danger, #ee3124);
+  --color-danger: var(--ds-color-feedback-danger, #ee3124);
+  --color-feedback-danger: var(--ds-color-feedback-danger, #ee3124);
+  --color-feedback-danger-bg: var(--ds-color-feedback-danger-bg, #fef2f2);
+  --color-success: var(--ds-color-feedback-success, #16a34a);
+  --color-feedback-success: var(--ds-color-feedback-success, #16a34a);
+  --color-feedback-success-bg: var(--ds-color-feedback-success-bg, #f0fdf4);
+  --color-warning: var(--ds-color-feedback-warning, #d97706);
+  --color-feedback-warning: var(--ds-color-feedback-warning, #d97706);
+  --color-feedback-warning-bg: var(--ds-color-feedback-warning-bg, #fffbeb);
+
+  --color-action-primary: var(--ds-color-action-primary, #009ea9);
+  --color-action-primary-hover: var(--ds-color-action-primary-hover, #007e87);
+  --color-action-primary-active: var(--ds-color-action-primary-active, #005f65);
+  --color-action-secondary: var(--ds-color-action-secondary, #eff0f1);
+  --color-action-destructive: var(--ds-color-action-destructive, #ee3124);
+
+  /* Semantic Border Colors */
+  --color-border-primary: var(--ds-color-border-primary, #d5d7d9);
+  --color-border-subtle: var(--ds-color-border-subtle, #dee3ed);
+  --color-border-default: var(--ds-color-border-default, #e7e8e9);
+  --color-border-strong: var(--ds-color-border-strong, #d1d5db);
+  --color-divider: var(--ds-divider-color, #dee3ed);
+
+  /* Semantic Surface & Background Colors */
+  --color-surface-base: var(--ds-color-surface-base, #ffffff);
+  --color-surface-raised: var(--ds-color-surface-raised, #f9fafa);
+  --color-surface-sunken: var(--ds-color-surface-sunken, #eff0f1);
+  --color-bg-canvas: var(--ds-color-bg-canvas, #f9fafa);
+  --color-bg-surface: var(--ds-color-bg-surface, #ffffff);
+  --color-bg-raised: var(--ds-color-bg-raised, #ffffff);
+  --color-brand-soft: #e6f7f8;
+  --color-brand-badge: #182958;
 }
 
 /* Scan the design system source so component utility classes are generated. */

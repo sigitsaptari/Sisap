@@ -63,7 +63,7 @@ describe("UploaderTrigger", () => {
 
     const button = screen.getByRole("button");
     expect(button.className).toContain("scale-[1.02]");
-    expect(button.className).toContain("border-[#009ea9]");
-    expect(button.className).toContain("bg-[#009ea9]/10");
+    expect(button.className).toContain("border-action-primary");
+    expect(button.className).toContain("bg-action-primary/10");
   });
 });
