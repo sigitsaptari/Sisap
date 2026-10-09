@@ -75,7 +75,7 @@ export function ModalHeader({
           <button
             type="button"
             onClick={onBack}
-            className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
+            className="flex size-32 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
             aria-label="Kembali"
           >
             <ArrowLeft2 size={20} className="text-primary" />
@@ -92,10 +92,10 @@ export function ModalHeader({
         <button
           type="button"
           onClick={onClose}
-          className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
+          className="flex size-32 cursor-pointer items-center justify-center rounded-control text-secondary transition-colors hover:bg-bg-canvas hover:text-primary"
           aria-label="Tutup"
         >
-          <CloseIcon className="size-5" />
+          <CloseIcon className="size-20" />
         </button>
       )}
     </div>
@@ -323,10 +323,10 @@ export function Modal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
+                  className="flex size-32 cursor-pointer items-center justify-center rounded-control text-secondary transition-colors hover:bg-bg-canvas hover:text-primary"
                   aria-label="Tutup"
                 >
-                  <CloseIcon className="size-5" />
+                  <CloseIcon className="size-20" />
                 </button>
               </div>
             )}
