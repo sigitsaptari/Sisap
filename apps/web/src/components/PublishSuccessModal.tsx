@@ -37,7 +37,7 @@ export function PublishSuccessModal({
         </p>
 
         {/* Product Summary Card */}
-        <div className="my-5 flex items-center gap-3.5 rounded-[10px] border border-[#e7e8e9] bg-[#f9fafa] p-3 text-left">
+        <div className="my-20 flex items-center gap-12 rounded-[10px] border border-[#e7e8e9] bg-[#f9fafa] p-12 text-left">
           {productData.imageUrl ? (
             <img
               src={productData.imageUrl}
@@ -56,7 +56,7 @@ export function PublishSuccessModal({
             <span className="text-xs text-[#8c9197]">
               {productData.category || "Elektronik & Gadget"}
             </span>
-            <div className="mt-1 flex items-center gap-2">
+            <div className="mt-4 flex items-center gap-8">
               <span className="text-sm font-extrabold text-[#009ea9]">
                 Rp {productData.price || "1.000.000"}
               </span>
@@ -68,7 +68,7 @@ export function PublishSuccessModal({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-8">
           <Button
             variant="primary"
             size="lg"

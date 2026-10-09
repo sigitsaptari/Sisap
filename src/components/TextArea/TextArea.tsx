@@ -9,9 +9,9 @@ export const textAreaVariants = cva(
   {
     variants: {
       size: {
-        sm: "min-h-[72px] p-2 text-xs leading-[18px]",
-        md: "min-h-[96px] p-2 text-sm leading-[21px]",
-        lg: "min-h-[120px] p-2 text-base leading-[24px]",
+        sm: "min-h-[72px] p-8 text-xs leading-[18px]",
+        md: "min-h-[96px] p-8 text-sm leading-[21px]",
+        lg: "min-h-[120px] p-8 text-base leading-[24px]",
       },
       state: {
         default:

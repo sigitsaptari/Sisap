@@ -9,9 +9,9 @@ export const checkboxVariants = cva(
   {
     variants: {
       size: {
-        sm: "size-4 rounded-checkbox",
-        md: "size-5 rounded-[5px]",
-        lg: "size-6 rounded-[6px]",
+        sm: "size-16 rounded-checkbox",
+        md: "size-20 rounded-[5px]",
+        lg: "size-24 rounded-[6px]",
       },
     },
     defaultVariants: {
@@ -23,7 +23,7 @@ export const checkboxVariants = cva(
 export const Checkbox = forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(
   ({ className, size = "sm", text, showText = true, id, ...props }, ref) => {
     // Determine icon size based on checkbox size
-    const iconSizeClass = size === "sm" ? "size-3" : size === "md" ? "size-4" : "size-5";
+    const iconSizeClass = size === "sm" ? "size-12" : size === "md" ? "size-16" : "size-20";
 
     // Text size based on size variant
     const textSizeClass =
@@ -61,7 +61,7 @@ export const Checkbox = forwardRef<React.ElementRef<typeof CheckboxPrimitive.Roo
 
     if (text && showText) {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-8">
           {content}
           <label
             htmlFor={id}

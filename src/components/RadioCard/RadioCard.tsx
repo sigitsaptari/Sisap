@@ -5,7 +5,7 @@ import { RadioIndicator, useRadioControl } from "../Radio";
 import type { RadioCardProps } from "./RadioCard.types";
 
 export const radioCardVariants = cva(
-  "group/radio relative flex w-[200px] items-start gap-2 rounded-radio-card border p-4 text-left transition-colors select-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-focus-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-bg-canvas",
+  "group/radio relative flex w-[200px] items-start gap-8 rounded-radio-card border p-16 text-left transition-colors select-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-focus-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-bg-canvas",
 );
 
 /**
@@ -95,7 +95,7 @@ export const RadioCard = forwardRef<HTMLInputElement, RadioCardProps>(
 
         {radioLeft && indicator}
 
-        <span className="flex min-w-0 flex-1 flex-col gap-1 font-sans break-words">
+        <span className="flex min-w-0 flex-1 flex-col gap-4 font-sans break-words">
           {label && (
             <span
               id={labelId}

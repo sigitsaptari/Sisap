@@ -258,7 +258,7 @@ export function RichTextEditor({
     >
       <div className={cn(rteVariants({ state: effectiveState }), className)}>
         {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-1 border-b border-[#d5d7d9] bg-[#f9fafa] px-4 py-2 dark:border-neutral-700 dark:bg-neutral-800/50">
+        <div className="flex flex-wrap items-center gap-4 border-b border-[#d5d7d9] bg-[#f9fafa] px-16 py-8 dark:border-neutral-700 dark:bg-neutral-800/50">
           <ToolbarButton
             text="H1"
             title="Heading 1"
@@ -271,7 +271,7 @@ export function RichTextEditor({
             isActive={activeFormats["H2"]}
             onClick={() => executeCommand("formatBlock", "H2")}
           />
-          <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<TextBold size={18} />}
@@ -297,7 +297,7 @@ export function RichTextEditor({
             isActive={activeFormats["strikeThrough"]}
             onClick={() => executeCommand("strikeThrough")}
           />
-          <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<TextalignLeft size={18} />}
@@ -317,7 +317,7 @@ export function RichTextEditor({
             isActive={activeFormats["justifyRight"]}
             onClick={() => executeCommand("justifyRight")}
           />
-          <div className="mx-2 h-4 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
+          <div className="mx-8 h-16 w-px bg-[#d5d7d9] dark:bg-neutral-700" />
 
           <ToolbarButton
             icon={<OrderedListIcon className="size-[18px]" />}
@@ -345,7 +345,7 @@ export function RichTextEditor({
             onKeyUp={updateActiveFormats}
             onMouseUp={updateActiveFormats}
             className={cn(
-              "min-h-[110px] w-full px-4 py-3 text-sm text-[#444b55] outline-none dark:text-neutral-100",
+              "min-h-[110px] w-full px-16 py-12 text-sm text-[#444b55] outline-none dark:text-neutral-100",
               "prose prose-sm dark:prose-invert max-w-none focus:outline-none",
               !currentValue && "before:text-[#b1b4b8] before:content-[attr(data-placeholder)]",
               editorClassName,
@@ -359,7 +359,7 @@ export function RichTextEditor({
           {(showCounter || maxLength) && (
             <div
               className={cn(
-                "absolute right-4 bottom-2 text-[10px] sm:text-xs",
+                "absolute right-16 bottom-8 text-[10px] sm:text-xs",
                 isErrorCounter || (maxLength && currentLength > maxLength)
                   ? "font-medium text-[#ee3124]"
                   : "text-[#9ba3ba]",

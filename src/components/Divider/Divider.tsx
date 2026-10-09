@@ -7,7 +7,7 @@ export const dividerVariants = cva("shrink-0 bg-[#d5d7d9] dark:bg-neutral-800 tr
   variants: {
     type: {
       horizontal: "h-px w-full",
-      vertical: "h-full w-px min-h-4 self-stretch",
+      vertical: "h-full w-px min-h-16 self-stretch",
     },
   },
   defaultVariants: {
@@ -45,13 +45,13 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
           ref={ref}
           role={computedRole}
           aria-orientation={ariaOrientation}
-          className={cn("flex w-full items-center gap-3", className)}
+          className={cn("flex w-full items-center gap-12", className)}
           {...rest}
         >
           <div
             className={cn(
               "h-px bg-[#d5d7d9] transition-colors dark:bg-neutral-800",
-              labelPosition === "left" ? "w-6 shrink-0" : "flex-1",
+              labelPosition === "left" ? "w-24 shrink-0" : "flex-1",
             )}
             aria-hidden="true"
           />

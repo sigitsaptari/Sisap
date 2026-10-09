@@ -24,9 +24,9 @@ export const chipVariants = cva(
         "dark-blue": "",
       },
       size: {
-        sm: "h-4 px-1 gap-1 text-[12px]",
-        md: "h-5 px-1.5 gap-1.5 text-[14px]",
-        lg: "h-6 px-2 gap-1.5 text-[16px]",
+        sm: "h-16 px-4 gap-4 text-[12px]",
+        md: "h-20 px-8 gap-4 text-[14px]",
+        lg: "h-24 px-8 gap-4 text-[16px]",
       },
     },
     compoundVariants: [

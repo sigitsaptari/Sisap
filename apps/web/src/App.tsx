@@ -332,8 +332,8 @@ export default function App() {
         <SellerSidebar />
 
         {/* Center Main Work Area (1096px content width, 32px padding) */}
-        <main className="flex-1 overflow-x-hidden bg-[#f9fafa] py-[16px] pr-[32px] pb-[100px] pl-[32px]">
-          <div className="flex w-[1096px] flex-col gap-[32px]">
+        <main className="flex-1 overflow-x-hidden bg-[#f9fafa] py-16 pr-32 pb-[100px] pl-32">
+          <div className="flex w-[1096px] flex-col gap-32">
             {/* Page Title */}
             <div className="flex h-[32px] items-center">
               <h1 className="font-['Ubuntu'] text-[24px] leading-[32px] font-bold text-[#444b55]">
@@ -353,26 +353,26 @@ export default function App() {
             {/* STEP 1: INFORMASI PRODUK */}
             {/* ======================================================== */}
             {currentStep === 1 && (
-              <div className="animate-in fade-in flex flex-col gap-[32px] duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card 1: Jenis Produk (6935:7549) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Jenis Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex gap-[24px] p-[24px]">
+                  <div className="flex gap-24 p-24">
                     {/* Option: Barang (Figma 6901:13127) */}
                     <div
                       onClick={() => setProductType("Barang")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-[12px] py-[10px] transition-all select-none ${
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${
                         productType === "Barang"
                           ? "border-[#009ea9] bg-white"
                           : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
                       }`}
                     >
-                      <div className="flex min-w-0 flex-1 items-center gap-[16px]">
+                      <div className="flex min-w-0 flex-1 items-center gap-16">
                         {/* Device icon (40x40) - vuesax/bulk/devices */}
                         <div className="relative flex size-[40px] shrink-0 items-center justify-center">
                           <svg
@@ -402,7 +402,7 @@ export default function App() {
                             />
                           </svg>
                         </div>
-                        <div className="flex min-w-0 flex-1 flex-col gap-[4px] text-left">
+                        <div className="flex min-w-0 flex-1 flex-col gap-4 text-left">
                           <p className="font-['Ubuntu'] text-[12px] leading-[18px] font-medium text-[#444b55]">
                             Barang
                           </p>
@@ -435,13 +435,13 @@ export default function App() {
                     {/* Option: Jasa (Figma 6901:13134) */}
                     <div
                       onClick={() => setProductType("Jasa")}
-                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-[12px] py-[10px] transition-all select-none ${
+                      className={`flex h-[60px] flex-1 cursor-pointer items-center justify-between rounded-[4px] border px-12 py-8 transition-all select-none ${
                         productType === "Jasa"
                           ? "border-[#009ea9] bg-white"
                           : "border-[#d5d7d9] bg-white hover:border-[#b1b4b8]"
                       }`}
                     >
-                      <div className="flex min-w-0 flex-1 items-center gap-[16px]">
+                      <div className="flex min-w-0 flex-1 items-center gap-16">
                         {/* Jasa icon (40x40) - vuesax/bulk/like */}
                         <div className="relative flex size-[40px] shrink-0 items-center justify-center">
                           <svg
@@ -469,7 +469,7 @@ export default function App() {
                             />
                           </svg>
                         </div>
-                        <div className="flex min-w-0 flex-1 flex-col gap-[4px] text-left">
+                        <div className="flex min-w-0 flex-1 flex-col gap-4 text-left">
                           <p className="font-['Ubuntu'] text-[12px] leading-[18px] font-medium text-[#444b55]">
                             Jasa
                           </p>
@@ -503,13 +503,13 @@ export default function App() {
 
                 {/* Card 2: Informasi Produk (6935:7550) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Informasi Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Nama Produk */}
                     <TextField
                       label="Nama Produk"
@@ -522,13 +522,13 @@ export default function App() {
                     />
 
                     {/* 3 Column Select Fields (Kategori, Brand, Satuan) */}
-                    <div className="relative z-20 flex w-full items-start gap-[24px]">
+                    <div className="relative z-20 flex w-full items-start gap-24">
                       <div className="min-w-0 flex-1">
                         <SelectField
                           label="Kategori Produk"
                           isWajib
                           value={category}
-                          onChange={setCategory}
+                          onChange={(val) => setCategory(String(val))}
                           options={[
                             {
                               label: "Furniture/Furniture Perkantoran",
@@ -549,7 +549,7 @@ export default function App() {
                           label="Brand Produk"
                           isWajib
                           value={brand}
-                          onChange={setBrand}
+                          onChange={(val) => setBrand(String(val))}
                           options={[
                             { label: "Fantech", value: "Fantech" },
                             { label: "Apple", value: "Apple" },
@@ -565,7 +565,7 @@ export default function App() {
                           label="Jenis Satuan Produk"
                           isWajib
                           value={unitType}
-                          onChange={setUnitType}
+                          onChange={(val) => setUnitType(String(val))}
                           options={[
                             { label: "Pcs", value: "Pcs" },
                             { label: "Unit", value: "Unit" },
@@ -587,7 +587,7 @@ export default function App() {
                     />
 
                     {/* Checkbox PDN */}
-                    <div className="flex flex-col gap-[4px]">
+                    <div className="flex flex-col gap-4">
                       <Checkbox
                         id="pdn-checkbox"
                         checked={isPdn}
@@ -595,7 +595,7 @@ export default function App() {
                         size="lg"
                         text="Produk Dalam Negeri (PDN)"
                       />
-                      <p className="pl-[32px] font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
+                      <p className="pl-32 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
                         Barang dan jasa produksi Indonesia yang memanfaatkan tenaga kerja serta
                         bahan baku dalam negeri.
                       </p>
@@ -605,7 +605,7 @@ export default function App() {
                     <SelectField
                       label="Pajak Penghasilan (PPh)"
                       value={pph}
-                      onChange={setPph}
+                      onChange={(val) => setPph(String(val))}
                       options={[
                         { label: "Tidak Dipotong", value: "Tidak Dipotong" },
                         { label: "PPh Pasal 22 (0.5%)", value: "PPh Pasal 22 (0.5%)" },
@@ -627,13 +627,13 @@ export default function App() {
 
                 {/* Card 3: Media Produk (6937:9362) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-[#ffffff] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Media Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Foto Produk */}
                     <Uploader
                       type="image"
@@ -665,7 +665,7 @@ export default function App() {
 
                 {/* Card 4: Sertifikat Produk (6954:14866) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
-                  <div className="flex h-[56px] items-center justify-between p-[16px]">
+                  <div className="flex h-[56px] items-center justify-between p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Sertifikat Produk
                     </h2>
@@ -683,7 +683,7 @@ export default function App() {
                   </div>
                   <Divider className="bg-[#dee3ed]" />
                   {certificates.length === 0 ? (
-                    <div className="flex w-full flex-col items-center justify-center gap-[4px] px-0 py-[16px] text-center">
+                    <div className="flex w-full flex-col items-center justify-center gap-4 px-0 py-16 text-center">
                       <p className="font-['Ubuntu'] text-[14px] leading-[21px] font-bold text-[#444b55]">
                         Sertifikat Produk Belum ditambahkan.
                       </p>
@@ -696,10 +696,10 @@ export default function App() {
                     <div className="w-full">
                       {/* Table Header (56px) */}
                       <div className="flex h-[56px] items-center border-b border-[#dee3ed] bg-[#f9fafa] font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
-                        <div className="flex-1 px-[16px] py-[8px]">Jenis Sertifikat</div>
-                        <div className="w-[240px] px-[16px] py-[8px]">Status/Kedaluwarsa</div>
-                        <div className="w-[200px] px-[16px] py-[8px]">Lampiran</div>
-                        <div className="w-[105px] px-[16px] py-[8px]">Aksi</div>
+                        <div className="flex-1 px-16 py-8">Jenis Sertifikat</div>
+                        <div className="w-[240px] px-16 py-8">Status/Kedaluwarsa</div>
+                        <div className="w-[200px] px-16 py-8">Lampiran</div>
+                        <div className="w-[105px] px-16 py-8">Aksi</div>
                       </div>
 
                       {/* Table Rows (66px each, zebra stripe) */}
@@ -717,7 +717,7 @@ export default function App() {
                               } ${!isLast ? "border-b border-[#dee3ed]" : ""}`}
                             >
                               {/* Column 1: Jenis Sertifikat */}
-                              <div className="flex flex-1 items-center gap-[8px] px-[16px] py-[8px] text-[#444b55]">
+                              <div className="flex flex-1 items-center gap-8 px-16 py-8 text-[#444b55]">
                                 <span className="text-[14px] leading-[21px] font-normal">
                                   {cert.type}
                                 </span>
@@ -733,7 +733,7 @@ export default function App() {
                               </div>
 
                               {/* Column 2: Status / Kedaluwarsa */}
-                              <div className="flex w-[240px] items-center gap-[4px] px-[16px] py-[8px] text-[#444b55]">
+                              <div className="flex w-[240px] items-center gap-4 px-16 py-8 text-[#444b55]">
                                 {cert.status === "-" ? (
                                   <span className="text-[14px] leading-[21px] font-normal text-[#444b55]">
                                     -
@@ -757,7 +757,7 @@ export default function App() {
                               </div>
 
                               {/* Column 3: Lampiran */}
-                              <div className="flex w-[200px] items-center gap-[8px] px-[16px] py-[8px]">
+                              <div className="flex w-[200px] items-center gap-8 px-16 py-8">
                                 {cert.docUrl && (
                                   <a
                                     href={cert.docUrl}
@@ -784,7 +784,7 @@ export default function App() {
                               </div>
 
                               {/* Column 4: Aksi */}
-                              <div className="flex w-[105px] items-center gap-[12px] px-[16px] py-[8px]">
+                              <div className="flex w-[105px] items-center gap-12 px-16 py-8">
                                 <button
                                   type="button"
                                   onClick={() => {
@@ -824,20 +824,20 @@ export default function App() {
             {/* STEP 2: HARGA & STOK */}
             {/* ======================================================== */}
             {currentStep === 2 && (
-              <div className="animate-in fade-in flex flex-col gap-[32px] duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card 1: Harga Produk (6941:8292) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Harga Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Dismissible Alert Banner */}
                     {showAlertBanner && (
-                      <div className="flex w-full items-center justify-between gap-[12px] rounded-[8px] border border-[#f7931e] bg-[#fff5ea] px-[16px] py-[16px]">
-                        <div className="flex items-center gap-[12px]">
+                      <div className="flex w-full items-center justify-between gap-12 rounded-[8px] border border-[#f7931e] bg-[#fff5ea] px-16 py-16">
+                        <div className="flex items-center gap-12">
                           <div className="flex size-[32px] shrink-0 items-center justify-center rounded-full bg-[#f7931e] text-white">
                             <Danger size={20} variant="Bulk" color="#ffffff" />
                           </div>
@@ -860,8 +860,8 @@ export default function App() {
                     )}
 
                     {/* Jenis Harga */}
-                    <div className="flex flex-col gap-[8px]">
-                      <div className="flex items-center gap-[4px]">
+                    <div className="flex flex-col gap-8">
+                      <div className="flex items-center gap-4">
                         <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                           Jenis Harga
                         </span>
@@ -869,7 +869,7 @@ export default function App() {
                           Wajib
                         </span>
                       </div>
-                      <div className="flex gap-[24px]">
+                      <div className="flex gap-24">
                         <RadioCard
                           id="price-normal"
                           name="priceType"
@@ -878,7 +878,7 @@ export default function App() {
                           onChange={() => setPriceType("normal")}
                           label="Harga Normal"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-[16px] ${
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
                             priceType === "normal"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
@@ -892,7 +892,7 @@ export default function App() {
                           onChange={() => setPriceType("tempo")}
                           label="Harga Tempo"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-[16px] ${
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
                             priceType === "tempo"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
@@ -911,7 +911,7 @@ export default function App() {
                     />
 
                     {/* Tampilkan Harga Diskon Box */}
-                    <div className="flex w-full flex-col gap-[24px] rounded-[8px] bg-[#f9fafa] p-[12px]">
+                    <div className="flex w-full flex-col gap-24 rounded-[8px] bg-[#f9fafa] p-12">
                       <div className="flex items-center">
                         <Switch
                           id="switch-diskon"
@@ -923,7 +923,7 @@ export default function App() {
                       </div>
 
                       {showDiscount && (
-                        <div className="flex w-full items-end gap-[24px]">
+                        <div className="flex w-full items-end gap-24">
                           {/* Harga Sebelum Diskon Input */}
                           <div className="flex-1">
                             <TextField
@@ -936,15 +936,15 @@ export default function App() {
                           </div>
 
                           {/* Pratinjau Harga Diskon Box */}
-                          <div className="flex flex-col gap-[8px]">
+                          <div className="flex flex-col gap-8">
                             <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                               Pratinjau Harga Diskon
                             </span>
-                            <div className="flex h-[44px] items-center gap-[12px] rounded-[4px] border border-[#d5d7d9] bg-white px-[8px] py-[8px]">
+                            <div className="flex h-[44px] items-center gap-12 rounded-[4px] border border-[#d5d7d9] bg-white px-8 py-8">
                               <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-bold text-[#444b55]">
                                 Rp{unitPrice}
                               </span>
-                              <div className="flex items-center gap-[8px]">
+                              <div className="flex items-center gap-8">
                                 <span className="rounded-[4px] bg-[#ffedf1] px-[6px] py-[1px] text-[12px] font-medium text-[#ee3124]">
                                   50%
                                 </span>
@@ -956,8 +956,8 @@ export default function App() {
                           </div>
 
                           {/* Estimasi Pendapatan */}
-                          <div className="flex h-[44px] items-center gap-[12px] rounded-[4px] bg-[#ddf2e4] px-[12px]">
-                            <div className="flex items-center gap-[4px]">
+                          <div className="flex h-[44px] items-center gap-12 rounded-[4px] bg-[#ddf2e4] px-12">
+                            <div className="flex items-center gap-4">
                               <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                                 Estimasi pendapatan
                               </span>
@@ -972,21 +972,21 @@ export default function App() {
                     </div>
 
                     {/* Barang / Jasa Dikenakan PPN */}
-                    <div className="flex flex-col gap-[8px]">
+                    <div className="flex flex-col gap-8">
                       <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                         Barang / Jasa Dikenakan PPN
                       </span>
-                      <div className="grid grid-cols-3 gap-[24px]">
+                      <div className="grid grid-cols-3 gap-24">
                         {/* PPN 12% */}
                         <div
                           onClick={() => setPpnType("ppn12")}
-                          className={`flex cursor-pointer flex-col gap-[6px] rounded-[4px] border p-[16px] transition-all ${
+                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
                             ppnType === "ppn12"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-[8px]">
+                          <div className="flex items-center gap-8">
                             <div
                               className={`flex size-[18px] items-center justify-center rounded-full border ${
                                 ppnType === "ppn12" ? "border-[#009ea9]" : "border-[#b1b4b8]"
@@ -1008,13 +1008,13 @@ export default function App() {
                         {/* PPN 1.1% */}
                         <div
                           onClick={() => setPpnType("ppn1")}
-                          className={`flex cursor-pointer flex-col gap-[6px] rounded-[4px] border p-[16px] transition-all ${
+                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
                             ppnType === "ppn1"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-[8px]">
+                          <div className="flex items-center gap-8">
                             <div
                               className={`flex size-[18px] items-center justify-center rounded-full border ${
                                 ppnType === "ppn1" ? "border-[#009ea9]" : "border-[#b1b4b8]"
@@ -1037,13 +1037,13 @@ export default function App() {
                         {/* Tidak Dikenakan PPN */}
                         <div
                           onClick={() => setPpnType("noppn")}
-                          className={`flex cursor-pointer flex-col gap-[6px] rounded-[4px] border p-[16px] transition-all ${
+                          className={`flex cursor-pointer flex-col gap-8 rounded-[4px] border p-16 transition-all ${
                             ppnType === "noppn"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
                           }`}
                         >
-                          <div className="flex items-center gap-[8px]">
+                          <div className="flex items-center gap-8">
                             <div
                               className={`flex size-[18px] items-center justify-center rounded-full border ${
                                 ppnType === "noppn" ? "border-[#009ea9]" : "border-[#b1b4b8]"
@@ -1063,7 +1063,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <p className="mt-[4px] font-['Ubuntu'] text-[14px] leading-[21px] text-[#686e76]">
+                      <p className="mt-4 font-['Ubuntu'] text-[14px] leading-[21px] text-[#686e76]">
                         Pastikan pemilihan pengenaan PPN pada barang/jasa Anda sesuai dengan
                         peraturan perundangan yang berlaku.{" "}
                         <a href="#ppn" className="font-medium text-[#009ea9] hover:underline">
@@ -1076,15 +1076,15 @@ export default function App() {
 
                 {/* Card 2: Stok Produk (6941:8434) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Stok Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Row Stok Unit & Minimum Pembelian */}
-                    <div className="flex w-full gap-[24px]">
+                    <div className="flex w-full gap-24">
                       <div className="flex-1">
                         <TextField
                           label="Stok Unit"
@@ -1115,8 +1115,8 @@ export default function App() {
                     />
 
                     {/* Pre-Order Toggle Card */}
-                    <div className="flex flex-col gap-[16px] rounded-[8px] bg-[#f9fafa] p-[12px]">
-                      <div className="flex flex-col gap-[4px]">
+                    <div className="flex flex-col gap-16 rounded-[8px] bg-[#f9fafa] p-12">
+                      <div className="flex flex-col gap-4">
                         <Switch
                           id="preorder-switch"
                           size="lg"
@@ -1124,14 +1124,14 @@ export default function App() {
                           checked={isPreOrder}
                           onCheckedChange={setIsPreOrder}
                         />
-                        <p className="pl-[48px] font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
+                        <p className="pl-48 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
                           Jika kamu memerlukan waktu pengiriman yang lebih lama, silakan aktifkan
                           opsi Pre Order.
                         </p>
                       </div>
 
                       {isPreOrder && (
-                        <div className="flex flex-col gap-[4px] pt-[8px]">
+                        <div className="flex flex-col gap-4 pt-8">
                           <TextField
                             label="Waktu Proses"
                             required
@@ -1155,18 +1155,18 @@ export default function App() {
             {/* STEP 3: PENGIRIMAN */}
             {/* ======================================================== */}
             {currentStep === 3 && (
-              <div className="animate-in fade-in flex flex-col gap-[32px] duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card Pengiriman (6941:9762) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Pengiriman
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Berat Produk */}
-                    <div className="flex flex-col gap-[4px]">
+                    <div className="flex flex-col gap-4">
                       <TextField
                         label="Berat Produk"
                         required
@@ -1181,8 +1181,8 @@ export default function App() {
                     </div>
 
                     {/* Dimensi */}
-                    <div className="flex flex-col gap-[8px]">
-                      <div className="flex items-center gap-[4px]">
+                    <div className="flex flex-col gap-8">
+                      <div className="flex items-center gap-4">
                         <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                           Dimensi
                         </span>
@@ -1195,7 +1195,7 @@ export default function App() {
                         terdapat angka desimal, mohon dibulatkan ke atas.
                       </p>
 
-                      <div className="flex items-center gap-[16px] pt-[8px]">
+                      <div className="flex items-center gap-16 pt-8">
                         <div className="flex-1">
                           <TextField
                             suffix="CM"
@@ -1219,7 +1219,7 @@ export default function App() {
                         </div>
 
                         {/* Berat Volume Box */}
-                        <div className="flex h-[44px] shrink-0 items-center justify-center rounded-[4px] bg-[#eff0f1] px-[16px] font-['Ubuntu'] text-[14px] text-[#444b55]">
+                        <div className="flex h-[44px] shrink-0 items-center justify-center rounded-[4px] bg-[#eff0f1] px-16 font-['Ubuntu'] text-[14px] text-[#444b55]">
                           <span>Berat Volume :&nbsp;</span>
                           <span className="font-bold text-[#444b55]">
                             {calculatedVolumeWeight} Kilogram
@@ -1234,7 +1234,7 @@ export default function App() {
                     </div>
 
                     {/* Gratis Ongkos Kirim Box */}
-                    <div className="flex flex-col gap-[4px] rounded-[8px] bg-[#f9fafa] p-[16px]">
+                    <div className="flex flex-col gap-4 rounded-[8px] bg-[#f9fafa] p-16">
                       <Switch
                         id="ongkir-switch"
                         size="lg"
@@ -1242,7 +1242,7 @@ export default function App() {
                         checked={isFreeShipping}
                         onCheckedChange={setIsFreeShipping}
                       />
-                      <p className="pl-[48px] font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
+                      <p className="pl-48 font-['Ubuntu'] text-[14px] leading-[21px] font-normal text-[#686e76]">
                         Jika Gratis Ongkir aktif, ongkir ditanggung penjual dan dipotong dari total
                         penjualan.
                       </p>
@@ -1256,19 +1256,19 @@ export default function App() {
             {/* STEP 4: VISIBILITAS / LAINNYA */}
             {/* ======================================================== */}
             {currentStep === 4 && (
-              <div className="animate-in fade-in flex flex-col gap-[32px] duration-200">
+              <div className="animate-in fade-in flex flex-col gap-32 duration-200">
                 {/* Card Visibilitas Produk (6941:10909) */}
                 <div className="w-[1096px] overflow-hidden rounded-[8px] border border-[#d5d7d9] bg-white">
-                  <div className="p-[16px]">
+                  <div className="p-16">
                     <h2 className="font-['Ubuntu'] text-[16px] leading-[24px] font-bold text-[#444b55]">
                       Visibilitas Produk
                     </h2>
                   </div>
                   <Divider className="bg-[#dee3ed]" />
-                  <div className="flex flex-col gap-[24px] p-[24px]">
+                  <div className="flex flex-col gap-24 p-24">
                     {/* Jenis Visibilitas Produk */}
-                    <div className="flex flex-col gap-[8px]">
-                      <div className="flex items-center gap-[4px]">
+                    <div className="flex flex-col gap-8">
+                      <div className="flex items-center gap-4">
                         <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                           Jenis Visibilitas Produk
                         </span>
@@ -1280,7 +1280,7 @@ export default function App() {
                         Tentukan jenis visibilitas produk dari sistem pencarian dan halaman penjual
                         PaDi UMKM
                       </p>
-                      <div className="flex gap-[24px] pt-[4px]">
+                      <div className="flex gap-24 pt-4">
                         <RadioCard
                           id="vis-publik"
                           name="visibilityType"
@@ -1289,7 +1289,7 @@ export default function App() {
                           onChange={() => setVisibilityType("publik")}
                           label="Publik"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-[16px] ${
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
                             visibilityType === "publik"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
@@ -1303,7 +1303,7 @@ export default function App() {
                           onChange={() => setVisibilityType("privat")}
                           label="Privat"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-[4px] p-[16px] ${
+                          className={`w-[200px] cursor-pointer rounded-[4px] p-16 ${
                             visibilityType === "privat"
                               ? "border-[#009ea9] bg-[#e6f4f7]"
                               : "border-[#d5d7d9] bg-white"
@@ -1313,8 +1313,8 @@ export default function App() {
                     </div>
 
                     {/* Daftar BUMN yang diizinkan */}
-                    <div className="flex flex-col gap-[8px]">
-                      <div className="flex items-center gap-[4px]">
+                    <div className="flex flex-col gap-8">
+                      <div className="flex items-center gap-4">
                         <span className="font-['Ubuntu'] text-[14px] leading-[21px] font-medium text-[#444b55]">
                           Daftar BUMN yang diizinkan
                         </span>
@@ -1328,8 +1328,8 @@ export default function App() {
                       </p>
 
                       {/* Chip Select Box */}
-                      <div className="flex min-h-[44px] w-full items-center justify-between rounded-[4px] border border-[#d5d7d9] bg-white px-[12px] py-[8px]">
-                        <div className="flex flex-wrap items-center gap-[8px]">
+                      <div className="flex min-h-[44px] w-full items-center justify-between rounded-[4px] border border-[#d5d7d9] bg-white px-12 py-8">
+                        <div className="flex flex-wrap items-center gap-8">
                           {allowedBumnList.map((bumn) => (
                             <Chip
                               key={bumn}
@@ -1377,13 +1377,13 @@ export default function App() {
       </div>
 
       {/* Sticky Bottom CTA Bar (6954:13282) */}
-      <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-[16px] border-t border-[#dee3ed] bg-[#ffffff] bg-white px-[24px] py-[16px] drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
+      <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-16 border-t border-[#dee3ed] bg-[#ffffff] bg-white px-24 py-16 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
         {currentStep > 1 && (
           <Button
             variant="secondary"
             size="md"
             onClick={handlePrev}
-            className="h-[36px] rounded-[4px] border border-[#444b55] px-[12px] text-[12px] leading-[18px] font-medium text-[#444b55]"
+            className="h-[36px] rounded-[4px] border border-[#444b55] px-12 text-[12px] leading-[18px] font-medium text-[#444b55]"
           >
             Kembali
           </Button>
@@ -1392,7 +1392,7 @@ export default function App() {
           variant="secondary"
           size="md"
           onClick={() => showToast("Draf produk berhasil disimpan!")}
-          className="h-[36px] rounded-[4px] border border-[#444b55] px-[12px] text-[12px] leading-[18px] font-medium text-[#444b55]"
+          className="h-[36px] rounded-[4px] border border-[#444b55] px-12 text-[12px] leading-[18px] font-medium text-[#444b55]"
         >
           Simpan Draft
         </Button>
@@ -1400,7 +1400,7 @@ export default function App() {
           variant="primary"
           size="md"
           onClick={handleNext}
-          className="h-[36px] rounded-[4px] bg-[#009ea9] px-[12px] text-[12px] leading-[18px] font-medium text-white"
+          className="h-[36px] rounded-[4px] bg-[#009ea9] px-12 text-[12px] leading-[18px] font-medium text-white"
         >
           {currentStep === 4 ? "Selesai" : "Selanjutnya"}
         </Button>

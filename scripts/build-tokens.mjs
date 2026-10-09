@@ -119,6 +119,7 @@ const semanticColorPaths = new Set(
 );
 
 const themePrefixes = [
+  ["spacing.", "spacing"],
   ["border-radius.", "radius"],
   ["typography.font.family.", "font"],
   ["typography.font.size.", "text"],

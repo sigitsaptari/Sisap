@@ -48,7 +48,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="size-5 text-white"
+        className="size-20 text-white"
         aria-hidden="true"
       >
         <path
@@ -199,7 +199,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           {indicatorElement}
 
           {/* Label */}
-          <div className="flex shrink-0 flex-col justify-center px-2 text-left">
+          <div className="flex shrink-0 flex-col justify-center px-8 text-left">
             {title && (
               <p className="text-base leading-6 font-medium text-[#444b55] dark:text-neutral-100">
                 {title}
@@ -215,7 +215,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           {/* Right Flow Line */}
           <div
             className={cn(
-              "h-[2px] min-w-3 flex-1 transition-colors",
+              "h-[2px] min-w-12 flex-1 transition-colors",
               isLast
                 ? "invisible"
                 : isSuccess
@@ -247,7 +247,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
             : undefined
         }
         className={cn(
-          "relative flex min-h-[104px] items-stretch gap-3",
+          "relative flex min-h-[104px] items-stretch gap-12",
           isInteractive && "group cursor-pointer",
           className,
         )}
@@ -259,7 +259,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           <div
             className={cn(
               "w-[2px] transition-colors",
-              isFirst ? "invisible h-0" : "min-h-3 flex-1",
+              isFirst ? "invisible h-0" : "min-h-12 flex-1",
               isActive || isSuccess ? "bg-[#009ea9]" : "bg-[#dee3ed] dark:bg-neutral-700",
             )}
             aria-hidden="true"
@@ -272,7 +272,7 @@ export const StepperItem = forwardRef<HTMLDivElement, StepperItemProps>(
           <div
             className={cn(
               "w-[2px] transition-colors",
-              isLast ? "invisible h-0" : "min-h-3 flex-1",
+              isLast ? "invisible h-0" : "min-h-12 flex-1",
               isSuccess ? "bg-[#009ea9]" : "bg-[#dee3ed] dark:bg-neutral-700",
             )}
             aria-hidden="true"

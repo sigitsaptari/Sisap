@@ -52,12 +52,12 @@ describe("Chip", () => {
 
   it("applies correct height classes for sizes sm, md, and lg", () => {
     const { container: smC } = render(<Chip size="sm" label="sm" />);
-    expect(smC.querySelector("span")?.className).toContain("h-4");
+    expect(smC.querySelector("span")?.className).toContain("h-16");
 
     const { container: mdC } = render(<Chip size="md" label="md" />);
-    expect(mdC.querySelector("span")?.className).toContain("h-5");
+    expect(mdC.querySelector("span")?.className).toContain("h-20");
 
     const { container: lgC } = render(<Chip size="lg" label="lg" />);
-    expect(lgC.querySelector("span")?.className).toContain("h-6");
+    expect(lgC.querySelector("span")?.className).toContain("h-24");
   });
 });

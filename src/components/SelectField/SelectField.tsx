@@ -7,9 +7,9 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import type { SelectFieldProps } from "./SelectField.types";
 
 const iconSizes: Record<string, string> = {
-  sm: "size-4",
-  md: "size-5",
-  lg: "size-6",
+  sm: "size-16",
+  md: "size-20",
+  lg: "size-24",
 };
 
 export function SelectField({
@@ -206,7 +206,7 @@ export function SelectField({
         {isOpen && (
           <div
             className={cn(
-              "absolute top-full left-0 z-50 mt-1 flex max-h-[260px] w-full flex-col overflow-hidden",
+              "absolute top-full left-0 z-50 mt-4 flex max-h-[260px] w-full flex-col overflow-hidden",
               "rounded-[4px] border border-[#d5d7d9] bg-[#ffffff] bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900",
               dropdownClassName,
             )}
@@ -215,7 +215,7 @@ export function SelectField({
             {/* Search Input */}
             {searchable && (
               <div
-                className="z-10 shrink-0 border-b border-[#d5d7d9] bg-[#ffffff] bg-white p-3 dark:border-neutral-700 dark:bg-neutral-900"
+                className="z-10 shrink-0 border-b border-[#d5d7d9] bg-[#ffffff] bg-white p-12 dark:border-neutral-700 dark:bg-neutral-900"
                 style={{ backgroundColor: "#ffffff" }}
               >
                 <TextField
@@ -230,7 +230,7 @@ export function SelectField({
 
             {/* List */}
             <ul
-              className="flex-1 overflow-y-auto bg-[#ffffff] bg-white py-1.5 dark:bg-neutral-900"
+              className="flex-1 overflow-y-auto bg-[#ffffff] bg-white py-8 dark:bg-neutral-900"
               role="listbox"
               aria-multiselectable={multiple}
               style={{ backgroundColor: "#ffffff" }}
@@ -248,7 +248,7 @@ export function SelectField({
                       aria-selected={isSelected}
                       onClick={() => handleOptionClick(option.value)}
                       className={cn(
-                        "flex cursor-pointer items-center gap-2 px-3 py-2.5 font-['Ubuntu',sans-serif] text-sm transition-colors",
+                        "flex cursor-pointer items-center gap-8 px-12 py-8 font-['Ubuntu',sans-serif] text-sm transition-colors",
                         isSelected && !multiple
                           ? "bg-[#f0f9fa] font-medium text-[#009ea9]"
                           : "bg-[#ffffff] bg-white text-[#444b55] hover:bg-[#f9fafa] dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",
@@ -268,7 +268,7 @@ export function SelectField({
                   );
                 })
               ) : (
-                <li className="bg-[#ffffff] bg-white px-3 py-4 text-center text-sm text-[#b1b4b8]">
+                <li className="bg-[#ffffff] bg-white px-12 py-16 text-center text-sm text-[#b1b4b8]">
                   No options found
                 </li>
               )}

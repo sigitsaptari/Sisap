@@ -103,13 +103,13 @@ export function CertificateModal({
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-16 p-24">
           <SelectField
             label="Jenis Sertifikat"
             isWajib
             placeholder="Pilih Sertifikat"
             value={certType}
-            onChange={(val) => setCertType(val)}
+            onChange={(val) => setCertType(String(val))}
             options={[
               { label: "TKDN (Tingkat Komponen Dalam Negeri)", value: "TKDN" },
               { label: "MUI (Sertifikat Halal)", value: "MUI (Sertifikat Halal)" },
@@ -138,12 +138,12 @@ export function CertificateModal({
           )}
 
           {/* Upload Dokumen */}
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-8">
             <label className="text-sm font-medium text-[#444b55]">
               Upload Dokumen Sertifikat <span className="text-[#ee3124] italic">*</span>
             </label>
-            <label className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-4 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5">
-              <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-1" />
+            <label className="flex cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-[#b1b4b8] bg-[#f9fafa] p-16 text-center transition-colors hover:border-[#009ea9] hover:bg-[#009ea9]/5">
+              <DocumentUpload size={28} variant="Bulk" color="#009ea9" className="mb-4" />
               <span className="text-xs font-semibold text-[#009ea9]">
                 {fileName ? fileName : "Pilih Berkas PDF / JPG"}
               </span>
@@ -162,7 +162,7 @@ export function CertificateModal({
           </div>
 
           {/* Buttons */}
-          <div className="mt-4 flex items-center justify-end gap-3 border-t border-[#f2f4f7] pt-4">
+          <div className="mt-16 flex items-center justify-end gap-12 border-t border-[#f2f4f7] pt-16">
             <Button type="button" variant="outline" size="md" onClick={onClose}>
               Batal
             </Button>

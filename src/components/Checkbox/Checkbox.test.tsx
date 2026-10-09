@@ -52,12 +52,12 @@ describe("Checkbox", () => {
 
   it("applies correct size classes", () => {
     const { rerender } = render(<Checkbox id="c-size" size="sm" aria-label="sm" />);
-    expect(screen.getByRole("checkbox").className).toContain("size-4");
+    expect(screen.getByRole("checkbox").className).toContain("size-16");
 
     rerender(<Checkbox id="c-size" size="md" aria-label="md" />);
-    expect(screen.getByRole("checkbox").className).toContain("size-5");
+    expect(screen.getByRole("checkbox").className).toContain("size-20");
 
     rerender(<Checkbox id="c-size" size="lg" aria-label="lg" />);
-    expect(screen.getByRole("checkbox").className).toContain("size-6");
+    expect(screen.getByRole("checkbox").className).toContain("size-24");
   });
 });

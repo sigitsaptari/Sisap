@@ -23,10 +23,10 @@ export function UploaderItem({
     >
       {/* Uploading State */}
       {status === "uploading" && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#ffffff]/95 p-2 dark:bg-neutral-900/95">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#ffffff]/95 p-8 dark:bg-neutral-900/95">
           {/* Circular Progress */}
-          <div className="relative mb-1 flex size-10 items-center justify-center">
-            <svg className="size-10 -rotate-90 transform" viewBox="0 0 36 36">
+          <div className="relative mb-4 flex size-40 items-center justify-center">
+            <svg className="size-40 -rotate-90 transform" viewBox="0 0 36 36">
               <path
                 className="text-[#e7e8e9] dark:text-neutral-700"
                 stroke="currentColor"

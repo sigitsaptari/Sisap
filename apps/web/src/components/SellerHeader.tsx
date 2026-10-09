@@ -71,16 +71,16 @@ export function SellerHeader() {
       </div>
 
       {/* Right Section (.Account Login) */}
-      <div className="flex h-[55px] shrink-0 items-center justify-end gap-[24px]">
+      <div className="flex h-[55px] shrink-0 items-center justify-end gap-24">
         {/* Button: Daftar Transaksi */}
         <button
           type="button"
-          className="flex h-[36px] cursor-pointer items-center justify-center gap-[4px] rounded-[4px] border border-[#009ea9] bg-white px-[10px] transition-colors hover:bg-[#e6f4f7]"
+          className="flex h-[36px] cursor-pointer items-center justify-center gap-4 rounded-[4px] border border-[#009ea9] bg-white px-8 transition-colors hover:bg-[#e6f4f7]"
         >
-          <div className="flex size-[16px] shrink-0 items-center justify-center">
+          <div className="flex size-16 shrink-0 items-center justify-center">
             <ArrowSwapHorizontalIcon />
           </div>
-          <div className="flex items-center justify-center px-[7px]">
+          <div className="flex items-center justify-center px-8">
             <span className="font-['Ubuntu'] text-[12px] leading-[18px] font-medium whitespace-nowrap text-[#009ea9] capitalize">
               Daftar Transaksi
             </span>
@@ -88,14 +88,14 @@ export function SellerHeader() {
         </button>
 
         {/* Icons + Badges (.Right Icon+Badge) */}
-        <div className="flex shrink-0 items-center justify-end gap-[24px]">
+        <div className="flex shrink-0 items-center justify-end gap-24">
           {/* Notification Icon */}
           <button
             type="button"
-            className="relative flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] bg-white p-[4px] transition-colors hover:bg-[#f9fafa]"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-[4px] bg-white p-4 transition-colors hover:bg-[#f9fafa]"
             aria-label="Notifikasi"
           >
-            <div className="flex size-[24px] shrink-0 items-center justify-center">
+            <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkNotificationIcon />
             </div>
             {/* Badge */}
@@ -109,10 +109,10 @@ export function SellerHeader() {
           {/* Message Icon */}
           <button
             type="button"
-            className="relative flex size-[32px] cursor-pointer items-center justify-center rounded-[4px] bg-white p-[4px] transition-colors hover:bg-[#f9fafa]"
+            className="relative flex size-32 cursor-pointer items-center justify-center rounded-[4px] bg-white p-4 transition-colors hover:bg-[#f9fafa]"
             aria-label="Pesan"
           >
-            <div className="flex size-[24px] shrink-0 items-center justify-center">
+            <div className="flex size-24 shrink-0 items-center justify-center">
               <BulkMessageTextIcon />
             </div>
             {/* Badge */}
@@ -128,9 +128,9 @@ export function SellerHeader() {
         <div className="h-[55px] w-px shrink-0 bg-[#d5d7d9]" />
 
         {/* Account Login (Profile) */}
-        <div className="flex h-[40px] shrink-0 items-center justify-end gap-[8px]">
+        <div className="flex h-[40px] shrink-0 items-center justify-end gap-8">
           {/* Avatar (32px circular) */}
-          <div className="relative size-[32px] shrink-0 overflow-hidden rounded-full">
+          <div className="relative size-32 shrink-0 overflow-hidden rounded-full">
             <img
               src="/assets/avatar-seller.png"
               alt="King Arthur"

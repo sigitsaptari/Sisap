@@ -25,9 +25,9 @@ const switchThumbVariants = cva(
   {
     variants: {
       size: {
-        sm: "size-[12px]",
-        md: "size-[16px]",
-        lg: "size-[20px]",
+        sm: "size-12",
+        md: "size-16",
+        lg: "size-20",
       },
     },
     defaultVariants: {
@@ -59,9 +59,9 @@ const switchLabelVariants = cva(
 const switchContainerVariants = cva("inline-flex items-center", {
   variants: {
     size: {
-      sm: "gap-[8px] h-[18px]",
-      md: "gap-[8px] h-[21px]",
-      lg: "gap-[12px] h-[24px]",
+      sm: "gap-8 h-[18px]",
+      md: "gap-8 h-[21px]",
+      lg: "gap-12 h-[24px]",
     },
   },
   defaultVariants: {

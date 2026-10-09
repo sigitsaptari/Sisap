@@ -62,13 +62,13 @@ describe("Radio", () => {
 
   it("applies correct size classes", () => {
     const { container, rerender } = render(<Radio id="r-size" size="sm" aria-label="sm" />);
-    expect(container.querySelector(".size-4")).toBeTruthy();
+    expect(container.querySelector(".size-16")).toBeTruthy();
 
     rerender(<Radio id="r-size" size="md" aria-label="md" />);
-    expect(container.querySelector(".size-5")).toBeTruthy();
+    expect(container.querySelector(".size-20")).toBeTruthy();
 
     rerender(<Radio id="r-size" size="lg" aria-label="lg" />);
-    expect(container.querySelector(".size-6")).toBeTruthy();
+    expect(container.querySelector(".size-24")).toBeTruthy();
   });
 
   it("works with RadioGroup in controlled and uncontrolled modes", async () => {

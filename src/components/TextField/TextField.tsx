@@ -10,9 +10,9 @@ export const textFieldVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-9 px-3 gap-2 text-xs",
-        md: "h-11 px-4 gap-3 text-sm",
-        lg: "h-[52px] px-5 gap-4 text-base",
+        sm: "h-9 px-12 gap-8 text-xs",
+        md: "h-11 px-16 gap-12 text-sm",
+        lg: "h-[52px] px-20 gap-16 text-base",
       },
       state: {
         default:
@@ -35,9 +35,9 @@ export const textFieldVariants = cva(
 );
 
 const iconSizes: Record<TextFieldSize, string> = {
-  sm: "size-4",
-  md: "size-5",
-  lg: "size-6",
+  sm: "size-16",
+  md: "size-20",
+  lg: "size-24",
 };
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -172,7 +172,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <div className={textFieldVariants({ size, state: effectiveState })}>
           {/* Prefix Slot with Divider */}
           {showPrefix && (
-            <div className="flex shrink-0 items-center gap-2.5 font-medium text-[#444b55] select-none dark:text-neutral-300">
+            <div className="flex shrink-0 items-center gap-8 font-medium text-[#444b55] select-none dark:text-neutral-300">
               <span>{resolvedPrefix}</span>
               <div
                 className={cn("w-px shrink-0 bg-[#d5d7d9] dark:bg-neutral-700", dividerHeightClass)}
@@ -227,7 +227,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
           {/* Suffix Slot with Divider */}
           {showSuffix && (
-            <div className="flex shrink-0 items-center gap-2.5 font-medium text-[#444b55] select-none dark:text-neutral-300">
+            <div className="flex shrink-0 items-center gap-8 font-medium text-[#444b55] select-none dark:text-neutral-300">
               <div
                 className={cn("w-px shrink-0 bg-[#d5d7d9] dark:bg-neutral-700", dividerHeightClass)}
                 aria-hidden="true"

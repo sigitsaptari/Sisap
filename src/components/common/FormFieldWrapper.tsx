@@ -67,18 +67,18 @@ export function FormFieldWrapper({
   const badgeSizeClass = isSm ? "text-[10px]" : isLg ? "text-sm" : "text-xs";
   const hintSizeClass = isSm ? "text-[10px]" : isLg ? "text-sm" : "text-xs";
   const statusMsgSizeClass = isSm ? "text-xs" : isLg ? "text-base" : "text-sm";
-  const statusGapClass = isSm ? "gap-1" : isLg ? "gap-2" : "gap-1.5";
+  const statusGapClass = isSm ? "gap-4" : isLg ? "gap-8" : "gap-4";
 
   const hasHeader = Boolean(showLabel && label);
   const displayStatusRow = Boolean(errorMessage || successMessage);
   const displayHintRow = Boolean((showHint && hint) || showCounter);
 
   return (
-    <div className={cn("flex w-full flex-col gap-2", containerClassName)}>
+    <div className={cn("flex w-full flex-col gap-8", containerClassName)}>
       {/* Header row: Label + Wajib/Opsional + Info Tooltip + Description */}
       {hasHeader && (
-        <div className="flex w-full flex-col gap-1">
-          <div className="flex w-full items-center gap-1.5">
+        <div className="flex w-full flex-col gap-4">
+          <div className="flex w-full items-center gap-8">
             <label
               htmlFor={id}
               className={cn(
@@ -107,7 +107,7 @@ export function FormFieldWrapper({
                 className="inline-flex cursor-help items-center text-[#686e76] transition-colors hover:text-[#444b55] dark:hover:text-neutral-300"
                 aria-label="Informasi tambahan"
               >
-                <InfoCircle color="currentColor" size={16} className="size-4" aria-hidden="true" />
+                <InfoCircle color="currentColor" size={16} className="size-16" aria-hidden="true" />
               </span>
             )}
           </div>
@@ -164,7 +164,7 @@ export function FormFieldWrapper({
 
       {/* Footer Hint Row: Hint Text (left) and Character Counter (right) */}
       {displayHintRow && (
-        <div className="flex w-full items-center justify-between gap-2.5">
+        <div className="flex w-full items-center justify-between gap-8">
           {showHint && hint ? (
             <p
               id={hintId}

@@ -40,7 +40,7 @@ function NavItem({
   activeItem,
   setActiveItem,
   badge,
-  pyClass = "py-[4px]",
+  pyClass = "py-4",
 }: NavItemProps) {
   const isActive = activeItem === label;
 
@@ -48,13 +48,13 @@ function NavItem({
     <button
       type="button"
       onClick={() => setActiveItem(label)}
-      className={`relative flex w-full cursor-pointer items-center justify-between px-[16px] text-left transition-colors ${pyClass} ${
+      className={`relative flex w-full cursor-pointer items-center justify-between px-16 text-left transition-colors ${pyClass} ${
         isActive
           ? "bg-white font-medium text-[#009ea9]"
           : "font-normal text-[#444b55] hover:bg-[#f9fafa]"
       }`}
     >
-      <div className="flex items-center gap-[8px]">
+      <div className="flex items-center gap-8">
         <Icon size={20} variant="Bulk" color={isActive ? "#009ea9" : "#444b55"} />
         <span className="text-[12px] leading-[18px]">{label}</span>
       </div>
@@ -89,7 +89,7 @@ const MENU_SECTIONS = [
     title: "Produk",
     items: [
       { label: "Data Produk", icon: Box },
-      { label: "Tambah Produk", icon: BoxAdd, pyClass: "py-[6px]" },
+      { label: "Tambah Produk", icon: BoxAdd, pyClass: "py-8" },
       { label: "Tambah Produk Bulk", icon: BoxAdd },
     ],
   },
@@ -132,9 +132,9 @@ export function SellerSidebar() {
     <aside className="flex w-[280px] shrink-0 flex-col border-r border-[#dee3ed] bg-[#ffffff] font-['Ubuntu'] select-none">
       {/* Store Header Profile Card (6901:5207) */}
       <div className="flex w-full flex-col">
-        <div className="flex w-full items-center justify-between p-[16px]">
-          <div className="flex items-center gap-[12px]">
-            <div className="flex size-[32px] shrink-0 items-center justify-center rounded-[99px] bg-[#f1f3f7] text-[#009ea9]">
+        <div className="flex w-full items-center justify-between p-16">
+          <div className="flex items-center gap-12">
+            <div className="flex size-32 shrink-0 items-center justify-center rounded-[99px] bg-[#f1f3f7] text-[#009ea9]">
               <Shop size={16} variant="Bulk" color="#009ea9" />
             </div>
             <div className="flex flex-col">
@@ -145,7 +145,7 @@ export function SellerSidebar() {
           </div>
 
           {/* Action Icons: Preview & Share */}
-          <div className="flex items-center gap-[12px] text-[#8c9197]">
+          <div className="flex items-center gap-12 text-[#8c9197]">
             <button
               type="button"
               className="flex size-[24px] cursor-pointer items-center justify-center transition-colors hover:text-[#444b55]"
@@ -168,9 +168,9 @@ export function SellerSidebar() {
       </div>
 
       {/* Nav Menu Items List (exact Figma paddings and hierarchy) */}
-      <nav className="flex flex-1 flex-col gap-[8px] overflow-y-auto py-[12px] pb-[24px]">
+      <nav className="flex flex-1 flex-col gap-8 overflow-y-auto py-12 pb-24">
         {/* Top Items: Dashboard & Chat */}
-        <div className="flex flex-col gap-[4px]">
+        <div className="flex flex-col gap-4">
           {TOP_ITEMS.map((item) => (
             <NavItem
               key={item.label}
@@ -186,13 +186,13 @@ export function SellerSidebar() {
 
         {/* Iterated Sections */}
         {MENU_SECTIONS.map((section) => (
-          <div key={section.title} className="flex flex-col gap-[4px] py-[4px]">
-            <div className="px-[16px] py-[4px]">
+          <div key={section.title} className="flex flex-col gap-4 py-4">
+            <div className="px-16 py-4">
               <span className="text-[14px] leading-[21px] font-medium text-[#686e76]">
                 {section.title}
               </span>
             </div>
-            <div className="flex flex-col gap-[2px]">
+            <div className="flex flex-col gap-4">
               {section.items.map((item) => (
                 <NavItem
                   key={item.label}
@@ -208,7 +208,7 @@ export function SellerSidebar() {
         ))}
 
         {/* Bottom Utility Items */}
-        <div className="flex flex-col gap-[2px] border-t border-[#f2f4f7] pt-[8px]">
+        <div className="flex flex-col gap-4 border-t border-[#f2f4f7] pt-8">
           {UTILITY_ITEMS.map((item) => (
             <NavItem
               key={item.label}

@@ -276,7 +276,7 @@ export function Uploader({
 
   return (
     <div
-      className={cn("flex w-full flex-col gap-2", className)}
+      className={cn("flex w-full flex-col gap-8", className)}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -284,7 +284,7 @@ export function Uploader({
     >
       {/* Header Label */}
       {displayLabel && (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           <span className="text-[14px] leading-[21px] font-medium text-[#444b55] dark:text-neutral-200">
             {displayLabel}
           </span>
@@ -297,8 +297,8 @@ export function Uploader({
       )}
 
       {/* Upload Items & Trigger Row */}
-      <div className="flex w-full flex-col gap-4">
-        <div className="flex min-h-[94px] flex-wrap items-start gap-3">
+      <div className="flex w-full flex-col gap-16">
+        <div className="flex min-h-[94px] flex-wrap items-start gap-12">
           {/* Uploaded / In-Progress Items */}
           {files.map((file, idx) => (
             <UploaderItem

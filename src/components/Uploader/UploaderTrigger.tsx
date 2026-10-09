@@ -19,7 +19,7 @@ export function UploaderTrigger({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-1 rounded-[8px] border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#009ea9]/50",
+        "relative flex size-[94px] shrink-0 flex-col items-center justify-center gap-4 rounded-[8px] border border-dashed p-0 transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#009ea9]/50",
         disabled
           ? "cursor-not-allowed opacity-50 hover:border-[#b1b4b8] hover:bg-transparent active:scale-100"
           : "cursor-pointer",
@@ -30,7 +30,7 @@ export function UploaderTrigger({
       aria-label={isImage ? `Tambah Foto (${currentCount}/${maxFiles})` : "Tambah Video"}
     >
       {/* Icon */}
-      <div className="flex size-6 shrink-0 items-center justify-center">
+      <div className="flex size-24 shrink-0 items-center justify-center">
         {isImage
           ? renderIcon(<Gallery size={24} variant="Bulk" color="#009ea9" />, 24, "#009ea9")
           : renderIcon(<VideoPlay size={24} variant="Bulk" color="#009ea9" />, 24, "#009ea9")}

@@ -14,9 +14,9 @@ export const radioVariants = cva(
   {
     variants: {
       size: {
-        sm: "size-4",
-        md: "size-5",
-        lg: "size-6",
+        sm: "size-16",
+        md: "size-20",
+        lg: "size-24",
       },
     },
     defaultVariants: {
@@ -92,7 +92,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
           aria-labelledby={ariaLabelledBy}
           className={cn(
             "flex",
-            orientation === "vertical" ? "flex-col gap-3" : "flex-row flex-wrap gap-4",
+            orientation === "vertical" ? "flex-col gap-12" : "flex-row flex-wrap gap-16",
             className,
           )}
           {...props}
@@ -148,9 +148,9 @@ export function useRadioControl({
 }
 
 const dotSizeClasses: Record<RadioSize, string> = {
-  sm: "size-2",
-  md: "size-2.5",
-  lg: "size-3",
+  sm: "size-8",
+  md: "size-12",
+  lg: "size-12",
 };
 
 /**
@@ -254,7 +254,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       <label
         htmlFor={id}
         className={cn(
-          "group/radio inline-flex cursor-pointer items-center gap-2 select-none",
+          "group/radio inline-flex cursor-pointer items-center gap-8 select-none",
           isDisabled && "cursor-not-allowed",
           containerClassName,
         )}

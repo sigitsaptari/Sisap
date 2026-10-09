@@ -28,9 +28,9 @@ export const buttonVariants = cva(
           "bg-button-danger-bg text-button-danger-fg hover:bg-button-danger-bg-hover active:bg-danger-800 disabled:bg-button-disabled-bg disabled:text-button-disabled-fg disabled:border-transparent",
       },
       size: {
-        sm: "h-9 px-2.5 gap-1 text-xs",
-        md: "h-11 px-3 gap-2 text-sm",
-        lg: "h-[52px] px-3.5 gap-2 text-base",
+        sm: "h-9 px-8 gap-4 text-xs",
+        md: "h-11 px-12 gap-8 text-sm",
+        lg: "h-[52px] px-16 gap-8 text-base",
         icon: "size-11 p-0",
       },
       state: {
@@ -131,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   const labelContent = children ?? labelText;
   const iconPixelSize = size === "sm" ? 16 : size === "lg" ? 24 : 20;
   const iconSizeClass =
-    size === "sm" ? "[&_svg]:size-4" : size === "lg" ? "[&_svg]:size-6" : "[&_svg]:size-5";
+    size === "sm" ? "[&_svg]:size-16" : size === "lg" ? "[&_svg]:size-24" : "[&_svg]:size-20";
 
   if (asChild) {
     return (
