@@ -121,7 +121,7 @@ export function CertificateModal({
           e.preventDefault();
           handleSubmit();
         }}
-        className="flex flex-col gap-16 py-8"
+        className="flex flex-col gap-gap-md py-xs"
       >
         {/* Jenis Sertifikat */}
         <SelectField
@@ -154,8 +154,8 @@ export function CertificateModal({
         )}
 
         {/* Upload Dokumen Sertifikat */}
-        <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-gap-xs">
+          <div className="flex items-center gap-gap-2xs">
             <span className="font-sans text-sm font-medium text-primary">
               Upload Dokumen Sertifikat
             </span>
@@ -166,11 +166,11 @@ export function CertificateModal({
 
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-placeholder bg-bg-canvas p-16 text-center transition-colors hover:border-action-primary hover:bg-action-primary/5"
+            className="flex cursor-pointer flex-col items-center justify-center rounded-sub-container border border-dashed border-placeholder bg-bg-canvas p-inset-md text-center transition-colors hover:border-action-primary hover:bg-action-primary/5"
           >
-            <DocumentUpload size={28} variant="Bulk" className="mb-4 text-action-primary" />
+            <DocumentUpload size={28} variant="Bulk" className="mb-2xs text-action-primary" />
             {fileName ? (
-              <div className="flex items-center gap-8">
+              <div className="flex items-center gap-gap-xs">
                 <span className="text-xs font-semibold text-action-primary underline">
                   {fileName}
                 </span>
@@ -188,7 +188,7 @@ export function CertificateModal({
                 Pilih Berkas PDF / JPG
               </span>
             )}
-            <span className="mt-2 text-xs text-placeholder">Maks. ukuran 5MB</span>
+            <span className="mt-3xs text-xs text-placeholder">Maks. ukuran 5MB</span>
             <input
               ref={fileInputRef}
               type="file"

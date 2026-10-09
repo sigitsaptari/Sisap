@@ -1,0 +1,16 @@
+{
+  "opacity": {
+    "transparent": { "$type": "number", "$value": "{opacity.0}" },
+    "subtle": { "$type": "number", "$value": "{opacity.25}" },
+    "semi": { "$type": "number", "$value": "{opacity.50}" },
+    "dim": { "$type": "number", "$value": "{opacity.75}" },
+    "solid": { "$type": "number", "$value": "{opacity.100}" },
+    "disabled": { "$type": "number", "$value": "{opacity.50}" },
+    "hover": { "$type": "number", "$value": "{opacity.75}" },
+    "hover-subtle": { "$type": "number", "$value": "{opacity.75}" },
+    "overlay": { "$type": "number", "$value": "{opacity.50}" },
+    "divider": { "$type": "number", "$value": "{opacity.25}" },
+    "active": { "$type": "number", "$value": "{opacity.100}" },
+    "invisible": { "$type": "number", "$value": "{opacity.0}" }
+  }
+}

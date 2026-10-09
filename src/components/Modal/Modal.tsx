@@ -66,16 +66,16 @@ export function ModalHeader({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-between p-16",
+        "flex shrink-0 items-center justify-between p-inset-md",
         className,
       )}
     >
-      <div className="flex items-center gap-12">
+      <div className="flex items-center gap-gap-sm">
         {showBackButton && (
           <button
             type="button"
             onClick={onBack}
-            className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
             aria-label="Kembali"
           >
             <ArrowLeft2 size={20} className="text-primary" />
@@ -92,7 +92,7 @@ export function ModalHeader({
         <button
           type="button"
           onClick={onClose}
-          className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
+          className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
           aria-label="Tutup"
         >
           <CloseIcon className="size-5" />
@@ -106,7 +106,7 @@ export function ModalBody({ children, className }: ModalBodyProps) {
   return (
     <div
       className={cn(
-        "flex flex-1 flex-col p-16 text-sm text-primary",
+        "flex flex-1 flex-col p-inset-md text-sm text-primary",
         className,
       )}
     >
@@ -129,7 +129,7 @@ export function ModalFooter({
     return (
       <div
         className={cn(
-          "flex shrink-0 items-center gap-8 p-16",
+          "flex shrink-0 items-center gap-gap-xs p-inset-md",
           className,
         )}
       >
@@ -141,7 +141,7 @@ export function ModalFooter({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center gap-8 p-16",
+        "flex shrink-0 items-center gap-gap-xs p-inset-md",
         className,
       )}
     >
@@ -151,7 +151,7 @@ export function ModalFooter({
           variant="secondary"
           size="md"
           onClick={onCancel}
-          className="h-11 flex-1 rounded-sm border border-primary text-sm font-medium text-primary"
+          className="h-11 flex-1 rounded-control border border-primary text-sm font-medium text-primary"
         >
           {cancelText}
         </Button>
@@ -164,7 +164,7 @@ export function ModalFooter({
           isLoading={confirmLoading}
           disabled={confirmDisabled}
           onClick={onConfirm}
-          className="h-11 flex-1 rounded-sm bg-action-primary text-sm font-medium text-white hover:bg-action-primary-hover"
+          className="h-11 flex-1 rounded-control bg-action-primary text-sm font-medium text-white hover:bg-action-primary-hover"
         >
           {confirmText}
         </Button>
@@ -290,11 +290,11 @@ export function Modal({
       aria-label={typeof title === "string" ? title : "Modal Dialog"}
       onClick={handleOverlayClick}
       className={cn(
-        "fixed inset-0 z-50 flex items-center justify-center p-16 select-none",
+        "fixed inset-0 z-50 flex items-center justify-center p-inset-md select-none",
         "bg-[rgba(0,0,0,0.35)]",
         // Mantine overlay transition: smooth opacity fade (200ms ease-out)
         "transition-opacity duration-200 ease-out",
-        active ? "opacity-100" : "opacity-0 pointer-events-none",
+        active ? "opacity-active" : "opacity-invisible pointer-events-none",
         overlayClassName,
       )}
     >
@@ -303,15 +303,15 @@ export function Modal({
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "relative flex w-full flex-col rounded-lg bg-surface-base shadow-lg",
+          "relative flex w-full flex-col rounded-container bg-surface-base shadow-lg",
           sizeClasses[size],
           // Mantine modal enter/exit animation:
           // Enter: opacity 0 -> 1, scale 0.95 -> 1, translateY -16px -> 0 (cubic-bezier(0.16, 1, 0.3, 1))
           // Exit: opacity 1 -> 0, scale 1 -> 0.95, translateY 0 -> -8px
           "transition-all ease-[cubic-bezier(0.16,1,0.3,1)] select-auto",
           active
-            ? "translate-y-0 scale-100 opacity-100 duration-250"
-            : "-translate-y-4 scale-95 opacity-0 duration-150",
+            ? "translate-y-0 scale-100 opacity-active duration-250"
+            : "-translate-y-4 scale-95 opacity-invisible duration-150",
           className,
         )}
       >
@@ -319,18 +319,18 @@ export function Modal({
         {hasImage ? (
           <>
             {showCloseButton && (
-              <div className="flex items-center justify-end pt-16 pr-16">
+              <div className="flex items-center justify-end pt-inset-md pr-inset-md">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-primary transition-colors hover:bg-bg-canvas"
+                  className="flex size-8 cursor-pointer items-center justify-center rounded-control text-primary transition-colors hover:bg-bg-canvas"
                   aria-label="Tutup"
                 >
                   <CloseIcon className="size-5" />
                 </button>
               </div>
             )}
-            <div className="flex w-full flex-col items-center justify-center px-16">
+            <div className="flex w-full flex-col items-center justify-center px-inset-md">
               <div className="flex h-44 w-72 items-center justify-center">
                 {image}
               </div>

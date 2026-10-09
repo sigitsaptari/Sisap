@@ -10,8 +10,8 @@ export const checkboxVariants = cva(
     variants: {
       size: {
         sm: "size-16 rounded-checkbox",
-        md: "size-20 rounded-[5px]",
-        lg: "size-24 rounded-[6px]",
+        md: "size-20 rounded-xs",
+        lg: "size-24 rounded-sm",
       },
     },
     defaultVariants: {
@@ -61,7 +61,7 @@ export const Checkbox = forwardRef<React.ElementRef<typeof CheckboxPrimitive.Roo
 
     if (text && showText) {
       return (
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-gap-xs">
           {content}
           <label
             htmlFor={id}

@@ -1,0 +1,47 @@
+{
+  "space": {
+    "none": { "$type": "dimension", "$value": "{space.0}" },
+    "3xs": { "$type": "dimension", "$value": "{space.2}" },
+    "2xs": { "$type": "dimension", "$value": "{space.4}" },
+    "xs": { "$type": "dimension", "$value": "{space.8}" },
+    "sm-compact": { "$type": "dimension", "$value": "{space.10}" },
+    "sm": { "$type": "dimension", "$value": "{space.12}" },
+    "md-compact": { "$type": "dimension", "$value": "{space.14}" },
+    "md": { "$type": "dimension", "$value": "{space.16}" },
+    "lg": { "$type": "dimension", "$value": "{space.20}" },
+    "xl": { "$type": "dimension", "$value": "{space.24}" },
+    "2xl": { "$type": "dimension", "$value": "{space.32}" },
+    "3xl": { "$type": "dimension", "$value": "{space.48}" },
+    "4xl": { "$type": "dimension", "$value": "{space.64}" },
+    "inset": {
+      "none": { "$type": "dimension", "$value": "{space.0}" },
+      "3xs": { "$type": "dimension", "$value": "{space.2}" },
+      "2xs": { "$type": "dimension", "$value": "{space.4}" },
+      "xs": { "$type": "dimension", "$value": "{space.8}" },
+      "sm": { "$type": "dimension", "$value": "{space.12}" },
+      "md": { "$type": "dimension", "$value": "{space.16}" },
+      "lg": { "$type": "dimension", "$value": "{space.20}" },
+      "xl": { "$type": "dimension", "$value": "{space.24}" },
+      "2xl": { "$type": "dimension", "$value": "{space.32}" }
+    },
+    "gap": {
+      "none": { "$type": "dimension", "$value": "{space.0}" },
+      "3xs": { "$type": "dimension", "$value": "{space.2}" },
+      "2xs": { "$type": "dimension", "$value": "{space.4}" },
+      "xs": { "$type": "dimension", "$value": "{space.8}" },
+      "sm": { "$type": "dimension", "$value": "{space.12}" },
+      "md": { "$type": "dimension", "$value": "{space.16}" },
+      "lg": { "$type": "dimension", "$value": "{space.20}" },
+      "xl": { "$type": "dimension", "$value": "{space.24}" },
+      "2xl": { "$type": "dimension", "$value": "{space.32}" }
+    },
+    "layout": {
+      "gutter": { "$type": "dimension", "$value": "{space.16}" },
+      "gutter-desktop": { "$type": "dimension", "$value": "{space.24}" },
+      "card": { "$type": "dimension", "$value": "{space.24}" },
+      "section": { "$type": "dimension", "$value": "{space.32}" },
+      "container": { "$type": "dimension", "$value": "{space.48}" },
+      "page": { "$type": "dimension", "$value": "{space.64}" }
+    }
+  }
+}

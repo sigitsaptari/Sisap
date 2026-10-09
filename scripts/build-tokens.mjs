@@ -66,6 +66,13 @@ const base = mergeFlattened(
 const component = mergeFlattened(
   ...readDirJson(join(repoRoot, "tokens/component")).map((json) => flatten(json)),
 );
+const semanticDir = join(repoRoot, "tokens/semantic");
+const sharedSemanticFiles = readdirSync(semanticDir)
+  .filter((f) => f.endsWith(".json") && f !== "light.json" && f !== "dark.json");
+const sharedSemantic = mergeFlattened(
+  ...sharedSemanticFiles.map((f) => flatten(readJson(join(semanticDir, f)))),
+);
+
 const lightJson = readJson(join(repoRoot, "tokens/semantic/light.json"));
 const darkJson = readJson(join(repoRoot, "tokens/semantic/dark.json"));
 
@@ -77,10 +84,12 @@ try {
 }
 
 const light = mergeFlattened(
+  sharedSemantic,
   flatten(lightJson),
   combinedSemantic.light ? flatten({ color: combinedSemantic.light }) : {},
 );
 const dark = mergeFlattened(
+  sharedSemantic,
   flatten(darkJson),
   combinedSemantic.dark ? flatten({ color: combinedSemantic.dark }) : {},
 );
@@ -100,13 +109,22 @@ function renderVars(tokens) {
     const name = kebab(path);
     lines.push(`  --ds-${name}: ${value};`);
 
-    // Also export standard un-prefixed variables for semantic colors and components (for tailwind.config.ts support)
+    // Also export standard un-prefixed variables for semantic colors, spacing, and components
     if (path.startsWith("color.")) {
       const aliasName = kebab(path.slice("color.".length));
       lines.push(`  --${aliasName}: ${value};`);
       if (aliasName !== name) {
         lines.push(`  --ds-${aliasName}: ${value};`);
       }
+    } else if (
+      path.startsWith("space.") ||
+      path.startsWith("spacing.") ||
+      path.startsWith("radius.") ||
+      path.startsWith("border-radius.") ||
+      path.startsWith("opacity.")
+    ) {
+      const aliasName = kebab(path);
+      lines.push(`  --${aliasName}: ${value};`);
     }
   }
   // Deduplicate lines
@@ -119,8 +137,11 @@ const semanticColorPaths = new Set(
 );
 
 const themePrefixes = [
+  ["space.", "spacing"],
   ["spacing.", "spacing"],
+  ["radius.", "radius"],
   ["border-radius.", "radius"],
+  ["opacity.", "opacity"],
   ["typography.font.family.", "font"],
   ["typography.font.size.", "text"],
   ["shadow.", "shadow"],
@@ -147,7 +168,12 @@ function renderTailwindTheme(tokens) {
       }
       for (const [prefix, ns] of themePrefixes) {
         if (path.startsWith(prefix)) {
-          return [`  --${ns}-${kebab(path.slice(prefix.length))}: var(${varName});`];
+          const suffix = kebab(path.slice(prefix.length));
+          const out = [`  --${ns}-${suffix}: var(${varName});`];
+          if (prefix === "space.") {
+            out.push(`  --${ns}-space-${suffix}: var(${varName});`);
+          }
+          return out;
         }
       }
       return [];

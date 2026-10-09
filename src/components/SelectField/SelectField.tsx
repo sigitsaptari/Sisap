@@ -207,14 +207,14 @@ export function SelectField({
         {isOpen && (
           <div
             className={cn(
-              "absolute top-full left-0 z-50 mt-4 flex max-h-[280px] w-full flex-col gap-8 overflow-hidden",
-              "rounded-sm border border-border-primary bg-surface-base p-12 shadow-md dark:bg-neutral-900",
+              "absolute top-full left-0 z-50 mt-4 flex max-h-[280px] w-full flex-col gap-gap-xs overflow-hidden",
+              "rounded-control border border-border-primary bg-surface-base p-inset-sm shadow-md dark:bg-neutral-900",
               dropdownClassName,
             )}
           >
             {/* Search Input */}
             {searchable && (
-              <div className="flex h-9 w-full shrink-0 items-center gap-12 rounded-sm border border-border-primary bg-surface-base px-16 dark:border-neutral-700 dark:bg-neutral-900">
+              <div className="flex h-9 w-full shrink-0 items-center gap-gap-sm rounded-control border border-border-primary bg-surface-base px-inset-md dark:border-neutral-700 dark:bg-neutral-900">
                 <SearchNormal1 size={16} className="shrink-0 text-placeholder" />
                 <input
                   type="text"
@@ -246,7 +246,7 @@ export function SelectField({
                       aria-selected={isSelected}
                       onClick={() => handleOptionClick(option.value)}
                       className={cn(
-                        "flex min-h-10 cursor-pointer items-center gap-8 rounded-sm px-12 py-2.5 font-sans text-sm text-primary transition-colors",
+                        "flex min-h-10 cursor-pointer items-center gap-gap-xs rounded-control px-inset-sm py-2.5 font-sans text-sm text-primary transition-colors",
                         isSelected && !multiple
                           ? "bg-brand-soft font-medium text-primary"
                           : "bg-surface-base text-primary hover:bg-bg-canvas dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800",

@@ -832,14 +832,14 @@ export default function App() {
                               </div>
 
                               {/* Column 4: Aksi */}
-                              <div className="flex w-[105px] items-center gap-12 px-16 py-8">
+                              <div className="flex w-[105px] items-center gap-gap-sm px-inset-md py-xs">
                                 <button
                                   type="button"
                                   onClick={() => {
                                     setEditingCert(cert);
                                     setIsCertModalOpen(true);
                                   }}
-                                  className="flex size-[24px] cursor-pointer items-center justify-center transition-opacity hover:opacity-80"
+                                  className="flex size-[24px] cursor-pointer items-center justify-center transition-opacity hover:opacity-hover"
                                   title="Ubah Sertifikat"
                                   aria-label="Ubah Sertifikat"
                                 >
@@ -851,7 +851,7 @@ export default function App() {
                                     setCertificates((prev) => prev.filter((c) => c.id !== cert.id));
                                     showToast("Sertifikat berhasil dihapus");
                                   }}
-                                  className="flex size-[24px] cursor-pointer items-center justify-center transition-opacity hover:opacity-80"
+                                  className="flex size-[24px] cursor-pointer items-center justify-center transition-opacity hover:opacity-hover"
                                   title="Hapus Sertifikat"
                                   aria-label="Hapus Sertifikat"
                                 >
@@ -1308,7 +1308,7 @@ export default function App() {
                         Tentukan jenis visibilitas produk dari sistem pencarian dan halaman penjual
                         PaDi UMKM
                       </p>
-                      <div className="flex gap-24 pt-4">
+                      <div className="flex gap-gap-xl pt-2xs">
                         <RadioCard
                           id="vis-publik"
                           name="visibilityType"
@@ -1317,7 +1317,7 @@ export default function App() {
                           onChange={() => setVisibilityType("publik")}
                           label="Publik"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-sm p-16 ${visibilityType === "publik"
+                          className={`w-[200px] cursor-pointer rounded-control p-inset-md ${visibilityType === "publik"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1330,7 +1330,7 @@ export default function App() {
                           onChange={() => setVisibilityType("privat")}
                           label="Privat"
                           radioRight={false}
-                          className={`w-[200px] cursor-pointer rounded-sm p-16 ${visibilityType === "privat"
+                          className={`w-[200px] cursor-pointer rounded-control p-inset-md ${visibilityType === "privat"
                               ? "border-action-primary bg-brand-soft"
                               : "border-border-primary bg-white"
                             }`}
@@ -1359,7 +1359,7 @@ export default function App() {
                           type="button"
                           onClick={() => setIsBumnDropdownOpen((prev) => !prev)}
                           className={cn(
-                            "flex h-[44px] w-full items-center justify-between rounded-sm border bg-white px-16 text-left transition-colors cursor-pointer",
+                            "flex h-[44px] w-full items-center justify-between rounded-control border bg-white px-inset-md text-left transition-colors cursor-pointer",
                             isBumnDropdownOpen
                               ? "border-action-primary ring-1 ring-action-primary"
                               : "border-border-primary hover:border-placeholder"
@@ -1381,9 +1381,9 @@ export default function App() {
 
                         {/* Dropdown Menu (Figma 91049:1917) */}
                         {isBumnDropdownOpen && (
-                          <div className="absolute top-[calc(100%+4px)] left-0 z-50 flex w-full flex-col gap-2 rounded-sm border border-border-primary bg-surface-base p-3 shadow-md">
+                          <div className="absolute top-[calc(100%+4px)] left-0 z-50 flex w-full flex-col gap-gap-3xs rounded-control border border-border-primary bg-surface-base p-inset-sm shadow-md">
                             {/* Search Box */}
-                            <div className="flex h-9 w-full shrink-0 items-center gap-3 rounded-sm border border-border-primary bg-surface-base px-4">
+                            <div className="flex h-9 w-full shrink-0 items-center gap-gap-sm rounded-control border border-border-primary bg-surface-base px-inset-md">
                               <SearchNormal1 size={16} className="shrink-0 text-placeholder" />
                               <input
                                 type="text"
@@ -1415,16 +1415,16 @@ export default function App() {
                                         }
                                       }}
                                       className={cn(
-                                        "flex h-10 shrink-0 items-center gap-2 rounded-sm px-3 py-2.5 transition-colors select-none",
+                                        "flex h-10 shrink-0 items-center gap-gap-3xs rounded-control px-inset-sm py-2.5 transition-colors select-none",
                                         isMaxReached
-                                          ? "cursor-not-allowed opacity-50"
+                                          ? "cursor-not-allowed opacity-disabled"
                                           : "cursor-pointer hover:bg-bg-canvas"
                                       )}
                                     >
                                       {/* Checkbox icon left */}
                                       <div
                                         className={cn(
-                                          "flex size-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
+                                          "flex size-4 shrink-0 items-center justify-center rounded-2xs border transition-colors",
                                           isSelected
                                             ? "border-action-primary bg-action-primary text-white"
                                             : "border-placeholder bg-surface-base"
@@ -1505,13 +1505,13 @@ export default function App() {
       </div>
 
       {/* Sticky Bottom CTA Bar (6954:13282) */}
-      <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-16 border-t border-border-subtle bg-surface-base bg-white px-24 py-16 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
+      <footer className="fixed right-0 bottom-0 left-[280px] z-40 flex h-[68px] items-center justify-end gap-gap-md border-t border-border-subtle bg-surface-base bg-white px-layout-card py-inset-md drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1),0px_0px_1px_rgba(0,0,0,0.2)]">
         {currentStep > 1 && (
           <Button
             variant="secondary"
             size="md"
             onClick={handlePrev}
-            className="h-9 rounded-sm border border-primary px-12 text-xs font-medium text-primary"
+            className="h-9 rounded-control border border-primary px-inset-sm text-xs font-medium text-primary"
           >
             Kembali
           </Button>
@@ -1520,7 +1520,7 @@ export default function App() {
           variant="secondary"
           size="md"
           onClick={() => showToast("Draf produk berhasil disimpan!")}
-          className="h-9 rounded-sm border border-primary px-12 text-xs font-medium text-primary"
+          className="h-9 rounded-control border border-primary px-inset-sm text-xs font-medium text-primary"
         >
           Simpan Draft
         </Button>
@@ -1528,7 +1528,7 @@ export default function App() {
           variant="primary"
           size="md"
           onClick={handleNext}
-          className="h-9 rounded-sm bg-action-primary px-12 text-xs font-medium text-white"
+          className="h-9 rounded-control bg-action-primary px-inset-sm text-xs font-medium text-white"
         >
           {currentStep === 4 ? "Selesai" : "Selanjutnya"}
         </Button>

@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 import type { SwitchProps } from "./Switch.types";
 
 const switchTrackVariants = cva(
-  "peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-action-primary data-[state=unchecked]:bg-border-primary dark:data-[state=unchecked]:bg-neutral-600",
+  "peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-primary/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-disabled data-[state=checked]:bg-action-primary data-[state=unchecked]:bg-border-primary dark:data-[state=unchecked]:bg-neutral-600",
   {
     variants: {
       size: {
@@ -46,7 +46,7 @@ const switchLabelVariants = cva(
         lg: "text-base",
       },
       disabled: {
-        true: "opacity-50 cursor-not-allowed",
+        true: "opacity-disabled cursor-not-allowed",
       },
     },
     defaultVariants: {

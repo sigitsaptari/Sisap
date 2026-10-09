@@ -144,7 +144,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
               e.stopPropagation();
               onDismiss?.();
             }}
-            className="focus-visible:ring-action-primary inline-flex shrink-0 cursor-pointer items-center justify-center rounded-xs transition-opacity hover:opacity-75 focus-visible:ring-1 focus-visible:outline-none"
+            className="focus-visible:ring-action-primary inline-flex shrink-0 cursor-pointer items-center justify-center rounded-badge transition-opacity hover:opacity-hover focus-visible:ring-1 focus-visible:outline-none"
           >
             <CloseCircle
               color="currentColor"
